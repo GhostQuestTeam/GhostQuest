@@ -1,26 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DialogueSystem;
 using UnityEngine;
 
-public class DialogueGraph  {
+public class DialogueGraph
+{
     Dictionary<int, DialogueNode> nodes;
-    int currentNodeId = 0;
+    int _currentNodeId = 0;
 
     public DialogueNode CurrentNode
     {
-        get
-        {
-            return nodes[currentNodeId];
-        }
+        get { return nodes[_currentNodeId]; }
     }
 
     public void ChooseAnswer(uint index)
     {
-           currentNodeId = CurrentNode.Answers[index].Next;
+        _currentNodeId = CurrentNode.Answers[index].Next;
     }
-    
+
+    public DialogueGraph()
+    {
+        this.nodes = new Dictionary<int, DialogueNode>();
+    }
+
     public DialogueGraph(Dictionary<int, DialogueNode> nodes)
     {
         this.nodes = nodes;
+    }
+
+    public void addNode(int index, DialogueNode node)
+    {
+        nodes.Add(index, node);
     }
 }

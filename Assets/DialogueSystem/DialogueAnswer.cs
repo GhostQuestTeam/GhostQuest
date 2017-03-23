@@ -1,30 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-public class DialogueAnswer {
-    string message;
-    int    next;
-
-    public string Message
+﻿namespace DialogueSystem
+{
+    public class DialogueAnswer
     {
-        get
+        string message;
+        int next;
+
+        public string Message
         {
-            return message;
+            get { return message; }
+        }
+
+        public int Next
+        {
+            get { return next; }
+        }
+
+        public DialogueAnswer(string message, int next)
+        {
+            this.message = message;
+            this.next = next;
         }
     }
-
-    public int Next
-    {
-        get
-        {
-            return next;
-        }
-    }
-
-    public DialogueAnswer(string message, int next)
-    {
-        this.message = message;
-        this.next = next;
-    }
-
 }
