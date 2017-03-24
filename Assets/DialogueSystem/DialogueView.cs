@@ -47,8 +47,13 @@ namespace DialogueSystem
                 uint tmp = i;
                 answerButton.GetComponent<Button>().onClick.AddListener(
                     () => {
-                        dialogue.ChooseAnswer(tmp);
-                        _updateView();
+                        int next = dialogue.CurrentNode.Answers[tmp].Next;
+                        if (next != -1){
+                            dialogue.CurrentNodeId = next;
+                            _updateView();
+                        } else {
+                            gameObject.SetActive(false);
+                        }
                     }
                 );
             }

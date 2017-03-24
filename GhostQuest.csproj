@@ -81,6 +81,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\CameraClickHandler.cs" />
     <Compile Include="Assets\DialogueSystem\DialogueAnswer.cs" />
     <Compile Include="Assets\DialogueSystem\DialogueController.cs" />
     <Compile Include="Assets\DialogueSystem\DialogueGraph.cs" />

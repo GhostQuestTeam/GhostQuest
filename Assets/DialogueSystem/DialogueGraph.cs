@@ -14,6 +14,7 @@ public class DialogueGraph
 
 	public int CurrentNodeId{
 		get { return _currentNodeId; }
+        set { _currentNodeId = value; }
 	}
 
     public void ChooseAnswer(uint index){

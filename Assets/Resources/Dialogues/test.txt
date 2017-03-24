@@ -4,7 +4,7 @@
 	"answers" : [
 		{"message" : "answer1"},
 		{"message" : "answer2"},
-		{"message" : "answer3"},
+		{"message" : "Exit", "next" : null},
 		{"message" : "toNext",
 		 "next" : {
 		 	"id" : 1,
