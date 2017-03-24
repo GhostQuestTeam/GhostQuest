@@ -27,7 +27,7 @@ namespace DialogueSystem
 		private delegate bool CheckTypeDelegate(JSONNode node);
 
 
-		private readonly Dictionary<string, int> _FIELD_CONSTARINTS = new Dictionary<string, int>(){
+		private static readonly Dictionary<string, int> _FIELD_CONSTARINTS = new Dictionary<string, int>(){
 			{"id", _NUMBER},
 			{"invitation", _STRING},
 			{"answers", _ARRAY},
@@ -36,7 +36,7 @@ namespace DialogueSystem
 			{"next", _OBJECT | _NUMBER | _NULL | _NOT_EXIST}
 		};
 			
-		private readonly Dictionary<int, CheckTypeDelegate> _CONSTRAINTS_CHECKS = new Dictionary<int, CheckTypeDelegate> () {
+		private static readonly Dictionary<int, CheckTypeDelegate> _CONSTRAINTS_CHECKS = new Dictionary<int, CheckTypeDelegate> () {
 			{_OBJECT,  (node) => node.IsObject },
 			{_ARRAY,   (node) => node.IsArray },
 			{_BOOL,    (node) => node.IsBoolean },
@@ -45,7 +45,7 @@ namespace DialogueSystem
 			{_NULL,    (node) => node.IsNull },
 		};
 
-		private string _getErrorMessage(string field){
+		private static string _getErrorMessage(string field){
 			if (!_FIELD_CONSTARINTS.ContainsKey (field)) {
 				return "field " +field +" not supported"; 
 			}
@@ -72,21 +72,21 @@ namespace DialogueSystem
 			return messageTemplate;
 		}
 			
-		private JSONNode _getField (JSONNode node, string fieldName){
+		private static JSONNode _getField (JSONNode node, string fieldName){
 			if (!node.HasKey (fieldName)) {
 				throw new DialogueParseException ("Dialogue node must have field " + fieldName);
 			}
 			return node [fieldName];  
 		}
 
-		private int _getId(JSONNode node){
+		private static int _getId(JSONNode node){
 			var idNode = _getField (node, "id");
 			_validateType (idNode, "id");
 
 			return idNode.AsInt;
 		}
 
-		private void _validateType(JSONNode node, string fieldName){
+		private static void _validateType(JSONNode node, string fieldName){
 			if (_FIELD_CONSTARINTS.ContainsKey (fieldName)) {
 				int fieldContraints = _FIELD_CONSTARINTS [fieldName];
 				for (int i = 1; i <= _MAX_CONSTRAINT; i *= 2) {
@@ -100,7 +100,7 @@ namespace DialogueSystem
 			throw new DialogueParseException (_getErrorMessage (fieldName));
 		}
 
-		public DialogueGraph Parse(string json){
+		public static DialogueGraph Parse(string json){
 
             var dialogueJson = JSON.Parse(json);
             var dialogue = new DialogueGraph();

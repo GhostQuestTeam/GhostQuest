@@ -8,28 +8,27 @@ public class DialogueGraph
     Dictionary<int, DialogueNode> nodes;
     int _currentNodeId = 0;
 
-    public DialogueNode CurrentNode
-    {
+    public DialogueNode CurrentNode{
         get { return nodes[_currentNodeId]; }
     }
 
-    public void ChooseAnswer(uint index)
-    {
+	public int CurrentNodeId{
+		get { return _currentNodeId; }
+	}
+
+    public void ChooseAnswer(uint index){
         _currentNodeId = CurrentNode.Answers[index].Next;
     }
 
-    public DialogueGraph()
-    {
+    public DialogueGraph(){
         this.nodes = new Dictionary<int, DialogueNode>();
     }
 
-    public DialogueGraph(Dictionary<int, DialogueNode> nodes)
-    {
+    public DialogueGraph(Dictionary<int, DialogueNode> nodes){
         this.nodes = nodes;
     }
 
-    public void addNode(int index, DialogueNode node)
-    {
+    public void addNode(int index, DialogueNode node){
         nodes.Add(index, node);
     }
 }
