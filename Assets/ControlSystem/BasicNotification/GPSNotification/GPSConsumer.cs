@@ -7,12 +7,11 @@ INotificationConsumer<GPSNotifier, GPSNotifier.GPSDataEventArgs> {
 
 	public GameObject oGPSNotifier;
 	GPSNotifier gpsNotifier;
-	bool firstNotification;
+	bool firstNotification = true;
 	GPSNotifier.GPSDataEventArgs prevArgs;
 
 	// Use this for initialization
 	void Start () {
-		firstNotification = true;
 		gpsNotifier = oGPSNotifier.GetComponent<GPSNotifier> ();
 		gpsNotifier.emitter += new ConsumerDelegate<GPSNotifier, GPSNotifier.GPSDataEventArgs> (Consume);
 	}

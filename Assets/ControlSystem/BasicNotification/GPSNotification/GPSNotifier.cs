@@ -10,7 +10,7 @@ IImmediateResultProvider<GPSNotifier.GPSDataEventArgs>
 {
 
 	public GPSProvider gpsProvider;
-	public float sendingFreq = 1;
+	public float sendingFreq = 0.05f;
 
 	public class GPSDataEventArgs : EventArgs {
 		public float Latitude { get; set; }

@@ -14,7 +14,7 @@ public interface INotificationConsumer<T, U> {
 	void Consume(T sender, U eventArgs);
 }
 
-//who immediately provides own data without subscribtion (providing daata only for request)
+//who immediately provides own data without subscribtion (providing data only for request)
 public interface IImmediateResultProvider<U> {
 	U GetData ();
 }
