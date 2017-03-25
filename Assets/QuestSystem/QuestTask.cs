@@ -1,28 +1,46 @@
-﻿namespace QuestSystem
+﻿using System;
+
+namespace QuestSystem
 {
+    [Serializable]
     public class QuestTask
     {
-        public bool IsDone { get; set; } = false;
+        private bool _done = false;
+        private string _title;
+        private bool _visible = true;
 
-        public bool IsVisible { get; set; } = true;
+        public bool IsDone
+        {
+            get { return _done; }
+            set { _done = value; }
+        }
 
-        public string Title { get; }
+        public bool IsVisible
+        {
+            get { return _visible; }
+            set { _visible = value; }
+        }
+
+        public string Title
+        {
+            get { return _title; }
+        }
 
         public QuestTask(string title)
         {
-            Title = title;
+            _title = title;
         }
 
-        public QuestTask(string title, bool isVisible)
+        public QuestTask(string title, bool visible)
         {
-            Title = title;
-            IsVisible = isVisible;
+            _title = title;
+            IsVisible = visible;
         }
 
-        public QuestTask(string title, bool isVisible, bool isDone)
+        public QuestTask(string title, bool visible, bool isDone)
         {
-            Title = title;
-            IsVisible = isVisible;
+            _title = title;
+            IsVisible = visible;
             IsDone = isDone;
         }
     }

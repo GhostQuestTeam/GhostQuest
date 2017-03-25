@@ -1,5 +1,4 @@
-﻿using Assets.DialogueSystem;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 //Отображает содержимое DialogNode на экран

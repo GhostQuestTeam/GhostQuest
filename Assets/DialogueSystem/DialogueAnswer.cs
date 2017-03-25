@@ -2,14 +2,23 @@
 {
     public class DialogueAnswer
     {
-        public string Message { get; }
 
-        public int Next { get; }
+        private string _message;
+        private int _next;
+
+        public string Message {
+			get { return _message;}
+        }
+
+        public int Next
+        {
+            get { return _next; }
+        }
 
         public DialogueAnswer(string message, int next)
         {
-            this.Message = message;
-            this.Next = next;
+            this._message = message;
+            this._next = next;
         }
     }
 }

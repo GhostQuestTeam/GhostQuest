@@ -1,17 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using System;
 
 namespace QuestSystem
 {
+    [Serializable]
     public class Quest
     {
         private bool[] _isVisibleNote;
+        private string[] _questNotes;
+        private QuestTask[] _tasks;
 
-        public QuestTask[] Tasks { get; set; }
+        public QuestTask[] Tasks
+        {
+            get { return _tasks; }
+            set { _tasks = value; }
+        }
 
-        public string[] QuestNotes { get; set; }
+        public string[] QuestNotes
+        {
+            get { return _questNotes; }
+            set { _questNotes = value; }
+        }
 
         public void SetNoteVisible(uint i, bool isVisible)
         {

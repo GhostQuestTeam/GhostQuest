@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Extensions;
 using SimpleJSON;
+using Utils;
 
 namespace DialogueSystem
 {
@@ -14,22 +15,22 @@ namespace DialogueSystem
         }
     }
 
-    public class DialogueParser
+    public class DialogueParser : Parser
     {
-        private const int _NUMBER = 1;
-        private const int _BOOL = 2;
-        private const int _OBJECT = 4;
-        private const int _ARRAY = 8;
-        private const int _NULL = 16;
-        private const int _STRING = 32;
-        private const int _NOT_EXIST = 64;
+//        private const int _NUMBER = 1;
+//        private const int _BOOL = 2;
+//        private const int _OBJECT = 4;
+//        private const int _ARRAY = 8;
+//        private const int _NULL = 16;
+//        private const int _STRING = 32;
+//        private const int _NOT_EXIST = 64;
+//
+//        private const int _MAX_CONSTRAINT = 32;
+//
+//        private delegate bool CheckTypeDelegate(JSONNode node);
 
-        private const int _MAX_CONSTRAINT = 32;
 
-        private delegate bool CheckTypeDelegate(JSONNode node);
-
-
-        private static readonly Dictionary<string, int> _FIELD_CONSTARINTS = new Dictionary<string, int>()
+        public static readonly Dictionary<string, int> _FIELD_CONSTRAINTS = new Dictionary<string, int>()
         {
             {"id", _NUMBER},
             {"invitation", _STRING},
@@ -39,61 +40,63 @@ namespace DialogueSystem
             {"next", _OBJECT | _NUMBER | _NULL | _NOT_EXIST}
         };
 
-        private static readonly Dictionary<int, CheckTypeDelegate> _CONSTRAINTS_CHECKS =
-            new Dictionary<int, CheckTypeDelegate>()
-            {
-                {_OBJECT, (node) => node.IsObject},
-                {_ARRAY, (node) => node.IsArray},
-                {_BOOL, (node) => node.IsBoolean},
-                {_STRING, (node) => node.IsString},
-                {_NUMBER, (node) => node.IsNumber},
-                {_NULL, (node) => node.IsNull},
-            };
+//        private static readonly Dictionary<int, CheckTypeDelegate> _CONSTRAINTS_CHECKS =
+//            new Dictionary<int, CheckTypeDelegate>()
+//            {
+//                {_OBJECT, (node) => node.IsObject},
+//                {_ARRAY, (node) => node.IsArray},
+//                {_BOOL, (node) => node.IsBoolean},
+//                {_STRING, (node) => node.IsString},
+//                {_NUMBER, (node) => node.IsNumber},
+//                {_NULL, (node) => node.IsNull},
+//            };
+//
+//        private static string _getErrorMessage(string field)
+//        {
+//            if (!_FIELD_CONSTARINTS.ContainsKey(field))
+//            {
+//                return "field " + field + " not supported";
+//            }
+//            string messageTemplate = "field " + field + " must have type in list:";
+//            int fieldConstraints = _FIELD_CONSTARINTS[field];
+//            if ((fieldConstraints & _NUMBER) != 0)
+//            {
+//                messageTemplate += " number";
+//            }
+//            if ((fieldConstraints & _NULL) != 0)
+//            {
+//                messageTemplate += " null";
+//            }
+//            if ((fieldConstraints & _OBJECT) != 0)
+//            {
+//                messageTemplate += " object";
+//            }
+//            if ((fieldConstraints & _ARRAY) != 0)
+//            {
+//                messageTemplate += " array";
+//            }
+//            if ((fieldConstraints & _STRING) != 0)
+//            {
+//                messageTemplate += " string";
+//            }
+//            if ((fieldConstraints & _BOOL) != 0)
+//            {
+//                messageTemplate += " bool";
+//            }
+//            return messageTemplate;
+//        }
+//
 
-        private static string _getErrorMessage(string field)
+        protected  static Dictionary<string, int> GetFieldConstraints()
         {
-            if (!_FIELD_CONSTARINTS.ContainsKey(field))
-            {
-                return "field " + field + " not supported";
-            }
-            string messageTemplate = "field " + field + " must have type in list:";
-            int fieldConstraints = _FIELD_CONSTARINTS[field];
-            if ((fieldConstraints & _NUMBER) != 0)
-            {
-                messageTemplate += " number";
-            }
-            if ((fieldConstraints & _NULL) != 0)
-            {
-                messageTemplate += " null";
-            }
-            if ((fieldConstraints & _OBJECT) != 0)
-            {
-                messageTemplate += " object";
-            }
-            if ((fieldConstraints & _ARRAY) != 0)
-            {
-                messageTemplate += " array";
-            }
-            if ((fieldConstraints & _STRING) != 0)
-            {
-                messageTemplate += " string";
-            }
-            if ((fieldConstraints & _BOOL) != 0)
-            {
-                messageTemplate += " bool";
-            }
-            return messageTemplate;
+            return _FIELD_CONSTRAINTS;
         }
 
-        private static JSONNode _getField(JSONNode node, string fieldName)
+        protected new static JSONNode _getField(JSONNode node, string fieldName)
         {
-            if (!node.HasKey(fieldName))
-            {
-                throw new DialogueParseException("Dialogue node must have field " + fieldName);
-            }
-            return node[fieldName];
+            return _getFieldGeneric(node, fieldName, (str) => new DialogueParseException("Dialogue " + str));
         }
-
+//
         private static int _getId(JSONNode node)
         {
             var idNode = _getField(node, "id");
@@ -102,23 +105,9 @@ namespace DialogueSystem
             return idNode.AsInt;
         }
 
-        private static void _validateType(JSONNode node, string fieldName)
+        protected new static  void  _validateType(JSONNode node, string fieldName)
         {
-            if (_FIELD_CONSTARINTS.ContainsKey(fieldName))
-            {
-                int fieldContraints = _FIELD_CONSTARINTS[fieldName];
-                for (int i = 1; i <= _MAX_CONSTRAINT; i *= 2)
-                {
-                    if ((fieldContraints & i) != 0)
-                    {
-                        if (_CONSTRAINTS_CHECKS[i](node))
-                        {
-                            return;
-                        }
-                    }
-                }
-            }
-            throw new DialogueParseException(_getErrorMessage(fieldName));
+            _validateTypeGeneric(node, fieldName, (str) => new DialogueParseException(str), () => _FIELD_CONSTRAINTS);
         }
 
         public static DialogueGraph Parse(string json)
