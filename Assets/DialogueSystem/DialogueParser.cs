@@ -17,18 +17,6 @@ namespace DialogueSystem
 
     public class DialogueParser : Parser
     {
-//        private const int _NUMBER = 1;
-//        private const int _BOOL = 2;
-//        private const int _OBJECT = 4;
-//        private const int _ARRAY = 8;
-//        private const int _NULL = 16;
-//        private const int _STRING = 32;
-//        private const int _NOT_EXIST = 64;
-//
-//        private const int _MAX_CONSTRAINT = 32;
-//
-//        private delegate bool CheckTypeDelegate(JSONNode node);
-
 
         public static readonly Dictionary<string, int> _FIELD_CONSTRAINTS = new Dictionary<string, int>()
         {
@@ -39,53 +27,6 @@ namespace DialogueSystem
             {"message", _STRING},
             {"next", _OBJECT | _NUMBER | _NULL | _NOT_EXIST}
         };
-
-//        private static readonly Dictionary<int, CheckTypeDelegate> _CONSTRAINTS_CHECKS =
-//            new Dictionary<int, CheckTypeDelegate>()
-//            {
-//                {_OBJECT, (node) => node.IsObject},
-//                {_ARRAY, (node) => node.IsArray},
-//                {_BOOL, (node) => node.IsBoolean},
-//                {_STRING, (node) => node.IsString},
-//                {_NUMBER, (node) => node.IsNumber},
-//                {_NULL, (node) => node.IsNull},
-//            };
-//
-//        private static string _getErrorMessage(string field)
-//        {
-//            if (!_FIELD_CONSTARINTS.ContainsKey(field))
-//            {
-//                return "field " + field + " not supported";
-//            }
-//            string messageTemplate = "field " + field + " must have type in list:";
-//            int fieldConstraints = _FIELD_CONSTARINTS[field];
-//            if ((fieldConstraints & _NUMBER) != 0)
-//            {
-//                messageTemplate += " number";
-//            }
-//            if ((fieldConstraints & _NULL) != 0)
-//            {
-//                messageTemplate += " null";
-//            }
-//            if ((fieldConstraints & _OBJECT) != 0)
-//            {
-//                messageTemplate += " object";
-//            }
-//            if ((fieldConstraints & _ARRAY) != 0)
-//            {
-//                messageTemplate += " array";
-//            }
-//            if ((fieldConstraints & _STRING) != 0)
-//            {
-//                messageTemplate += " string";
-//            }
-//            if ((fieldConstraints & _BOOL) != 0)
-//            {
-//                messageTemplate += " bool";
-//            }
-//            return messageTemplate;
-//        }
-//
 
         protected  static Dictionary<string, int> GetFieldConstraints()
         {
