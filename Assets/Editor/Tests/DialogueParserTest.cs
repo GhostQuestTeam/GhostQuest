@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using DialogueSystem;
 
+//TODO улучишить тесты
 
 [TestFixture]
 public class DialogueParserTest {

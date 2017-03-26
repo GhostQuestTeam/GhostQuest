@@ -37,6 +37,17 @@ namespace QuestSystem
             IsVisible = visible;
         }
 
+
+        public override bool Equals(object other)
+        {
+            var otherTask = other as QuestTask;
+            if (otherTask == null) return false;
+
+            return this.IsDone == otherTask.IsDone &&
+                   this.IsVisible == otherTask.IsVisible &&
+                   this.Title == otherTask.Title;
+        }
+
         public QuestTask(string title, bool visible, bool isDone)
         {
             _title = title;

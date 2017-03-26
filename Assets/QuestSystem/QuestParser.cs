@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using Extensions;
 using UnityEngine;
 using Utils;
 using SimpleJSON;
 
-namespace QuestSystem{
-
+namespace QuestSystem
+{
     public class QuestParseException : ParseException
     {
         public QuestParseException(string message) : base(message)
@@ -14,7 +15,6 @@ namespace QuestSystem{
 
     public class QuestParser : Parser
     {
-
         public static readonly Dictionary<string, int> _FIELD_CONSTRAINTS = new Dictionary<string, int>()
         {
             {"title", _STRING},
@@ -23,17 +23,17 @@ namespace QuestSystem{
             {"description", _STRING},
             {"notes", _ARRAY},
             {"note", _STRING},
-            {"visible", _BOOL | _NOT_EXIST  },
+            {"visible", _BOOL | _NOT_EXIST},
         };
 
-        protected new static  void  _validateType(JSONNode node, string fieldName)
+        protected new static void _validateType(JSONNode node, string fieldName)
         {
             _validateTypeGeneric(node, fieldName, (str) => new QuestParseException(str), () => _FIELD_CONSTRAINTS);
         }
 
         protected new static JSONNode _getField(JSONNode node, string fieldName)
         {
-            return _getFieldGeneric(node, fieldName, (str) => new QuestParseException( str));
+            return _getFieldGeneric(node, fieldName, (str) => new QuestParseException(str));
         }
 
         public static Quest Parse(string json)
@@ -66,18 +66,20 @@ namespace QuestSystem{
                 _validateType(tasksArray[i], "task");
                 var taskNode = tasksArray[i];
 
-                var descriptionNode =  _getField(taskNode, "description");
-                var visibleNode = _getField(taskNode, "visible");
+                var descriptionNode = _getField(taskNode, "description");
 
                 _validateType(descriptionNode, "description");
-                _validateType(visibleNode, "visible");
-
-                tasks[i] = new QuestTask(descriptionNode.Value, visibleNode.AsBool);
+                bool visible = true;
+                if (taskNode.HasKey("visible"))
+                {
+                    var visibleNode = _getField(taskNode, "visible");
+                    _validateType(visibleNode, "visible");
+                    visible = visibleNode.AsBool;
+                }
+                tasks[i] = new QuestTask(descriptionNode.Value, visible);
             }
 
             return new Quest(title, tasks, notes);
-
-
         }
     }
 }
