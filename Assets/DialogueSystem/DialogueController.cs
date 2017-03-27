@@ -14,15 +14,11 @@ namespace DialogueSystem
             string dialogueJson = Resources.Load<TextAsset>(dialoguePath).text;
             dialogue = DialogueParser.Parse(dialogueJson);
             dialoguePanel.SetActive(false);
-            //dialogue = DialogueParser.Parse("{\"id\":0, \"invitation\":\"text\", \"answers\":[{\"message\":\"test\"}] }");
-
-
-            //GameObject answer = (GameObject)Instantiate(answerPrefab);
-            //answer.transform.SetParent (canvas.transform);
         }
 
         void Update()
         {
+
         }
 
         public void onRay()

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Extensions;
+using UnityEngine;
 using UnityEngine.UI;
 
 //Отображает содержимое DialogNode на экран
@@ -30,11 +31,7 @@ namespace DialogueSystem
         private void _updateView()
         {
             var answersPanel = transform.Find("AnswersPanel");
-            foreach (Transform child in answersPanel)
-            {
-                GameObject.Destroy(child.gameObject);
-            }
-
+            answersPanel.Clear();
             var invitation = transform.Find("Invitation Panel");
 
 

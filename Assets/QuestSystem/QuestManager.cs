@@ -29,6 +29,11 @@ namespace QuestSystem
             return _quests[questTitle].Tasks[taskId];
         }
 
+        public static QuestTask[] GetTasks(string questTitle)
+        {
+            return _quests[questTitle].Tasks;
+        }
+
         public static void ShowTask(string questTitle, uint taskId)
         {
             _quests[questTitle].Tasks[taskId].IsVisible = true;
@@ -37,6 +42,11 @@ namespace QuestSystem
         public static void DoTask(string questTitle, uint taskId)
         {
             _quests[questTitle].Tasks[taskId].IsDone = true;
+        }
+
+        public static IEnumerable<QuestTask> GetVisibleTasks(string questTitle)
+        {
+            return _quests[questTitle].Tasks.Where((task) => task.IsVisible);
         }
 
         public static IEnumerable<string> GetVisibleNotes(string questTitle)
@@ -51,9 +61,29 @@ namespace QuestSystem
             }
         }
 
-        private static IEnumerable<string> QuestTitles
+        public static IEnumerable<string> QuestTitles
         {
             get { return _quests.Values.Select(quest => quest.Title); }
+        }
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        public static void DownloadQuests() //TODO В дальнеейшем будут читаться сохраннённые квесты с диска
+        {
+            _quests = new Dictionary<string, Quest>();
+            string questJson1 =
+                "{\"title\":\"quest1\", \"tasks\":[{\"description\":\"First test task\", \"visible\":true}], \"notes\":[\"note1\", \"note2\"] }";
+            string questJson2 =
+                "{\"title\":\"quest2\", \"tasks\":[{\"description\":\"Second test task\", \"visible\":true}], \"notes\":[\"note1\", \"note2\"] }";
+
+            var quest1 = QuestParser.Parse(questJson1);
+            var quest2 = QuestParser.Parse(questJson2);
+
+            _quests.Add(quest1.Title, quest1);
+            _quests.Add(quest2.Title, quest2);
+
+            ShowQuestNote(quest1.Title, 0);
+            ShowQuestNote(quest1.Title, 1);
+
         }
 
     }
