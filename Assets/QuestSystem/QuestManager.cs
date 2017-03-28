@@ -1,16 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 
 namespace QuestSystem
 {
     public class QuestManager
     {
-
         private const string _QUEST_FOLDER = "Quests/";
+        private const string _SERIALIZATION_FILE ="QuestData.bin";
 
         private static Dictionary<string, Quest> _quests;
+
 
         public static void StartQuest(string questTitle)
         {
@@ -67,24 +71,20 @@ namespace QuestSystem
         }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        public static void DownloadQuests() //TODO В дальнеейшем будут читаться сохраннённые квесты с диска
+        public static void DownloadQuests()
         {
-            _quests = new Dictionary<string, Quest>();
-            string questJson1 =
-                "{\"title\":\"quest1\", \"tasks\":[{\"description\":\"First test task\", \"visible\":true}], \"notes\":[\"note1\", \"note2\"] }";
-            string questJson2 =
-                "{\"title\":\"quest2\", \"tasks\":[{\"description\":\"Second test task\", \"visible\":true}], \"notes\":[\"note1\", \"note2\"] }";
-
-            var quest1 = QuestParser.Parse(questJson1);
-            var quest2 = QuestParser.Parse(questJson2);
-
-            _quests.Add(quest1.Title, quest1);
-            _quests.Add(quest2.Title, quest2);
-
-            ShowQuestNote(quest1.Title, 0);
-            ShowQuestNote(quest1.Title, 1);
-
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream ( _SERIALIZATION_FILE, FileMode.Open, FileAccess.Read, FileShare.Read);
+            _quests = (Dictionary<string, Quest>) formatter.Deserialize(stream);
+            stream.Close();
         }
 
+        public static void SaveQuests()
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream( _SERIALIZATION_FILE, FileMode.Create, FileAccess.Write, FileShare.None);
+            formatter.Serialize(stream, _quests);
+            stream.Close();
+        }
     }
 }
