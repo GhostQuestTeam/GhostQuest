@@ -46,6 +46,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\ControlSystem\BasicNotification\GPSNotification\GPSConsumer.cs" />
+     <Compile Include="Assets\ControlSystem\BasicNotification\GPSNotification\GPSNotifier.cs" />
+     <Compile Include="Assets\ControlSystem\BasicNotification\Interfaces.cs" />
+     <Compile Include="Assets\ControlSystem\GPSProvider.cs" />
      <Compile Include="Assets\CameraClickHandler.cs" />
      <Compile Include="Assets\DialogueSystem\DialogueAnswer.cs" />
      <Compile Include="Assets\DialogueSystem\DialogueController.cs" />
