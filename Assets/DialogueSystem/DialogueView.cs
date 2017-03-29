@@ -1,4 +1,5 @@
-﻿using Extensions;
+﻿using System;
+using Extensions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,8 @@ namespace DialogueSystem
 {
     public class DialogueView : MonoBehaviour
     {
+        public event EventHandler<DialogueEventArgs> OnAnserChoose;
+
         public GameObject answerPrefab;
         DialogueGraph dialogue;
 
@@ -49,6 +52,12 @@ namespace DialogueSystem
                     .onClick.AddListener(
                         () =>
                         {
+                            EventHandler<DialogueEventArgs> handler = OnAnserChoose;
+                            if (handler != null)
+                            {
+                                handler(this, new DialogueEventArgs(dialogue.CurrentNodeId, tmp));
+                            }
+
                             int next = dialogue.CurrentNode.Answers[tmp].Next;
                             if (next != -1)
                             {

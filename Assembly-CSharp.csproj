@@ -46,17 +46,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\CameraClickHandler.cs" />
      <Compile Include="Assets\ControlSystem\BasicNotification\GPSNotification\GPSConsumer.cs" />
      <Compile Include="Assets\ControlSystem\BasicNotification\GPSNotification\GPSNotifier.cs" />
      <Compile Include="Assets\ControlSystem\BasicNotification\Interfaces.cs" />
      <Compile Include="Assets\ControlSystem\GPSProvider.cs" />
-     <Compile Include="Assets\CameraClickHandler.cs" />
      <Compile Include="Assets\DialogueSystem\DialogueAnswer.cs" />
      <Compile Include="Assets\DialogueSystem\DialogueController.cs" />
      <Compile Include="Assets\DialogueSystem\DialogueGraph.cs" />
      <Compile Include="Assets\DialogueSystem\DialogueNode.cs" />
      <Compile Include="Assets\DialogueSystem\DialogueParser.cs" />
      <Compile Include="Assets\DialogueSystem\DialogueView.cs" />
+     <Compile Include="Assets\DialogueSystem\DialoqueEventArgs.cs" />
+     <Compile Include="Assets\ExampleScenes\ExampleDialogueObserver.cs" />
      <Compile Include="Assets\Extensions\SimpleJSONExtension.cs" />
      <Compile Include="Assets\Extensions\UnityTransformExtension.cs" />
      <Compile Include="Assets\QuestSystem\Quest.cs" />
