@@ -6,6 +6,7 @@ public class GPSConsumer : MonoBehaviour,
 INotificationConsumer<GPSNotifier, GPSNotifier.GPSDataEventArgs> {
 
 	public GameObject oGPSNotifier;
+
 	GPSNotifier gpsNotifier;
 	bool firstNotification = true;
 	GPSNotifier.GPSDataEventArgs prevArgs;
