@@ -1,29 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-public class DialogueNode{
-    string invitation;
-    DialogueAnswer[] answers;
-
-    public DialogueAnswer[] Answers
+﻿namespace DialogueSystem
+{
+    public class DialogueNode
     {
-        get
+        string invitation;
+        DialogueAnswer[] answers;
+
+        public DialogueAnswer[] Answers
         {
-            return answers;
+            get { return answers; }
         }
-    }
 
-    public string Invitation
-    {
-        get
+        public string Invitation
         {
-            return invitation;
+            get { return invitation; }
         }
-    }
 
-    public DialogueNode(string invitation, DialogueAnswer[] answers)
-    {
-        this.invitation = invitation;
-        this.answers = answers;
+        public DialogueNode(string invitation, DialogueAnswer[] answers)
+        {
+            this.invitation = invitation;
+            this.answers = answers;
+        }
     }
 }

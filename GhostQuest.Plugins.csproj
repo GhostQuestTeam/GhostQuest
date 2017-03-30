@@ -5,16 +5,16 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{53E738B2-B335-1341-0E50-C6F0A315264E}</ProjectGuid>
+    <ProjectGuid>{D132AAC0-C4EF-206F-68A5-DBE97F29DC73}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
     <CompilerResponseFile></CompilerResponseFile>
-    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityProjectType>GamePlugins:3</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.5.2f1</UnityVersion>
     <RootNamespace></RootNamespace>
@@ -75,20 +75,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="GhostQuest.Plugins.csproj">
-      <Project>{D132AAC0-C4EF-206F-68A5-DBE97F29DC73}</Project>
-      <Name>GhostQuest.Plugins</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Assets\CameraClickHandler.cs" />
-    <Compile Include="Assets\DialogueSystem\DialogueAnswer.cs" />
-    <Compile Include="Assets\DialogueSystem\DialogueController.cs" />
-    <Compile Include="Assets\DialogueSystem\DialogueGraph.cs" />
-    <Compile Include="Assets\DialogueSystem\DialogueNode.cs" />
-    <Compile Include="Assets\DialogueSystem\DialogueParser.cs" />
-    <Compile Include="Assets\DialogueSystem\DialogueView.cs" />
-    <Compile Include="Assets\Extensions\SimpleJSONExtension.cs" />
+    <Compile Include="Assets\Plugins\SimpleJSON.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Resources\Dialogues\test.txt" />
