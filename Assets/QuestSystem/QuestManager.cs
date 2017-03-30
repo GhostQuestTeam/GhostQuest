@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using JetBrains.Annotations;
 
 
 namespace QuestSystem
@@ -11,7 +14,7 @@ namespace QuestSystem
     public class QuestManager
     {
         private const string _QUEST_FOLDER = "Quests/";
-        private const string _SERIALIZATION_FILE ="QuestData.bin";
+        private const string _SERIALIZATION_FILE = "QuestData.bin";
 
         private static Dictionary<string, Quest> _quests;
 
@@ -70,11 +73,36 @@ namespace QuestSystem
             get { return _quests.Values.Select(quest => quest.Title); }
         }
 
+        public static bool CheckTaskComplete([CanBeNull] string questTitle, [CanBeNull] IEnumerable<uint> doneTasks,
+            [CanBeNull] IEnumerable<uint> undoneTasks)
+        {
+            var tasks = _quests[questTitle].Tasks;
+            if (doneTasks == null)
+            {
+                doneTasks = new uint[0];
+            }
+            if (undoneTasks == null)
+            {
+                undoneTasks = new uint[0];
+            }
+            if (doneTasks.Any(taskId => !tasks[taskId].IsDone) ||
+                undoneTasks.Any(taskId => tasks[taskId].IsDone))
+            {
+                return false;
+            }
+            return false;
+        }
+
+        public static bool IsQuestStarted(string questTitle)
+        {
+            return _quests.ContainsKey(questTitle);
+        }
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         public static void DownloadQuests()
         {
             IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream ( _SERIALIZATION_FILE, FileMode.Open, FileAccess.Read, FileShare.Read);
+            Stream stream = new FileStream(_SERIALIZATION_FILE, FileMode.Open, FileAccess.Read, FileShare.Read);
             _quests = (Dictionary<string, Quest>) formatter.Deserialize(stream);
             stream.Close();
         }
@@ -82,7 +110,7 @@ namespace QuestSystem
         public static void SaveQuests()
         {
             IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream( _SERIALIZATION_FILE, FileMode.Create, FileAccess.Write, FileShare.None);
+            Stream stream = new FileStream(_SERIALIZATION_FILE, FileMode.Create, FileAccess.Write, FileShare.None);
             formatter.Serialize(stream, _quests);
             stream.Close();
         }

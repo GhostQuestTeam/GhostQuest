@@ -1,10 +1,13 @@
-﻿namespace DialogueSystem
+﻿using System;
+
+namespace DialogueSystem
 {
     public class DialogueAnswer
     {
 
         private string _message;
         private int _next;
+        private Func<bool> condition;
 
         public string Message {
 			get { return _message;}
