@@ -90,7 +90,7 @@ namespace QuestSystem
             {
                 return false;
             }
-            return false;
+            return true;
         }
 
         public static bool IsQuestStarted(string questTitle)

@@ -31,12 +31,12 @@ namespace DialogueSystem
             _validateTypeGeneric(node, fieldName, (str) => new DialogueParseException(str), () => _FIELD_CONSTRAINTS);
         }
 
-        private IEnumerable<uint> _parseTasksCondition(JSONNode questsNode, string key )
+        private static IEnumerable<uint> _parseTasksCondition(JSONNode questsNode, string key )
         {
-            if (!questsNode.HasKey("done_tasks")) return new uint[0];
+            if (!questsNode.HasKey(key)) return new uint[0];
 
-            var doneTasksNode = questsNode["done_tasks"];
-            _validateType(doneTasksNode,"done_tasks");
+            var doneTasksNode = questsNode[key];
+            _validateType(doneTasksNode,key);
 
             var tasksJsonArray = doneTasksNode.AsArray;
 
@@ -50,7 +50,7 @@ namespace DialogueSystem
             return tasksArray;
         }
 
-        public Func<bool> Parse(JSONNode json)
+        public static Func<bool> Parse(JSONNode json)
         {
             Func<bool, bool> template = (prev) => true;
 

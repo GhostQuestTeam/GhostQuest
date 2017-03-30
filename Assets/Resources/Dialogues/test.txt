@@ -2,8 +2,15 @@
 	"id" : 0,
 	"invitation" : "My first dialogue",
 	"answers" : [
-		{"message" : "answer1"},
-		{"message" : "answer2"},
+		{"message" : "answer"},
+		{"message" : "conditional_answer",
+		 "condition": {
+		    "quests":{
+		        "title":"quest1",
+		        "undone_tasks":[0]
+		    }
+		 }
+		},
 		{"message" : "Exit", "next" : null},
 		{"message" : "toNext",
 		 "next" : {

@@ -25,7 +25,8 @@ namespace DialogueSystem
             {"answers", _ARRAY},
             {"answer", _OBJECT},
             {"message", _STRING},
-            {"next", _OBJECT | _NUMBER | _NULL | _NOT_EXIST}
+            {"next", _OBJECT | _NUMBER | _NULL | _NOT_EXIST},
+            {"condition", _OBJECT | _NOT_EXIST}
         };
 
         protected  static Dictionary<string, int> GetFieldConstraints()
@@ -104,6 +105,15 @@ namespace DialogueSystem
                     }
 
                     answers[i] = new DialogueAnswer(messageNode.Value, next);
+
+                    if (!answer.HasKey("condition")) continue;
+
+                    var conditionNode = answer["condition"];
+                    _validateType(conditionNode, "condition");
+
+                    var condition = AnswerConditionParser.Parse(conditionNode);
+
+                    answers[i].SetCondition(condition);
                 }
                 dialogue.addNode(id, new DialogueNode(invitation, answers));
             }
