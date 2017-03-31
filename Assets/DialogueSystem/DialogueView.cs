@@ -8,7 +8,7 @@ namespace DialogueSystem
 {
     public class DialogueView : MonoBehaviour
     {
-        public event EventHandler<DialogueEventArgs> OnAnserChoose;
+        public event EventHandler<DialogueEventArgs> OnAnswerChoose;
 
         public GameObject answerPrefab;
         DialogueGraph dialogue;
@@ -43,6 +43,8 @@ namespace DialogueSystem
             for (uint i = 0; i < dialogue.CurrentNode.Answers.Length; i++)
             {
                 var answer = dialogue.CurrentNode.Answers[i];
+                if (!answer.IsVisible) continue;
+
                 var answerButton = (GameObject) Instantiate(answerPrefab);
                 answerButton.GetComponentInChildren<Text>().text = answer.Message;
                 answerButton.transform.SetParent(answersPanel);
@@ -52,7 +54,7 @@ namespace DialogueSystem
                     .onClick.AddListener(
                         () =>
                         {
-                            EventHandler<DialogueEventArgs> handler = OnAnserChoose;
+                            EventHandler<DialogueEventArgs> handler = OnAnswerChoose;
                             if (handler != null)
                             {
                                 handler(this, new DialogueEventArgs(dialogue.CurrentNodeId, tmp));

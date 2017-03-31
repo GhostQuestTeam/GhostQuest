@@ -12,7 +12,7 @@ public class ExampleDialogueObserver : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-	    DialoquePanel.GetComponent<DialogueView>().OnAnserChoose += OnAnswerChoose;
+	    DialoquePanel.GetComponent<DialogueView>().OnAnswerChoose += OnAnswerChoose;
 	}
 	
 	// Update is called once per frame
