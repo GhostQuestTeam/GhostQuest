@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class BackgroundPlaneController : MonoBehaviour {
 
+	WebCamTexture deviceCameraTexture;
+
 	// Use this for initialization
 	void Start () {
 		if (WebCamTexture.devices.Length <= 0) {
 			return;
 		}
-		WebCamTexture deviceCameraTexture = new WebCamTexture ();
+		deviceCameraTexture = new WebCamTexture ();
 		gameObject.GetComponent<Renderer> ().material.mainTexture = deviceCameraTexture;
 		deviceCameraTexture.Play ();
+	}
+
+	void OnDestroy() {
+		deviceCameraTexture.Stop ();
 	}
 
 }
