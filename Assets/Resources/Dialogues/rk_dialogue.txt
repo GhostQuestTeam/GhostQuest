@@ -1,0 +1,46 @@
+{
+	"id" : 0,
+	"invitation" : "My first dialogue",
+	"answers" : [
+		{"message" : "Start quest",
+		 "condition" : {
+		        "title":"Example quest",
+         		"started":false
+		 }, "next" : null
+		},
+		{"message" : "I'll find Hiro",
+		 "condition": {
+		    "quests":{
+		        "title":"Example quest",
+		        "undone_tasks":[0]
+		    } , "next" : null
+		 }
+		},
+		{"message" : "I'll find Hibraltar",
+        		 "condition": {
+        		    "quests":{
+        		        "title":"Example quest",
+        		        "undone_tasks":[1]
+        		        "done_tasks":[0]
+        		    }
+        		 } , "next" : null
+        },
+        {"message" : "Lalala",
+                		 "condition": {
+                		    "quests":{
+                		        "title":"Example quest",
+                		        "undone_tasks":[2]
+                		        "done_tasks":[0, 1]
+                		    }
+                		 } , "next" : null
+        }
+		{"message" : "Exit", "next" : null},
+		{"message" : "toNext",
+		 "next" : {
+		 	"id" : 1,
+		 	"invitation" : "Yet another message",
+		 	"answers" : [{"message":"Back", "next":0}]
+		 }
+		}
+	]
+}
