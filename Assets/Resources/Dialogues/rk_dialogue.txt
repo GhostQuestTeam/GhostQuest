@@ -3,16 +3,18 @@
 	"invitation" : "My first dialogue",
 	"answers" : [
 		{"message" : "Start quest",
-		 "condition" : {
+		 "condition" : {"quests":
+		 {
 		        "title":"Example quest",
          		"started":false
+		 }
 		 }, "next" : null
 		},
 		{"message" : "I'll find Hiro",
 		 "condition": {
 		    "quests":{
 		        "title":"Example quest",
-		        "undone_tasks":[0]
+		        "started":true
 		    } , "next" : null
 		 }
 		},
@@ -20,8 +22,7 @@
         		 "condition": {
         		    "quests":{
         		        "title":"Example quest",
-        		        "undone_tasks":[1]
-        		        "done_tasks":[0]
+        		        "started":true
         		    }
         		 } , "next" : null
         },
@@ -29,8 +30,7 @@
                 		 "condition": {
                 		    "quests":{
                 		        "title":"Example quest",
-                		        "undone_tasks":[2]
-                		        "done_tasks":[0, 1]
+                		        "started":true
                 		    }
                 		 } , "next" : null
         }

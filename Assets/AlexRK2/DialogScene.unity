@@ -464,7 +464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa4681af93dc6b458e480876726fbe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialoguePath: rk_dialogue.txt
+  dialoguePath: Dialogues/rk_dialogue
   dialoguePanel: {fileID: 1516280723}
 --- !u!1001 &317213145
 Prefab:
@@ -473,6 +473,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1223304266}
     m_Modifications:
+    - target: {fileID: 114398633934575304, guid: 8dddcf0ea1f3b79458f4df2cc0bc07ea,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224666179782779488, guid: 8dddcf0ea1f3b79458f4df2cc0bc07ea,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -563,6 +568,36 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114398633934575304, guid: 8dddcf0ea1f3b79458f4df2cc0bc07ea,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114398633934575304, guid: 8dddcf0ea1f3b79458f4df2cc0bc07ea,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114398633934575304, guid: 8dddcf0ea1f3b79458f4df2cc0bc07ea,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1772309725}
+    - target: {fileID: 114398633934575304, guid: 8dddcf0ea1f3b79458f4df2cc0bc07ea,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnQuestsClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 114398633934575304, guid: 8dddcf0ea1f3b79458f4df2cc0bc07ea,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114065873539588336, guid: 8dddcf0ea1f3b79458f4df2cc0bc07ea,
+        type: 2}
+      propertyPath: QuestPanel
+      value: 
+      objectReference: {fileID: 1291225246}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8dddcf0ea1f3b79458f4df2cc0bc07ea, type: 2}
   m_IsPrefabParent: 0
@@ -803,6 +838,7 @@ Transform:
   m_Children:
   - {fileID: 323815322}
   - {fileID: 1419713940}
+  - {fileID: 1561241241}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1510,6 +1546,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1223304266}
     m_Modifications:
+    - target: {fileID: 114336199402137560, guid: 97321a5ba3d60ce458d839efbd90fc05,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224174971075888770, guid: 97321a5ba3d60ce458d839efbd90fc05,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -1603,6 +1644,31 @@ Prefab:
     - target: {fileID: 1418696144639904, guid: 97321a5ba3d60ce458d839efbd90fc05, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114336199402137560, guid: 97321a5ba3d60ce458d839efbd90fc05,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114336199402137560, guid: 97321a5ba3d60ce458d839efbd90fc05,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114336199402137560, guid: 97321a5ba3d60ce458d839efbd90fc05,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1291225250}
+    - target: {fileID: 114336199402137560, guid: 97321a5ba3d60ce458d839efbd90fc05,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Close
+      objectReference: {fileID: 0}
+    - target: {fileID: 114336199402137560, guid: 97321a5ba3d60ce458d839efbd90fc05,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 97321a5ba3d60ce458d839efbd90fc05, type: 2}
@@ -1780,6 +1846,29 @@ Light:
   m_BounceIntensity: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1291225246 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1418696144639904, guid: 97321a5ba3d60ce458d839efbd90fc05,
+    type: 2}
+  m_PrefabInternal: {fileID: 1213277177}
+--- !u!114 &1291225250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1291225246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6926aa5a30b1bdd42bb8a556fec2a9be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  QuestTitlePrefab: {fileID: 1778640885901110, guid: 11aac5b3a259a1449894e63715336e55,
+    type: 2}
+  TaskCheckboxPrefab: {fileID: 1883334845109822, guid: 162b0e10c8481b2468ac5e495eda7a60,
+    type: 2}
+  QuestNotePrefab: {fileID: 1403109100059458, guid: 7264eaac630aa5144a8f2deb5ecadf61,
+    type: 2}
+  UIPanel: {fileID: 1772309724}
 --- !u!1 &1419713939
 GameObject:
   m_ObjectHideFlags: 0
@@ -1864,11 +1953,75 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   answerPrefab: {fileID: 1563181489205284, guid: 1eaf8f844a3a1d54eb141e8cf5000585,
     type: 2}
+--- !u!114 &1516280729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1516280723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce42ee9d0ec17de4da27ed1226464330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  QuestPanel: {fileID: 0}
 --- !u!224 &1530813899 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224666179782779488, guid: 8dddcf0ea1f3b79458f4df2cc0bc07ea,
     type: 2}
   m_PrefabInternal: {fileID: 317213145}
+--- !u!1 &1561241240
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1561241241}
+  - component: {fileID: 1561241242}
+  m_Layer: 11
+  m_Name: Observer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1561241241
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1561241240}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 665429753}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1561241242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1561241240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b556ce13ba525f14a9a2fe2a7ec96521, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DialoquePanel: {fileID: 1516280723}
+--- !u!1 &1772309724 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1794174609052094, guid: 8dddcf0ea1f3b79458f4df2cc0bc07ea,
+    type: 2}
+  m_PrefabInternal: {fileID: 317213145}
+--- !u!114 &1772309725 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114065873539588336, guid: 8dddcf0ea1f3b79458f4df2cc0bc07ea,
+    type: 2}
+  m_PrefabInternal: {fileID: 317213145}
+  m_Script: {fileID: 11500000, guid: ce42ee9d0ec17de4da27ed1226464330, type: 3}
 --- !u!224 &1940458348 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224174971075888770, guid: 97321a5ba3d60ce458d839efbd90fc05,

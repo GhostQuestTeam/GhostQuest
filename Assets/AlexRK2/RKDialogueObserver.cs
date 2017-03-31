@@ -25,6 +25,9 @@ public class RKDialogueObserver : MonoBehaviour
         if (dea.AnswerId == 0 && dea.DialogueId == 0)
         {
             QuestManager.StartQuest("rk_quest");
+            QuestManager.ShowQuestNote(_QUEST, 0);
+            QuestManager.ShowQuestNote(_QUEST, 1);
+            QuestManager.ShowQuestNote(_QUEST, 2);
 
         }
         if (dea.AnswerId == 1 && dea.DialogueId == 0)
