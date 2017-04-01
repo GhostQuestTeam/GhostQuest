@@ -14,7 +14,7 @@
 		 "condition": {
 		    "quests":{
 		        "title":"Example quest",
-		        "started":true
+		        "undone_tasks":[0]
 		    } , "next" : null
 		 }
 		},
@@ -22,7 +22,8 @@
         		 "condition": {
         		    "quests":{
         		        "title":"Example quest",
-        		        "started":true
+        		         "done_tasks" :[0]
+        		         "undone_tasks":[1]
         		    }
         		 } , "next" : null
         },
@@ -30,7 +31,7 @@
                 		 "condition": {
                 		    "quests":{
                 		        "title":"Example quest",
-                		        "started":true
+                		         "done_tasks" :[0,1]
                 		    }
                 		 } , "next" : null
         }

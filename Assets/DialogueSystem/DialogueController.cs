@@ -24,9 +24,6 @@ namespace DialogueSystem
         public void onRay()
         {
             dialoguePanel.SetActive(true);
-            TextAsset asset = Resources.Load<TextAsset>(dialoguePath);
-            string dialogueJson = asset.text;
-			dialogue = DialogueParser.Parse(dialogueJson);
             dialoguePanel.GetComponent<DialogueView>().Dialogoue = dialogue;
         }
     }
