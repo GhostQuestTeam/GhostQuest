@@ -44,7 +44,7 @@ namespace DialogueSystem
 
             for (int i = 0; i < tasksJsonArray.Count; i++)
             {
-                tasksArray[i] = (uint) tasksJsonArray.AsInt;
+                tasksArray[i] = (uint) tasksJsonArray[i].AsInt;
             }
 
             return tasksArray;

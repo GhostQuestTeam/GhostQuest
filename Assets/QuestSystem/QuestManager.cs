@@ -76,6 +76,8 @@ namespace QuestSystem
         public static bool CheckTaskComplete([CanBeNull] string questTitle, [CanBeNull] IEnumerable<uint> doneTasks,
             [CanBeNull] IEnumerable<uint> undoneTasks)
         {
+            if (!_quests.ContainsKey(questTitle)) return false;
+
             var tasks = _quests[questTitle].Tasks;
             if (doneTasks == null)
             {
@@ -101,10 +103,11 @@ namespace QuestSystem
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         public static void DownloadQuests()
         {
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream(_SERIALIZATION_FILE, FileMode.Open, FileAccess.Read, FileShare.Read);
-            _quests = (Dictionary<string, Quest>) formatter.Deserialize(stream);
-            stream.Close();
+//            IFormatter formatter = new BinaryFormatter();
+//            Stream stream = new FileStream(_SERIALIZATION_FILE, FileMode.Open, FileAccess.Read, FileShare.Read);
+//            _quests = (Dictionary<string, Quest>) formatter.Deserialize(stream);
+//            stream.Close();
+            _quests = new Dictionary<string, Quest>();
         }
 
         public static void SaveQuests()
