@@ -7,12 +7,14 @@ using UnityEngine;
 public class RKDialogueObserver : MonoBehaviour
 {
 
+    private GameObject _dialoguePanel;
     private const string _QUEST = "Example quest";
-    public GameObject DialoquePanel;
 	// Use this for initialization
 	void Start ()
 	{
-	    DialoquePanel.GetComponent<DialogueView>().OnAnswerChoose += OnAnswerChoose;
+	    var uiControllerObject = GameObject.FindWithTag("UIController");
+	    _dialoguePanel = uiControllerObject.GetComponent<UIController>().DialoguePanel;
+	    _dialoguePanel.GetComponent<DialogueView>().OnAnswerChoose += OnAnswerChoose;
 	}
 	
 	// Update is called once per frame
