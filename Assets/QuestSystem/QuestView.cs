@@ -1,4 +1,5 @@
-﻿using Extensions;
+﻿using System;
+using Extensions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,7 +18,7 @@ namespace QuestSystem
         public string QuestNotePrefabPath = DEFAULT_QUEST_NOTE_PREFAB;
         public string TaskChecckboxPrefabPath = DEFAULT_TASK_CHECKBOX_PREFAB;
 
-        public GameObject UIPanel;
+        public event Action OnClose;
 
         private GameObject questTitlePrefab;
         private GameObject taskCheckboxPrefab;
@@ -35,8 +36,10 @@ namespace QuestSystem
 
         public void Close()
         {
-            UIPanel.SetActive(true);
             gameObject.SetActive(false);
+            if(OnClose != null){
+                OnClose();
+            }
         }
 
         public void Draw()
@@ -45,7 +48,7 @@ namespace QuestSystem
             questNotePrefab =     Resources.Load(QuestNotePrefabPath) as GameObject;
             taskCheckboxPrefab =  Resources.Load(TaskChecckboxPrefabPath) as GameObject;
 
-            var questList = transform.Find("Quests").Find("List");
+            var questList = transform.Find("Quests/List");
             questList.Clear();
             foreach (var title in QuestManager.QuestTitles)
             {
