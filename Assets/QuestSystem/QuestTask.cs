@@ -48,6 +48,16 @@ namespace QuestSystem
                    this.Title == otherTask.Title;
         }
 
+        public override string ToString()
+        {
+            var result = "{\n";
+            result += "\ttitle: " + Title + "\n";
+            result += "\tdone: " + IsDone + "\n";
+            result += "\tvisible: " + IsVisible + "\n";
+            result += "}";
+            return result;
+        }
+
         public QuestTask(string title, bool visible, bool isDone)
         {
             _title = title;

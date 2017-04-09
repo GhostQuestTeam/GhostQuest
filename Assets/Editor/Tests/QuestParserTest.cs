@@ -108,43 +108,20 @@ public class QuestParserTest
     }
 
     [Test]
-    public void QuestTitleParseCorrectly()
-    {
-        string testJson = "{\"title\":\"test\", \"tasks\":[{\"description\":\"test\"}], \"notes\":[] }";
-
-        var quest = QuestParser.Parse(testJson);
-
-        string expectedTitle = "test";
-        string realTitle = quest.Title;
-
-        Assert.AreEqual(realTitle, expectedTitle);
-    }
-
-    [Test]
-    public void QuestNotesParseCorrectly()
+    public void QuestParseCorrectly()
     {
         string testJson =
-            "{\"title\":\"test\", \"tasks\":[{\"description\":\"test\"}], \"notes\":[\"test1\",\"test2\"] }";
+            "{\"title\":\"test\", \"tasks\":[{\"description\":\"test\", \"visible\":false}], \"notes\":[\"test1\",\"test2\"] }";
 
-        var quest = QuestParser.Parse(testJson);
 
-        string[] expectedNotes = new string[2]{ "test1", "test2" };
-        string[] realNotes = quest.QuestNotes;
+        var expectedQuest = new Quest(
+            "test",
+            new[] {new QuestTask("test", false)},
+            new[] {"test1", "test2"}
+        );
 
-        Assert.AreEqual(realNotes, expectedNotes);
-    }
+        var realQuest = QuestParser.Parse(testJson);
 
-    [Test]
-    public void QuestTasksParseCorrectly()
-    {
-        string testJson =
-            "{\"title\":\"test\", \"tasks\":[{\"description\":\"test\", \"visible\":false}], \"notes\":[] }";
-
-        var quest = QuestParser.Parse(testJson);
-
-        QuestTask[] expectedTasks = new QuestTask[1]{ new QuestTask("test", false) };
-        QuestTask[] realTasks = quest.Tasks;
-
-        Assert.AreEqual(realTasks, expectedTasks);
+        Assert.AreEqual(expectedQuest, realQuest);
     }
 }
