@@ -28,6 +28,17 @@ namespace DialogueSystem
             }
             return Enumerable.SequenceEqual(_nodes, dialogue._nodes) && CurrentNodeId == dialogue.CurrentNodeId;
         }
+        public override string ToString()
+        {
+            var result = "[\n";
+
+            foreach (var node in _nodes.Values)
+            {
+                result += node.ToString() + ",\n";
+            }
+            result += "]\n}";
+            return result;
+        }
 
         public void ChooseAnswer(uint index)
         {
