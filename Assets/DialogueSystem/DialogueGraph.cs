@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace DialogueSystem
 {
@@ -16,6 +17,16 @@ namespace DialogueSystem
         {
             get { return _currentNodeId; }
             set { _currentNodeId = value; }
+        }
+
+        public override bool Equals(object obj)
+        {
+            var dialogue = obj as DialogueGraph;
+            if(dialogue == null)
+            {
+                return false;
+            }
+            return Enumerable.SequenceEqual(_nodes, dialogue._nodes) && CurrentNodeId == dialogue.CurrentNodeId;
         }
 
         public void ChooseAnswer(uint index)

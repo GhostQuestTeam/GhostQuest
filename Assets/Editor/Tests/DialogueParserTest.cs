@@ -84,36 +84,19 @@ public class DialogueParserTest {
 	}
 
 	[Test]
-	public void NodeIdParseCorrectly(){
-		string testJson = "{\"id\" : 0, \"invitation\" : \"test\" , \"answers\" : []}";
-		int expectedId = 0;
-
-		var dialogue = DialogueParser.Parse (testJson);
-		int realId = dialogue.CurrentNodeId;
-
-		Assert.AreEqual(expectedId, realId);
-	}
-
-	[Test]
-	public void InvitationParseCorrectly(){
-		string testJson = "{\"id\" : 0, \"invitation\" : \"test\" , \"answers\" : []}";
-		string expectedInvitation = "test";
-
-		var dialogue = DialogueParser.Parse (testJson);
-		string realInvitation = dialogue.CurrentNode.Invitation;
-
-		Assert.AreEqual(expectedInvitation, realInvitation);
-	}
-
-	[Test]
-	public void AnswerMessageParseCorrectly(){
+	public void SingleNodeDialogueParseCorrectly(){
 		string testJson = "{\"id\" : 0, \"invitation\" : \"test\" , \"answers\" : [{\"message\":\"test message\"}]}";
-		string expectedMessage = "test message";
 
-		var dialogue = DialogueParser.Parse (testJson);
-		string realMessage = dialogue.CurrentNode.Answers[0].Message;
+	    var expectedDialogue = new DialogueGraph();
+        expectedDialogue.addNode(0, new DialogueNode(
+            "test", new[]{
+                new DialogueAnswer("test message", 0)
+            }
+	    ) );
 
-		Assert.AreEqual(expectedMessage, realMessage);
+		var realDialogue = DialogueParser.Parse (testJson);
+
+		Assert.AreEqual(expectedDialogue, realDialogue);
 	}
 
 	[Test]
