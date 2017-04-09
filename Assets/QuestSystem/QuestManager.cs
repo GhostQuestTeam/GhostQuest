@@ -18,6 +18,10 @@ namespace QuestSystem
 
         private static Dictionary<string, Quest> _quests;
 
+        public static void Init(Dictionary<string, Quest> quests)
+        {
+            _quests = quests;
+        }
 
         public static void StartQuest(string questTitle)
         {
@@ -87,12 +91,7 @@ namespace QuestSystem
             {
                 undoneTasks = new uint[0];
             }
-            if (doneTasks.Any(taskId => !tasks[taskId].IsDone) ||
-                undoneTasks.Any(taskId => tasks[taskId].IsDone))
-            {
-                return false;
-            }
-            return true;
+            return !doneTasks.Any(taskId => !tasks[taskId].IsDone) && !undoneTasks.Any(taskId => tasks[taskId].IsDone);
         }
 
         public static bool IsQuestStarted(string questTitle)
