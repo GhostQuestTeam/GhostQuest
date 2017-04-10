@@ -91,7 +91,7 @@ namespace QuestSystem
             {
                 undoneTasks = new uint[0];
             }
-            return !doneTasks.Any(taskId => !tasks[taskId].IsDone) && !undoneTasks.Any(taskId => tasks[taskId].IsDone);
+            return doneTasks.All(taskId => tasks[taskId].IsDone) && undoneTasks.All(taskId => !tasks[taskId].IsDone);
         }
 
         public static bool IsQuestStarted(string questTitle)

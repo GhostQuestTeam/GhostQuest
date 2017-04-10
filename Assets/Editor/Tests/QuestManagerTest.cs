@@ -14,8 +14,8 @@ public class QuestManagerTest
         {
             new QuestTask("0", false),
             new QuestTask("1", false),
-            new QuestTask("2", true),
-            new QuestTask("3", true)
+            new QuestTask("2", true, true),
+            new QuestTask("3", true, true)
         };
     }
 
@@ -93,8 +93,8 @@ public class QuestManagerTest
     {
         var expectedTasks = new[]
         {
-            new QuestTask("2", true),
-            new QuestTask("3", true)
+            new QuestTask("2", true,true),
+            new QuestTask("3", true,true)
         };
 
         var realTasks = QuestManager.GetVisibleTasks(_QUEST_TITLE_STUB);
@@ -116,5 +116,66 @@ public class QuestManagerTest
         var realNotes = QuestManager.GetVisibleNotes(_QUEST_TITLE_STUB);
 
         CollectionAssert.AreEquivalent(expectedNotes, realNotes);
+    }
+
+    [Test]
+    public void CheckTaskCompleteWithNotNullArgsWorks()
+    {
+        uint[] undone = {0, 1};
+        uint[] done = {2, 3};
+
+        Assert.True(QuestManager.CheckTaskComplete(_QUEST_TITLE_STUB, done, undone));
+    }
+
+    [Test]
+    public void CheckTaskCompleteReturnsFalseIfUndoneTasksArrayContainDoneTask()
+    {
+        uint[] undone = {0, 1, 2, 3};
+        uint[] done = {2, 3};
+
+        Assert.False(QuestManager.CheckTaskComplete(_QUEST_TITLE_STUB, done, undone));
+    }
+
+    [Test]
+    public void CheckTaskCompleteReturnsFalseIfDoneTasksArrayContainUndoneTask()
+    {
+        uint[] undone = {0, 1};
+        uint[] done = {0,1, 2, 3};
+
+        Assert.False(QuestManager.CheckTaskComplete(_QUEST_TITLE_STUB, done, undone));
+    }
+
+    [Test]
+    public void CheckTaskCompleteWorksWithNullUndoneTasks()
+    {
+        uint[] undone = null;
+        uint[] done = {2, 3};
+
+        Assert.True(QuestManager.CheckTaskComplete(_QUEST_TITLE_STUB, done, undone));
+
+    }
+
+
+    [Test]
+    public void CheckTaskCompleteWorksWithNullDoneTasks()
+    {
+        uint[] undone = {0, 1};
+        uint[] done = null;
+
+        Assert.True(QuestManager.CheckTaskComplete(_QUEST_TITLE_STUB, done, undone));
+    }
+
+    [Test]
+    public void IsQuestStartedReturnsTrueForStartedQuest()
+    {
+        Assert.True(QuestManager.IsQuestStarted(_QUEST_TITLE_STUB));
+    }
+
+    [Test]
+    public void IsQuestStartedReturnsFalseForNotStartedQuest()
+    {
+        const string NOT_STARTED_QUEST = "NOT_STARTED_QUEST";
+
+        Assert.False(QuestManager.IsQuestStarted(NOT_STARTED_QUEST));
     }
 }
