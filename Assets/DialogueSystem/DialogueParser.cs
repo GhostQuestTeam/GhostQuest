@@ -55,8 +55,8 @@ namespace DialogueSystem
         public static DialogueGraph Parse(string json)
         {
             var dialogueJson = JSON.Parse(json);
-            var dialogue = new DialogueGraph();
             Queue<JSONNode> nodesQueue = new Queue<JSONNode>();
+            var dialogue = new DialogueGraph(dialogueJson["dialogue_id"].Value);//TODO Добавить проверок
             nodesQueue.Enqueue(dialogueJson);
             while (nodesQueue.Count != 0)
             {
