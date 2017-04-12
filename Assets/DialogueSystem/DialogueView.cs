@@ -57,7 +57,7 @@ namespace DialogueSystem
                             EventHandler<DialogueEventArgs> handler = OnAnswerChoose;
                             if (handler != null)
                             {
-                                handler(this, new DialogueEventArgs(dialogue.CurrentNodeId, tmp));
+                                handler(this, new DialogueEventArgs(dialogue.Id,dialogue.CurrentNodeId, tmp));
                             }
 
                             int next = dialogue.CurrentNode.Answers[tmp].Next;

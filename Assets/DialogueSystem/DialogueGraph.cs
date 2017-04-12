@@ -61,6 +61,7 @@ namespace DialogueSystem
 
         public DialogueGraph(string id)
         {
+            this._nodes = new Dictionary<int, DialogueNode>();
             Id = id;
         }
 

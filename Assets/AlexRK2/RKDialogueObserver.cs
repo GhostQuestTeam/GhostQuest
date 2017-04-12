@@ -22,7 +22,7 @@ public class RKDialogueObserver : MonoBehaviour
 
     void OnAnswerChoose(object sender, DialogueEventArgs dea)
     {
-        if (dea.AnswerId == 0 && dea.DialogueId == 0)
+        if (dea.AnswerId == 0 && dea.NodeId == 0)
         {
             QuestManager.StartQuest("rk_quest");
             QuestManager.ShowQuestNote(_QUEST, 0);
@@ -30,7 +30,7 @@ public class RKDialogueObserver : MonoBehaviour
             QuestManager.ShowQuestNote(_QUEST, 2);
 
         }
-        if (dea.AnswerId == 1 && dea.DialogueId == 0)
+        if (dea.AnswerId == 1 && dea.NodeId == 0)
         {
             QuestTask task = QuestManager.GetTask(_QUEST, 0);
             task.IsVisible = true;
@@ -38,14 +38,14 @@ public class RKDialogueObserver : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.LoadScene (1);
 
         }
-        if (dea.AnswerId == 2 && dea.DialogueId == 0)
+        if (dea.AnswerId == 2 && dea.NodeId == 0)
         {
             QuestTask task = QuestManager.GetTask(_QUEST, 1);
             task.IsVisible = true;
             StateControl.currentStep = StateControl.QUEST_STEP.SECOND_TALK_FINISHED;
             UnityEngine.SceneManagement.SceneManager.LoadScene (1);
         }
-        if (dea.AnswerId == 3 && dea.DialogueId == 0)
+        if (dea.AnswerId == 3 && dea.NodeId == 0)
         {
             QuestTask task = QuestManager.GetTask(_QUEST, 0);
             task.IsVisible = true;
