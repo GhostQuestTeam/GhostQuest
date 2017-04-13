@@ -20,6 +20,7 @@ namespace DialogueSystem
 
         public static readonly Dictionary<string, int> _FIELD_CONSTRAINTS = new Dictionary<string, int>()
         {
+            {"dialogue_id", _STRING},
             {"id", _NUMBER},
             {"invitation", _STRING},
             {"answers", _ARRAY},
@@ -55,8 +56,12 @@ namespace DialogueSystem
         public static DialogueGraph Parse(string json)
         {
             var dialogueJson = JSON.Parse(json);
-            var dialogue = new DialogueGraph();
             Queue<JSONNode> nodesQueue = new Queue<JSONNode>();
+
+            var dialogueIdNode = _getField(dialogueJson, "dialogue_id");
+            _validateType(dialogueIdNode, "dialogue_id");
+
+            var dialogue = new DialogueGraph(dialogueIdNode.Value);
             nodesQueue.Enqueue(dialogueJson);
             while (nodesQueue.Count != 0)
             {

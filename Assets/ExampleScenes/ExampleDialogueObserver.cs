@@ -22,7 +22,7 @@ public class ExampleDialogueObserver : MonoBehaviour
 
     void OnAnswerChoose(object sender, DialogueEventArgs dea)
     {
-        if (dea.AnswerId == 0 && dea.DialogueId == 0)
+        if (dea.AnswerId == 0 && dea.NodeId == 0)
         {
             QuestTask task = QuestManager.GetTask("quest1", 0);
             task.IsDone = !task.IsDone;

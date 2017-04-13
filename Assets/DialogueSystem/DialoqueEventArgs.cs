@@ -4,12 +4,14 @@ namespace DialogueSystem
 {
     public class DialogueEventArgs : EventArgs
     {
-        public int DialogueId { get; set; }
+        public string DialogueId { get; set; }
+        public int NodeId { get; set; }
         public uint AnswerId { get; set; }
 
-        public DialogueEventArgs(int diaalogueId, uint answerId)
+        public DialogueEventArgs(string dialogueId ,int nodeId, uint answerId)
         {
-            DialogueId = diaalogueId;
+            DialogueId = dialogueId;
+            nodeId = nodeId;
             AnswerId = answerId;
         }
     }

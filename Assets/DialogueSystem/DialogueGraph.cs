@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace DialogueSystem
 {
@@ -6,6 +8,8 @@ namespace DialogueSystem
     {
         private Dictionary<int, DialogueNode> _nodes;
         private int _currentNodeId = 0;
+
+        public string Id { get; set; }
 
         public DialogueNode CurrentNode
         {
@@ -16,6 +20,28 @@ namespace DialogueSystem
         {
             get { return _currentNodeId; }
             set { _currentNodeId = value; }
+        }
+
+        public override bool Equals(object obj)
+        {
+            var dialogue = obj as DialogueGraph;
+            if (dialogue == null)
+            {
+                return false;
+            }
+            return Enumerable.SequenceEqual(_nodes, dialogue._nodes) && CurrentNodeId == dialogue.CurrentNodeId;
+        }
+
+        public override string ToString()
+        {
+            var result = "[\n";
+
+            foreach (var node in _nodes.Values)
+            {
+                result += node.ToString() + ",\n";
+            }
+            result += "]\n}";
+            return result;
         }
 
         public void ChooseAnswer(uint index)
@@ -32,6 +58,19 @@ namespace DialogueSystem
         {
             this._nodes = nodes;
         }
+
+        public DialogueGraph(string id)
+        {
+            this._nodes = new Dictionary<int, DialogueNode>();
+            Id = id;
+        }
+
+        public DialogueGraph(Dictionary<int, DialogueNode> nodes, string id)
+        {
+            this._nodes = nodes;
+            Id = id;
+        }
+
 
         public void addNode(int index, DialogueNode node)
         {

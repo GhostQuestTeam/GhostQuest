@@ -28,6 +28,25 @@ namespace DialogueSystem
             _condition = condition;
         }
 
+        public override bool Equals(object obj)
+        {
+            var answer = obj as DialogueAnswer;
+            if(answer == null)
+            {
+                return false;
+            }
+            return Message == answer.Message && Next == answer.Next;
+        }
+
+        public override string ToString()
+        {
+            var result = "\n{\n";
+            result += "\tmessage: " + Message + "\n";
+            result += "\tnext: " + Next + "\n";
+            result += "}";
+            return result;
+        }
+
         public DialogueAnswer(string message, int next)
         {
             this._message = message;

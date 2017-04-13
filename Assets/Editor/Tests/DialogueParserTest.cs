@@ -7,9 +7,30 @@ using DialogueSystem;
 [TestFixture]
 public class DialogueParserTest {
 
+
+    [Test]
+    public void DialogueWithoutIdThrowsException(){
+        string testJson = "{}";
+
+        var exc = Assert.Throws<DialogueParseException> (
+            () => DialogueParser.Parse (testJson)
+        );
+
+    }
+
+    [Test]
+    public void DialogueWithInvalidIdTypeThrowsException(){
+        string testJson = "{\"dialogue_id\" : 0}";
+
+        var exc = Assert.Throws<DialogueParseException> (
+            () => DialogueParser.Parse (testJson)
+        );
+
+    }
+
 	[Test]
 	public void NodeWithoutIdThrowsException(){
-		string testJson = "{}";
+		string testJson = "{\"dialogue_id\":\"id\"}";
 
 		var exc = Assert.Throws<DialogueParseException> (
 			() => DialogueParser.Parse (testJson)
@@ -19,7 +40,7 @@ public class DialogueParserTest {
 		
 	[Test]
 	public void NodeWithoutInvitationThrowsException(){
-		string testJson = "{\"id\" : 0}";
+		string testJson = "{\"dialogue_id\":\"id\",\"id\" : 0}";
 
 		var exc = Assert.Throws<DialogueParseException> (
 			() => DialogueParser.Parse (testJson)
@@ -29,7 +50,7 @@ public class DialogueParserTest {
 
 	[Test]
 	public void NodeWithoutAnswersThrowsException(){
-		string testJson = "{\"id\" : 0, \"invitation\" : \"test\"}";
+		string testJson = "{\"dialogue_id\":\"id\",\"id\" : 0, \"invitation\" : \"test\"}";
 
 		var exc = Assert.Throws<DialogueParseException> (
 			() => DialogueParser.Parse (testJson)
@@ -39,7 +60,7 @@ public class DialogueParserTest {
 
 	[Test]
 	public void NodeWithInvalidIdTypeThrowsException(){
-		string testJson = "{\"id\" : \"text\", \"invitation\" : \"test\" , \"answers\" : []}";
+		string testJson = "{\"dialogue_id\":\"id\",\"id\" : \"text\", \"invitation\" : \"test\" , \"answers\" : []}";
 
 		var exc = Assert.Throws<DialogueParseException> (
 			() => DialogueParser.Parse (testJson)
@@ -49,7 +70,7 @@ public class DialogueParserTest {
 
 	[Test]
 	public void NodeWithInvalidInvitationTypeThrowsException(){
-		string testJson = "{\"id\" : 0, \"invitation\" : null , \"answers\" : []}";
+		string testJson = "{\"dialogue_id\":\"id\",\"id\" : 0, \"invitation\" : null , \"answers\" : []}";
 
 		var exc = Assert.Throws<DialogueParseException> (
 			() => DialogueParser.Parse (testJson)
@@ -58,7 +79,7 @@ public class DialogueParserTest {
 
 	[Test]
 	public void NodeWithInvalidAnswersTypeThrowsException(){
-		string testJson = "{\"id\" : 0, \"invitation\" : \"test\" , \"answers\" : null}";
+		string testJson = "{\"dialogue_id\":\"id\",\"id\" : 0, \"invitation\" : \"test\" , \"answers\" : null}";
 
 		var exc = Assert.Throws<DialogueParseException> (
 			() => DialogueParser.Parse (testJson)
@@ -67,7 +88,7 @@ public class DialogueParserTest {
 
 	[Test]
 	public void NodeWithoutAnswerMessageThrowsException(){
-		string testJson = "{\"id\" : 0, \"invitation\" : \"test\" , \"answers\" : [{}]}";
+		string testJson = "{\"dialogue_id\":\"id\",\"id\" : 0, \"invitation\" : \"test\" , \"answers\" : [{}]}";
 
 		var exc = Assert.Throws<DialogueParseException> (
 			() => DialogueParser.Parse (testJson)
@@ -84,41 +105,24 @@ public class DialogueParserTest {
 	}
 
 	[Test]
-	public void NodeIdParseCorrectly(){
-		string testJson = "{\"id\" : 0, \"invitation\" : \"test\" , \"answers\" : []}";
-		int expectedId = 0;
+	public void SingleNodeDialogueParseCorrectly(){
+		string testJson = "{\"dialogue_id\":\"id\",\"id\" : 0, \"invitation\" : \"test\" , \"answers\" : [{\"message\":\"test message\"}]}";
 
-		var dialogue = DialogueParser.Parse (testJson);
-		int realId = dialogue.CurrentNodeId;
+	    var expectedDialogue = new DialogueGraph();
+        expectedDialogue.addNode(0, new DialogueNode(
+            "test", new[]{
+                new DialogueAnswer("test message", 0)
+            }
+	    ) );
 
-		Assert.AreEqual(expectedId, realId);
-	}
+		var realDialogue = DialogueParser.Parse (testJson);
 
-	[Test]
-	public void InvitationParseCorrectly(){
-		string testJson = "{\"id\" : 0, \"invitation\" : \"test\" , \"answers\" : []}";
-		string expectedInvitation = "test";
-
-		var dialogue = DialogueParser.Parse (testJson);
-		string realInvitation = dialogue.CurrentNode.Invitation;
-
-		Assert.AreEqual(expectedInvitation, realInvitation);
-	}
-
-	[Test]
-	public void AnswerMessageParseCorrectly(){
-		string testJson = "{\"id\" : 0, \"invitation\" : \"test\" , \"answers\" : [{\"message\":\"test message\"}]}";
-		string expectedMessage = "test message";
-
-		var dialogue = DialogueParser.Parse (testJson);
-		string realMessage = dialogue.CurrentNode.Answers[0].Message;
-
-		Assert.AreEqual(expectedMessage, realMessage);
+		Assert.AreEqual(expectedDialogue, realDialogue);
 	}
 
 	[Test]
 	public void DefaultAnswerNextFieldEqualsCurrentNodeId(){
-		string testJson = "{\"id\" : 0, \"invitation\" : \"test\" , \"answers\" : [{\"message\":\"test message\"}]}";
+		string testJson = "{\"dialogue_id\":\"id\",\"id\" : 0, \"invitation\" : \"test\" , \"answers\" : [{\"message\":\"test message\"}]}";
 
 		var dialogue = DialogueParser.Parse (testJson);
 
@@ -130,7 +134,7 @@ public class DialogueParserTest {
 
 	[Test]
 	public void NullNextFieldParseToMinusOne(){
-		string testJson = "{\"id\" : 0, \"invitation\" : \"test\" , \"answers\" : [{\"message\":\"test message\", \"next\" : null}]}";
+		string testJson = "{\"dialogue_id\":\"id\",\"id\" : 0, \"invitation\" : \"test\" , \"answers\" : [{\"message\":\"test message\", \"next\" : null}]}";
 
 		var dialogue = DialogueParser.Parse (testJson);
 
@@ -143,7 +147,7 @@ public class DialogueParserTest {
 
 	[Test]
 	public void IntNextFieldParseCorrectly(){
-		string testJson = "{\"id\" : 0, \"invitation\" : \"test\" , \"answers\" : [{\"message\":\"test message\", \"next\" : 3}]}";
+		string testJson = "{\"dialogue_id\":\"id\",\"id\" : 0, \"invitation\" : \"test\" , \"answers\" : [{\"message\":\"test message\", \"next\" : 3}]}";
 
 		var dialogue = DialogueParser.Parse (testJson);
 
@@ -156,7 +160,7 @@ public class DialogueParserTest {
 
 	[Test]
 	public void ObjectNextFieldParseCorrectly(){
-		string testJson = "{\"id\" : 0, \"invitation\" : \"test\" , \"answers\" : [{\"message\":\"test message\", \"next\" : {\"id\":2, \"invitation\" : \"test\", \"answers\":[] }}]}";
+		string testJson = "{\"dialogue_id\":\"id\",\"id\" : 0, \"invitation\" : \"test\" , \"answers\" : [{\"message\":\"test message\", \"next\" : {\"id\":2, \"invitation\" : \"test\", \"answers\":[] }}]}";
 
 		var dialogue = DialogueParser.Parse (testJson);
 
@@ -169,7 +173,7 @@ public class DialogueParserTest {
 
 	[Test]
 	public void NestedNodeParseCorrectly(){
-		string testJson = "{\"id\" : 0, \"invitation\" : \"test\" , \"answers\" : [{\"message\":\"test message\", \"next\" : {\"id\":2, \"invitation\" : \"test\", \"answers\":" +
+		string testJson = "{\"dialogue_id\":\"id\",\"id\" : 0, \"invitation\" : \"test\" , \"answers\" : [{\"message\":\"test message\", \"next\" : {\"id\":2, \"invitation\" : \"test\", \"answers\":" +
 			"[{\"message\":\"test message\", \"next\" : {\"id\":5, \"invitation\" : \"id5_ivitation\", \"answers\":[] }}] }}]}";
 
 		var dialogue = DialogueParser.Parse (testJson);
