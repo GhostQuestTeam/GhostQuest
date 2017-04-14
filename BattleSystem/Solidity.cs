@@ -6,7 +6,7 @@ namespace BattleSystem
     public class Solidity
     {
         public int RegenPoints { get; set; }
-        public int MaxHealth { get; set; }
+        public uint MaxHealth { get; set; }
         public int CurrentHealth { get; private set; }
         public int Defence { get; set; }
 
@@ -19,7 +19,7 @@ namespace BattleSystem
             }
             if (CurrentHealth > MaxHealth)
             {
-                CurrentHealth = MaxHealth;
+                CurrentHealth = (int)MaxHealth;
             }
         }
 
@@ -38,7 +38,10 @@ namespace BattleSystem
 
         public void Heal(int healPoints)
         {
-            _changeHealth(healPoints);
+            if (IsAlive())
+            {
+                _changeHealth(healPoints);
+            }
         }
 
         public void Regenerate()
@@ -51,15 +54,15 @@ namespace BattleSystem
             return CurrentHealth != 0;
         }
 
-        public Solidity(int maxHealth, int defence, int regenPoints = 0)
+        public Solidity(uint maxHealth, int defence, int regenPoints = 0)
         {
             MaxHealth = maxHealth;
             Defence = defence;
             RegenPoints = regenPoints;
-            CurrentHealth = MaxHealth;
+            CurrentHealth = (int)MaxHealth;
         }
 
-        public Solidity(int maxHealth, int defence, int regenPoints, int currentHealth)
+        public Solidity(uint maxHealth, int defence, int regenPoints, int currentHealth)
         {
             MaxHealth = maxHealth;
             Defence = defence;
