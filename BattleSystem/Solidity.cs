@@ -1,13 +1,24 @@
-﻿using System.Security.Policy;
+﻿using Utils;
 
 namespace BattleSystem
 {
     //Уровень просчности объекта
     public class Solidity
     {
+        private BoundedInt _health = new BoundedInt();
+
         public int RegenPoints { get; set; }
-        public uint MaxHealth { get; set; }
-        public int CurrentHealth { get; private set; }
+
+        public uint MaxHealth
+        {
+            get { return (uint) _health.Max; }
+            set { _health.Max = (int) value; }
+        }
+
+        public int CurrentHealth {
+            get { return _health.Val; }
+            private set { _health.Val = value; }
+        }
         public int Defence { get; set; }
 
         private void _changeHealth(int healthDelta)
@@ -19,7 +30,7 @@ namespace BattleSystem
             }
             if (CurrentHealth > MaxHealth)
             {
-                CurrentHealth = (int)MaxHealth;
+                CurrentHealth = (int) MaxHealth;
             }
         }
 
@@ -33,14 +44,14 @@ namespace BattleSystem
             {
                 damage -= Defence;
             }
-            _changeHealth(-damage);
+            CurrentHealth -= damage;
         }
 
         public void Heal(int healPoints)
         {
             if (IsAlive())
             {
-                _changeHealth(healPoints);
+                CurrentHealth += healPoints;
             }
         }
 
@@ -59,7 +70,7 @@ namespace BattleSystem
             MaxHealth = maxHealth;
             Defence = defence;
             RegenPoints = regenPoints;
-            CurrentHealth = (int)MaxHealth;
+            CurrentHealth = (int) MaxHealth;
         }
 
         public Solidity(uint maxHealth, int defence, int regenPoints, int currentHealth)
