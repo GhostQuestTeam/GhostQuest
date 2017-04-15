@@ -8,6 +8,9 @@ namespace BattleSystem
     {
         private BoundedInt _energy;
 
+        public WeaponInfo[] Weapons { get;}
+        public uint CurrentWeaponId { get; set; }
+        public WeaponInfo CurrentWeapon => Weapons[CurrentWeaponId];
         public int EnergyRegen { get; set; }
         public int MaxEnergy
         {
@@ -22,10 +25,12 @@ namespace BattleSystem
         }
 
 
-        public PlayerBattleStats(Solidity solidity, int maxEnergy, int energyRegen): base(solidity)
+        public PlayerBattleStats(Solidity solidity, int maxEnergy, int energyRegen, WeaponInfo[] weapons): base(solidity)
         {
             _energy = new BoundedInt(maxEnergy, 0, maxEnergy);
             EnergyRegen = energyRegen;
+            Weapons = weapons;
+            CurrentWeaponId = 0;
         }
 
     }
