@@ -4,11 +4,10 @@ using Utils;
 
 namespace BattleSystem
 {
-    public class PlayerBattleStats
+    public class PlayerBattleStats:BattleStats
     {
         private BoundedInt _energy;
 
-        public Solidity Solidity { get; set; }
         public int EnergyRegen { get; set; }
         public int MaxEnergy
         {
@@ -22,17 +21,9 @@ namespace BattleSystem
             set { _energy.Val = value; }
         }
 
-        public uint MaxHealth
-        {
-            get { return Solidity.MaxHealth; }
-            set { Solidity.MaxHealth = value; }
-        }
 
-        public int CurrentHealth => Solidity.CurrentHealth;
-
-        public PlayerBattleStats(Solidity solidity, int maxEnergy, int energyRegen)
+        public PlayerBattleStats(Solidity solidity, int maxEnergy, int energyRegen): base(solidity)
         {
-            Solidity = solidity;
             _energy = new BoundedInt(maxEnergy, 0, maxEnergy);
             EnergyRegen = energyRegen;
         }
