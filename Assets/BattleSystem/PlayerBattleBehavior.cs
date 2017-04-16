@@ -5,21 +5,18 @@ using UnityEngine;
 
 public class PlayerBattleBehavior : MonoBehaviour, IShooter
 {
-
-    private PlayerBattleStats _battleStats;
-    private PlayerBattleController _battleController;
+    public PlayerBattleController BattleController;// { get; private set; }
 
     private ShellFactory _shellFactory;
-	// Use this for initialization
-	void Start () {
 
 
+	void Awake () {
 	    var solidity = new Solidity(100,0);
 	    var weapons = new[] {new WeaponInfo("sphere", 3, 0)};
 
 	    _shellFactory = new ShellFactory();
-	    _battleStats = new PlayerBattleStats(solidity, 100, 1, weapons);
-		_battleController = new PlayerBattleController(_battleStats, this);
+	    var battleStats = new PlayerBattleStats(solidity, 100, 1, weapons);
+		BattleController = new PlayerBattleController(battleStats, this);
 	}
 	
 	// Update is called once per frame
@@ -37,6 +34,6 @@ public class PlayerBattleBehavior : MonoBehaviour, IShooter
 
     public void OnShootClick()
     {
-        _battleController.TryShoot();
+        BattleController.TryShoot();
     }
 }
