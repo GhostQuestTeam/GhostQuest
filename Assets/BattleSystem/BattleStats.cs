@@ -12,7 +12,10 @@ namespace BattleSystem
             set { Solidity.MaxHealth = value; }
         }
 
-        public int CurrentHealth => Solidity.CurrentHealth;
+        public int CurrentHealth
+        {
+            get { return Solidity.CurrentHealth; }
+        }
 
         public BattleStats(Solidity solidity)
         {
@@ -27,7 +30,11 @@ namespace BattleSystem
 
         public WeaponInfo[] Weapons { get;}
         public uint CurrentWeaponId { get; set; }
-        public WeaponInfo CurrentWeapon => Weapons[CurrentWeaponId];
+        public WeaponInfo CurrentWeapon
+        {
+            get { return Weapons[CurrentWeaponId]; }
+        }
+
         public int EnergyRegen { get; set; }
         public int MaxEnergy
         {

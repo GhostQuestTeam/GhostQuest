@@ -51,7 +51,10 @@ namespace BattleSystem
         private IShooter _shooter;
         public event Action<int> OnEnergyChanged;
 
-        public PlayerBattleStats BattleStats => battleStats as PlayerBattleStats;
+        public PlayerBattleStats BattleStats
+        {
+            get { return battleStats as PlayerBattleStats; }
+        }
 
         public void TryShoot()
         {
@@ -89,7 +92,10 @@ namespace BattleSystem
 
     public class EnemyBattleController : BattleController
     {
-        public EnemyBattleStats BattleStats => battleStats as EnemyBattleStats;
+        public EnemyBattleStats BattleStats
+        {
+            get { return battleStats as EnemyBattleStats; }
+        }
 
         public EnemyBattleController(EnemyBattleStats stats)
         {
