@@ -78,12 +78,10 @@
     <Compile Include="Assets\Plugins\SimpleJSON.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\ARToolKit5-Unity\CHANGELOG.txt" />
-    <None Include="Assets\ARToolKit5-Unity\Resources\Shaders\Mask.shader" />
-    <None Include="Assets\ARToolKit5-Unity\Resources\Shaders\VideoPlaneNoLight.shader" />
-    <None Include="Assets\ARToolKit5-Unity\Resources\ardata\markers\patt.hiro.txt" />
-    <None Include="Assets\ARToolKit5-Unity\Resources\ardata\markers\patt.kanji.txt" />
-    <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
+    <None Include="Assets\KudanAR\Materials\Background.shader" />
+    <None Include="Assets\KudanAR\Materials\DebugFlat.shader" />
+    <None Include="Assets\KudanAR\Materials\ShadowCatcher.shader" />
+    <None Include="Assets\KudanAR\Resources\YpCbCr.shader" />
     <None Include="Assets\Resources\Dialogues\rk_dialogue.txt" />
     <None Include="Assets\Resources\Quests\rk_quest.txt" />
     <None Include="Assets\Resources\test.txt" />
