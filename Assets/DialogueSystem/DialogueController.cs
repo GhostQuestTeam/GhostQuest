@@ -6,25 +6,25 @@ namespace DialogueSystem
     public class DialogueController : MonoBehaviour
     {
         public string dialoguePath;
-        public GameObject dialoguePanel;
+        private GameObject _dialoguePanel;
         private DialogueGraph dialogue;
 
         void Start()
         {
+            var uiControllerObject = GameObject.FindWithTag("UIController");
+            _dialoguePanel = uiControllerObject.GetComponent<UIController>().DialoguePanel;
             string dialogueJson = Resources.Load<TextAsset>(dialoguePath).text;
             dialogue = DialogueParser.Parse(dialogueJson);
-            dialoguePanel.SetActive(false);
         }
 
         void Update()
         {
-
         }
 
         public void onRay()
         {
-            dialoguePanel.SetActive(true);
-            dialoguePanel.GetComponent<DialogueView>().Dialogoue = dialogue;
+            _dialoguePanel.SetActive(true);
+            _dialoguePanel.GetComponent<DialogueView>().Dialogoue = dialogue;
         }
     }
 }

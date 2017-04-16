@@ -8,9 +8,14 @@ namespace DialogueSystem
 {
     public class DialogueView : MonoBehaviour
     {
+        public const string DEFAULT_ANSWER_PREFAB = "DialoguesUI/DialogueAnswer";
+        public string AnswerPrefabPath = DEFAULT_ANSWER_PREFAB;
+
         public event EventHandler<DialogueEventArgs> OnAnswerChoose;
 
-        public GameObject answerPrefab;
+
+        private GameObject answerPrefab;
+
         DialogueGraph dialogue;
 
         void Start()
@@ -33,6 +38,9 @@ namespace DialogueSystem
 
         private void _updateView()
         {
+            //TODO Почему то если присваивать в Start(), в этом методе значение сбрасывается на null
+            answerPrefab = Resources.Load(AnswerPrefabPath) as GameObject;
+
             var answersPanel = transform.Find("AnswersPanel");
             answersPanel.Clear();
             var invitation = transform.Find("Invitation Panel");

@@ -1,4 +1,5 @@
-﻿using Extensions;
+﻿using System;
+using Extensions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,11 +9,20 @@ namespace QuestSystem
     // И обновление по событиям
     public class QuestView : MonoBehaviour
     {
-        //public GameObject QuestPanel;
-        public GameObject QuestTitlePrefab;
-        public GameObject TaskCheckboxPrefab;
-        public GameObject QuestNotePrefab;
-        public GameObject UIPanel;
+
+        public const string DEFAULT_QUEST_TITLE_PREFAB = "QuestsUI/QuestTitleButton";
+        public const string DEFAULT_QUEST_NOTE_PREFAB = "QuestsUI/QuestNote";
+        public const string DEFAULT_TASK_CHECKBOX_PREFAB = "QuestsUI/TaskCheckbox";
+
+        public string QuestTitlePrefabPath = DEFAULT_QUEST_TITLE_PREFAB;
+        public string QuestNotePrefabPath = DEFAULT_QUEST_NOTE_PREFAB;
+        public string TaskChecckboxPrefabPath = DEFAULT_TASK_CHECKBOX_PREFAB;
+
+        public event Action OnClose;
+
+        private GameObject questTitlePrefab;
+        private GameObject taskCheckboxPrefab;
+        private GameObject questNotePrefab;
 
         // Use this for initialization
         void Start()
@@ -26,17 +36,23 @@ namespace QuestSystem
 
         public void Close()
         {
-            UIPanel.SetActive(true);
             gameObject.SetActive(false);
+            if(OnClose != null){
+                OnClose();
+            }
         }
 
         public void Draw()
         {
-            var questList = transform.Find("Quests").Find("List");
+            questTitlePrefab =    Resources.Load(QuestTitlePrefabPath) as GameObject;
+            questNotePrefab =     Resources.Load(QuestNotePrefabPath) as GameObject;
+            taskCheckboxPrefab =  Resources.Load(TaskChecckboxPrefabPath) as GameObject;
+
+            var questList = transform.Find("Quests/List");
             questList.Clear();
             foreach (var title in QuestManager.QuestTitles)
             {
-                var questButton = (GameObject) Instantiate(QuestTitlePrefab);
+                var questButton = (GameObject) Instantiate(questTitlePrefab);
                 questButton.GetComponentInChildren<Text>().text = title;
                 questButton.transform.SetParent(questList);
 
@@ -58,7 +74,7 @@ namespace QuestSystem
 
             foreach (var task in QuestManager.GetVisibleTasks(questTitle))
             {
-                var taskCheckbox = Instantiate(TaskCheckboxPrefab);
+                var taskCheckbox = Instantiate(taskCheckboxPrefab);
                 taskCheckbox.GetComponentInChildren<Text>().text = " " + task.Title;
                 taskCheckbox.transform.SetParent(tasksList);
                 if (!task.IsDone)
@@ -69,7 +85,7 @@ namespace QuestSystem
 
             foreach (var note in QuestManager.GetVisibleNotes(questTitle))
             {
-                var noteObject = Instantiate(QuestNotePrefab);
+                var noteObject = Instantiate(questNotePrefab);
                 noteObject.GetComponent<Text>().text =note + "\n";
                 noteObject.transform.SetParent(notesList);
             }
