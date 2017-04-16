@@ -30,7 +30,9 @@ public class PlayerBattleBehavior : MonoBehaviour, IShooter
     public void Shoot(WeaponInfo weapon)
     {
         GameObject shell = _shellFactory.CreateShell(weapon);
-        shell.GetComponent<ShellBehavior>().Launch(GetComponent<Camera>().transform.forward);
+        var cameraForward = GetComponentInChildren<Camera>().transform.forward;
+        var startPosition = transform.position + cameraForward * 2;
+        shell.GetComponent<ShellBehavior>().Launch(startPosition, cameraForward);
     }
 
     public void OnShootClick()

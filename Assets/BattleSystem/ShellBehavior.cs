@@ -19,11 +19,10 @@ public class ShellBehavior : MonoBehaviour
 		
 	}
 
-    public void Launch(Vector3 startPosition)
+    public void Launch(Vector3 startPosition, Vector3 velocityVector)
     {
-        gameObject.transform.position = startPosition;
+        gameObject.transform.position = startPosition ;
         Rigidbody rb = GetComponent<Rigidbody> ();
-        startPosition.Normalize();
-        rb.velocity = startPosition * ShellInfo.Velocity;
+        rb.velocity = velocityVector * ShellInfo.Velocity;
     }
 }
