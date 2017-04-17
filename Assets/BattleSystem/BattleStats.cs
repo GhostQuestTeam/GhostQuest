@@ -72,10 +72,11 @@ namespace BattleSystem
     [Serializable]
     public class EnemyBattleStats:BattleStats
     {
-        public double Velocity;
+        public float Velocity;
+
         public WeaponInfo Weapon { get; }
 
-        public EnemyBattleStats(Solidity solidity, double velocity, WeaponInfo weapon) : base(solidity)
+        public EnemyBattleStats(Solidity solidity, float velocity, WeaponInfo weapon) : base(solidity)
         {
             Velocity = velocity;
             Weapon = weapon;
