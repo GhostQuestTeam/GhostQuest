@@ -1,37 +1,23 @@
-﻿using Utils;
+﻿using System;
+using Utils;
 
 namespace BattleSystem
 {
     //Уровень просчности объекта
+    [Serializable]
     public class Solidity
     {
-        private BoundedInt _health = new BoundedInt();
 
-        public int RegenPoints { get; set; }
+        public int RegenPoints;
+        public int Defence;
+        public uint MaxHealth;
+        public int CurrentHealth { get; private set; }
 
-        public uint MaxHealth
-        {
-            get { return (uint) _health.Max; }
-            set { _health.Max = (int) value; }
-        }
-
-        public int CurrentHealth {
-            get { return _health.Val; }
-            private set { _health.Val = value; }
-        }
-        public int Defence { get; set; }
 
         private void _changeHealth(int healthDelta)
         {
             CurrentHealth += healthDelta;
-            if (CurrentHealth < 0)
-            {
-                CurrentHealth = 0;
-            }
-            if (CurrentHealth > MaxHealth)
-            {
-                CurrentHealth = (int) MaxHealth;
-            }
+            CurrentHealth = BoundedInt.Clamp(CurrentHealth, (int) MaxHealth);
         }
 
         public void Attack(int damage)
@@ -44,17 +30,21 @@ namespace BattleSystem
             {
                 damage -= Defence;
             }
-            CurrentHealth -= damage;
+            _changeHealth( -damage);
         }
 
         public void Heal(int healPoints)
         {
             if (IsAlive())
             {
-                CurrentHealth += healPoints;
+                _changeHealth(healPoints);
             }
         }
 
+        public void ResetHealth()
+        {
+            CurrentHealth = (int)MaxHealth;
+        }
         public void Regenerate()
         {
             Heal(RegenPoints);

@@ -34,5 +34,11 @@
             Val = value;
         }
 
+        public static int Clamp(int val, int max=int.MaxValue, int min=0)
+        {
+            if (val > max) return max;
+            if (val < min) return min;
+            return val;
+        }
     }
 }

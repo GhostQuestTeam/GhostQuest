@@ -1,10 +1,14 @@
-﻿using Utils;
+﻿using System;
+using UnityEngine;
+using Utils;
 
 namespace BattleSystem
 {
+    [Serializable]
     public class BattleStats
     {
-        public Solidity Solidity { get; set; }
+        [SerializeField]
+        public Solidity Solidity;
 
         public uint MaxHealth
         {
@@ -15,6 +19,12 @@ namespace BattleSystem
         public int CurrentHealth
         {
             get { return Solidity.CurrentHealth; }
+
+        }
+
+        public void ResetHealth()
+        {
+            Solidity.ResetHealth();
         }
 
         public BattleStats(Solidity solidity)
@@ -59,9 +69,10 @@ namespace BattleSystem
 
     }
 
+    [Serializable]
     public class EnemyBattleStats:BattleStats
     {
-        public double Velocity { get; set; }
+        public double Velocity;
         public WeaponInfo Weapon { get; }
 
         public EnemyBattleStats(Solidity solidity, double velocity, WeaponInfo weapon) : base(solidity)
