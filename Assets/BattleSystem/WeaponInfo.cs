@@ -22,12 +22,12 @@ namespace BattleSystem
         }
     }
 
+    [Serializable]
     public class WeaponInfo
     {
-        public string Id { get; }
-        public int ShootCost { get; set; }
-        public double Cooldown { get; set; }
-        public ShellInfo Shell { get; }
+        public string Id;//{ get; }
+        public int ShootCost;// { get; set; }
+        public double Cooldown;// { get; set; }
 
         public WeaponInfo(string id, int shootCost, double cooldown)
         {
@@ -36,15 +36,5 @@ namespace BattleSystem
             Cooldown = cooldown;
         }
 
-        public WeaponInfo(string id, int shootCost, double cooldown, ShellInfo shell) : this(id, shootCost, cooldown)
-        {
-            Shell = shell;
-        }
-
-        public WeaponInfo(string id, int shootCost, double cooldown, int damage, int velocity, ShellEffect effect = null) :
-            this(id, shootCost, cooldown)
-        {
-            Shell = new ShellInfo(damage, velocity ,effect);
-        }
     }
 }

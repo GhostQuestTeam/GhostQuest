@@ -8,11 +8,16 @@ public class PlayerBattleBehavior : MonoBehaviour, IShooter
     public PlayerBattleController BattleController;// { get; private set; }
 
     private ShellFactory _shellFactory;
+    public string[] WeaponIDs;
 
 
 	void Awake () {
 	    var solidity = new Solidity(100,0);
-	    var weapons = new[] {new WeaponInfo("laser", 3, 0)};
+	    var weapons = new WeaponInfo[WeaponIDs.Length];
+	    for (var i = 0; i < WeaponIDs.Length; i++)
+	    {
+	        weapons[i] = WeaponLoader.LoadWeapon(WeaponIDs[i]);
+	    }
 
 	    _shellFactory = new ShellFactory();
 	    var battleStats = new PlayerBattleStats(solidity, 100, 1, weapons);
