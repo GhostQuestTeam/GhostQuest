@@ -432,7 +432,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 54984532518466436, guid: 4d44d6fd31f7e0a498a093e2e8c34b4b, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 4d44d6fd31f7e0a498a093e2e8c34b4b, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &868834388
@@ -593,7 +594,7 @@ MonoBehaviour:
       RegenPoints: 0
       Defence: 4
       MaxHealth: 45
-    Velocity: 0
+    Velocity: 0.03
 --- !u!1 &1306523190
 GameObject:
   m_ObjectHideFlags: 0

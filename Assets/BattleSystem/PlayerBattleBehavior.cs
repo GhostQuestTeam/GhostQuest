@@ -12,7 +12,7 @@ public class PlayerBattleBehavior : MonoBehaviour, IShooter
 
 	void Awake () {
 	    var solidity = new Solidity(100,0);
-	    var weapons = new[] {new WeaponInfo("sphere", 3, 0)};
+	    var weapons = new[] {new WeaponInfo("laser", 3, 0)};
 
 	    _shellFactory = new ShellFactory();
 	    var battleStats = new PlayerBattleStats(solidity, 100, 1, weapons);
@@ -30,7 +30,7 @@ public class PlayerBattleBehavior : MonoBehaviour, IShooter
     {
         GameObject shell = _shellFactory.CreateShell(weapon);
         var cameraForward = GetComponentInChildren<Camera>().transform.forward;
-        var startPosition = transform.position + cameraForward * 2;
+        var startPosition = transform.position + cameraForward * 1;
         shell.GetComponent<ShellBehavior>().Launch(startPosition, cameraForward);
     }
 

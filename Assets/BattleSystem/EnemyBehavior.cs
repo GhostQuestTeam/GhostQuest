@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using BattleSystem;
 using UnityEngine;
+
 
 public class EnemyBehavior : MonoBehaviour
 {
@@ -32,6 +34,7 @@ public class EnemyBehavior : MonoBehaviour
             Debug.logger.Log(gameObject.name + ": my followee is null!!!");
         }
     }
+
 
     public void OnCollisionEnter(Collision collision)
     {
