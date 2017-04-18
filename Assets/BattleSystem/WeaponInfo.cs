@@ -27,9 +27,9 @@ namespace BattleSystem
     {
         public string Id;//{ get; }
         public int ShootCost;// { get; set; }
-        public double Cooldown;// { get; set; }
+        public float Cooldown;// { get; set; }
 
-        public WeaponInfo(string id, int shootCost, double cooldown)
+        public WeaponInfo(string id, int shootCost, float cooldown)
         {
             Id = id;
             ShootCost = shootCost;
