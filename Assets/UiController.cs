@@ -52,7 +52,7 @@ public class UIController : MonoBehaviour
         _questPanel = Instantiate(questPanelPrefab);
 
         _questPanel.transform.SetParent(_canvas, false);
-        var exitButton = _questPanel.transform.Find("ExitButton").GetComponent<Button>();
+        var exitButton = _questPanel.transform.FindChild("HeadPanel").Find("ExitButton").GetComponent<Button>();
         exitButton.onClick.AddListener(() => _questPanel.GetComponent<QuestView>().Close());
     }
 
