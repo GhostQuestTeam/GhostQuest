@@ -23,6 +23,8 @@ namespace DialogueSystem
 
         public void onRay()
         {
+            var uiControllerObject = GameObject.FindWithTag("UIController");
+            _dialoguePanel = uiControllerObject.GetComponent<UIController>().DialoguePanel;
             _dialoguePanel.SetActive(true);
             _dialoguePanel.GetComponent<DialogueView>().Dialogoue = dialogue;
         }
