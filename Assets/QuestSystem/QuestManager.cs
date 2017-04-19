@@ -102,11 +102,11 @@ namespace QuestSystem
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         public static void DownloadQuests()
         {
-//            IFormatter formatter = new BinaryFormatter();
-//            Stream stream = new FileStream(_SERIALIZATION_FILE, FileMode.Open, FileAccess.Read, FileShare.Read);
-//            _quests = (Dictionary<string, Quest>) formatter.Deserialize(stream);
-//            stream.Close();
-            _quests = new Dictionary<string, Quest>();
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream(_SERIALIZATION_FILE, FileMode.Open, FileAccess.Read, FileShare.Read);
+            _quests = (Dictionary<string, Quest>) formatter.Deserialize(stream);
+            stream.Close();
+//            _quests = new Dictionary<string, Quest>();
         }
 
         public static void SaveQuests()
