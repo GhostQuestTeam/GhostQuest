@@ -26,9 +26,9 @@ public class UIController : MonoBehaviour
 
         _canvas = transform.parent;
 
+        _initNavBar();
         _initDialoguePanel();
         _initQuestPanel();
-        _initNavBar();
         _initEvents();
 
         _canvas.GetComponent<Canvas>().worldCamera = Camera.main;
