@@ -26,6 +26,7 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (_followee != null)
         {
+            transform.LookAt(_followee.transform);
             transform.position = Vector3.MoveTowards(transform.position, _followee.transform.position,
                 BattleStats.Velocity);
         }
