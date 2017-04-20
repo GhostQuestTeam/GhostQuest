@@ -8,6 +8,9 @@ public class PlayerBattleBehavior : MonoBehaviour, IShooter, IWeaponSpeedControl
     public PlayerBattleController BattleController;// { get; private set; }
 
     private ShellFactory _shellFactory;
+
+    private int _direction = -1;
+
     public string[] WeaponIDs;
 
     private Dictionary<string, bool> _blockedWeapons;
@@ -30,9 +33,11 @@ public class PlayerBattleBehavior : MonoBehaviour, IShooter, IWeaponSpeedControl
 	    StartCoroutine(Regenerate());
 	}
 	
-	// Update is called once per frame
+	// Костыль, нужный, чтобы своевременно обрабатывалось столкновение, т.к
+    // OnCollisionEnter вызывается только, когда 2 объекта в движении
 	void Update () {
-		
+		transform.position += _direction*Vector3.down * 0.000001f;
+	    _direction *= -1;
 	}
 
     public void Shoot(WeaponInfo weapon)
