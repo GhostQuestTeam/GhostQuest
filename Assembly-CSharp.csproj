@@ -46,25 +46,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\ARToolKit5-Unity\Scripts\ARCamera.cs" />
-     <Compile Include="Assets\ARToolKit5-Unity\Scripts\ARController.cs" />
-     <Compile Include="Assets\ARToolKit5-Unity\Scripts\ARMarker.cs" />
-     <Compile Include="Assets\ARToolKit5-Unity\Scripts\ARNativePlugin.cs" />
-     <Compile Include="Assets\ARToolKit5-Unity\Scripts\ARNativePluginStatic.cs" />
-     <Compile Include="Assets\ARToolKit5-Unity\Scripts\AROrigin.cs" />
-     <Compile Include="Assets\ARToolKit5-Unity\Scripts\ARPattern.cs" />
-     <Compile Include="Assets\ARToolKit5-Unity\Scripts\ARTrackedCamera.cs" />
-     <Compile Include="Assets\ARToolKit5-Unity\Scripts\ARTrackedObject.cs" />
-     <Compile Include="Assets\ARToolKit5-Unity\Scripts\ARTransitionalCamera.cs" />
-     <Compile Include="Assets\ARToolKit5-Unity\Scripts\ARUtilityFunctions.cs" />
-     <Compile Include="Assets\ARToolKit5-Unity\Scripts\PluginFunctions.cs" />
      <Compile Include="Assets\AlexRK2\ARBattleSceneScripts\EnemyBehaviour.cs" />
      <Compile Include="Assets\AlexRK2\ARBattleSceneScripts\SphereShooter.cs" />
-     <Compile Include="Assets\AlexRK2\ARPrefabScripts\ARPlaneTextureRenderer.cs" />
-     <Compile Include="Assets\AlexRK2\ARPrefabScripts\GibraltarEventScript.cs" />
-     <Compile Include="Assets\AlexRK2\ARPrefabScripts\GibraltarOnRay.cs" />
-     <Compile Include="Assets\AlexRK2\ARPrefabScripts\HiroEventScript.cs" />
-     <Compile Include="Assets\AlexRK2\ARPrefabScripts\HiroOnRay.cs" />
      <Compile Include="Assets\AlexRK2\ARVirtualSceneScripts\BackgroundPlaneController.cs" />
      <Compile Include="Assets\AlexRK2\ARVirtualSceneScripts\CameraPlaneController.cs" />
      <Compile Include="Assets\AlexRK2\ARVirtualSceneScripts\CapsulaRayHandler.cs" />
@@ -115,15 +98,9 @@
      <Compile Include="Assets\Utils\Parser.cs" />
      <None Include="Assets\Resources\Dialogues\rk_dialogue.txt" />
      <None Include="Assets\Resources\BattleSystem\Weapons\laser.txt" />
-     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
-     <None Include="Assets\ARToolKit5-Unity\CHANGELOG.txt" />
      <None Include="Assets\Resources\Quests\rk_quest.txt" />
      <None Include="Assets\Resources\test.txt" />
-     <None Include="Assets\ARToolKit5-Unity\Resources\ardata\markers\patt.kanji.txt" />
-     <None Include="Assets\ARToolKit5-Unity\Resources\Shaders\VideoPlaneNoLight.shader" />
      <None Include="Assets\Resources\BattleSystem\Weapons\sphere.txt" />
-     <None Include="Assets\ARToolKit5-Unity\Resources\Shaders\Mask.shader" />
-     <None Include="Assets\ARToolKit5-Unity\Resources\ardata\markers\patt.hiro.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

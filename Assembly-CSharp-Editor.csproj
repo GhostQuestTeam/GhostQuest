@@ -46,33 +46,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARCameraEditor.cs" />
-     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARControllerEditor.cs" />
-     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARMarkerEditor.cs" />
-     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\AROriginEditor.cs" />
-     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARToolKitMenuEditor.cs" />
-     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARToolKitPackager.cs" />
-     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARToolKitPostProcessor.cs" />
-     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARTrackedCameraEditor.cs" />
-     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARTrackedCameraGizmo.cs" />
-     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARTrackedObjectEditor.cs" />
-     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARTrackedObjectGizmo.cs" />
-     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARTransitionalCameraEditor.cs" />
      <Compile Include="Assets\Editor\Tests\BattleSystemTests\SolidityTest.cs" />
      <Compile Include="Assets\Editor\Tests\DialogueParserTest.cs" />
      <Compile Include="Assets\Editor\Tests\QuestManagerTest.cs" />
      <Compile Include="Assets\Editor\Tests\QuestParserTest.cs" />
      <None Include="Assets\Resources\Dialogues\rk_dialogue.txt" />
      <None Include="Assets\Resources\BattleSystem\Weapons\laser.txt" />
-     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
-     <None Include="Assets\ARToolKit5-Unity\CHANGELOG.txt" />
      <None Include="Assets\Resources\Quests\rk_quest.txt" />
      <None Include="Assets\Resources\test.txt" />
-     <None Include="Assets\ARToolKit5-Unity\Resources\ardata\markers\patt.kanji.txt" />
-     <None Include="Assets\ARToolKit5-Unity\Resources\Shaders\VideoPlaneNoLight.shader" />
      <None Include="Assets\Resources\BattleSystem\Weapons\sphere.txt" />
-     <None Include="Assets\ARToolKit5-Unity\Resources\Shaders\Mask.shader" />
-     <None Include="Assets\ARToolKit5-Unity\Resources\ardata\markers\patt.hiro.txt" />
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
  </Reference>

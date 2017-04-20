@@ -1,7 +1,7 @@
 {
     "dialogue_id" : "rk",
 	"id" : 0,
-	"invitation" : "My first dialogue",
+	"invitation" : "Hello world!",
 	"answers" : [
 		{"message" : "Start quest",
 		 "condition" : {"quests":
@@ -11,31 +11,14 @@
 		 }
 		 }, "next" : null
 		},
-		{"message" : "I'll find Hiro",
+		{"message" : "I'll destroy FireSculls",
 		 "condition": {
 		    "quests":{
 		        "title":"Example quest",
-		        "undone_tasks":[0]
+		        "done_tasks":[0]
 		    } , "next" : null
 		 }
 		},
-		{"message" : "I'll find Hibraltar",
-        		 "condition": {
-        		    "quests":{
-        		        "title":"Example quest",
-        		         "done_tasks" :[0]
-        		         "undone_tasks":[1]
-        		    }
-        		 } , "next" : null
-        },
-        {"message" : "Lalala",
-                		 "condition": {
-                		    "quests":{
-                		        "title":"Example quest",
-                		         "done_tasks" :[0,1]
-                		    }
-                		 } , "next" : null
-        }
 		{"message" : "Exit", "next" : null},
 		{"message" : "toNext",
 		 "next" : {
