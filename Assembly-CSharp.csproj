@@ -84,7 +84,11 @@
      <Compile Include="Assets\DialogueSystem\DialogueParser.cs" />
      <Compile Include="Assets\DialogueSystem\DialogueView.cs" />
      <Compile Include="Assets\DialogueSystem\DialoqueEventArgs.cs" />
+     <Compile Include="Assets\ExampleScenes\AccelerationCleaner.cs" />
      <Compile Include="Assets\ExampleScenes\ExampleDialogueObserver.cs" />
+     <Compile Include="Assets\ExampleScenes\PlayerBehaviourFromAccelerometer.cs" />
+     <Compile Include="Assets\ExampleScenes\PlayerBehaviourFromGPS.cs" />
+     <Compile Include="Assets\ExampleScenes\TrivialPlayerBehaviourFromAccelerometer.cs" />
      <Compile Include="Assets\Extensions\SimpleJSONExtension.cs" />
      <Compile Include="Assets\Extensions\UnityTransformExtension.cs" />
      <Compile Include="Assets\QuestSystem\Quest.cs" />
