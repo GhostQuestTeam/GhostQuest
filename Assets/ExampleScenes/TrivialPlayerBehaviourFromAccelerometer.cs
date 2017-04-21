@@ -11,8 +11,7 @@ public class TrivialPlayerBehaviourFromAccelerometer : MonoBehaviour {
     private CharacterController characterController;
     private Camera cam;
     private GyroControl gyroControl;
-
-    // Use this for initialization
+    
     void Start()
     {
         characterController = cameraContainer.GetComponent<CharacterController>();
@@ -20,8 +19,8 @@ public class TrivialPlayerBehaviourFromAccelerometer : MonoBehaviour {
         cam = cameraObject.GetComponent<Camera>();
         gyroControl = cameraContainer.GetComponent<GyroControl>();
     }
+    
 
-    // Update is called once per frame
     void Update()
     {
         doAccelerometerMovement();
