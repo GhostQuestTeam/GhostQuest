@@ -30,6 +30,9 @@ public class RKDialogueObserver : MonoBehaviour
             QuestManager.ShowQuestNote(_QUEST, 0);
             QuestManager.ShowQuestNote(_QUEST, 1);
             QuestManager.ShowQuestNote(_QUEST, 2);
+            QuestTask task = QuestManager.GetTask(_QUEST, 0);
+            task.IsVisible = true;
+            task.IsDone = true;
 
         }
         if (dea.AnswerId == 1 && dea.NodeId == 0)
@@ -40,21 +43,21 @@ public class RKDialogueObserver : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.LoadScene (1);
 
         }
-        if (dea.AnswerId == 2 && dea.NodeId == 0)
-        {
-            QuestTask task = QuestManager.GetTask(_QUEST, 1);
-            task.IsVisible = true;
-            StateControl.currentStep = StateControl.QUEST_STEP.SECOND_TALK_FINISHED;
-            UnityEngine.SceneManagement.SceneManager.LoadScene (1);
-        }
-        if (dea.AnswerId == 3 && dea.NodeId == 0)
-        {
-            QuestTask task = QuestManager.GetTask(_QUEST, 0);
-            task.IsVisible = true;
-            StateControl.currentStep = StateControl.QUEST_STEP.THIRD_TALK_FINISHED;
-            UnityEngine.SceneManagement.SceneManager.LoadScene (2);
-
-
-        }
+//        if (dea.AnswerId == 2 && dea.NodeId == 0)
+//        {
+//            QuestTask task = QuestManager.GetTask(_QUEST, 1);
+//            task.IsVisible = true;
+//            StateControl.currentStep = StateControl.QUEST_STEP.SECOND_TALK_FINISHED;
+//            UnityEngine.SceneManagement.SceneManager.LoadScene (1);
+//        }
+//        if (dea.AnswerId == 3 && dea.NodeId == 0)
+//        {
+//            QuestTask task = QuestManager.GetTask(_QUEST, 0);
+//            task.IsVisible = true;
+//            StateControl.currentStep = StateControl.QUEST_STEP.THIRD_TALK_FINISHED;
+//            UnityEngine.SceneManagement.SceneManager.LoadScene (2);
+//
+//
+//        }
     }
 }

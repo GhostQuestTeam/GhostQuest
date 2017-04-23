@@ -81,6 +81,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ARToolKit5-Unity\Examples\Fisticuffs\Scripts\AnimationBehaviors.cs" />
+    <Compile Include="Assets\ARToolKit5-Unity\Examples\Fisticuffs\Scripts\CharacterBehaviors.cs" />
+    <Compile Include="Assets\ARToolKit5-Unity\Examples\Fisticuffs\Scripts\FisticuffsController.cs" />
+    <Compile Include="Assets\ARToolKit5-Unity\Examples\Fisticuffs\Scripts\FollowCameraPrecise.cs" />
+    <Compile Include="Assets\ARToolKit5-Unity\Examples\Fisticuffs\Scripts\GloveScript.cs" />
+    <Compile Include="Assets\ARToolKit5-Unity\Examples\Fisticuffs\Scripts\LookAtCameraFisticuffs.cs" />
+    <Compile Include="Assets\ARToolKit5-Unity\Examples\Fisticuffs\Scripts\TimedSelfDeactivate.cs" />
+    <Compile Include="Assets\ARToolKit5-Unity\Examples\Fisticuffs\Scripts\TimedSelfDestruct.cs" />
     <Compile Include="Assets\ARToolKit5-Unity\Scripts\ARCamera.cs" />
     <Compile Include="Assets\ARToolKit5-Unity\Scripts\ARController.cs" />
     <Compile Include="Assets\ARToolKit5-Unity\Scripts\ARMarker.cs" />
@@ -95,11 +103,6 @@
     <Compile Include="Assets\ARToolKit5-Unity\Scripts\PluginFunctions.cs" />
     <Compile Include="Assets\AlexRK2\ARBattleSceneScripts\EnemyBehaviour.cs" />
     <Compile Include="Assets\AlexRK2\ARBattleSceneScripts\SphereShooter.cs" />
-    <Compile Include="Assets\AlexRK2\ARPrefabScripts\ARPlaneTextureRenderer.cs" />
-    <Compile Include="Assets\AlexRK2\ARPrefabScripts\GibraltarEventScript.cs" />
-    <Compile Include="Assets\AlexRK2\ARPrefabScripts\GibraltarOnRay.cs" />
-    <Compile Include="Assets\AlexRK2\ARPrefabScripts\HiroEventScript.cs" />
-    <Compile Include="Assets\AlexRK2\ARPrefabScripts\HiroOnRay.cs" />
     <Compile Include="Assets\AlexRK2\ARVirtualSceneScripts\BackgroundPlaneController.cs" />
     <Compile Include="Assets\AlexRK2\ARVirtualSceneScripts\CameraPlaneController.cs" />
     <Compile Include="Assets\AlexRK2\ARVirtualSceneScripts\CapsulaRayHandler.cs" />
@@ -110,6 +113,19 @@
     <Compile Include="Assets\AlexRK2\ARVirtualSceneScripts\VirtualCameraController.cs" />
     <Compile Include="Assets\AlexRK2\BackHandler.cs" />
     <Compile Include="Assets\AlexRK2\RKDialogueObserver.cs" />
+    <Compile Include="Assets\BattleSystem\BattleControllers.cs" />
+    <Compile Include="Assets\BattleSystem\BattleInterfaceController.cs" />
+    <Compile Include="Assets\BattleSystem\BattleStats.cs" />
+    <Compile Include="Assets\BattleSystem\ConcreteEnemyBehaviors\SkullGhostBehavior.cs" />
+    <Compile Include="Assets\BattleSystem\EnemyBehavior.cs" />
+    <Compile Include="Assets\BattleSystem\IndicatorsView.cs" />
+    <Compile Include="Assets\BattleSystem\PlayerBattleBehavior.cs" />
+    <Compile Include="Assets\BattleSystem\ShellBehavior.cs" />
+    <Compile Include="Assets\BattleSystem\ShellFactory.cs" />
+    <Compile Include="Assets\BattleSystem\Solidity.cs" />
+    <Compile Include="Assets\BattleSystem\WeaponChooseController.cs" />
+    <Compile Include="Assets\BattleSystem\WeaponInfo.cs" />
+    <Compile Include="Assets\BattleSystem\WeaponLoader.cs" />
     <Compile Include="Assets\CameraClickHandler.cs" />
     <Compile Include="Assets\ControlSystem\BasicNotification\GPSNotification\GPSConsumer.cs" />
     <Compile Include="Assets\ControlSystem\BasicNotification\GPSNotification\GPSNotifier.cs" />
@@ -123,7 +139,11 @@
     <Compile Include="Assets\DialogueSystem\DialogueParser.cs" />
     <Compile Include="Assets\DialogueSystem\DialogueView.cs" />
     <Compile Include="Assets\DialogueSystem\DialoqueEventArgs.cs" />
+    <Compile Include="Assets\ExampleScenes\AccelerationCleaner.cs" />
     <Compile Include="Assets\ExampleScenes\ExampleDialogueObserver.cs" />
+    <Compile Include="Assets\ExampleScenes\PlayerBehaviourFromAccelerometer.cs" />
+    <Compile Include="Assets\ExampleScenes\PlayerBehaviourFromGPS.cs" />
+    <Compile Include="Assets\ExampleScenes\TrivialPlayerBehaviourFromAccelerometer.cs" />
     <Compile Include="Assets\Extensions\SimpleJSONExtension.cs" />
     <Compile Include="Assets\Extensions\UnityTransformExtension.cs" />
     <Compile Include="Assets\QuestSystem\Quest.cs" />
@@ -132,7 +152,8 @@
     <Compile Include="Assets\QuestSystem\QuestTask.cs" />
     <Compile Include="Assets\QuestSystem\QuestView.cs" />
     <Compile Include="Assets\SaveGamestateController.cs" />
-    <Compile Include="Assets\UiController.cs" />
+    <Compile Include="Assets\UIController.cs" />
+    <Compile Include="Assets\Utils\BoundedInt.cs" />
     <Compile Include="Assets\Utils\Parser.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +163,8 @@
     <None Include="Assets\ARToolKit5-Unity\Resources\ardata\markers\patt.hiro.txt" />
     <None Include="Assets\ARToolKit5-Unity\Resources\ardata\markers\patt.kanji.txt" />
     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
+    <None Include="Assets\Resources\BattleSystem\Weapons\laser.txt" />
+    <None Include="Assets\Resources\BattleSystem\Weapons\sphere.txt" />
     <None Include="Assets\Resources\Dialogues\rk_dialogue.txt" />
     <None Include="Assets\Resources\Quests\rk_quest.txt" />
     <None Include="Assets\Resources\test.txt" />
