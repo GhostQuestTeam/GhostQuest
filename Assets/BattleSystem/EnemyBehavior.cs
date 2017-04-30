@@ -10,7 +10,7 @@ namespace BattleSystem
         public EnemyBattleStats BattleStats;
 
         // Use this for initialization
-        void Start()
+        void Awake()
         {
             _followee = GameObject.FindWithTag("Player");
             BattleStats.ResetHealth();
