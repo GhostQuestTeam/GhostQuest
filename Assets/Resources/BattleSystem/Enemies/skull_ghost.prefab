@@ -228,7 +228,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1751343568159350}
   m_LocalRotation: {x: -0.03310255, y: 0.984355, z: -0.023437208, w: -0.17146477}
-  m_LocalPosition: {x: -0.71, y: -3.92, z: 26.24}
+  m_LocalPosition: {x: 1.64, y: -4.53, z: 19.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4311901776080912}
@@ -516,6 +516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0df7680a3db1a740a3c689cc52447ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ExplosionPrefabPath: FX/SkullGhostExplosion
 --- !u!114 &114252687917058774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -536,6 +537,7 @@ MonoBehaviour:
     Shell:
       Damage: 15
       Velocity: 0
+  DeathDelay: 1
 --- !u!136 &136679529863733644
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -543,7 +545,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1751343568159350}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 2.7
   m_Height: 8

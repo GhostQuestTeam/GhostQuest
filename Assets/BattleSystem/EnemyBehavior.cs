@@ -38,17 +38,17 @@ namespace BattleSystem
 
 
         //TODO Заменить на триггер
-        public void OnCollisionEnter(Collision collision)
+        public void OnTriggerEnter(Collider other)
         {
-            var shell = collision.gameObject.GetComponent<ShellBehavior>();
+            var shell = other.gameObject.GetComponent<ShellBehavior>();
             if (shell != null)
             {
                 BattleController.TakeDamage(shell.ShellInfo);
             }
 
-            if (collision.gameObject.CompareTag("Player"))
+            if (other.gameObject.CompareTag("Player"))
             {
-                var player =collision. gameObject.GetComponent<PlayerBattleBehavior>();
+                var player = other.gameObject.GetComponent<PlayerBattleBehavior>();
                 player.BattleController.TakeDamage(BattleStats.Shell);
                 BattleController.Kill();
             }
