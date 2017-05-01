@@ -33,6 +33,11 @@ namespace BattleSystem
             _changeHealth( -damage);
         }
 
+        public void Kill()
+        {
+            CurrentHealth = 0;
+        }
+
         public void Heal(int healPoints)
         {
             if (IsAlive())

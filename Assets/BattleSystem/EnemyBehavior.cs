@@ -50,13 +50,13 @@ namespace BattleSystem
             {
                 var player =collision. gameObject.GetComponent<PlayerBattleBehavior>();
                 player.BattleController.TakeDamage(BattleStats.Shell);
-                Destroy(gameObject);
+                BattleController.Kill();
             }
         }
 
         public IEnumerator Kill(float delay)
         {
-            BattleStats.Velocity = 0f;
+            BattleStats.Velocity = 0;
             yield return new WaitForSeconds(delay);
             Destroy(gameObject);
         }

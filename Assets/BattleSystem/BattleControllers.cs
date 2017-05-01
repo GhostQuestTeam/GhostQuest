@@ -21,6 +21,15 @@ namespace BattleSystem
 
         protected BattleStats battleStats;
 
+        public void Kill()
+        {
+            battleStats.Solidity.Kill();
+            if (OnDeath != null)
+            {
+                OnDeath();
+            }
+        }
+
         public void TakeDamage(ShellInfo shell)
         {
             int damage = shell.Damage;
@@ -108,6 +117,8 @@ namespace BattleSystem
 
     public class EnemyBattleController : BattleController
     {
+
+
         public EnemyBattleStats BattleStats
         {
             get { return battleStats as EnemyBattleStats; }

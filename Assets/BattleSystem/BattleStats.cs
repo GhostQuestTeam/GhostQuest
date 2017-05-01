@@ -38,7 +38,7 @@ namespace BattleSystem
     {
         private BoundedInt _energy;
 
-        public WeaponInfo[] Weapons { get;}
+        public WeaponInfo[] Weapons { get; private set; }
         public uint CurrentWeaponId { get; set; }
         public WeaponInfo CurrentWeapon
         {

@@ -53,6 +53,7 @@ namespace BattleSystem.ConcreteEnemyBehaviors
             _skullVelocity = 0.75f;
             var explosion = Instantiate(_explosionPrefab);
             explosion.transform.SetParent(transform);
+            explosion.transform.localPosition = Vector3.zero;
         }
 
         public IEnumerator TakeDamageAnimateCorutine()
