@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace BattleSystem
 {
@@ -8,6 +10,7 @@ namespace BattleSystem
 
         public EnemyBattleController BattleController { get; private set; }
         public EnemyBattleStats BattleStats;
+        public float DeathDelay = 0f;
 
         // Use this for initialization
         void Awake()
@@ -15,7 +18,7 @@ namespace BattleSystem
             _followee = GameObject.FindWithTag("Player");
             BattleStats.ResetHealth();
             BattleController = new EnemyBattleController(BattleStats);
-            BattleController.OnDeath += () => Destroy(gameObject);
+            BattleController.OnDeath += () => StartCoroutine(Kill(DeathDelay));
         }
 
         // Update is called once per frame
@@ -51,10 +54,12 @@ namespace BattleSystem
             }
         }
 
-        void OnControllerColliderHit(ControllerColliderHit hit)
+        public IEnumerator Kill(float delay)
         {
-            if(!hit.gameObject.CompareTag("Player")) return;
-
+            BattleStats.Velocity = 0f;
+            yield return new WaitForSeconds(delay);
+            Destroy(gameObject);
         }
+
     }
 }
