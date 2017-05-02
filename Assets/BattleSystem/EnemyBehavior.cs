@@ -37,7 +37,6 @@ namespace BattleSystem
         }
 
 
-        //TODO Заменить на триггер
         public void OnTriggerEnter(Collider other)
         {
             var shell = other.gameObject.GetComponent<ShellBehavior>();
