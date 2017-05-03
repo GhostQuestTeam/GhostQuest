@@ -30,15 +30,12 @@ namespace BattleSystem
                 var weapon = battleStats.Weapons[i];
                 var button = Instantiate(_weaponButtonPrefab);
                 var sprite = Resources.Load<Sprite>(_SPRITES_FOLDER + weapon.Id);
-                button.GetComponentInChildren<Image>().sprite = sprite;
+                button.transform.FindChild("WeaponImage").GetComponent<Image>().sprite = sprite;
 
                 button.transform.SetParent(_weaponsPanel);
                 var tmp = (uint)i;
                 button.GetComponent<Button>().onClick.AddListener(() => battleStats.CurrentWeaponId = tmp);
             }
-            //TODO Обобщить и не писать как здесь всё в одну строку
-            //transform.Find("WeaponsPanel/BlasterButton").GetComponent<Button>().onClick.AddListener(() => _battleController.BattleStats.CurrentWeaponId = 1);
-            //transform.Find("WeaponsPanel/BulletButton").GetComponent<Button>().onClick.AddListener(() => _battleController.BattleStats.CurrentWeaponId = 0);
 
 
 
