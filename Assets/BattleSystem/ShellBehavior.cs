@@ -6,10 +6,12 @@ using UnityEngine;
 public class ShellBehavior : MonoBehaviour
 {
     [SerializeField] public ShellInfo ShellInfo;
+    public float Ttl = 3f;
 
     // Use this for initialization
     void Start()
     {
+        StartCoroutine(DestroyAfterTimeout());
     }
 
     // Update is called once per frame
@@ -17,9 +19,15 @@ public class ShellBehavior : MonoBehaviour
     {
     }
 
-    public void OnCollisionEnter(Collision collision)
+    public IEnumerator DestroyAfterTimeout()
     {
-        if (collision.gameObject.CompareTag("Player")) return;
+        yield return new WaitForSeconds(Ttl);
+        Destroy(gameObject);
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player")) return;
         Destroy(gameObject);
     }
 
