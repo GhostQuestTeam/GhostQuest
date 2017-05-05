@@ -12,11 +12,14 @@ namespace BattleSystem
         public float MinDistance = 30f;
         public float MaxDistance = 70f;
 
+
         private const string _ENEMIES_PREFABS_FOLDER = "BattleSystem/Enemies/";
         private bool _isBattleFinished;
+        private int _totalScore;
 
         private Dictionary<string, int> _allEnemies;
         private HashSet<GameObject> _currentEnemies;
+
 
         public event Action<int> OnWon;
         public event Action OnLose;
@@ -39,9 +42,11 @@ namespace BattleSystem
 
         public void StartBattle(Dictionary<string, int> enemies)
         {
+            _totalScore = 0;
             _isBattleFinished = false;
-            _currentEnemies.Clear();
             _allEnemies = enemies;
+            _currentEnemies.Clear();
+
             SpawnEnemies();
         }
 
@@ -69,13 +74,14 @@ namespace BattleSystem
 
         public void EnemyDeathHandle(GameObject enemy)
         {
+            _totalScore += enemy.GetComponent<EnemyBehavior>().Score;
             _currentEnemies.Remove(enemy);
             if (_allEnemies.Count > 0 )
             {
                 SpawnEnemies();
             } else if((_currentEnemies.Count == 0) && !_isBattleFinished )
             {
-                Debug.Log("You win");
+                Debug.Log("You win! Score: " + _totalScore);
                 if (OnWon != null)
                 {
                     OnWon(0);

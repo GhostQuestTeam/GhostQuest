@@ -11,6 +11,7 @@ namespace BattleSystem
         public EnemyBattleController BattleController { get; private set; }
         public EnemyBattleStats BattleStats;
         public float DeathDelay = 0f;
+        public int Score = 100;
 
         // Use this for initialization
         void Awake()
