@@ -45,19 +45,9 @@ namespace BattleSystem
                 var randomSize = Random.Range(MinDistance, MaxDistance);
                 Vector3 randPosition = new Vector3(Mathf.Sin(randomAngle),0,Mathf.Cos(randomAngle)) * randomSize;
 
-                var newEnemy = SpawnEnemy(randEnemy, randPosition);
+                var newEnemy = BattleObjectFactory.SpawnEnemy(randEnemy, randPosition);
                 _currentEnemies.Add(newEnemy);
             }
-        }
-
-        public GameObject SpawnEnemy(string enemyId, Vector3 position)
-        {
-            //TODO Не загружать префаб каждый раз
-            var enemyPrefab = Resources.Load(_ENEMIES_PREFABS_FOLDER + enemyId) as GameObject;
-
-            var enemy = Instantiate(enemyPrefab);
-            enemy.transform.position = position;
-            return enemy;
         }
 
     }

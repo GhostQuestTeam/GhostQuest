@@ -9,8 +9,6 @@ namespace BattleSystem
     {
         public PlayerBattleController BattleController; // { get; private set; }
 
-        private ShellFactory _shellFactory;
-
         private int _direction = -1;
 
         public string[] WeaponIDs;
@@ -28,7 +26,6 @@ namespace BattleSystem
                 _blockedWeapons.Add(weapons[i].Id, false);
             }
 
-            _shellFactory = new ShellFactory();
             var battleStats = new PlayerBattleStats(solidity, 100, 1, weapons);
             BattleController = new PlayerBattleController(battleStats, this, this);
 
@@ -39,16 +36,6 @@ namespace BattleSystem
         void Update()
         {
         }
-
-//        void OnControllerColliderHit(ControllerColliderHit hit)
-//        {
-//            var enemy = hit.gameObject.GetComponent<EnemyBehavior>();
-//            if (enemy != null)
-//            {
-//                BattleController.TakeDamage(enemy.BattleStats.Shell);
-//                Destroy(hit.gameObject);
-//            }
-//        }
 
         // Костыль, нужный, чтобы своевременно обрабатывалось столкновение, т.к
         // OnCollisionEnter вызывается только, когда 2 объекта в движении
@@ -65,7 +52,7 @@ namespace BattleSystem
 
         public void Shoot(WeaponInfo weapon)
         {
-            GameObject shell = _shellFactory.CreateShell(weapon);
+            GameObject shell = BattleObjectFactory.CreateShell(weapon);
             var cameraForward = GetComponentInChildren<Camera>().transform.forward;
             var startPosition = transform.position + cameraForward * 1;
             shell.GetComponent<ShellBehavior>().Launch(startPosition, cameraForward);
