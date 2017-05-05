@@ -17,7 +17,7 @@ namespace BattleSystem
 
         void Awake()
         {
-            var solidity = new Solidity(100, 0);
+            var solidity = new Solidity(10, 0);
             var weapons = new WeaponInfo[WeaponIDs.Length];
             _blockedWeapons = new Dictionary<string, bool>();
             for (var i = 0; i < WeaponIDs.Length; i++)
