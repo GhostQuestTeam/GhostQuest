@@ -277,6 +277,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 20534287309465886, guid: 97c6e1e8dfb23da4b839f43666a3d2ae,
+        type: 2}
+      propertyPath: m_HDR
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 97c6e1e8dfb23da4b839f43666a3d2ae, type: 2}
   m_IsPrefabParent: 0
@@ -516,7 +521,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1048741768
+  randomSeed: -1193745515
   InitialModule:
     serializedVersion: 3
     enabled: 1
