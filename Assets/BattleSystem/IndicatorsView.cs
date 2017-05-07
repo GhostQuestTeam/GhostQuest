@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class IndicatorsView : MonoBehaviour
 {
-
     private PlayerBattleController _battleController;
 
     private Transform _energy;
@@ -15,33 +14,36 @@ public class IndicatorsView : MonoBehaviour
     private Transform _energyBar;
     private Transform _healthBar;
 
-	// Use this for initialization
-	void Start ()
-	{
-	    _battleController = GameObject.FindWithTag("Player").GetComponent<PlayerBattleBehavior>().BattleController;
+    // Use this for initialization
+    void Start()
+    {
+        _battleController = GameObject.FindWithTag("Player").GetComponent<PlayerBattleBehavior>().BattleController;
 
-	    _battleController.OnEnergyChanged += UpdateEnergy;
-	    _battleController.OnDamage += UpdateHealth;
+        _battleController.OnEnergyChanged += UpdateEnergy;
+        _battleController.OnDamage += UpdateHealth;
+        _battleController.OnReset += ResetHandle;
 
-	    _health = transform.Find("HealthPanel");
-	    _energy = transform.Find("EnergyPanel");
+        _health = transform.Find("HealthPanel");
+        _energy = transform.Find("EnergyPanel");
 
-	    _healthBar = _health.Find("HealthBar");
-	    _energyBar = _energy.Find("EnergyBar");
+        _healthBar = _health.Find("HealthBar");
+        _energyBar = _energy.Find("EnergyBar");
 
-	    UpdateEnergy(0);
-	    UpdateHealth(0);
-	}
+        UpdateEnergy(0);
+        UpdateHealth(0);
+    }
 
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    // Update is called once per frame
+    void Update()
+    {
+    }
 
     void OnDestroy()
     {
         _battleController.OnEnergyChanged -= UpdateEnergy;
         _battleController.OnDamage -= UpdateHealth;
+        _battleController.OnReset -= ResetHandle;
+
     }
 
     public void UpdateEnergy(int delta)
@@ -50,7 +52,7 @@ public class IndicatorsView : MonoBehaviour
         var maxEnergy = _battleController.BattleStats.MaxEnergy;
         _energy.GetComponentInChildren<Text>().text = currentEnergy + "/" + maxEnergy;
 
-        var energyPercent = (float)currentEnergy/maxEnergy;
+        var energyPercent = (float) currentEnergy / maxEnergy;
         _energyBar.GetComponent<Image>().fillAmount = energyPercent;
     }
 
@@ -60,10 +62,13 @@ public class IndicatorsView : MonoBehaviour
         var maxHealth = _battleController.BattleStats.MaxHealth;
         _health.GetComponentInChildren<Text>().text = currentHealth + "/" + maxHealth;
 
-        var healthPercent = (float)currentHealth/maxHealth;
+        var healthPercent = (float) currentHealth / maxHealth;
         _healthBar.GetComponent<Image>().fillAmount = healthPercent;
-
     }
 
-
+    public void ResetHandle()
+    {
+        UpdateEnergy(0);
+        UpdateHealth(0);
+    }
 }

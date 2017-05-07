@@ -17,16 +17,12 @@ namespace BattleSystem
 
         void Awake()
         {
-            var solidity = new Solidity(10, 0);
-            var weapons = new WeaponInfo[WeaponIDs.Length];
             _blockedWeapons = new Dictionary<string, bool>();
-            for (var i = 0; i < WeaponIDs.Length; i++)
+            var battleStats = BattleStatsCalculator.CalculateBattleStats(GameController.GameStats);
+            foreach (var weapon in battleStats.Weapons)
             {
-                weapons[i] = WeaponLoader.LoadWeapon(WeaponIDs[i]);
-                _blockedWeapons.Add(weapons[i].Id, false);
+                _blockedWeapons.Add(weapon.Id, false);
             }
-
-            var battleStats = new PlayerBattleStats(solidity, 100, 1, weapons);
             BattleController = new PlayerBattleController(battleStats, this, this);
 
             StartCoroutine(Regenerate());

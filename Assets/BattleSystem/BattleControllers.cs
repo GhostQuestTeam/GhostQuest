@@ -16,6 +16,7 @@ namespace BattleSystem
 
     public abstract class BattleController
     {
+        public event Action OnReset;
         public event Action OnDeath;
         public event Action<int> OnDamage;
 
@@ -56,6 +57,15 @@ namespace BattleSystem
             }
         }
 
+        public virtual void Reset()
+        {
+            battleStats.Solidity.ResetHealth();
+            if (OnReset != null)
+            {
+                OnReset();
+            }
+        }
+
         public virtual void Regenerate()
         {
             battleStats.Solidity.Regenerate();
@@ -89,6 +99,12 @@ namespace BattleSystem
             {
                 _weaponSpeedController.BlockWeapon(BattleStats.CurrentWeapon, BattleStats.CurrentWeapon.Cooldown);
             }
+        }
+
+        public override void Reset()
+        {
+            BattleStats.CurrentEnergy = BattleStats.MaxEnergy;
+            base.Reset();
         }
 
         public override void Regenerate()

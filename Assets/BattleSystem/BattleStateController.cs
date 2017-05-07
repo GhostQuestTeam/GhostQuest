@@ -19,6 +19,7 @@ namespace BattleSystem
 
         private Dictionary<string, int> _allEnemies;
         private HashSet<GameObject> _currentEnemies;
+        private PlayerBattleBehavior _player;
 
 
         public event Action<int> OnWon;
@@ -27,17 +28,13 @@ namespace BattleSystem
         void Awake()
         {
             _currentEnemies = new HashSet<GameObject>();
-
-
-            //TODO Вынести вызов этого метода в отдельный класс
-            StartBattle(new Dictionary<string, int>(){{"skull_ghost", 5}});
         }
 
         void Start()
         {
             Debug.Log("Start BattleStateController");
-            var player = GameObject.FindWithTag("Player");
-            player.GetComponent<PlayerBattleBehavior>().BattleController.OnDeath += PlayerDeathHandle;
+            _player = GameObject.FindWithTag("Player").GetComponent<PlayerBattleBehavior>();
+            _player.BattleController.OnDeath += PlayerDeathHandle;
         }
 
         public void StartBattle(Dictionary<string, int> enemies)
@@ -45,7 +42,12 @@ namespace BattleSystem
             _totalScore = 0;
             _isBattleFinished = false;
             _allEnemies = enemies;
+            foreach (var enemy in _currentEnemies)
+            {
+               Destroy(enemy);
+            }
             _currentEnemies.Clear();
+            _player.BattleController.Reset();
 
             SpawnEnemies();
         }
