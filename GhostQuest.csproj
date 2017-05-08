@@ -101,6 +101,8 @@
     <Compile Include="Assets\ARToolKit5-Unity\Scripts\ARTransitionalCamera.cs" />
     <Compile Include="Assets\ARToolKit5-Unity\Scripts\ARUtilityFunctions.cs" />
     <Compile Include="Assets\ARToolKit5-Unity\Scripts\PluginFunctions.cs" />
+    <Compile Include="Assets\AlexGraphicsExperiments\SimpleController.cs" />
+    <Compile Include="Assets\AlexGraphicsExperiments\ZombieSwarm\AnimationPlayer.cs" />
     <Compile Include="Assets\AlexRK2\ARBattleSceneScripts\EnemyBehaviour.cs" />
     <Compile Include="Assets\AlexRK2\ARBattleSceneScripts\SphereShooter.cs" />
     <Compile Include="Assets\AlexRK2\ARVirtualSceneScripts\BackgroundPlaneController.cs" />
@@ -114,9 +116,13 @@
     <Compile Include="Assets\AlexRK2\BackHandler.cs" />
     <Compile Include="Assets\AlexRK2\RKDialogueObserver.cs" />
     <Compile Include="Assets\BattleSystem\BattleControllers.cs" />
+<<<<<<< HEAD
     <Compile Include="Assets\BattleSystem\BattleInterfaceController.cs" />
     <Compile Include="Assets\BattleSystem\BattleStats.cs" />
     <Compile Include="Assets\BattleSystem\ConcreteEnemyBehaviors\SkullGhostBehavior.cs" />
+=======
+    <Compile Include="Assets\BattleSystem\BattleStats.cs" />
+>>>>>>> battle_system_alex
     <Compile Include="Assets\BattleSystem\EnemyBehavior.cs" />
     <Compile Include="Assets\BattleSystem\IndicatorsView.cs" />
     <Compile Include="Assets\BattleSystem\PlayerBattleBehavior.cs" />
@@ -162,8 +168,16 @@
     <None Include="Assets\ARToolKit5-Unity\Resources\Shaders\VideoPlaneNoLight.shader" />
     <None Include="Assets\ARToolKit5-Unity\Resources\ardata\markers\patt.hiro.txt" />
     <None Include="Assets\ARToolKit5-Unity\Resources\ardata\markers\patt.kanji.txt" />
+    <None Include="Assets\FantasyMonsterMegaPack\Shader\TwoSide-Diffuse-Cutout.shader" />
     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
+<<<<<<< HEAD
     <None Include="Assets\Resources\BattleSystem\Weapons\laser.txt" />
+=======
+    <None Include="Assets\Resources\BattleSystem\Weapons\aura_1.txt" />
+    <None Include="Assets\Resources\BattleSystem\Weapons\fireball_1.txt" />
+    <None Include="Assets\Resources\BattleSystem\Weapons\laser.txt" />
+    <None Include="Assets\Resources\BattleSystem\Weapons\orb_1.txt" />
+>>>>>>> battle_system_alex
     <None Include="Assets\Resources\BattleSystem\Weapons\sphere.txt" />
     <None Include="Assets\Resources\Dialogues\rk_dialogue.txt" />
     <None Include="Assets\Resources\Quests\rk_quest.txt" />
