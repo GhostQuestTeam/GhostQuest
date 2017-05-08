@@ -103,11 +103,6 @@
     <Compile Include="Assets\ARToolKit5-Unity\Scripts\PluginFunctions.cs" />
     <Compile Include="Assets\AlexRK2\ARBattleSceneScripts\EnemyBehaviour.cs" />
     <Compile Include="Assets\AlexRK2\ARBattleSceneScripts\SphereShooter.cs" />
-    <Compile Include="Assets\AlexRK2\ARPrefabScripts\ARPlaneTextureRenderer.cs" />
-    <Compile Include="Assets\AlexRK2\ARPrefabScripts\GibraltarEventScript.cs" />
-    <Compile Include="Assets\AlexRK2\ARPrefabScripts\GibraltarOnRay.cs" />
-    <Compile Include="Assets\AlexRK2\ARPrefabScripts\HiroEventScript.cs" />
-    <Compile Include="Assets\AlexRK2\ARPrefabScripts\HiroOnRay.cs" />
     <Compile Include="Assets\AlexRK2\ARVirtualSceneScripts\BackgroundPlaneController.cs" />
     <Compile Include="Assets\AlexRK2\ARVirtualSceneScripts\CameraPlaneController.cs" />
     <Compile Include="Assets\AlexRK2\ARVirtualSceneScripts\CapsulaRayHandler.cs" />
@@ -119,7 +114,13 @@
     <Compile Include="Assets\AlexRK2\BackHandler.cs" />
     <Compile Include="Assets\AlexRK2\RKDialogueObserver.cs" />
     <Compile Include="Assets\BattleSystem\BattleControllers.cs" />
+<<<<<<< HEAD
     <Compile Include="Assets\BattleSystem\BattleStats.cs" />
+=======
+    <Compile Include="Assets\BattleSystem\BattleInterfaceController.cs" />
+    <Compile Include="Assets\BattleSystem\BattleStats.cs" />
+    <Compile Include="Assets\BattleSystem\ConcreteEnemyBehaviors\SkullGhostBehavior.cs" />
+>>>>>>> 6f9079b8283ef16bf1784f3914a8a7ee5b071d13
     <Compile Include="Assets\BattleSystem\EnemyBehavior.cs" />
     <Compile Include="Assets\BattleSystem\IndicatorsView.cs" />
     <Compile Include="Assets\BattleSystem\PlayerBattleBehavior.cs" />
@@ -142,7 +143,11 @@
     <Compile Include="Assets\DialogueSystem\DialogueParser.cs" />
     <Compile Include="Assets\DialogueSystem\DialogueView.cs" />
     <Compile Include="Assets\DialogueSystem\DialoqueEventArgs.cs" />
+    <Compile Include="Assets\ExampleScenes\AccelerationCleaner.cs" />
     <Compile Include="Assets\ExampleScenes\ExampleDialogueObserver.cs" />
+    <Compile Include="Assets\ExampleScenes\PlayerBehaviourFromAccelerometer.cs" />
+    <Compile Include="Assets\ExampleScenes\PlayerBehaviourFromGPS.cs" />
+    <Compile Include="Assets\ExampleScenes\TrivialPlayerBehaviourFromAccelerometer.cs" />
     <Compile Include="Assets\Extensions\SimpleJSONExtension.cs" />
     <Compile Include="Assets\Extensions\UnityTransformExtension.cs" />
     <Compile Include="Assets\QuestSystem\Quest.cs" />

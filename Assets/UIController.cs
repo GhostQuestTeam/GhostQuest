@@ -8,26 +8,33 @@ public class UIController : MonoBehaviour
 {
     public const string DEFAULT_DIALOGUE_PANEL_PREFAB = "DialoguesUI/DialoguePanel";
     public const string DEFAULT_QUEST_PANEL_PREFAB = "QuestsUI/QuestPanel";
-    public const string DEFAULT_UI_PANEL_PREFAB = "UIPanel";
+    public const string DEFAULT_UI_PANEL_PREFAB = "UIFightPanel";
+    public const string DEFAULT_START_BATTLE_PREFAB = "BattleSystem/UI/StartBattleButton";
 
     public string DialoguePanelPrefabPath = DEFAULT_DIALOGUE_PANEL_PREFAB;
     public string QuestPanelPrefabPath = DEFAULT_QUEST_PANEL_PREFAB;
     public string UIPanelPrefabPath = DEFAULT_UI_PANEL_PREFAB;
+    public const string StartBattlePrefabPath = DEFAULT_START_BATTLE_PREFAB;
 
     private GameObject _dialoguePanel;
     private GameObject _questPanel;
     private GameObject _uiPanel;
     private Transform _canvas;
 
+    private GameObject _startBattleButton;
+
     // Use this for initialization
     void Start()
     {
         _canvas = transform.parent;
 
+        _initNavBar();
         _initDialoguePanel();
         _initQuestPanel();
-        _initNavBar();
+        _initStartBattleButton();
         _initEvents();
+
+
 
         _canvas.GetComponent<Canvas>().worldCamera = Camera.main;
     }
@@ -35,6 +42,14 @@ public class UIController : MonoBehaviour
     public GameObject DialoguePanel
     {
         get { return _dialoguePanel; }
+    }
+
+    private void _initStartBattleButton()
+    {
+        _startBattleButton = Instantiate(Resources.Load(StartBattlePrefabPath) as GameObject);
+        _startBattleButton.transform.SetParent(_canvas);
+        var gameController = GameObject.Find("GameController").GetComponent<GameController>();
+        _startBattleButton.GetComponent<Button>().onClick.AddListener(() => gameController.StartBattle());
     }
 
     private void _initDialoguePanel()
@@ -50,7 +65,7 @@ public class UIController : MonoBehaviour
         _questPanel = Instantiate(questPanelPrefab);
 
         _questPanel.transform.SetParent(_canvas, false);
-        var exitButton = _questPanel.transform.Find("ExitButton").GetComponent<Button>();
+        var exitButton = _questPanel.transform.FindChild("QuestWindow").FindChild("HeadPanel").Find("ExitButton").GetComponent<Button>();
         exitButton.onClick.AddListener(() => _questPanel.GetComponent<QuestView>().Close());
     }
 

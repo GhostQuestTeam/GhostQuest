@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: energy2
+  m_EditorClassIdentifier: Assembly-CSharp:SkillSystem:StatsModifier
+  SkillSprite: {fileID: 21300000, guid: edcd1d94ae160f24ea0a0111331be73c, type: 3}
+  Description: 
+  Dependencies:
+  - energy1
+  StatModifiers:
+  - statModifierType: 0
+    modifierValue: 30
+    StatType: 2
+  - statModifierType: 0
+    modifierValue: 1
+    StatType: 3

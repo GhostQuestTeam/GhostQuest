@@ -16,10 +16,20 @@ namespace BattleSystem
 
     public abstract class BattleController
     {
+        public event Action OnReset;
         public event Action OnDeath;
         public event Action<int> OnDamage;
 
         protected BattleStats battleStats;
+
+        public void Kill()
+        {
+            battleStats.Solidity.Kill();
+            if (OnDeath != null)
+            {
+                OnDeath();
+            }
+        }
 
         public void TakeDamage(ShellInfo shell)
         {
@@ -44,6 +54,15 @@ namespace BattleSystem
                 {
                     OnDeath();
                 }
+            }
+        }
+
+        public virtual void Reset()
+        {
+            battleStats.Solidity.ResetHealth();
+            if (OnReset != null)
+            {
+                OnReset();
             }
         }
 
@@ -82,6 +101,12 @@ namespace BattleSystem
             }
         }
 
+        public override void Reset()
+        {
+            BattleStats.CurrentEnergy = BattleStats.MaxEnergy;
+            base.Reset();
+        }
+
         public override void Regenerate()
         {
             base.Regenerate();
@@ -108,6 +133,8 @@ namespace BattleSystem
 
     public class EnemyBattleController : BattleController
     {
+
+
         public EnemyBattleStats BattleStats
         {
             get { return battleStats as EnemyBattleStats; }

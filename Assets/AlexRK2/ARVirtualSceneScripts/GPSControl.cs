@@ -17,11 +17,6 @@ public class GPSControl : MonoBehaviour {
 		DontDestroyOnLoad (gameObject);
 		StartCoroutine (StartGPSService ());
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 	IEnumerator StartGPSService() {
 		if (!Input.location.isEnabledByUser) {

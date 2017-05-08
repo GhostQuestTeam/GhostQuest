@@ -38,7 +38,7 @@ namespace BattleSystem
     {
         private BoundedInt _energy;
 
-        public WeaponInfo[] Weapons { get;}
+        public WeaponInfo[] Weapons { get; private set; }
         public uint CurrentWeaponId { get; set; }
         public WeaponInfo CurrentWeapon
         {
@@ -74,12 +74,12 @@ namespace BattleSystem
     {
         public float Velocity;
 
-        public WeaponInfo Weapon { get; }
+        public ShellInfo Shell;
 
-        public EnemyBattleStats(Solidity solidity, float velocity, WeaponInfo weapon) : base(solidity)
+        public EnemyBattleStats(Solidity solidity, float velocity,ShellInfo shell) : base(solidity)
         {
             Velocity = velocity;
-            Weapon = weapon;
+            Shell = shell;
         }
     }
 }

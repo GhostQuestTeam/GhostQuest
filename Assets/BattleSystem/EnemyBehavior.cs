@@ -1,45 +1,65 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using BattleSystem;
 using UnityEngine;
 
-
-public class EnemyBehavior : MonoBehaviour
+namespace BattleSystem
 {
-    private GameObject _followee;
-
-    public EnemyBattleController BattleController { get; private set; }
-    public EnemyBattleStats BattleStats;
-
-    // Use this for initialization
-    void Start()
+    public class EnemyBehavior : MonoBehaviour
     {
-        _followee = GameObject.FindWithTag("Player");
-        BattleStats.ResetHealth();
-        BattleController = new EnemyBattleController(BattleStats);
-        BattleController.OnDeath += () => Destroy(gameObject);
-    }
+        private GameObject _followee;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (_followee != null)
+        public EnemyBattleController BattleController { get; private set; }
+        public EnemyBattleStats BattleStats;
+        public float DeathDelay = 0f;
+        public int Score = 100;
+
+        // Use this for initialization
+        void Awake()
         {
-            transform.position = Vector3.MoveTowards(transform.position, _followee.transform.position,
-                BattleStats.Velocity);
+            _followee = GameObject.FindWithTag("Player");
+            BattleStats.ResetHealth();
+            BattleController = new EnemyBattleController(BattleStats);
+            BattleController.OnDeath += () => StartCoroutine(Kill(DeathDelay));
         }
-        else
+
+        // Update is called once per frame
+        void Update()
         {
-            Debug.logger.Log(gameObject.name + ": my followee is null!!!");
+            if (_followee != null)
+            {
+                transform.LookAt(_followee.transform);
+                transform.position = Vector3.MoveTowards(transform.position, _followee.transform.position,
+                    BattleStats.Velocity);
+            }
+            else
+            {
+                Debug.logger.Log(gameObject.name + ": my followee is null!!!");
+            }
         }
-    }
 
 
-    public void OnCollisionEnter(Collision collision)
-    {
-        var shell = collision.gameObject.GetComponent<ShellBehavior>();
-        if (shell == null) return;
-        BattleController.TakeDamage(shell.ShellInfo);
+        public void OnTriggerEnter(Collider other)
+        {
+            var shell = other.gameObject.GetComponent<ShellBehavior>();
+            if (shell != null)
+            {
+                BattleController.TakeDamage(shell.ShellInfo);
+            }
+
+            if (other.gameObject.CompareTag("Player"))
+            {
+                var player = other.gameObject.GetComponent<PlayerBattleBehavior>();
+                player.BattleController.TakeDamage(BattleStats.Shell);
+                BattleController.Kill();
+            }
+        }
+
+        public IEnumerator Kill(float delay)
+        {
+            BattleStats.Velocity = 0;
+            yield return new WaitForSeconds(delay);
+            Destroy(gameObject);
+        }
+
     }
 }

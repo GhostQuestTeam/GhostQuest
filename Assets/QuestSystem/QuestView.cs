@@ -48,7 +48,7 @@ namespace QuestSystem
             questNotePrefab =     Resources.Load(QuestNotePrefabPath) as GameObject;
             taskCheckboxPrefab =  Resources.Load(TaskChecckboxPrefabPath) as GameObject;
 
-            var questList = transform.Find("Quests/List");
+            var questList = transform.Find("QuestWindow/BodyPanel/QuestsList");
             questList.Clear();
             foreach (var title in QuestManager.QuestTitles)
             {
@@ -63,11 +63,11 @@ namespace QuestSystem
 
         private void _drawQuest(string questTitle)
         {
-            var questTitleView = transform.Find("QuestTitle");
+            var questTitleView = transform.Find("QuestWindow/HeadPanel/TextQuestTitle");
             questTitleView.GetComponent<Text>().text = questTitle;
 
-            var tasksList = transform.Find("TaskList");
-            var notesList = transform.Find("QuestNotes");
+            var tasksList = transform.Find("QuestWindow/BodyPanel/TaskList");
+            var notesList = transform.Find("QuestWindow/BodyPanel/QuestNotes");
 
             tasksList.Clear();
             notesList.Clear();
