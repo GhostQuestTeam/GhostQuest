@@ -86,7 +86,7 @@ namespace BattleSystem
                 Debug.Log("You win! Score: " + _totalScore);
                 if (OnWon != null)
                 {
-                    OnWon(0);
+                    OnWon(_totalScore);
                 }
                 _isBattleFinished = true;
             }

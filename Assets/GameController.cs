@@ -12,6 +12,7 @@ public class GameController:MonoBehaviour
     void Start()
     {
         _battleStateController = GameObject.Find("BattleStateController").GetComponent<BattleStateController>();
+        _battleStateController.OnWon += BattleWonHandle;
     }
 
     public void StartBattle()
@@ -23,6 +24,12 @@ public class GameController:MonoBehaviour
     public void InitStats()
     {
         GameStats  = new PlayerGameStats();
+    }
+
+    public void BattleWonHandle(int score)
+    {
+        GameStats.AddExp(score);
+        Debug.Log("Level: " + GameStats.Level + "  " + GameStats.CurrentExp + "/" + GameStats.ExpToLevel);
     }
 
 }
