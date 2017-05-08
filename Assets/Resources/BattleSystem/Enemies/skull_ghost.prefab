@@ -532,12 +532,13 @@ MonoBehaviour:
     Solidity:
       RegenPoints: 0
       Defence: 4
-      MaxHealth: 45
+      MaxHealth: 1
     Velocity: 0.1
     Shell:
       Damage: 15
       Velocity: 0
   DeathDelay: 1
+  Score: 1000
 --- !u!136 &136679529863733644
 CapsuleCollider:
   m_ObjectHideFlags: 1

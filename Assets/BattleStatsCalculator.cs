@@ -29,6 +29,7 @@ public static class BattleStatsCalculator
 
     private static void _ApplySkillModifiers(PlayerBattleStats battleStats, PlayerGameStats gameStats)
     {
+        //TODO Применять скиллы в порядке ихи прокачки
         foreach (var skill in gameStats.Skills.Values)
         {
             if (skill is StatsModifier)
