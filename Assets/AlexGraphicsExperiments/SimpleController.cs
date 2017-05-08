@@ -14,23 +14,23 @@ public class SimpleController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        float speed = 100;
+        float speedRot = 100;
         float ammoSpeed = 250;
 
         if (Input.GetKey(KeyCode.UpArrow)) {
-            gameObject.transform.Rotate(Vector3.left * Time.deltaTime * speed, Space.World);
+            gameObject.transform.Rotate(Vector3.left * Time.deltaTime * speedRot, Space.World);
         }
 
         if (Input.GetKey(KeyCode.DownArrow)) {
-            gameObject.transform.Rotate(Vector3.right * Time.deltaTime * speed, Space.World);
+            gameObject.transform.Rotate(Vector3.right * Time.deltaTime * speedRot, Space.World);
         }
 
         if (Input.GetKey(KeyCode.LeftArrow)) {
-            gameObject.transform.Rotate(Vector3.down * Time.deltaTime * speed, Space.World);
+            gameObject.transform.Rotate(Vector3.down * Time.deltaTime * speedRot, Space.World);
         }
 
         if (Input.GetKey(KeyCode.RightArrow)) {
-            gameObject.transform.Rotate(Vector3.up * Time.deltaTime * speed, Space.World);
+            gameObject.transform.Rotate(Vector3.up * Time.deltaTime * speedRot, Space.World);
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -39,7 +39,21 @@ public class SimpleController : MonoBehaviour {
             Rigidbody rb = newAmmo.GetComponent<Rigidbody>();
             Camera cam = gameObject.GetComponent<Camera>();
             rb.AddForce(cam.transform.forward * ammoSpeed);
-            gameObject.transform.Rotate(Vector3.up * Time.deltaTime * speed, Space.World);
+            gameObject.transform.Rotate(Vector3.up * Time.deltaTime * speedRot, Space.World);
+        }
+
+        float speedMove = 10;
+
+        Vector3 direction = gameObject.GetComponent<Camera>().transform.forward;
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            gameObject.transform.Translate(direction * Time.deltaTime * speedMove, Space.World);
+        }
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            gameObject.transform.Translate(-direction * Time.deltaTime * speedMove, Space.World);
         }
 
     }//upd
