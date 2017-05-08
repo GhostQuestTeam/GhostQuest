@@ -1330,7 +1330,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1521268148417348}
-  m_LocalRotation: {x: 0.69631547, y: 0.12306604, z: -0.6963151, w: 0.123064086}
+  m_LocalRotation: {x: 0.69631547, y: 0.12306603, z: -0.6963151, w: 0.12306408}
   m_LocalPosition: {x: -0, y: 0.0000007522106, z: 0.00044174763}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1857,7 +1857,11 @@ MonoBehaviour:
       RegenPoints: 10
       Defence: 10
       MaxHealth: 90
-    Velocity: 5
+    Velocity: 0.02
+    Shell:
+      Damage: 0
+      Velocity: 0
+  DeathDelay: 1
 --- !u!136 &136348084643501448
 CapsuleCollider:
   m_ObjectHideFlags: 1
