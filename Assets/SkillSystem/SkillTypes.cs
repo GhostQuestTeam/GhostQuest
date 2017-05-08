@@ -35,6 +35,7 @@ namespace SkillSystem
         public PlayerStatType StatType;
 
         #region ApplyModifierInternal
+
         private void _applyAdditiveModifier(PlayerBattleStats playerBattleStats)
         {
             switch (StatType)
@@ -71,10 +72,10 @@ namespace SkillSystem
                     battleStats.Solidity.RegenPoints = (int) (battleStats.Solidity.RegenPoints * modifierValue);
                     break;
                 case PlayerStatType.ENERGY:
-                    battleStats.MaxEnergy = (int)( modifierValue * battleStats.MaxEnergy );
+                    battleStats.MaxEnergy = (int) (modifierValue * battleStats.MaxEnergy);
                     break;
                 case PlayerStatType.ENERGY_REGEN:
-                    battleStats.EnergyRegen += (int)( modifierValue * battleStats.EnergyRegen );
+                    battleStats.EnergyRegen += (int) (modifierValue * battleStats.EnergyRegen);
                     break;
                 case PlayerStatType.DEFENCE:
                     battleStats.Solidity.Defence += (int) (modifierValue * battleStats.Solidity.Defence);
@@ -83,6 +84,7 @@ namespace SkillSystem
                     throw new ArgumentOutOfRangeException();
             }
         }
+
         #endregion
 
         public PlayerBattleStats ApplyModifier(PlayerBattleStats playerBattleStats)
@@ -106,6 +108,15 @@ namespace SkillSystem
     public class StatsModifier : AbstractSkill
     {
         [SerializeField] public SingleStatModifier[] StatModifiers;
+
+        public PlayerBattleStats ApplyModifier(PlayerBattleStats playerBattleStats)
+        {
+            foreach (var modifier in StatModifiers)
+            {
+                modifier.ApplyModifier(playerBattleStats);
+            }
+            return playerBattleStats;
+        }
     }
 
     [CreateAssetMenu(fileName = "CastUnlocker", menuName = "Player Skills/CastUnlocker")]

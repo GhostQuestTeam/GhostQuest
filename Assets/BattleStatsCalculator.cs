@@ -27,6 +27,17 @@ public static class BattleStatsCalculator
         //TODO
     }
 
+    private static void _ApplySkillModifiers(PlayerBattleStats battleStats, PlayerGameStats gameStats)
+    {
+        foreach (var skill in gameStats.Skills.Values)
+        {
+            if (skill is StatsModifier)
+            {
+                (skill as StatsModifier).ApplyModifier(battleStats);
+            }
+        }
+    }
+
     public static PlayerBattleStats CalculateBattleStats(PlayerGameStats gameStats)
     {
         var solidity = new Solidity(50, 0);
@@ -39,6 +50,7 @@ public static class BattleStatsCalculator
         _ApplySurvivabilityModifiers(battleStats, gameStats);
         _ApplyEnduranceModifiers(battleStats, gameStats);
         _ApplyPowerModifiers(battleStats, gameStats);
+        _ApplySkillModifiers(battleStats, gameStats);
 
 
         battleStats.ResetHealth();

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Utils;
 using SkillSystem;
 
@@ -22,7 +23,8 @@ public class PlayerGameStats
     private int _powerDelta;
 
     public int UpgradePoints;
-    private const int _UPGRADE_POINTS_PER_LEVEL = 5;
+    private const int UPGRADE_POINTS_PER_LEVEL = 5;
+
 
     public int Survivability
     {
@@ -36,12 +38,12 @@ public class PlayerGameStats
 
     public int Power
     {
-        get{ return _basePower.Val + _powerDelta;}
+        get { return _basePower.Val + _powerDelta; }
     }
 
     public void IncAttribute(PlayerAttributes attribute)
     {
-        if(UpgradePoints == 0) return;
+        if (UpgradePoints == 0) return;
         UpgradePoints--;
         switch (attribute)
         {
@@ -76,9 +78,10 @@ public class PlayerGameStats
                 throw new ArgumentOutOfRangeException("attribute", attribute, null);
         }
     }
+
     private void _DecAttributeDelta(ref int attributeDelta)
     {
-        if(attributeDelta == 0) return;
+        if (attributeDelta == 0) return;
         attributeDelta--;
         UpgradePoints++;
     }
@@ -94,8 +97,23 @@ public class PlayerGameStats
         _powerDelta = 0;
     }
 
+    #endregion
+
+    #region Skills
+    public Dictionary<string, AbstractSkill> Skills = new Dictionary<string, AbstractSkill>();
+    public int SkillPoints { get; private set; }
+    public const int SKILL_POINTS_PER_LEVEL = 1;
+
+    public void AddSkill(AbstractSkill skill)
+    {
+        if(Skills.ContainsKey(skill.name) ) return;
+        if (SkillPoints == 0 ) return;
+        Skills.Add(skill.name, skill);
+    }
 
     #endregion
+
+    #region LevelsAndExp
 
     public int Level { get; private set; }
     public int CurrentExp { get; private set; }
@@ -103,13 +121,13 @@ public class PlayerGameStats
 
     private void _UpdateExpToNextLevel()
     {
-        ExpToLevel += 100 * Level * Level + 50*Level + 1000;
+        ExpToLevel += 100 * Level * Level + 50 * Level + 1000;
     }
 
     private void _NextLevel()
     {
         Level++;
-        UpgradePoints += _UPGRADE_POINTS_PER_LEVEL;
+        UpgradePoints += UPGRADE_POINTS_PER_LEVEL;
         _UpdateExpToNextLevel();
     }
 
@@ -121,6 +139,7 @@ public class PlayerGameStats
             _NextLevel();
         }
     }
+    #endregion
 
     public PlayerGameStats()
     {
@@ -128,10 +147,13 @@ public class PlayerGameStats
         CurrentExp = 0;
         _UpdateExpToNextLevel();
 
+
         _baseSurviability = new BoundedInt(100, 5, 5);
         _baseEndurance = new BoundedInt(100, 5, 5);
         _basePower = new BoundedInt(100, 5, 5);
 
-        UpgradePoints = _UPGRADE_POINTS_PER_LEVEL;
+        SkillPoints = SKILL_POINTS_PER_LEVEL;
+
+        UpgradePoints = UPGRADE_POINTS_PER_LEVEL;
     }
 }
