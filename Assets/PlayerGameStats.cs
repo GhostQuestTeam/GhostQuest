@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Utils;
 using SkillSystem;
+using UnityEngine;
 
 public class PlayerGameStats
 {
@@ -100,15 +102,19 @@ public class PlayerGameStats
     #endregion
 
     #region Skills
-    public Dictionary<string, AbstractSkill> Skills = new Dictionary<string, AbstractSkill>();
+    public List<AbstractSkill> Skills = new List<AbstractSkill>();
+    private HashSet<string> _learnedSkills;
     public int SkillPoints { get; private set; }
     public const int SKILL_POINTS_PER_LEVEL = 1;
 
     public void AddSkill(AbstractSkill skill)
     {
-        if(Skills.ContainsKey(skill.name) ) return;
+        if(_learnedSkills.Contains(skill.name) ) return;
         if (SkillPoints == 0 ) return;
-        Skills.Add(skill.name, skill);
+        if (skill.Dependencies.Any(dependency => !_learnedSkills.Contains(dependency))) return;
+
+        _learnedSkills.Add(skill.name);
+        Skills.Add(skill);
     }
 
     #endregion
@@ -146,7 +152,6 @@ public class PlayerGameStats
         Level = 1;
         CurrentExp = 0;
         _UpdateExpToNextLevel();
-
 
         _baseSurviability = new BoundedInt(100, 5, 5);
         _baseEndurance = new BoundedInt(100, 5, 5);
