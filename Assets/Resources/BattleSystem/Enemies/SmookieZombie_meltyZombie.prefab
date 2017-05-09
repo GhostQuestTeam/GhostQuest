@@ -353,6 +353,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4049973037043686}
   - component: {fileID: 114625324823896778}
+  - component: {fileID: 136151896729762672}
   m_Layer: 0
   m_Name: SmookieZombie_meltyZombie
   m_TagString: Untagged
@@ -993,22 +994,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1928684400095924
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4521862794221720}
-  - component: {fileID: 136941651753687756}
-  m_Layer: 0
-  m_Name: collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1934828529839128
 GameObject:
   m_ObjectHideFlags: 1
@@ -1116,11 +1101,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1315629202079732}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 11.1}
+  m_LocalPosition: {x: 2.75, y: 2.15, z: -5.78}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4369044169276720}
-  - {fileID: 4521862794221720}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1266,7 +1250,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1367430936966980}
-  m_LocalRotation: {x: -0.11847394, y: 0.7376938, z: 0.66360766, w: 0.037374567}
+  m_LocalRotation: {x: -0.11847394, y: 0.7376937, z: 0.6636076, w: 0.037374564}
   m_LocalPosition: {x: -0.052540585, y: 0.04223675, z: -0.009094257}
   m_LocalScale: {x: 0.99999994, y: 0.9999997, z: 0.99999994}
   m_Children:
@@ -1458,7 +1442,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1086667122123818}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4088611934050868}
@@ -1610,19 +1594,6 @@ Transform:
   - {fileID: 4631248272428162}
   m_Father: {fileID: 4658574117979482}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4521862794221720
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1928684400095924}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.94, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4049973037043686}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4532730767232900
 Transform:
@@ -2092,12 +2063,12 @@ MonoBehaviour:
       Damage: 0
       Velocity: 0
   DeathDelay: 1
---- !u!136 &136941651753687756
+--- !u!136 &136151896729762672
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1928684400095924}
+  m_GameObject: {fileID: 1315629202079732}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -2368,7 +2339,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 184364869
+  randomSeed: -1531903490
   InitialModule:
     serializedVersion: 3
     enabled: 1
