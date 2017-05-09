@@ -46,15 +46,37 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARCameraEditor.cs" />
+     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARControllerEditor.cs" />
+     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARMarkerEditor.cs" />
+     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\AROriginEditor.cs" />
+     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARToolKitMenuEditor.cs" />
+     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARToolKitPackager.cs" />
+     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARToolKitPostProcessor.cs" />
+     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARTrackedCameraEditor.cs" />
+     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARTrackedCameraGizmo.cs" />
+     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARTrackedObjectEditor.cs" />
+     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARTrackedObjectGizmo.cs" />
+     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARTransitionalCameraEditor.cs" />
      <Compile Include="Assets\Editor\Tests\BattleSystemTests\SolidityTest.cs" />
      <Compile Include="Assets\Editor\Tests\DialogueParserTest.cs" />
      <Compile Include="Assets\Editor\Tests\QuestManagerTest.cs" />
      <Compile Include="Assets\Editor\Tests\QuestParserTest.cs" />
      <None Include="Assets\Resources\Dialogues\rk_dialogue.txt" />
      <None Include="Assets\Resources\BattleSystem\Weapons\laser.txt" />
+     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
+     <None Include="Assets\FantasyMonsterMegaPack\Shader\TwoSide-Diffuse-Cutout.shader" />
+     <None Include="Assets\ARToolKit5-Unity\CHANGELOG.txt" />
      <None Include="Assets\Resources\Quests\rk_quest.txt" />
+     <None Include="Assets\Resources\BattleSystem\Weapons\aura_1.txt" />
+     <None Include="Assets\Resources\BattleSystem\Weapons\fireball_1.txt" />
      <None Include="Assets\Resources\test.txt" />
+     <None Include="Assets\ARToolKit5-Unity\Resources\ardata\markers\patt.kanji.txt" />
+     <None Include="Assets\ARToolKit5-Unity\Resources\Shaders\VideoPlaneNoLight.shader" />
      <None Include="Assets\Resources\BattleSystem\Weapons\sphere.txt" />
+     <None Include="Assets\ARToolKit5-Unity\Resources\Shaders\Mask.shader" />
+     <None Include="Assets\Resources\BattleSystem\Weapons\orb_1.txt" />
+     <None Include="Assets\ARToolKit5-Unity\Resources\ardata\markers\patt.hiro.txt" />
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
  </Reference>
@@ -109,8 +131,14 @@
  <Reference Include="UnityEditor.Android.Extensions">
  <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll</HintPath>
  </Reference>
+ <Reference Include="UnityEditor.LinuxStandalone.Extensions">
+ <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEditor.WindowsStandalone.Extensions">
  <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+ </Reference>
+ <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
+ <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/2015/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +146,8 @@
       <Project>{312E6C74-2368-041F-79DE-C258943CC3D8}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{599AFEC3-293D-8FF5-BD9B-18F3D142DBB9}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-UnityScript.unityproj">
+      <Project>{51761BB4-55DE-F686-F17F-E44E5A15C663}</Project>      <Name>Assembly-UnityScript</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
