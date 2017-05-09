@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>5.5.2f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -101,6 +103,8 @@
     <Compile Include="Assets\ARToolKit5-Unity\Scripts\ARTransitionalCamera.cs" />
     <Compile Include="Assets\ARToolKit5-Unity\Scripts\ARUtilityFunctions.cs" />
     <Compile Include="Assets\ARToolKit5-Unity\Scripts\PluginFunctions.cs" />
+    <Compile Include="Assets\AlexGraphicsExperiments\SimpleController.cs" />
+    <Compile Include="Assets\AlexGraphicsExperiments\ZombieSwarm\AnimationPlayer.cs" />
     <Compile Include="Assets\AlexRK2\ARBattleSceneScripts\EnemyBehaviour.cs" />
     <Compile Include="Assets\AlexRK2\ARBattleSceneScripts\SphereShooter.cs" />
     <Compile Include="Assets\AlexRK2\ARVirtualSceneScripts\BackgroundPlaneController.cs" />
@@ -113,19 +117,18 @@
     <Compile Include="Assets\AlexRK2\ARVirtualSceneScripts\VirtualCameraController.cs" />
     <Compile Include="Assets\AlexRK2\BackHandler.cs" />
     <Compile Include="Assets\AlexRK2\RKDialogueObserver.cs" />
+    <Compile Include="Assets\BattleStatsCalculator.cs" />
     <Compile Include="Assets\BattleSystem\BattleControllers.cs" />
-<<<<<<< HEAD
+    <Compile Include="Assets\BattleSystem\BattleObjectFactory.cs" />
+    <Compile Include="Assets\BattleSystem\BattleStateController.cs" />
     <Compile Include="Assets\BattleSystem\BattleStats.cs" />
-=======
     <Compile Include="Assets\BattleSystem\BattleInterfaceController.cs" />
     <Compile Include="Assets\BattleSystem\BattleStats.cs" />
     <Compile Include="Assets\BattleSystem\ConcreteEnemyBehaviors\SkullGhostBehavior.cs" />
->>>>>>> 6f9079b8283ef16bf1784f3914a8a7ee5b071d13
     <Compile Include="Assets\BattleSystem\EnemyBehavior.cs" />
     <Compile Include="Assets\BattleSystem\IndicatorsView.cs" />
     <Compile Include="Assets\BattleSystem\PlayerBattleBehavior.cs" />
     <Compile Include="Assets\BattleSystem\ShellBehavior.cs" />
-    <Compile Include="Assets\BattleSystem\ShellFactory.cs" />
     <Compile Include="Assets\BattleSystem\Solidity.cs" />
     <Compile Include="Assets\BattleSystem\WeaponChooseController.cs" />
     <Compile Include="Assets\BattleSystem\WeaponInfo.cs" />
@@ -150,12 +153,15 @@
     <Compile Include="Assets\ExampleScenes\TrivialPlayerBehaviourFromAccelerometer.cs" />
     <Compile Include="Assets\Extensions\SimpleJSONExtension.cs" />
     <Compile Include="Assets\Extensions\UnityTransformExtension.cs" />
+    <Compile Include="Assets\GameController.cs" />
+    <Compile Include="Assets\PlayerGameStats.cs" />
     <Compile Include="Assets\QuestSystem\Quest.cs" />
     <Compile Include="Assets\QuestSystem\QuestManager.cs" />
     <Compile Include="Assets\QuestSystem\QuestParser.cs" />
     <Compile Include="Assets\QuestSystem\QuestTask.cs" />
     <Compile Include="Assets\QuestSystem\QuestView.cs" />
     <Compile Include="Assets\SaveGamestateController.cs" />
+    <Compile Include="Assets\SkillSystem\SkillTypes.cs" />
     <Compile Include="Assets\UIController.cs" />
     <Compile Include="Assets\Utils\BoundedInt.cs" />
     <Compile Include="Assets\Utils\Parser.cs" />
@@ -166,12 +172,19 @@
     <None Include="Assets\ARToolKit5-Unity\Resources\Shaders\VideoPlaneNoLight.shader" />
     <None Include="Assets\ARToolKit5-Unity\Resources\ardata\markers\patt.hiro.txt" />
     <None Include="Assets\ARToolKit5-Unity\Resources\ardata\markers\patt.kanji.txt" />
+    <None Include="Assets\FantasyMonsterMegaPack\Shader\TwoSide-Diffuse-Cutout.shader" />
     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
+    <None Include="Assets\Resources\BattleSystem\Weapons\aura_1.txt" />
+    <None Include="Assets\Resources\BattleSystem\Weapons\fireball_1.txt" />
     <None Include="Assets\Resources\BattleSystem\Weapons\laser.txt" />
+    <None Include="Assets\Resources\BattleSystem\Weapons\orb_1.txt" />
     <None Include="Assets\Resources\BattleSystem\Weapons\sphere.txt" />
     <None Include="Assets\Resources\Dialogues\rk_dialogue.txt" />
     <None Include="Assets\Resources\Quests\rk_quest.txt" />
     <None Include="Assets\Resources\test.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\SkillSystem\SkillTypes.cs.meta" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
