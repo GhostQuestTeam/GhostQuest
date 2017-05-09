@@ -4,6 +4,7 @@ namespace Mapbox.Examples.LocationProvider
     using Mapbox.Unity.Utilities;
     using Mapbox.Unity.MeshGeneration;
     using UnityEngine;
+	using Mapbox.Utils;
 
     public class PositionWithLocationProvider : MonoBehaviour
 	{
@@ -19,6 +20,8 @@ namespace Mapbox.Examples.LocationProvider
         /// </summary>
         [SerializeField]
         bool _useTransformLocationProvider;
+
+		public Vector2d _myCurrentLocation; 
 
         /// <summary>
         /// The location provider.
@@ -71,6 +74,7 @@ namespace Mapbox.Examples.LocationProvider
                 return;
             }
 
+			_myCurrentLocation = e.Location;
             _targetPosition = Conversions.GeoToWorldPosition(e.Location,
                                                              MapController.ReferenceTileRect.Center, 
                                                              MapController.WorldScaleFactor).ToVector3xz();

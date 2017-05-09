@@ -46,15 +46,46 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARCameraEditor.cs" />
+     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARControllerEditor.cs" />
+     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARMarkerEditor.cs" />
+     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\AROriginEditor.cs" />
+     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARToolKitMenuEditor.cs" />
+     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARToolKitPackager.cs" />
+     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARToolKitPostProcessor.cs" />
+     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARTrackedCameraEditor.cs" />
+     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARTrackedCameraGizmo.cs" />
+     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARTrackedObjectEditor.cs" />
+     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARTrackedObjectGizmo.cs" />
+     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARTransitionalCameraEditor.cs" />
      <Compile Include="Assets\Editor\Tests\BattleSystemTests\SolidityTest.cs" />
      <Compile Include="Assets\Editor\Tests\DialogueParserTest.cs" />
      <Compile Include="Assets\Editor\Tests\QuestManagerTest.cs" />
      <Compile Include="Assets\Editor\Tests\QuestParserTest.cs" />
+     <Compile Include="Assets\Mapbox\Core\Unity\Editor\FactoryEditor.cs" />
+     <Compile Include="Assets\Mapbox\Core\Unity\Editor\GeocodeAttributeDrawer.cs" />
+     <Compile Include="Assets\Mapbox\Core\Unity\Editor\GeocodeAttributeSearchWindow.cs" />
+     <Compile Include="Assets\Mapbox\Core\Unity\Editor\MapImageFactoryEditor.cs" />
+     <Compile Include="Assets\Mapbox\Core\Unity\Editor\MapboxConfigurationWindow.cs" />
+     <Compile Include="Assets\Mapbox\Core\Unity\Editor\MeshFactoryEditor.cs" />
+     <Compile Include="Assets\Mapbox\Core\Unity\Editor\TerrainFactoryEditor.cs" />
+     <Compile Include="Assets\Mapbox\Examples\Drive\Editor\DirectionsFactoryEditor.cs" />
      <None Include="Assets\Resources\Dialogues\rk_dialogue.txt" />
+     <None Include="Assets\UniWeb-Free\FAQ.txt" />
      <None Include="Assets\Resources\BattleSystem\Weapons\laser.txt" />
+     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
+     <None Include="Assets\Mapbox\Resources\Fonts\OpenSansLic.txt" />
+     <None Include="Assets\Mapbox\README.txt" />
+     <None Include="Assets\ARToolKit5-Unity\CHANGELOG.txt" />
      <None Include="Assets\Resources\Quests\rk_quest.txt" />
+     <None Include="Assets\UniWeb-Free\README.txt" />
      <None Include="Assets\Resources\test.txt" />
+     <None Include="Assets\Mapbox\Core\Plugins\link.xml" />
+     <None Include="Assets\ARToolKit5-Unity\Resources\ardata\markers\patt.kanji.txt" />
+     <None Include="Assets\ARToolKit5-Unity\Resources\Shaders\VideoPlaneNoLight.shader" />
      <None Include="Assets\Resources\BattleSystem\Weapons\sphere.txt" />
+     <None Include="Assets\ARToolKit5-Unity\Resources\Shaders\Mask.shader" />
+     <None Include="Assets\ARToolKit5-Unity\Resources\ardata\markers\patt.hiro.txt" />
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
  </Reference>
@@ -109,8 +140,20 @@
  <Reference Include="UnityEditor.Android.Extensions">
  <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll</HintPath>
  </Reference>
+ <Reference Include="UnityEditor.LinuxStandalone.Extensions">
+ <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEditor.WindowsStandalone.Extensions">
  <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+ </Reference>
+ <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
+ <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/2015/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+ </Reference>
+ <Reference Include="UniWeb-Free">
+ <HintPath>D:/MailProject/GhostQuest/Assets/UniWeb-Free/UniWeb-Free.dll</HintPath>
+ </Reference>
+ <Reference Include="Mapbox.Json">
+ <HintPath>D:/MailProject/GhostQuest/Assets/Mapbox/Core/Plugins/ThirdParty/Mapbox.Json/Net35/Mapbox.Json.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

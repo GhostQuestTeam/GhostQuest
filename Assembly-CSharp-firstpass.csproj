@@ -48,10 +48,21 @@
   <ItemGroup>
      <Compile Include="Assets\Plugins\SimpleJSON.cs" />
      <None Include="Assets\Resources\Dialogues\rk_dialogue.txt" />
+     <None Include="Assets\UniWeb-Free\FAQ.txt" />
      <None Include="Assets\Resources\BattleSystem\Weapons\laser.txt" />
+     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
+     <None Include="Assets\Mapbox\Resources\Fonts\OpenSansLic.txt" />
+     <None Include="Assets\Mapbox\README.txt" />
+     <None Include="Assets\ARToolKit5-Unity\CHANGELOG.txt" />
      <None Include="Assets\Resources\Quests\rk_quest.txt" />
+     <None Include="Assets\UniWeb-Free\README.txt" />
      <None Include="Assets\Resources\test.txt" />
+     <None Include="Assets\Mapbox\Core\Plugins\link.xml" />
+     <None Include="Assets\ARToolKit5-Unity\Resources\ardata\markers\patt.kanji.txt" />
+     <None Include="Assets\ARToolKit5-Unity\Resources\Shaders\VideoPlaneNoLight.shader" />
      <None Include="Assets\Resources\BattleSystem\Weapons\sphere.txt" />
+     <None Include="Assets\ARToolKit5-Unity\Resources\Shaders\Mask.shader" />
+     <None Include="Assets\ARToolKit5-Unity\Resources\ardata\markers\patt.hiro.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -69,6 +80,12 @@
  </Reference>
  <Reference Include="UnityEngine.VR">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
+ </Reference>
+ <Reference Include="UniWeb-Free">
+ <HintPath>D:/MailProject/GhostQuest/Assets/UniWeb-Free/UniWeb-Free.dll</HintPath>
+ </Reference>
+ <Reference Include="Mapbox.Json">
+ <HintPath>D:/MailProject/GhostQuest/Assets/Mapbox/Core/Plugins/ThirdParty/Mapbox.Json/Net35/Mapbox.Json.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
