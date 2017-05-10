@@ -4,13 +4,13 @@ namespace BattleSystem
 {
     public interface IShooter
     {
-        void Shoot(WeaponInfo weapon);
+        void Shoot(Weapon weapon);
     }
 
     public interface IWeaponSpeedController
     {
-        bool CanShoot(WeaponInfo weapon);
-        void BlockWeapon(WeaponInfo weapon, float duration);
+        bool CanShoot(Weapon weapon);
+        void BlockWeapon(Weapon weapon, float duration);
     }
 
 
@@ -31,13 +31,8 @@ namespace BattleSystem
             }
         }
 
-        public void TakeDamage(ShellInfo shell)
+        public void TakeDamage(int damage)
         {
-            int damage = shell.Damage;
-            if (shell.Effect != null)
-            {
-                shell.Effect(battleStats);
-            }
             int startedHealth = battleStats.CurrentHealth;
             battleStats.Solidity.Attack(damage);
             int deltaHealth = startedHealth - battleStats.CurrentHealth;

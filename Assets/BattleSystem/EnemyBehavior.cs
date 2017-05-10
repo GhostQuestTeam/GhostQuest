@@ -43,13 +43,13 @@ namespace BattleSystem
             var shell = other.gameObject.GetComponent<ShellBehavior>();
             if (shell != null)
             {
-                BattleController.TakeDamage(shell.ShellInfo);
+                BattleController.TakeDamage(shell.Weapon.Damage);
             }
 
             if (other.gameObject.CompareTag("Player"))
             {
                 var player = other.gameObject.GetComponent<PlayerBattleBehavior>();
-                player.BattleController.TakeDamage(BattleStats.Shell);
+                player.BattleController.TakeDamage(BattleStats.Damage);
                 BattleController.Kill();
             }
         }

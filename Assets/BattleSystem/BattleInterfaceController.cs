@@ -11,7 +11,6 @@ namespace BattleSystem
         private GameObject _weaponButtonPrefab;
         private Transform _weaponsPanel;
 
-        private const string _SPRITES_FOLDER = "Sprites/weapons/";
 
         void Start()
         {
@@ -29,8 +28,8 @@ namespace BattleSystem
             {
                 var weapon = battleStats.Weapons[i];
                 var button = Instantiate(_weaponButtonPrefab);
-                var sprite = Resources.Load<Sprite>(_SPRITES_FOLDER + weapon.Id);
-                button.transform.FindChild("WeaponImage").GetComponent<Image>().sprite = sprite;
+                //var sprite = Resources.Load<Sprite>(_SPRITES_FOLDER + weapon.Id);
+                button.transform.FindChild("WeaponImage").GetComponent<Image>().sprite = weapon.Sprite;
 
                 button.transform.SetParent(_weaponsPanel);
                 var tmp = (uint)i;

@@ -39,18 +39,19 @@ namespace BattleSystem
         {
             while (true)
             {
-                transform.position += _direction * Vector3.down * 0.0000001f;
+                transform.position += _direction * Vector3.down * 0.00001f;
                 _direction *= -1;
                 yield return new WaitForSeconds(0.01f);
             }
         }
 
 
-        public void Shoot(WeaponInfo weapon)
+        public void Shoot(Weapon weapon)
         {
-            GameObject shell = BattleObjectFactory.CreateShell(weapon);
+            GameObject shell = Instantiate(weapon.Prefab);
             var cameraForward = GetComponentInChildren<Camera>().transform.forward;
             var startPosition = transform.position + cameraForward * 1;
+            shell.GetComponent<ShellBehavior>().Weapon = weapon;
             shell.GetComponent<ShellBehavior>().Launch(startPosition, cameraForward);
         }
 
@@ -76,12 +77,12 @@ namespace BattleSystem
             _blockedWeapons[weapontId] = false;
         }
 
-        public bool CanShoot(WeaponInfo weapon)
+        public bool CanShoot(Weapon weapon)
         {
             return !_blockedWeapons[weapon.Id];
         }
 
-        public void BlockWeapon(WeaponInfo weapon, float duration)
+        public void BlockWeapon(Weapon weapon, float duration)
         {
             StartCoroutine(_blockWeaponCoroutine(duration, weapon.Id));
         }

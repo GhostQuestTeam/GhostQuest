@@ -38,9 +38,9 @@ namespace BattleSystem
     {
         private BoundedInt _energy;
 
-        public WeaponInfo[] Weapons { get; private set; }
+        public Weapon[] Weapons { get; private set; }
         public uint CurrentWeaponId { get; set; }
-        public WeaponInfo CurrentWeapon
+        public Weapon CurrentWeapon
         {
             get { return Weapons[CurrentWeaponId]; }
         }
@@ -59,7 +59,7 @@ namespace BattleSystem
         }
 
 
-        public PlayerBattleStats(Solidity solidity, int maxEnergy, int energyRegen, WeaponInfo[] weapons): base(solidity)
+        public PlayerBattleStats(Solidity solidity, int maxEnergy, int energyRegen, Weapon[] weapons): base(solidity)
         {
             _energy = new BoundedInt(maxEnergy, 0, maxEnergy);
             EnergyRegen = energyRegen;
@@ -74,12 +74,12 @@ namespace BattleSystem
     {
         public float Velocity;
 
-        public ShellInfo Shell;
+        public int Damage;
 
-        public EnemyBattleStats(Solidity solidity, float velocity,ShellInfo shell) : base(solidity)
+        public EnemyBattleStats(Solidity solidity, float velocity,int damage) : base(solidity)
         {
             Velocity = velocity;
-            Shell = shell;
+            Damage = damage;
         }
     }
 }

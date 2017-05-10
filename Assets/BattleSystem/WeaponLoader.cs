@@ -13,16 +13,14 @@ namespace BattleSystem
     {
         private const string _ROOT_FOLDER = "BattleSystem/Weapons/";
 
-        public static WeaponInfo LoadWeapon(string weaponId)
+        public static Weapon LoadWeapon(string weaponId)
         {
-            var resource = Resources.Load<TextAsset>(_ROOT_FOLDER + weaponId);
+            var resource = Resources.Load(_ROOT_FOLDER + weaponId) as Weapon;
             if (resource == null)
             {
                 throw new WeaponLoaderException("Weapon with id: " + weaponId + " not found");
             }
-            var json = resource.text;
-            var result = JsonUtility.FromJson<WeaponInfo>(json);
-            return result;
+            return resource;
         }
     }
 }

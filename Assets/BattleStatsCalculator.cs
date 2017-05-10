@@ -42,7 +42,7 @@ public static class BattleStatsCalculator
     public static PlayerBattleStats CalculateBattleStats(PlayerGameStats gameStats)
     {
         var solidity = new Solidity(50, 0);
-        var weapons = new WeaponInfo[4];
+        var weapons = new Weapon[4];
 
         weapons[0] = WeaponLoader.LoadWeapon("sphere");
         weapons[1] = WeaponLoader.LoadWeapon("orb_1");

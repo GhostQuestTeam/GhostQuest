@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class ShellBehavior : MonoBehaviour
 {
-    [SerializeField] public ShellInfo ShellInfo;
-    public float Ttl = 3f;
+    [SerializeField] public Weapon Weapon;
 
     // Use this for initialization
     void Start()
@@ -21,7 +20,7 @@ public class ShellBehavior : MonoBehaviour
 
     public IEnumerator DestroyAfterTimeout()
     {
-        yield return new WaitForSeconds(Ttl);
+        yield return new WaitForSeconds(Weapon.Ttl);
         Destroy(gameObject);
     }
 
@@ -36,6 +35,6 @@ public class ShellBehavior : MonoBehaviour
     {
         gameObject.transform.position = startPosition;
         Rigidbody rb = GetComponent<Rigidbody>();
-        rb.velocity = velocityVector * ShellInfo.Velocity;
+        rb.velocity = velocityVector * Weapon.Velocity;
     }
 }
