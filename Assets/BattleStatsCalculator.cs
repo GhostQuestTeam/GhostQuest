@@ -42,10 +42,12 @@ public static class BattleStatsCalculator
     public static PlayerBattleStats CalculateBattleStats(PlayerGameStats gameStats)
     {
         var solidity = new Solidity(50, 0);
-        var weapons = new WeaponInfo[2];
+        var weapons = new WeaponInfo[4];
 
         weapons[0] = WeaponLoader.LoadWeapon("sphere");
-        weapons[1] = WeaponLoader.LoadWeapon("laser");
+        weapons[1] = WeaponLoader.LoadWeapon("orb_1");
+        weapons[2] = WeaponLoader.LoadWeapon("aura_1");
+        weapons[3] = WeaponLoader.LoadWeapon("fireball_1");
 
         var battleStats = new PlayerBattleStats(solidity, 50, 1, weapons);
         _ApplySurvivabilityModifiers(battleStats, gameStats);
