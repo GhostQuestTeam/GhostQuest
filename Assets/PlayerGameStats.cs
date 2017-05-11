@@ -16,6 +16,8 @@ public class PlayerGameStats
         Power
     }
 
+    public event Action OnAttributeChange;
+
     private BoundedInt _baseSurviability;
     private BoundedInt _baseEndurance;
     private BoundedInt _basePower;
@@ -61,6 +63,11 @@ public class PlayerGameStats
             default:
                 throw new ArgumentOutOfRangeException("attribute", attribute, null);
         }
+        if (OnAttributeChange != null)
+        {
+            OnAttributeChange();
+        }
+
     }
 
     public void DecAttribute(PlayerAttributes attribute)
@@ -78,6 +85,10 @@ public class PlayerGameStats
                 break;
             default:
                 throw new ArgumentOutOfRangeException("attribute", attribute, null);
+        }
+        if (OnAttributeChange != null)
+        {
+            OnAttributeChange();
         }
     }
 
