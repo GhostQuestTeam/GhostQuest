@@ -21,6 +21,8 @@ public class PointOfInterestWithLocationProvider : MonoBehaviour {
 
     public GameObject _playerObject;
 
+    public PointOfInterestMetadata _metadata;
+
     public class PointOfInterestEventArgs : EventArgs
     {
         public Vector2d Location;

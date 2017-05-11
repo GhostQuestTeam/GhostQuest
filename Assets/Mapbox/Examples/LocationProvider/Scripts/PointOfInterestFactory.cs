@@ -40,6 +40,7 @@ public class PointOfInterestFactory : MonoBehaviour {
             PointOfInterestWithLocationProvider poiwtp = newPOI.GetComponent<PointOfInterestWithLocationProvider>();
             poiwtp._myMapLocation = point;
             poiwtp.OnPOIClose += PointOfInterestWithLocationProvider_OnPOIClose;
+            poiwtp._metadata = new PointOfInterestMetadata();
         }
 
     }
