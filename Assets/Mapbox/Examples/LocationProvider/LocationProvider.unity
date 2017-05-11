@@ -533,6 +533,7 @@ GameObject:
   m_Component:
   - component: {fileID: 444845015}
   - component: {fileID: 444845016}
+  - component: {fileID: 444845017}
   m_Layer: 0
   m_Name: PointOfInterestFacroty
   m_TagString: Untagged
@@ -567,6 +568,17 @@ MonoBehaviour:
   PointOfInterestPrefab: {fileID: 1456302586453104, guid: dfe014c2ccdf32c4daedb84d4f4832ca,
     type: 2}
   _btnToEnable: {fileID: 203355323}
+--- !u!114 &444845017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 444845014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9062ea63d7d8843b4003ff828de8a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &580608870
 GameObject:
   m_ObjectHideFlags: 0

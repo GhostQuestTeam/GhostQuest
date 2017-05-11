@@ -6,12 +6,13 @@ using Mapbox.Utils;
 
 public class PointOfInterestParserFromXML : MonoBehaviour {
 
-    public static string RootPath = Application.dataPath + "/Mapbox/Examples/LocationProvider/";
-    public static List<string> FilesToParse = new List<string>();
+    public string RootPath;
+    public List<string> FilesToParse = new List<string>();
     public List<Vector2d> ParsedPoints;
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
+        RootPath = Application.dataPath + "/Mapbox/Examples/LocationProvider/";
         FilesToParse.Add(RootPath + "moscow-poi-tourism-attraction.osm.xml");
         FilesToParse.Add(RootPath + "moscow-poi-tourism-museum.osm.xml");
         FilesToParse.Add(RootPath + "moscow-poi-tourism-viewpoint.osm.xml");
@@ -36,7 +37,8 @@ public class PointOfInterestParserFromXML : MonoBehaviour {
     {
         XmlDocument doc = new XmlDocument();
         doc.Load(filePath);
-        foreach(XmlNode node in doc.SelectNodes("node"))
+        XmlNodeList nodes = doc.SelectNodes("*/node");
+        foreach(XmlNode node in nodes)
         {
             string strLat = node.Attributes["lat"].Value;
             string strLon = node.Attributes["lon"].Value;
