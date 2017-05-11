@@ -9,12 +9,14 @@ public class UIController : MonoBehaviour
     public const string DEFAULT_DIALOGUE_PANEL_PREFAB = "DialoguesUI/DialoguePanel";
     public const string DEFAULT_QUEST_PANEL_PREFAB = "QuestsUI/QuestPanel";
     public const string DEFAULT_UI_PANEL_PREFAB = "UIFightPanel";
+    public const string DEFAULT_ATTRIBUTES_PANEL_PREFAB = "AttributesPanel";
     public const string DEFAULT_START_BATTLE_PREFAB = "BattleSystem/UI/StartBattleButton";
 
     public string DialoguePanelPrefabPath = DEFAULT_DIALOGUE_PANEL_PREFAB;
     public string QuestPanelPrefabPath = DEFAULT_QUEST_PANEL_PREFAB;
     public string UIPanelPrefabPath = DEFAULT_UI_PANEL_PREFAB;
-    public const string StartBattlePrefabPath = DEFAULT_START_BATTLE_PREFAB;
+    public string StartBattlePrefabPath = DEFAULT_START_BATTLE_PREFAB;
+    public string AttributesPanelPrefabPath = DEFAULT_ATTRIBUTES_PANEL_PREFAB;
 
     private GameObject _dialoguePanel;
     private GameObject _questPanel;
