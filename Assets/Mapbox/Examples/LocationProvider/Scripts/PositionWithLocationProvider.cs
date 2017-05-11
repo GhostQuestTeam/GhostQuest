@@ -21,7 +21,9 @@ namespace Mapbox.Examples.LocationProvider
         [SerializeField]
         bool _useTransformLocationProvider;
 
-		public Vector2d _myCurrentLocation; 
+		public Vector2d _myCurrentLocation;
+		public GameObject _mapControllerObj;
+		private MapController _mapController;
 
         /// <summary>
         /// The location provider.
@@ -57,6 +59,7 @@ namespace Mapbox.Examples.LocationProvider
 		void Start()
 		{
 			LocationProvider.OnLocationUpdated += LocationProvider_OnLocationUpdated;
+			_mapController = _mapControllerObj.GetComponent<MapController> ();
 		}
 
 		void OnDestroy()
@@ -78,11 +81,29 @@ namespace Mapbox.Examples.LocationProvider
             _targetPosition = Conversions.GeoToWorldPosition(e.Location,
                                                              MapController.ReferenceTileRect.Center, 
                                                              MapController.WorldScaleFactor).ToVector3xz();
+            Vector2d myCurAbsWorldPos = Conversions.GeoToWorldPosition(e.Location, new Vector2d(0, 0));
+			Vector2 tms = Conversions.MetersToTile(myCurAbsWorldPos, _mapController.Zoom);
+            //Debug.Log(tms);
+            //_mapController.Request (tms, _mapController.Zoom);
+            spawnNearbyTiles(tms);
 		}
 
 		void Update()
 		{
 			transform.position = Vector3.Lerp(transform.position, _targetPosition, Time.deltaTime * _positionFollowFactor);
 		}
+
+        void spawnNearbyTiles(Vector2 tms)
+        {
+            Vector4 range = _mapController.Range;
+            for (int i = (int)(tms.x - range.x); i <= (tms.x + range.z); i++)
+            {
+                for (int j = (int)(tms.y - range.y); j <= (tms.y + range.w); j++)
+                {
+                    _mapController.Request(new Vector2(i, j), _mapController.Zoom);
+                }
+            }
+        }//fn
+
 	}
 }
