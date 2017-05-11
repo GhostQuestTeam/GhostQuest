@@ -27,18 +27,21 @@ namespace BattleSystem
 
         void Awake()
         {
+            DontDestroyOnLoad(transform.gameObject);
             _currentEnemies = new HashSet<GameObject>();
         }
 
         void Start()
         {
             Debug.Log("Start BattleStateController");
-            _player = GameObject.FindWithTag("Player").GetComponent<PlayerBattleBehavior>();
-            _player.BattleController.OnDeath += PlayerDeathHandle;
+
         }
 
         public void StartBattle(Dictionary<string, int> enemies)
         {
+            _player = GameObject.FindWithTag("Player").GetComponent<PlayerBattleBehavior>();
+            _player.BattleController.OnDeath += PlayerDeathHandle;
+
             _totalScore = 0;
             _isBattleFinished = false;
             _allEnemies = enemies;
