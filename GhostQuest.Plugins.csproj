@@ -73,26 +73,26 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    <Reference Include="Mapbox.Json">
+      <HintPath>Assets\Mapbox\Core\Plugins\ThirdParty\Mapbox.Json\Net35\Mapbox.Json.dll</HintPath>
     </Reference>
     <Reference Include="UniWeb-Free">
       <HintPath>Assets\UniWeb-Free\UniWeb-Free.dll</HintPath>
-    </Reference>
-    <Reference Include="Mapbox.Json">
-      <HintPath>Assets\Mapbox\Core\Plugins\ThirdParty\Mapbox.Json\Net35\Mapbox.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Plugins\SimpleJSON.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\ARToolKit5-Unity\CHANGELOG.txt" />
+    <None Include="Assets\ARToolKit5-Unity\Resources\Shaders\Mask.shader" />
+    <None Include="Assets\ARToolKit5-Unity\Resources\Shaders\VideoPlaneNoLight.shader" />
+    <None Include="Assets\ARToolKit5-Unity\Resources\ardata\markers\patt.hiro.txt" />
+    <None Include="Assets\ARToolKit5-Unity\Resources\ardata\markers\patt.kanji.txt" />
     <None Include="Assets\Mapbox\Core\Plugins\link.xml" />
     <None Include="Assets\Mapbox\README.txt" />
     <None Include="Assets\Mapbox\Resources\Fonts\OpenSansLic.txt" />
+    <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
     <None Include="Assets\Resources\BattleSystem\Weapons\laser.txt" />
     <None Include="Assets\Resources\BattleSystem\Weapons\sphere.txt" />
     <None Include="Assets\Resources\Dialogues\rk_dialogue.txt" />
