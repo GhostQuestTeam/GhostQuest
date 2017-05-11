@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: health1
+  m_EditorClassIdentifier: Assembly-CSharp:SkillSystem:StatsModifier
+  SkillSprite: {fileID: 21300000, guid: 766462f6a3badeb47a39c43f81a16db3, type: 3}
+  Description: 
+  Dependencies: []
+  StatModifiers:
+  - statModifierType: 0
+    modifierValue: 50
+    StatType: 0

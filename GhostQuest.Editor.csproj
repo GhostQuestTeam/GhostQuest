@@ -109,8 +109,8 @@
     <Reference Include="UnityEditor.Android.Extensions">
       <HintPath>Library\UnityAssemblies\UnityEditor.Android.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.dll</HintPath>
+    <Reference Include="UnityEditor.LinuxStandalone.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.LinuxStandalone.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>Library\UnityAssemblies\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
@@ -118,11 +118,8 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>Library\UnityAssemblies\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    <Reference Include="Assembly-UnityScript">
+      <HintPath>Library\ScriptAssemblies\Assembly-UnityScript.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +145,7 @@
     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARTrackedObjectEditor.cs" />
     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARTrackedObjectGizmo.cs" />
     <Compile Include="Assets\ARToolKit5-Unity\Scripts\Editor\ARTransitionalCameraEditor.cs" />
+    <Compile Include="Assets\Editor\Tests\BattleSystemTests\SolidityTest.cs" />
     <Compile Include="Assets\Editor\Tests\DialogueParserTest.cs" />
     <Compile Include="Assets\Editor\Tests\QuestManagerTest.cs" />
     <Compile Include="Assets\Editor\Tests\QuestParserTest.cs" />
@@ -158,7 +156,13 @@
     <None Include="Assets\ARToolKit5-Unity\Resources\Shaders\VideoPlaneNoLight.shader" />
     <None Include="Assets\ARToolKit5-Unity\Resources\ardata\markers\patt.hiro.txt" />
     <None Include="Assets\ARToolKit5-Unity\Resources\ardata\markers\patt.kanji.txt" />
+    <None Include="Assets\FantasyMonsterMegaPack\Shader\TwoSide-Diffuse-Cutout.shader" />
     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
+    <None Include="Assets\Resources\BattleSystem\Weapons\aura_1.txt" />
+    <None Include="Assets\Resources\BattleSystem\Weapons\fireball_1.txt" />
+    <None Include="Assets\Resources\BattleSystem\Weapons\laser.txt" />
+    <None Include="Assets\Resources\BattleSystem\Weapons\orb_1.txt" />
+    <None Include="Assets\Resources\BattleSystem\Weapons\sphere.txt" />
     <None Include="Assets\Resources\Dialogues\rk_dialogue.txt" />
     <None Include="Assets\Resources\Quests\rk_quest.txt" />
     <None Include="Assets\Resources\test.txt" />

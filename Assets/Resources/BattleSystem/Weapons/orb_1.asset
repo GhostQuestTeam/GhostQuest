@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e76f45922ce043b7a8ff167863a08007, type: 3}
+  m_Name: orb_1
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 1723824446074100, guid: c245f67b389de9d4fa54c4025b603f40, type: 2}
+  Sprite: {fileID: 21300000, guid: 99529c0958c704c45989fd81e617c84e, type: 3}
+  BaseDamage: 13
+  Velocity: 20
+  Id: orb_1
+  ShootCost: 3
+  Cooldown: 0.4
+  Ttl: 1
+  DamageModifier: 1.2
