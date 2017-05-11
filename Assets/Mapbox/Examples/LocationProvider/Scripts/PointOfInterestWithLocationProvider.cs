@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mapbox.Unity;
@@ -15,9 +16,19 @@ public class PointOfInterestWithLocationProvider : MonoBehaviour {
 	[SerializeField]
 	bool _useTransformLocationProvider;
 
-	private static Vector2d _myMapLocation = new Vector2d (55.8257f, 49.0538f);
-	public GameObject _playerObject;
-	public GameObject _btnToEnable;
+	public Vector2d _myMapLocation = new Vector2d (55.8257f, 49.0538f);
+    public bool _IsPlayerNear = false;
+
+    public GameObject _playerObject;
+
+    public class PointOfInterestEventArgs : EventArgs
+    {
+        public Vector2d Location;
+        public bool IsPlayerNear;
+    }
+
+    public event EventHandler<PointOfInterestEventArgs> OnPOIClose;
+
 	public float _myDistanceCutOff = 0.0005f;
 	public float _debug_DistanceToPlayer;
 
@@ -52,7 +63,6 @@ public class PointOfInterestWithLocationProvider : MonoBehaviour {
 	{
 		LocationProvider.OnLocationUpdated += LocationProvider_OnLocationUpdated;
 		_playerObject = GameObject.FindGameObjectWithTag ("Player");
-		_btnToEnable = GameObject.FindGameObjectWithTag ("BtnToEnable");
 	}
 
 	void OnDestroy()
@@ -79,19 +89,43 @@ public class PointOfInterestWithLocationProvider : MonoBehaviour {
 	void Update()
 	{
 		transform.position = Vector3.Lerp(transform.position, _targetPosition, Time.deltaTime * _positionFollowFactor);
-		checkDistanceToPlayer ();
+		checkDistanceToPlayerEvklid ();
 	}
 
-	void checkDistanceToPlayer() {
+	void checkDistanceToPlayerEvklid() {
 		Vector2d interestLocation = _myMapLocation;
 		Vector2d playerLocation = _playerObject.GetComponent<Mapbox.Examples.LocationProvider.PositionWithLocationProvider> ()._myCurrentLocation;
 		float distanceToInterest = (float)Vector2d.Distance (interestLocation, playerLocation);
 		_debug_DistanceToPlayer = distanceToInterest;
+
+        if(OnPOIClose == null)
+        {
+            return;
+        }
+
+        PointOfInterestEventArgs e = new PointOfInterestEventArgs();
+        e.Location = _myMapLocation;
+
+        //if player really near
 		if (distanceToInterest < _myDistanceCutOff) {
-			_btnToEnable.SetActive (true);
-		} else {
-			_btnToEnable.SetActive (false);
+            //if player was not near before
+            if(!_IsPlayerNear)
+            {
+                _IsPlayerNear = true;
+                e.IsPlayerNear = true;
+                OnPOIClose(this, e);
+            }
 		}
+        else //if player really NOT near
+        {
+            //if player was near before
+            if (_IsPlayerNear)
+            {
+                _IsPlayerNear = false;
+                e.IsPlayerNear = false;
+                OnPOIClose(this, e);
+            }
+		}//if
 	}//fn
 
 }
