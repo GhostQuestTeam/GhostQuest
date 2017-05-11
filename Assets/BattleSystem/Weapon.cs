@@ -7,11 +7,20 @@ namespace BattleSystem
     {
         public GameObject Prefab;
         public Sprite Sprite;
-        public int Damage;
+        public int BaseDamage;
         public float Velocity;
         public string Id;
         public int ShootCost;
         public float Cooldown;
         public float Ttl = 1f;
+
+        [HideInInspector]
+        public float DamageModifier =1f;
+
+        public int Damage
+        {
+            get { return (int) (BaseDamage * DamageModifier); }
+        }
+
     }
 }

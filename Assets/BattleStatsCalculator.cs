@@ -4,11 +4,17 @@ using BattleSystem;
 //Вычисление боевых характеристик, на основе прокаченных скиллов
 public static class BattleStatsCalculator
 {
+    #region Constants
     public const float HEALTH_PER_SURVIABIBILITY = 5f;
     public const float HEALTH_REGEN_PER_SURVIABIBILITY = 0.025f;
 
     public const float ENERGY_PER_ENDURANCE = 5f;
     public const float ENERGY_REGEN_PER_ENDURANCE = 0.04f;
+
+    public const float DAMAGE_MODIFIER_PER_POWER = 0.04f;
+    #endregion
+
+    #region Apply modifiers
 
     private static void _ApplySurvivabilityModifiers(PlayerBattleStats battleStats, PlayerGameStats gameStats)
     {
@@ -24,12 +30,11 @@ public static class BattleStatsCalculator
 
     private static void _ApplyPowerModifiers(PlayerBattleStats battleStats, PlayerGameStats gameStats)
     {
-        //TODO
+        battleStats.DamageModifier += DAMAGE_MODIFIER_PER_POWER * gameStats.Power;
     }
 
     private static void _ApplySkillModifiers(PlayerBattleStats battleStats, PlayerGameStats gameStats)
     {
-        //TODO Применять скиллы в порядке ихи прокачки
         foreach (var skill in gameStats.Skills)
         {
             if (skill is StatsModifier)
@@ -38,6 +43,7 @@ public static class BattleStatsCalculator
             }
         }
     }
+    #endregion
 
     public static PlayerBattleStats CalculateBattleStats(PlayerGameStats gameStats)
     {
@@ -49,7 +55,7 @@ public static class BattleStatsCalculator
         weapons[2] = WeaponLoader.LoadWeapon("aura_1");
         weapons[3] = WeaponLoader.LoadWeapon("fireball_1");
 
-        var battleStats = new PlayerBattleStats(solidity, 50, 1, weapons);
+        var battleStats = new PlayerBattleStats(solidity, 50, 1, 1f ,weapons);
         _ApplySurvivabilityModifiers(battleStats, gameStats);
         _ApplyEnduranceModifiers(battleStats, gameStats);
         _ApplyPowerModifiers(battleStats, gameStats);

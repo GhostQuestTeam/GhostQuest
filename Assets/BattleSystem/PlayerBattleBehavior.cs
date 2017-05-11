@@ -22,6 +22,7 @@ namespace BattleSystem
             foreach (var weapon in battleStats.Weapons)
             {
                 _blockedWeapons.Add(weapon.Id, false);
+                Debug.Log(weapon.Damage);
             }
             BattleController = new PlayerBattleController(battleStats, this, this);
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 using UnityEngine;
 using Utils;
 
@@ -7,8 +8,7 @@ namespace BattleSystem
     [Serializable]
     public class BattleStats
     {
-        [SerializeField]
-        public Solidity Solidity;
+        [SerializeField] public Solidity Solidity;
 
         public uint MaxHealth
         {
@@ -19,7 +19,6 @@ namespace BattleSystem
         public int CurrentHealth
         {
             get { return Solidity.CurrentHealth; }
-
         }
 
         public void ResetHealth()
@@ -27,25 +26,39 @@ namespace BattleSystem
             Solidity.ResetHealth();
         }
 
-        public BattleStats(Solidity solidity)
+        public BattleStats([NotNull] Solidity solidity)
         {
             Solidity = solidity;
         }
-
     }
 
-    public class PlayerBattleStats:BattleStats
+    public class PlayerBattleStats : BattleStats
     {
         private BoundedInt _energy;
+        private float _damageModifier;
 
+        public float DamageModifier
+        {
+            get { return _damageModifier; }
+            set
+            {
+                _damageModifier = value;
+                foreach (Weapon weapon in Weapons)
+                {
+                    weapon.DamageModifier = value;
+                }
+            }
+        }
         public Weapon[] Weapons { get; private set; }
         public uint CurrentWeaponId { get; set; }
+
         public Weapon CurrentWeapon
         {
             get { return Weapons[CurrentWeaponId]; }
         }
 
         public int EnergyRegen { get; set; }
+
         public int MaxEnergy
         {
             get { return _energy.Max; }
@@ -59,24 +72,27 @@ namespace BattleSystem
         }
 
 
-        public PlayerBattleStats(Solidity solidity, int maxEnergy, int energyRegen, Weapon[] weapons): base(solidity)
+        public PlayerBattleStats([NotNull] Solidity solidity, int maxEnergy, int energyRegen, float damageModifier,
+            Weapon[] weapons) : base(solidity)
         {
             _energy = new BoundedInt(maxEnergy, 0, maxEnergy);
             EnergyRegen = energyRegen;
             Weapons = weapons;
+            DamageModifier = damageModifier;
+
+
             CurrentWeaponId = 0;
         }
-
     }
 
     [Serializable]
-    public class EnemyBattleStats:BattleStats
+    public class EnemyBattleStats : BattleStats
     {
         public float Velocity;
 
         public int Damage;
 
-        public EnemyBattleStats(Solidity solidity, float velocity,int damage) : base(solidity)
+        public EnemyBattleStats(Solidity solidity, float velocity, int damage) : base(solidity)
         {
             Velocity = velocity;
             Damage = damage;

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 1804983250205214, guid: 8f839a50b2b4e48489f335bfa9e14e7e, type: 2}
   Sprite: {fileID: 21300000, guid: 1895f821cd3330f4ba99dbfd1786a35a, type: 3}
-  Damage: 40
-  Velocity: 10
+  BaseDamage: 40
+  Velocity: 5
   Id: aura_1
   ShootCost: 15
   Cooldown: 5
-  Ttl: 1
+  Ttl: 3
+  DamageModifier: 1.2

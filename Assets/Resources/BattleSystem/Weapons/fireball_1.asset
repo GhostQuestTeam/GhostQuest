@@ -13,9 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 1317742615186908, guid: db2d2c3abec3da04e84ab32158a5b06e, type: 2}
   Sprite: {fileID: 21300000, guid: be5a88bc29f7c404bacb59bde2488578, type: 3}
-  Damage: 20
+  BaseDamage: 20
   Velocity: 20
   Id: fireball_1
   ShootCost: 5
   Cooldown: 1
   Ttl: 1
+  DamageModifier: 1.2
