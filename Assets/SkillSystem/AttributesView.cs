@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace SkillSystem
@@ -25,6 +26,8 @@ namespace SkillSystem
         private Text _upgradePoints;
 
         #endregion
+
+        public event Action OnClose;
 
         private void _InitElementReferences()
         {
@@ -68,13 +71,10 @@ namespace SkillSystem
             _okButton.onClick.AddListener(() =>
             {
                 GameController.GameStats.ConfirmUpgrades();
-                gameObject.SetActive(false);
+                Close();
             });
 
-            _backButton.onClick.AddListener(() =>
-            {
-                gameObject.SetActive(false);
-            });
+            _backButton.onClick.AddListener(Close);
 
             GameController.GameStats.OnAttributeChange += _UpdateView;
         }
@@ -92,6 +92,14 @@ namespace SkillSystem
             _InitElementReferences();
             _InitEvents();
             _UpdateView();
+        }
+
+        public void Close()
+        {
+            gameObject.SetActive(false);
+            if(OnClose != null){
+                OnClose();
+            }
         }
 
         private void OnDestroy()

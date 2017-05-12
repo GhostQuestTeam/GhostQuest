@@ -15,17 +15,24 @@ public class GameController:MonoBehaviour
         _battleStateController = GameObject.Find("BattleStateController").GetComponent<BattleStateController>();
         _battleStateController.OnWon += BattleWonHandle;
         _battleStateController.OnLose += BattleLoseHandle;
+        SceneManager.sceneLoaded += OnSceneLoad;
 
     }
 
     void Start()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 1)
+
+
+    }
+
+    void OnSceneLoad(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.buildIndex == 1)
         {
             _battleStateController.StartBattle(new Dictionary<string, int>(){{"skull_ghost", 5}});
         }
-
     }
+
 
     public void StartBattle()
     {
