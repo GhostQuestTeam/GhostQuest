@@ -7,12 +7,14 @@ public class MapUIController:MonoBehaviour
     private GameObject _attributesPanel;
     private GameObject _skillsButton;
     private GameObject _levelPanel;
+    private GameObject _startButton;
 
     void Start()
     {
         _attributesPanel = GameObject.Find("AttributesPanel");
         _skillsButton = GameObject.Find("Skills");
         _levelPanel = GameObject.Find("LevelPanel");
+        _startButton = GameObject.Find("StartButton");
 
         _UpdateLevelView();
         _skillsButton.GetComponent<Button>().onClick.AddListener(() =>
@@ -20,6 +22,8 @@ public class MapUIController:MonoBehaviour
             _attributesPanel.SetActive(true);
             _skillsButton.SetActive(false);
             _levelPanel.SetActive(false);
+            _startButton.SetActive(false);
+            
         });
 
         _attributesPanel.GetComponent<AttributesView>().OnClose += CloseHandler;
@@ -49,5 +53,6 @@ public class MapUIController:MonoBehaviour
         _attributesPanel.SetActive(false);
         _skillsButton.SetActive(true);
         _levelPanel.SetActive(true);
+        _startButton.SetActive(true);
     }
 }

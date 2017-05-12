@@ -29,7 +29,7 @@ public class PointOfInterestFactory : MonoBehaviour
     {
         if (scene.buildIndex == 1)
         {
-            Execute();
+            //Execute();
         }
     }
 
@@ -73,6 +73,7 @@ public class PointOfInterestFactory : MonoBehaviour
     public void PointOfInterestWithLocationProvider_OnPOIClose(object sender,
         PointOfInterestWithLocationProvider.PointOfInterestEventArgs e)
     {
+        //_btnToEnable.gameObject.SetActive(true);
         if (e.IsPlayerNear)
         {
             _btnToEnable.gameObject.SetActive(true);
