@@ -27,6 +27,7 @@ public class PointOfInterestWithLocationProvider : MonoBehaviour {
     {
         public Vector2d Location;
         public bool IsPlayerNear;
+        public GameObject UnityObject;
     }
 
     public event EventHandler<PointOfInterestEventArgs> OnPOIClose;
@@ -107,6 +108,7 @@ public class PointOfInterestWithLocationProvider : MonoBehaviour {
 
         PointOfInterestEventArgs e = new PointOfInterestEventArgs();
         e.Location = _myMapLocation;
+        e.UnityObject = gameObject;
 
         //if player really near
 		if (distanceToInterest < _myDistanceCutOff) {

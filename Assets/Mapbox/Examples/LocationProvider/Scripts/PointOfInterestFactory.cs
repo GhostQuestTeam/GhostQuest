@@ -51,11 +51,18 @@ public class PointOfInterestFactory : MonoBehaviour {
         {
             _btnToEnable.gameObject.SetActive(true);
             _btnToEnable.GetComponentInChildren<Text>().text = "Я кнопочка. Я синяя. Координаты: (" + e.Location.x.ToString() + ", " + e.Location.y.ToString() + ")";
+            _btnToEnable.GetComponent<Button>().onClick.AddListener(() => MyLambdaSwitchEnablingMethod(e.UnityObject, false));
         }
         else
         {
             _btnToEnable.gameObject.SetActive(false);
+            _btnToEnable.GetComponent<Button>().onClick.RemoveAllListeners();
         }
     }//handler
+
+    public void MyLambdaSwitchEnablingMethod(GameObject obj, bool state)
+    {
+        obj.SetActive(state);
+    }
 
 }
