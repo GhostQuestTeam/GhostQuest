@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>5.5.2f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -347,6 +349,7 @@
     <Compile Include="Assets\Mapbox\Core\mapbox-sdk-cs\Utils\Vector2d\Vector2d.cs" />
     <Compile Include="Assets\Mapbox\Examples\Drive\Direction\DirectionsHelper.cs" />
     <Compile Include="Assets\Mapbox\Examples\LocationProvider\Scripts\BuildMapAtLocation.cs" />
+    <Compile Include="Assets\Mapbox\Examples\LocationProvider\Scripts\MapUIController.cs" />
     <Compile Include="Assets\Mapbox\Examples\LocationProvider\Scripts\PointOfInterestFactory.cs" />
     <Compile Include="Assets\Mapbox\Examples\LocationProvider\Scripts\PointOfInterestMetadata.cs" />
     <Compile Include="Assets\Mapbox\Examples\LocationProvider\Scripts\PointOfInterestWithLocationProvider.cs" />

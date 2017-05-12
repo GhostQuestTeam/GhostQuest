@@ -2,25 +2,41 @@
 using System.Collections.Generic;
 using Mapbox.Utils;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PointOfInterestFactory : MonoBehaviour {
-
+public class PointOfInterestFactory : MonoBehaviour
+{
     private GameObject _root;
-    public List<Vector2d> _points = new List<Vector2d>();
+    public HashSet<Vector2d> _points = new HashSet<Vector2d>();
     public GameObject PointOfInterestPrefab;
-    public Button _btnToEnable;
+    private Button _btnToEnable;
 
-	// Use this for initialization
-	void Start () {
+    private void Awake()
+    {
+        DontDestroyOnLoad(transform.gameObject);
         InitPoints();
-        Execute();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        SceneManager.sceneLoaded += OnSceneLoad;
+    }
+
+    // Use this for initialization
+    void Start()
+    {
+
+    }
+
+    void OnSceneLoad(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.buildIndex == 1)
+        {
+            Execute();
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+    }
 
     public void InitPoints()
     {
@@ -32,9 +48,11 @@ public class PointOfInterestFactory : MonoBehaviour {
 
     public void Execute()
     {
+        _btnToEnable = GameObject.Find("StartBattle").GetComponent<Button>();
+        _btnToEnable.gameObject.SetActive(false);
         _root = new GameObject("POIRoot");
 
-        foreach(Vector2d point in _points)
+        foreach (Vector2d point in _points)
         {
             GameObject newPOI = Instantiate(PointOfInterestPrefab, _root.transform, true);
             PointOfInterestWithLocationProvider poiwtp = newPOI.GetComponent<PointOfInterestWithLocationProvider>();
@@ -42,16 +60,23 @@ public class PointOfInterestFactory : MonoBehaviour {
             poiwtp.OnPOIClose += PointOfInterestWithLocationProvider_OnPOIClose;
             poiwtp._metadata = new PointOfInterestMetadata();
         }
-
     }
 
-    public void PointOfInterestWithLocationProvider_OnPOIClose(object sender, PointOfInterestWithLocationProvider.PointOfInterestEventArgs e)
+    public void PointOfInterestWithLocationProvider_OnPOIClose(object sender,
+        PointOfInterestWithLocationProvider.PointOfInterestEventArgs e)
     {
-        if(e.IsPlayerNear)
+        if (e.IsPlayerNear)
         {
             _btnToEnable.gameObject.SetActive(true);
-            _btnToEnable.GetComponentInChildren<Text>().text = "Я кнопочка. Я синяя. Координаты: (" + e.Location.x.ToString() + ", " + e.Location.y.ToString() + ")";
-            _btnToEnable.GetComponent<Button>().onClick.AddListener(() => MyLambdaSwitchEnablingMethod(e.UnityObject.transform.GetChild(0).gameObject, false));
+            _btnToEnable.GetComponentInChildren<Text>().text =
+                "Я кнопочка. Я синяя. Координаты: (" + e.Location.x.ToString() + ", " + e.Location.y.ToString() + ")";
+            var tmp = e.Location;
+            _btnToEnable.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                MyLambdaSwitchEnablingMethod(e.UnityObject.transform.GetChild(0).gameObject, false);
+                _btnToEnable.gameObject.SetActive(false);
+                _points.Remove(tmp);
+            });
         }
         else
         {
@@ -59,11 +84,10 @@ public class PointOfInterestFactory : MonoBehaviour {
             _btnToEnable.GetComponent<Button>().onClick.RemoveAllListeners();
             e.UnityObject.SetActive(false);
         }
-    }//handler
+    } //handler
 
     public void MyLambdaSwitchEnablingMethod(GameObject obj, bool state)
     {
         obj.SetActive(state);
     }
-
 }

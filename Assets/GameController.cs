@@ -27,7 +27,11 @@ public class GameController:MonoBehaviour
 
     void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
-        if (scene.buildIndex == 1)
+        if (scene.buildIndex == 0)
+        {
+            SceneManager.LoadScene(1);
+        }
+        if (scene.buildIndex == 2)
         {
             _battleStateController.StartBattle(new Dictionary<string, int>(){{"skull_ghost", 5}});
         }
@@ -36,8 +40,7 @@ public class GameController:MonoBehaviour
 
     public void StartBattle()
     {
-        SceneManager.LoadScene(1);
-
+        SceneManager.LoadScene(2);
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -49,13 +52,13 @@ public class GameController:MonoBehaviour
     public void BattleWonHandle(int score)
     {
         GameStats.AddExp(score);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
         Debug.Log("Level: " + GameStats.Level + "  " + GameStats.CurrentExp + "/" + GameStats.ExpToLevel);
     }
 
     public void BattleLoseHandle()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
 }
