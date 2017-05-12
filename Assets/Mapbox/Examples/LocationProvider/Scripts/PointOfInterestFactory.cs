@@ -57,6 +57,7 @@ public class PointOfInterestFactory : MonoBehaviour {
         {
             _btnToEnable.gameObject.SetActive(false);
             _btnToEnable.GetComponent<Button>().onClick.RemoveAllListeners();
+            e.UnityObject.SetActive(false);
         }
     }//handler
 
