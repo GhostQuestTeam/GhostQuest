@@ -10,7 +10,6 @@ public class GameController:MonoBehaviour
     private BattleStateController _battleStateController;
 
     public string[] AllowableGhosts = { "shadow_skull", "devil_mask"};
-//"skull_ghost", "white_skull",
     void Awake() {
         DontDestroyOnLoad(transform.gameObject);
         _battleStateController = GameObject.Find("BattleStateController").GetComponent<BattleStateController>();

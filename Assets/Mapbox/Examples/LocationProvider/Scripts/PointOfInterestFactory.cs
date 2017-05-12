@@ -68,8 +68,8 @@ public class PointOfInterestFactory : MonoBehaviour
         if (e.IsPlayerNear)
         {
             _btnToEnable.gameObject.SetActive(true);
-            _btnToEnable.GetComponentInChildren<Text>().text =
-                "Я кнопочка. Я синяя. Координаты: (" + e.Location.x.ToString() + ", " + e.Location.y.ToString() + ")";
+//            _btnToEnable.GetComponentInChildren<Text>().text =
+//                "Я кнопочка. Я синяя. Координаты: (" + e.Location.x.ToString() + ", " + e.Location.y.ToString() + ")";
             var tmp = e.Location;
             _btnToEnable.GetComponent<Button>().onClick.AddListener(() =>
             {
