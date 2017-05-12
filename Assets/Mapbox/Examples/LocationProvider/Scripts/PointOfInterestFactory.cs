@@ -44,6 +44,14 @@ public class PointOfInterestFactory : MonoBehaviour
         _points.Add(new Vector2d(55.8254, 49.0535));
         _points.Add(new Vector2d(55.8260, 49.0532));
         _points.Add(new Vector2d(55.8265, 49.0534));
+
+        _points.Add(new Vector2d(55.7469576, 37.6427946)); //Grand Stalinist high-rise aparment bloc, built 1938-1952. One of the so-called Seven Sisters
+        _points.Add(new Vector2d(55.9286013, 37.2414645)); //усадьба Середниково
+        _points.Add(new Vector2d(55.756784, 37.5886476)); //Особняк Миндовского
+        _points.Add(new Vector2d(55.7514667, 37.6179211)); //Царь-пушка
+        _points.Add(new Vector2d(55.7508375, 37.6184908)); //Царь-колокол
+        _points.Add(new Vector2d(55.7653354, 37.6054856)); //памятник А. С. Пушкину
+        _points.Add(new Vector2d(55.7559664, 37.5891178)); //Городская усадьба С.С. Гагарина
     }
 
     public void Execute()

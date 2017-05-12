@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d792b3c2f84447e8841775ed57a8b3f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxEnemiesOnScene: 7
+  MaxEnemiesOnScene: 4
   MinDistance: 30
   MaxDistance: 70
 --- !u!4 &937666029
@@ -556,7 +556,7 @@ MonoBehaviour:
       Defence: 8
       MaxHealth: 60
     Velocity: 0.1
-    Damage: 30
+    Damage: 20
   DeathDelay: 1
   Score: 500
 --- !u!4 &1103165272
@@ -616,6 +616,11 @@ Prefab:
     - target: {fileID: 1610133106367324, guid: 0608d70787f403342a3ecc16817e8402, type: 2}
       propertyPath: m_Name
       value: devil_mask
+      objectReference: {fileID: 0}
+    - target: {fileID: 114285130002303768, guid: 0608d70787f403342a3ecc16817e8402,
+        type: 2}
+      propertyPath: BattleStats.Damage
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0608d70787f403342a3ecc16817e8402, type: 2}
