@@ -73,8 +73,7 @@ namespace BattleSystem
                 var newEnemy = BattleObjectFactory.SpawnEnemy(randEnemy, randPosition);
                 newEnemy.GetComponent<EnemyBehavior>().BattleController.OnDeath +=
                     () =>EnemyDeathHandle(newEnemy) ;
-                newEnemy.transform.SetParent(_player.transform);
-                newEnemy.transform.localPosition = newEnemy.transform.position;
+                newEnemy.transform.position += _player.transform.position;
                 _currentEnemies.Add(newEnemy);
             }
         }
