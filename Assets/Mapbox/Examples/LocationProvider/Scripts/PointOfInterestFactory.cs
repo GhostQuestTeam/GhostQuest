@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Mapbox.Utils;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -29,7 +31,7 @@ public class PointOfInterestFactory : MonoBehaviour
     {
         if (scene.buildIndex == 1)
         {
-            //Execute();
+           Execute();
         }
     }
 
@@ -57,7 +59,8 @@ public class PointOfInterestFactory : MonoBehaviour
     public void Execute()
     {
         _btnToEnable = GameObject.Find("StartBattle").GetComponent<Button>();
-        _btnToEnable.gameObject.SetActive(false);
+
+        //_btnToEnable.gameObject.SetActive(false);
         _root = new GameObject("POIRoot");
 
         foreach (Vector2d point in _points)
@@ -73,27 +76,30 @@ public class PointOfInterestFactory : MonoBehaviour
     public void PointOfInterestWithLocationProvider_OnPOIClose(object sender,
         PointOfInterestWithLocationProvider.PointOfInterestEventArgs e)
     {
-        //_btnToEnable.gameObject.SetActive(true);
+        var tmp = e.Location;
+        UnityAction listener = () =>
+        {
+            MyLambdaSwitchEnablingMethod(e.UnityObject.transform.GetChild(0).gameObject, false);
+            _btnToEnable.gameObject.SetActive(false);
+            _points.Remove(tmp);
+        };
         if (e.IsPlayerNear)
         {
             _btnToEnable.gameObject.SetActive(true);
-//            _btnToEnable.GetComponentInChildren<Text>().text =
-//                "Я кнопочка. Я синяя. Координаты: (" + e.Location.x.ToString() + ", " + e.Location.y.ToString() + ")";
-            var tmp = e.Location;
-            _btnToEnable.GetComponent<Button>().onClick.AddListener(() =>
-            {
-                MyLambdaSwitchEnablingMethod(e.UnityObject.transform.GetChild(0).gameObject, false);
-                _btnToEnable.gameObject.SetActive(false);
-                _points.Remove(tmp);
-            });
+            _btnToEnable.onClick.AddListener(listener);
         }
         else
         {
             _btnToEnable.gameObject.SetActive(false);
-            _btnToEnable.GetComponent<Button>().onClick.RemoveAllListeners();
+            _btnToEnable.onClick.RemoveListener(listener);
             e.UnityObject.SetActive(false);
         }
     } //handler
+
+    public void RemoveOnClick()
+    {
+
+    }
 
     public void MyLambdaSwitchEnablingMethod(GameObject obj, bool state)
     {

@@ -5,31 +5,32 @@ using UnityEngine.UI;
 public class MapUIController:MonoBehaviour
 {
     private GameObject _attributesPanel;
-    private GameObject _skillsButton;
-    private GameObject _levelPanel;
-    private GameObject _startButton;
+    private GameObject _mainPanel;
 
     void Start()
     {
         _attributesPanel = GameObject.Find("AttributesPanel");
-        _skillsButton = GameObject.Find("Skills");
-        _levelPanel = GameObject.Find("LevelPanel");
-        _startButton = GameObject.Find("StartButton");
+        _mainPanel = GameObject.Find("MainPanel");
 
         _UpdateLevelView();
-        _skillsButton.GetComponent<Button>().onClick.AddListener(() =>
+        GameObject.Find("Skills").GetComponent<Button>().onClick.AddListener(() =>
         {
             _attributesPanel.SetActive(true);
-            _skillsButton.SetActive(false);
-            _levelPanel.SetActive(false);
-            _startButton.SetActive(false);
+            _mainPanel.SetActive(false);
             
         });
+
+        var gameController = GameObject.Find("GameController").GetComponent<GameController>();
+
+        GameObject.Find("StartBattle").GetComponent<Button>().onClick.AddListener(
+                () => gameController.StartBattle()
+        );
+
+        GameObject.Find("StartBattle").SetActive(false);
 
         _attributesPanel.GetComponent<AttributesView>().OnClose += CloseHandler;
 
         _attributesPanel.SetActive(false);
-
     }
 
     private void _UpdateLevelView()
@@ -51,8 +52,6 @@ public class MapUIController:MonoBehaviour
     void CloseHandler()
     {
         _attributesPanel.SetActive(false);
-        _skillsButton.SetActive(true);
-        _levelPanel.SetActive(true);
-        _startButton.SetActive(true);
+        _mainPanel.SetActive(true);
     }
 }

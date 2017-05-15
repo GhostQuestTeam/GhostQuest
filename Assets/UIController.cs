@@ -36,8 +36,6 @@ public class UIController : MonoBehaviour
         _initStartBattleButton();
         _initEvents();
 
-
-
         _canvas.GetComponent<Canvas>().worldCamera = Camera.main;
     }
 
