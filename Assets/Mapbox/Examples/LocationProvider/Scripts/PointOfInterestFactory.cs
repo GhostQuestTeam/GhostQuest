@@ -22,14 +22,14 @@ public class PointOfInterestFactory : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        //Execute();
     }
 
     void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
         if (scene.buildIndex == 1)
         {
-            //Execute();
+            Execute();
         }
     }
 
@@ -56,16 +56,17 @@ public class PointOfInterestFactory : MonoBehaviour
 
     public void Execute()
     {
-        _btnToEnable = GameObject.Find("StartBattle").GetComponent<Button>();
-        _btnToEnable.gameObject.SetActive(false);
+        //_btnToEnable = GameObject.Find("StartBattle").GetComponent<Button>();
+        //_btnToEnable.gameObject.SetActive(false);
         _root = new GameObject("POIRoot");
 
         foreach (Vector2d point in _points)
         {
             GameObject newPOI = Instantiate(PointOfInterestPrefab, _root.transform, true);
+            newPOI.SetActive(true);
             PointOfInterestWithLocationProvider poiwtp = newPOI.GetComponent<PointOfInterestWithLocationProvider>();
             poiwtp._myMapLocation = point;
-            poiwtp.OnPOIClose += PointOfInterestWithLocationProvider_OnPOIClose;
+            //poiwtp.OnPOIClose += PointOfInterestWithLocationProvider_OnPOIClose;
             poiwtp._metadata = new PointOfInterestMetadata();
         }
     }
