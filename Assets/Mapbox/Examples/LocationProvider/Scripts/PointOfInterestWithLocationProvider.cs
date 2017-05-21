@@ -90,7 +90,7 @@ public class PointOfInterestWithLocationProvider : MonoBehaviour {
 
 	void Update()
 	{
-		transform.position = Vector3.Lerp(transform.position, _targetPosition, Time.deltaTime * _positionFollowFactor);
+		transform.position = _targetPosition;
 		checkDistanceToPlayerEvklid ();
 	}
 

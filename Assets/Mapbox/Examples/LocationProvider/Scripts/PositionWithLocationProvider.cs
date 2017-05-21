@@ -32,7 +32,7 @@ namespace Mapbox.Examples.LocationProvider
 		ILocationProvider _locationProvider;
 		public ILocationProvider LocationProvider
 		{
-			private get
+			get
 			{
 				if (_locationProvider == null)
 				{
