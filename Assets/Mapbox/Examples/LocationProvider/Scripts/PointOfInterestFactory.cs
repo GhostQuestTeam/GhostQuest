@@ -13,22 +13,21 @@ public class PointOfInterestFactory : MonoBehaviour
     public HashSet<Vector2d> _points = new HashSet<Vector2d>();
     public GameObject PointOfInterestPrefab;
     private Button _btnToEnable;
-    private bool _isInited = false;
-    private int _mySceneBuildIndex = 0;
 
     private void Awake()
     {
-        DontDestroyOnLoad(transform.gameObject);
-        SceneManager.sceneLoaded += OnSceneLoad;
+        //DontDestroyOnLoad(transform.gameObject);
+        //SceneManager.sceneLoaded += OnSceneLoad;
     }
 
     // Use this for initialization
     void Start()
     {
-           
+        InitPoints();
+        Execute();
     }
 
-    void OnSceneLoad(Scene scene, LoadSceneMode mode)
+    /*void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
         if (scene.buildIndex == _mySceneBuildIndex)
         {
@@ -40,7 +39,7 @@ public class PointOfInterestFactory : MonoBehaviour
             }
         }
 
-    }
+    }*/
 
     // Update is called once per frame
     void Update()
@@ -73,7 +72,7 @@ public class PointOfInterestFactory : MonoBehaviour
         _btnToEnable = GameObject.Find("StartButton").GetComponent<Button>();
         _btnToEnable.gameObject.SetActive(false);
         _root = new GameObject("POIRoot");
-        GameObject.DontDestroyOnLoad(_root.gameObject);
+        _root.transform.SetParent(GameObject.Find("LocationProviderRoot").transform);
 
         foreach (Vector2d point in _points)
         {
@@ -95,12 +94,9 @@ public class PointOfInterestFactory : MonoBehaviour
             MyLambdaSwitchEnablingMethod(e.UnityObject.transform.GetChild(0).gameObject, false);
             _btnToEnable.gameObject.SetActive(false);
             _points.Remove(tmp);
-            SceneManager.LoadScene(1);
+            GameObject.Find("SceneAgregator").GetComponent<SceneAgregator>().switchToScene("TmpScene");
         };
-
-        if (SceneManager.GetActiveScene().buildIndex != _mySceneBuildIndex)
-            return;
-
+   
         if (e.IsPlayerNear)
         {
             _btnToEnable.gameObject.SetActive(true);

@@ -6,6 +6,6 @@ public class TmpSceneBackHandler : MonoBehaviour {
 
 	public void OnBackClick()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        GameObject.Find("SceneAgregator").GetComponent<SceneAgregator>().switchToScene("LocationProvider");
     }
 }
