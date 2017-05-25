@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Mapbox.Utils;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -29,7 +31,11 @@ public class PointOfInterestFactory : MonoBehaviour
     {
         if (scene.buildIndex == 1)
         {
+<<<<<<< HEAD
             Execute();
+=======
+           Execute();
+>>>>>>> ab5d427881603661fb521e3a251ac284fe264a05
         }
     }
 
@@ -45,6 +51,9 @@ public class PointOfInterestFactory : MonoBehaviour
         _points.Add(new Vector2d(55.8260, 49.0532));
         _points.Add(new Vector2d(55.8265, 49.0534));
 
+        _points.Add(new Vector2d(55.6884, 37.4629));
+
+
         _points.Add(new Vector2d(55.7469576, 37.6427946)); //Grand Stalinist high-rise aparment bloc, built 1938-1952. One of the so-called Seven Sisters
         _points.Add(new Vector2d(55.9286013, 37.2414645)); //усадьба Середниково
         _points.Add(new Vector2d(55.756784, 37.5886476)); //Особняк Миндовского
@@ -56,7 +65,12 @@ public class PointOfInterestFactory : MonoBehaviour
 
     public void Execute()
     {
+<<<<<<< HEAD
         //_btnToEnable = GameObject.Find("StartBattle").GetComponent<Button>();
+=======
+        _btnToEnable = GameObject.Find("StartBattle").GetComponent<Button>();
+
+>>>>>>> ab5d427881603661fb521e3a251ac284fe264a05
         //_btnToEnable.gameObject.SetActive(false);
         _root = new GameObject("POIRoot");
 
@@ -74,27 +88,30 @@ public class PointOfInterestFactory : MonoBehaviour
     public void PointOfInterestWithLocationProvider_OnPOIClose(object sender,
         PointOfInterestWithLocationProvider.PointOfInterestEventArgs e)
     {
-        //_btnToEnable.gameObject.SetActive(true);
+        var tmp = e.Location;
+        UnityAction listener = () =>
+        {
+            MyLambdaSwitchEnablingMethod(e.UnityObject.transform.GetChild(0).gameObject, false);
+            _btnToEnable.gameObject.SetActive(false);
+            _points.Remove(tmp);
+        };
         if (e.IsPlayerNear)
         {
             _btnToEnable.gameObject.SetActive(true);
-//            _btnToEnable.GetComponentInChildren<Text>().text =
-//                "Я кнопочка. Я синяя. Координаты: (" + e.Location.x.ToString() + ", " + e.Location.y.ToString() + ")";
-            var tmp = e.Location;
-            _btnToEnable.GetComponent<Button>().onClick.AddListener(() =>
-            {
-                MyLambdaSwitchEnablingMethod(e.UnityObject.transform.GetChild(0).gameObject, false);
-                _btnToEnable.gameObject.SetActive(false);
-                _points.Remove(tmp);
-            });
+            _btnToEnable.onClick.AddListener(listener);
         }
         else
         {
             _btnToEnable.gameObject.SetActive(false);
-            _btnToEnable.GetComponent<Button>().onClick.RemoveAllListeners();
+            _btnToEnable.onClick.RemoveListener(listener);
             e.UnityObject.SetActive(false);
         }
     } //handler
+
+    public void RemoveOnClick()
+    {
+
+    }
 
     public void MyLambdaSwitchEnablingMethod(GameObject obj, bool state)
     {
