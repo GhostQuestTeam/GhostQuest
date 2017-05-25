@@ -13,30 +13,33 @@ public class PointOfInterestFactory : MonoBehaviour
     public HashSet<Vector2d> _points = new HashSet<Vector2d>();
     public GameObject PointOfInterestPrefab;
     private Button _btnToEnable;
+    private bool _isInited = false;
+    private int _mySceneBuildIndex = 0;
 
     private void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
-        InitPoints();
         SceneManager.sceneLoaded += OnSceneLoad;
     }
 
     // Use this for initialization
     void Start()
     {
-        //Execute();
+           
     }
 
     void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
-        if (scene.buildIndex == 1)
+        if (scene.buildIndex == _mySceneBuildIndex)
         {
-<<<<<<< HEAD
-            Execute();
-=======
-           Execute();
->>>>>>> ab5d427881603661fb521e3a251ac284fe264a05
+            _btnToEnable = GameObject.Find("StartButton").GetComponent<Button>();
+            if (!_isInited)
+            {
+                InitPoints();
+                Execute();
+            }
         }
+
     }
 
     // Update is called once per frame
@@ -65,22 +68,20 @@ public class PointOfInterestFactory : MonoBehaviour
 
     public void Execute()
     {
-<<<<<<< HEAD
         //_btnToEnable = GameObject.Find("StartBattle").GetComponent<Button>();
-=======
-        _btnToEnable = GameObject.Find("StartBattle").GetComponent<Button>();
 
->>>>>>> ab5d427881603661fb521e3a251ac284fe264a05
-        //_btnToEnable.gameObject.SetActive(false);
+        _btnToEnable = GameObject.Find("StartButton").GetComponent<Button>();
+        _btnToEnable.gameObject.SetActive(false);
         _root = new GameObject("POIRoot");
+        GameObject.DontDestroyOnLoad(_root.gameObject);
 
         foreach (Vector2d point in _points)
         {
-            GameObject newPOI = Instantiate(PointOfInterestPrefab, _root.transform, true);
+            GameObject newPOI = Instantiate(PointOfInterestPrefab, 100 * Vector3.down, Quaternion.identity, _root.transform);
             newPOI.SetActive(true);
             PointOfInterestWithLocationProvider poiwtp = newPOI.GetComponent<PointOfInterestWithLocationProvider>();
             poiwtp._myMapLocation = point;
-            //poiwtp.OnPOIClose += PointOfInterestWithLocationProvider_OnPOIClose;
+            poiwtp.OnPOIClose += PointOfInterestWithLocationProvider_OnPOIClose;
             poiwtp._metadata = new PointOfInterestMetadata();
         }
     }
@@ -94,7 +95,12 @@ public class PointOfInterestFactory : MonoBehaviour
             MyLambdaSwitchEnablingMethod(e.UnityObject.transform.GetChild(0).gameObject, false);
             _btnToEnable.gameObject.SetActive(false);
             _points.Remove(tmp);
+            SceneManager.LoadScene(1);
         };
+
+        if (SceneManager.GetActiveScene().buildIndex != _mySceneBuildIndex)
+            return;
+
         if (e.IsPlayerNear)
         {
             _btnToEnable.gameObject.SetActive(true);

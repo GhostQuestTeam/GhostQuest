@@ -162,12 +162,12 @@ GameObject:
   - component: {fileID: 203355324}
   - component: {fileID: 203355323}
   m_Layer: 5
-  m_Name: Button
+  m_Name: StartButton
   m_TagString: BtnToEnable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &203355322
 RectTransform:
   m_ObjectHideFlags: 0
@@ -485,7 +485,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PointOfInterestPrefab: {fileID: 1037555086737886, guid: dfe014c2ccdf32c4daedb84d4f4832ca,
     type: 2}
-  _btnToEnable: {fileID: 203355323}
 --- !u!1001 &589790606
 Prefab:
   m_ObjectHideFlags: 0
