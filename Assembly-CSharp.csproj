@@ -328,6 +328,8 @@
      <Compile Include="Assets\Mapbox\Examples\_resources\Scripts\ForwardGeocodeUserInput.cs" />
      <Compile Include="Assets\Mapbox\Examples\_resources\Scripts\ReverseGeocodeUserInput.cs" />
      <Compile Include="Assets\Mapbox\Examples\_resources\Scripts\Slippy.cs" />
+     <Compile Include="Assets\Networking\AuthController.cs" />
+     <Compile Include="Assets\Networking\GameSparksManager.cs" />
      <Compile Include="Assets\PlayerGameStats.cs" />
      <Compile Include="Assets\QuestSystem\Quest.cs" />
      <Compile Include="Assets\QuestSystem\QuestManager.cs" />
@@ -459,11 +461,11 @@
  <Reference Include="UnityEngine.VR">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
  </Reference>
- <Reference Include="Mapbox.Json">
- <HintPath>E:/Unity Projects/GhostQuest/Assets/Mapbox/Core/Plugins/ThirdParty/Mapbox.Json/Net35/Mapbox.Json.dll</HintPath>
+ <Reference Include="BouncyCastle_GameSparks">
+ <HintPath>E:/Unity Projects/GhostQuest/Assets/GameSparks/Plugins/BouncyCastle_GameSparks.dll</HintPath>
  </Reference>
- <Reference Include="UniWeb-Free">
- <HintPath>E:/Unity Projects/GhostQuest/Assets/UniWeb-Free/UniWeb-Free.dll</HintPath>
+ <Reference Include="GameSparks.Api">
+ <HintPath>E:/Unity Projects/GhostQuest/Assets/GameSparks/Plugins/GameSparks.Api.dll</HintPath>
  </Reference>
  <Reference Include="GameSparks">
  <HintPath>E:/Unity Projects/GhostQuest/Assets/GameSparks/Plugins/GameSparks.dll</HintPath>
@@ -471,11 +473,11 @@
  <Reference Include="GameSparksRT">
  <HintPath>E:/Unity Projects/GhostQuest/Assets/GameSparks/Plugins/GameSparksRT.dll</HintPath>
  </Reference>
- <Reference Include="GameSparks.Api">
- <HintPath>E:/Unity Projects/GhostQuest/Assets/GameSparks/Plugins/GameSparks.Api.dll</HintPath>
+ <Reference Include="Mapbox.Json">
+ <HintPath>E:/Unity Projects/GhostQuest/Assets/Mapbox/Core/Plugins/ThirdParty/Mapbox.Json/Net35/Mapbox.Json.dll</HintPath>
  </Reference>
- <Reference Include="BouncyCastle_GameSparks">
- <HintPath>E:/Unity Projects/GhostQuest/Assets/GameSparks/Plugins/BouncyCastle_GameSparks.dll</HintPath>
+ <Reference Include="UniWeb-Free">
+ <HintPath>E:/Unity Projects/GhostQuest/Assets/UniWeb-Free/UniWeb-Free.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
