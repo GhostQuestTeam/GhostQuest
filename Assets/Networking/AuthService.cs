@@ -34,5 +34,23 @@ namespace Networking
                     }
                 );
         }
+
+        public void Login(string login, string password)
+        {
+            new GameSparks.Api.Requests.AuthenticationRequest()
+                .SetUserName(login)
+                .SetPassword(password)
+                .Send((response) =>
+                {
+                    if (!response.HasErrors)
+                    {
+                        Debug.Log("Player Authenticated...");
+                    }
+                    else
+                    {
+                        Debug.Log("Error Authenticating Player...");
+                    }
+                });
+        }
     }
 }
