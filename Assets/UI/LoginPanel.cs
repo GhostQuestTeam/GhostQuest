@@ -22,5 +22,10 @@ namespace UI
                 _password.text
             );
         }
+
+        public void Logout()
+        {
+            AuthService.Instance.Logout();
+        }
     }
 }

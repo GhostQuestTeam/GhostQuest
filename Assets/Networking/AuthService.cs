@@ -52,5 +52,16 @@ namespace Networking
                     }
                 });
         }
+
+        public void Logout()
+        {
+            new GameSparks.Api.Requests.LogEventRequest().SetEventKey("LOGOUT").Send((response) => {
+                if (!response.HasErrors) {
+                    Debug.Log("Success logout");
+                } else {
+                    Debug.Log("Error logout...");
+                }
+            });
+        }
     }
 }
