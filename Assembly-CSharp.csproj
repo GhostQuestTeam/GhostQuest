@@ -328,7 +328,7 @@
      <Compile Include="Assets\Mapbox\Examples\_resources\Scripts\ForwardGeocodeUserInput.cs" />
      <Compile Include="Assets\Mapbox\Examples\_resources\Scripts\ReverseGeocodeUserInput.cs" />
      <Compile Include="Assets\Mapbox\Examples\_resources\Scripts\Slippy.cs" />
-     <Compile Include="Assets\Networking\AuthController.cs" />
+     <Compile Include="Assets\Networking\AuthService.cs" />
      <Compile Include="Assets\Networking\GameSparksManager.cs" />
      <Compile Include="Assets\PlayerGameStats.cs" />
      <Compile Include="Assets\QuestSystem\Quest.cs" />
@@ -339,6 +339,7 @@
      <Compile Include="Assets\SaveGamestateController.cs" />
      <Compile Include="Assets\SkillSystem\AttributesView.cs" />
      <Compile Include="Assets\SkillSystem\SkillTypes.cs" />
+     <Compile Include="Assets\UI\RegistrationPanel.cs" />
      <Compile Include="Assets\UIController.cs" />
      <Compile Include="Assets\UniWeb-Free\Examples\ConditionalGet.cs" />
      <Compile Include="Assets\UniWeb-Free\Examples\ForceProxyExample.cs" />

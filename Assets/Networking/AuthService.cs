@@ -2,25 +2,25 @@
 
 namespace Networking
 {
-    public class AuthController
+    public class AuthService
     {
-        private static readonly AuthController instance = new AuthController();
+        private static readonly AuthService instance = new AuthService();
 
-        private AuthController()
+        private AuthService()
         {
         }
 
-        public static AuthController Instance
+        public static AuthService Instance
         {
             get { return instance; }
         }
 
-        public void Register()
+        public void Register(string login, string nickname, string password)
         {
             new GameSparks.Api.Requests.RegistrationRequest()
-                .SetDisplayName("Randy")
-                .SetPassword("test_password_123456")
-                .SetUserName("Test User 1")
+                .SetDisplayName(nickname)
+                .SetPassword(password)
+                .SetUserName(login)
                 .Send((response) =>
                     {
                         if (!response.HasErrors)

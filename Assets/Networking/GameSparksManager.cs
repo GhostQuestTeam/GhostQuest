@@ -16,7 +16,6 @@ namespace Networking
             {
                 Destroy(this.gameObject);
             }
-            AuthController.Instance.Register();
         }
 
         // Use this for initialization
