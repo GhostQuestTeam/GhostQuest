@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,12 +10,13 @@ public class SceneAgregator : MonoBehaviour
 
     float _hardcodedTimeDelta = 0.2f;
     private string _currentScene;
-
+    private int _notLoadedScenes;
+    
     public class LoadedScene
     {
         public string _name;
         public GameObject _rootObj;
-
+        
         public LoadedScene(Scene scene)
         {
             _name = scene.name;
@@ -22,6 +24,8 @@ public class SceneAgregator : MonoBehaviour
         }
     }
 
+    public event Action OnAllScenesLoad;
+    
     public Dictionary<string, LoadedScene> _LoadedScences = new Dictionary<string, LoadedScene>();
 
     // Use this for initialization
@@ -31,6 +35,7 @@ public class SceneAgregator : MonoBehaviour
         _currentScene = _agregatorScene.name;
         _LoadedScences.Add(_agregatorScene.name, new LoadedScene(_agregatorScene));
         SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+        _notLoadedScenes = 2;
         SceneManager.LoadScene(1, LoadSceneMode.Additive);
         SceneManager.LoadScene(2, LoadSceneMode.Additive);
     }
@@ -55,6 +60,11 @@ public class SceneAgregator : MonoBehaviour
         loadedScene._rootObj.SetActive(isRootEnabled);
 
         _LoadedScences.Add(loadedScene._name, loadedScene);
+        _notLoadedScenes--;
+        if (_notLoadedScenes == 0 && OnAllScenesLoad != null)
+        {
+            OnAllScenesLoad();
+        }
         switchToScene("LocationProvider");
     }
 
