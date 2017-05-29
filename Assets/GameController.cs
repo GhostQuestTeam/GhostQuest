@@ -8,14 +8,19 @@ public class GameController:MonoBehaviour
     public static PlayerGameStats GameStats = new PlayerGameStats();
 
     private BattleStateController _battleStateController;
+    private SceneAgregator _sceneAgregator;
 
     public string[] AllowableGhosts = { "shadow_skull", "devil_mask"};
+    
     void Awake() {
         DontDestroyOnLoad(transform.gameObject);
         _battleStateController = GameObject.Find("BattleStateController").GetComponent<BattleStateController>();
+        _sceneAgregator = GameObject.Find("SceneAgregator").GetComponent<SceneAgregator>();
+        _sceneAgregator.OnSceneChange += OnSceneChange;
+        _sceneAgregator.OnAllScenesLoad += OnAllScenesLoad;
         _battleStateController.OnWon += BattleWonHandle;
         _battleStateController.OnLose += BattleLoseHandle;
-        SceneManager.sceneLoaded += OnSceneLoad;
+        //SceneManager.sceneLoaded += OnSceneLoad;
 
     }
 
@@ -25,15 +30,16 @@ public class GameController:MonoBehaviour
 
     }
 
-    void OnSceneLoad(Scene scene, LoadSceneMode mode)
+    private void OnAllScenesLoad()
     {
-        if (scene.buildIndex == 0)
+        _sceneAgregator.switchToScene("map");
+    } 
+        
+    private void OnSceneChange(string sceneName)
+    {
+        if (sceneName == "battle")
         {
-            SceneManager.LoadScene(1);
-        }
-        if (scene.buildIndex == 2)
-        {
-            _battleStateController.StartBattle(RandomGhosts()); //new Dictionary<string, int>(){{"skull_ghost", 5}});
+            _battleStateController.StartBattle(RandomGhosts()); 
         }
     }
 
@@ -50,7 +56,7 @@ public class GameController:MonoBehaviour
 
     public void StartBattle()
     {
-        SceneManager.LoadScene(2);
+        _sceneAgregator.switchToScene("battle");
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -62,13 +68,13 @@ public class GameController:MonoBehaviour
     public void BattleWonHandle(int score)
     {
         GameStats.AddExp(score);
-        SceneManager.LoadScene(1);
+        _sceneAgregator.switchToScene("map");
         Debug.Log("Level: " + GameStats.Level + "  " + GameStats.CurrentExp + "/" + GameStats.ExpToLevel);
     }
 
     public void BattleLoseHandle()
     {
-        SceneManager.LoadScene(1);
+        _sceneAgregator.switchToScene("map");
     }
 
 }

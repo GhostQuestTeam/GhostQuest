@@ -69,7 +69,7 @@ public class PointOfInterestFactory : MonoBehaviour
     {
         //_btnToEnable = GameObject.Find("StartBattle").GetComponent<Button>();
 
-        _btnToEnable = GameObject.Find("StartButton").GetComponent<Button>();
+        _btnToEnable = GameObject.Find("StartBattle").GetComponent<Button>();
         _btnToEnable.gameObject.SetActive(false);
         _root = new GameObject("POIRoot");
         _root.transform.SetParent(GameObject.Find("LocationProviderRoot").transform);
@@ -94,7 +94,6 @@ public class PointOfInterestFactory : MonoBehaviour
             MyLambdaSwitchEnablingMethod(e.UnityObject.transform.GetChild(0).gameObject, false);
             _btnToEnable.gameObject.SetActive(false);
             _points.Remove(tmp);
-            GameObject.Find("SceneAgregator").GetComponent<SceneAgregator>().switchToScene("TmpScene");
         };
    
         if (e.IsPlayerNear)

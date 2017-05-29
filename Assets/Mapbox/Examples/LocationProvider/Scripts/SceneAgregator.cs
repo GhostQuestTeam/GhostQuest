@@ -11,12 +11,12 @@ public class SceneAgregator : MonoBehaviour
     float _hardcodedTimeDelta = 0.2f;
     private string _currentScene;
     private int _notLoadedScenes;
-    
+
     public class LoadedScene
     {
         public string _name;
         public GameObject _rootObj;
-        
+
         public LoadedScene(Scene scene)
         {
             _name = scene.name;
@@ -25,7 +25,8 @@ public class SceneAgregator : MonoBehaviour
     }
 
     public event Action OnAllScenesLoad;
-    
+    public event Action<string> OnSceneChange;
+
     public Dictionary<string, LoadedScene> _LoadedScences = new Dictionary<string, LoadedScene>();
 
     // Use this for initialization
@@ -65,7 +66,6 @@ public class SceneAgregator : MonoBehaviour
         {
             OnAllScenesLoad();
         }
-        switchToScene("LocationProvider");
     }
 
     void Update()
@@ -81,5 +81,9 @@ public class SceneAgregator : MonoBehaviour
         _LoadedScences[_currentScene]._rootObj.SetActive(false);
         _LoadedScences[name]._rootObj.SetActive(true);
         _currentScene = name;
+        if (OnSceneChange != null)
+        {
+            OnSceneChange(name);
+        }
     }
 }

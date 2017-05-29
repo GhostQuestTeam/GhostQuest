@@ -73,7 +73,7 @@ namespace BattleSystem
         private IWeaponSpeedController _weaponSpeedController;
         public event Action<int> OnEnergyChanged;
 
-        private const float _TOLERANCE = 0.00000001f;
+        private const float _TOLERANCE = 0.000001f;
 
         public PlayerBattleStats BattleStats
         {

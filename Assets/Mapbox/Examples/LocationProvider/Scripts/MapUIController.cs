@@ -26,7 +26,7 @@ public class MapUIController:MonoBehaviour
                 () => gameController.StartBattle()
         );
 
-        GameObject.Find("StartBattle").SetActive(false);
+        //GameObject.Find("StartBattle").SetActive(false);
 
         _attributesPanel.GetComponent<AttributesView>().OnClose += CloseHandler;
 

@@ -33,8 +33,6 @@ namespace BattleSystem
 
         void Start()
         {
-            Debug.Log("Start BattleStateController");
-
         }
 
         public void StartBattle(Dictionary<string, int> enemies)
@@ -50,7 +48,7 @@ namespace BattleSystem
                Destroy(enemy);
             }
             _currentEnemies.Clear();
-            _player.BattleController.Reset();
+            _player.Reset();
 
             SpawnEnemies();
         }
@@ -99,6 +97,7 @@ namespace BattleSystem
 
         public void PlayerDeathHandle()
         {
+            _player.BattleController.OnDeath -= PlayerDeathHandle;
             if (!_isBattleFinished)
             {
                 _isBattleFinished = true;

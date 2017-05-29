@@ -32,7 +32,7 @@ public class PlayerBehaviourFromAccelerometer : MonoBehaviour {
     {
         moveWithKeys();
         rotateWithKeys();
-        doAccelerometerMovement();
+       //doAccelerometerMovement();
     }
 
    

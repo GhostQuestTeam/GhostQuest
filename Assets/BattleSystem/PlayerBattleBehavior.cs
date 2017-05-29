@@ -26,8 +26,14 @@ namespace BattleSystem
             }
             BattleController = new PlayerBattleController(battleStats, this, this);
 
+            
+        }
+
+        public void Reset()
+        {
             StartCoroutine(Regenerate());
             StartCoroutine(Oscillate());
+            BattleController.Reset();
         }
 
         void Update()
