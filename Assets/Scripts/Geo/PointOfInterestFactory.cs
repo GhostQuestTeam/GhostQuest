@@ -25,8 +25,7 @@ namespace HauntedCity.Geo
 
         public void InitPoints()
         {
-            //smth
-            _points.Add(new Vector2d(55.8254, 49.0535));
+              _points.Add(new Vector2d(55.8254, 49.0535));
             _points.Add(new Vector2d(55.8260, 49.0532));
             _points.Add(new Vector2d(55.8265, 49.0534));
 
