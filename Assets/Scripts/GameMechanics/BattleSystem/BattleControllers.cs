@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BattleSystem
+namespace HauntedCity.GameMechanics.BattleSystem
 {
     public interface IShooter
     {

@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+﻿using HauntedCity.Networking;
+using UnityEngine;
 using UnityEngine.UI;
-using Networking;
 
-namespace UI
+namespace HauntedCity.UI
 {
     public class LoginPanel:MonoBehaviour
     {

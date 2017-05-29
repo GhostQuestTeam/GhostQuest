@@ -1,4 +1,4 @@
-﻿namespace Utils
+﻿namespace HauntedCity.Utils
 {
     public class BoundedInt
     {

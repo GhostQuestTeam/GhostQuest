@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Networking
+namespace HauntedCity.Utils
 {
     public class GameSparksManager : MonoBehaviour
     {

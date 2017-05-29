@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace BattleSystem
+namespace  HauntedCity.GameMechanics.BattleSystem
 {
     [CreateAssetMenu(fileName = "New weapon", menuName = "Battle System/Weapon")]
     public class Weapon:ScriptableObject

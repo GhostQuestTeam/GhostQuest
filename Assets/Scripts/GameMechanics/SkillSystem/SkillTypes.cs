@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using BattleSystem;
+using HauntedCity.GameMechanics.BattleSystem;
 using UnityEngine;
 
-namespace SkillSystem
+namespace HauntedCity.GameMechanics.SkillSystem
 {
     public class AbstractSkill : ScriptableObject
     {

@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using BattleSystem;
+using HauntedCity.GameMechanics.Main;
 using UnityEngine;
 
-namespace BattleSystem
+namespace  HauntedCity.GameMechanics.BattleSystem
 {
     public class PlayerBattleBehavior : MonoBehaviour, IShooter, IWeaponSpeedController
     {

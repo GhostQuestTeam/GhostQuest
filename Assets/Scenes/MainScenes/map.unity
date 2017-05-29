@@ -868,7 +868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c57173fef834bb94098b65581fb4f0e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MapVisualization: {fileID: 11400000, guid: 38f8ab26621bb424d86f009e3dce979f, type: 2}
+  MapVisualization: {fileID: 11400000, guid: c5c72886d2e9404439c5411592dbdc8f, type: 2}
   TileSize: 30
   _snapYToZero: 0
   LatLng: 55.746666666667, 37.536944444444
@@ -1363,7 +1363,7 @@ Prefab:
     - target: {fileID: 224485218827907766, guid: 472d7ffa2808bc14e9187d3b91c030a9,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -272.7611
+      value: -273.3086
       objectReference: {fileID: 0}
     - target: {fileID: 224032941768641836, guid: 472d7ffa2808bc14e9187d3b91c030a9,
         type: 2}
@@ -1383,7 +1383,7 @@ Prefab:
     - target: {fileID: 224032941768641836, guid: 472d7ffa2808bc14e9187d3b91c030a9,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -272.7611
+      value: -273.3086
       objectReference: {fileID: 0}
     - target: {fileID: 224493999064253286, guid: 472d7ffa2808bc14e9187d3b91c030a9,
         type: 2}
@@ -1403,7 +1403,7 @@ Prefab:
     - target: {fileID: 224493999064253286, guid: 472d7ffa2808bc14e9187d3b91c030a9,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -272.7611
+      value: -273.3086
       objectReference: {fileID: 0}
     - target: {fileID: 224520303493229712, guid: 472d7ffa2808bc14e9187d3b91c030a9,
         type: 2}
@@ -1423,7 +1423,7 @@ Prefab:
     - target: {fileID: 224520303493229712, guid: 472d7ffa2808bc14e9187d3b91c030a9,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -272.7611
+      value: -273.3086
       objectReference: {fileID: 0}
     - target: {fileID: 224520303493229712, guid: 472d7ffa2808bc14e9187d3b91c030a9,
         type: 2}
@@ -1433,7 +1433,7 @@ Prefab:
     - target: {fileID: 224520303493229712, guid: 472d7ffa2808bc14e9187d3b91c030a9,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 545.5222
+      value: 546.6172
       objectReference: {fileID: 0}
     - target: {fileID: 224789986361440736, guid: 472d7ffa2808bc14e9187d3b91c030a9,
         type: 2}
@@ -1628,7 +1628,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1934621221}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 061d2afb48ace4fd19611279b6cf732f, type: 3}
+  m_Script: {fileID: 11500000, guid: c7b595447d858124eae28917e040a23c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _rotationFollowFactor: 1
@@ -1642,10 +1642,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1934621221}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bb39d89f6f3742418be7c93b4259637, type: 3}
+  m_Script: {fileID: 11500000, guid: a2c76a8d7ce0c6c47b007205bf4287c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _positionFollowFactor: 0.5
+  _positionFollowFactor: 1
   _useTransformLocationProvider: 0
   _mapControllerObj: {fileID: 114606470}
 --- !u!4 &1934621224

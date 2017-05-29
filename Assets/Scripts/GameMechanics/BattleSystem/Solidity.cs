@@ -1,7 +1,7 @@
 ﻿using System;
-using Utils;
+using HauntedCity.Utils;
 
-namespace BattleSystem
+namespace HauntedCity.GameMechanics.BattleSystem
 {
     //Уровень просчности объекта
     [Serializable]

@@ -1,4 +1,5 @@
-﻿using SkillSystem;
+﻿using HauntedCity.GameMechanics.Main;
+using HauntedCity.UI;
 using UnityEngine;
 using UnityEngine.UI;
 

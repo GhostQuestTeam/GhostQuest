@@ -1,8 +1,10 @@
 ﻿using System;
+using HauntedCity.GameMechanics.Main;
+using HauntedCity.GameMechanics.SkillSystem;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SkillSystem
+namespace HauntedCity.UI
 {
     //TODO Избавиться от копипасты
     public class AttributesView : MonoBehaviour

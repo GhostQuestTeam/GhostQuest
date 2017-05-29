@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using HauntedCity.GameMechanics.BattleSystem;
+using UnityEngine;
 using UnityEngine.UI;
 
-namespace BattleSystem
+namespace HauntedCity.UI
 {
     public class BattleInterfaceController : MonoBehaviour
     {

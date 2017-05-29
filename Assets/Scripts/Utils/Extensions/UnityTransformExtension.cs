@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Extensions
+namespace HauntedCity.Utils.Extensions
 {
     public static class UnityTransformExtension
     {

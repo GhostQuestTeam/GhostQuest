@@ -1,9 +1,9 @@
 ﻿using System;
+using HauntedCity.Utils;
 using JetBrains.Annotations;
 using UnityEngine;
-using Utils;
 
-namespace BattleSystem
+namespace  HauntedCity.GameMechanics.BattleSystem
 {
     [Serializable]
     public class BattleStats

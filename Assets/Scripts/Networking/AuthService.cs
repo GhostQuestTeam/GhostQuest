@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Networking
+namespace HauntedCity.Networking
 {
     public class AuthService
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace BattleSystem
+namespace  HauntedCity.GameMechanics.BattleSystem
 {
     public delegate void ShellEffect(BattleStats stats);
 

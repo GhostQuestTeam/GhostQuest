@@ -1,40 +1,42 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using BattleSystem;
 using UnityEngine;
 
-public class ShellBehavior : MonoBehaviour
+namespace HauntedCity.GameMechanics.BattleSystem
 {
-    [SerializeField] public Weapon Weapon;
-
-    // Use this for initialization
-    void Start()
+    public class ShellBehavior : MonoBehaviour
     {
-        StartCoroutine(DestroyAfterTimeout());
-    }
+        [SerializeField] public Weapon Weapon;
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
+        // Use this for initialization
+        void Start()
+        {
+            StartCoroutine(DestroyAfterTimeout());
+        }
 
-    public IEnumerator DestroyAfterTimeout()
-    {
-        yield return new WaitForSeconds(Weapon.Ttl);
-        Destroy(gameObject);
-    }
+        // Update is called once per frame
+        void Update()
+        {
+        }
 
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player")) return;
-        Destroy(gameObject);
-    }
+        public IEnumerator DestroyAfterTimeout()
+        {
+            yield return new WaitForSeconds(Weapon.Ttl);
+            Destroy(gameObject);
+        }
+
+        public void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.CompareTag("Player")) return;
+            Destroy(gameObject);
+        }
 
 
-    public void Launch(Vector3 startPosition, Vector3 velocityVector)
-    {
-        gameObject.transform.position = startPosition;
-        Rigidbody rb = GetComponent<Rigidbody>();
-        rb.velocity = velocityVector * Weapon.Velocity;
+        public void Launch(Vector3 startPosition, Vector3 velocityVector)
+        {
+            gameObject.transform.position = startPosition;
+            Rigidbody rb = GetComponent<Rigidbody>();
+            rb.velocity = velocityVector * Weapon.Velocity;
+        }
     }
 }

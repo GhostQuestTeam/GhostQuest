@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using HauntedCity.GameMechanics.Main;
 using UnityEngine;
 
 public class TrivialPlayerBehaviourFromAccelerometer : MonoBehaviour {

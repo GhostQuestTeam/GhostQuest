@@ -336,8 +336,11 @@
      <Compile Include="Assets\Scripts\GameMechanics\Main\GyroControl.cs" />
      <Compile Include="Assets\Scripts\GameMechanics\SkillSystem\PlayerGameStats.cs" />
      <Compile Include="Assets\Scripts\GameMechanics\SkillSystem\SkillTypes.cs" />
+     <Compile Include="Assets\Scripts\Geo\BuildMapAtLocation.cs" />
      <Compile Include="Assets\Scripts\Geo\PointOfInterestFactory.cs" />
      <Compile Include="Assets\Scripts\Geo\PointOfInterestWithLocationProvider.cs" />
+     <Compile Include="Assets\Scripts\Geo\PositionWithLocationProvider.cs" />
+     <Compile Include="Assets\Scripts\Geo\RotateWithLocationProvider.cs" />
      <Compile Include="Assets\Scripts\Networking\AuthService.cs" />
      <Compile Include="Assets\Scripts\UI\AttributesView.cs" />
      <Compile Include="Assets\Scripts\UI\BackgroundPlaneController.cs" />
