@@ -60,7 +60,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
             return CurrentHealth != 0;
         }
 
-        public Solidity(uint maxHealth, int defence, int regenPoints = 0)
+        public Solidity(uint maxHealth, int defence=0, int regenPoints = 0)
         {
             MaxHealth = maxHealth;
             Defence = defence;

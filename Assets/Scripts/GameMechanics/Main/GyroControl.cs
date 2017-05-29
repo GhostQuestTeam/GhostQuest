@@ -23,15 +23,12 @@ namespace HauntedCity.GameMechanics.Main
 
         private bool EnableGyro()
         {
-            if (SystemInfo.supportsGyroscope)
-            {
-                gyro = Input.gyro;
-                gyro.enabled = true;
-                cameraContainer.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
-                rot = new Quaternion(0, 0, 1, 0);
-                return true;
-            }
-            return false;
+            if (!SystemInfo.supportsGyroscope) return false;
+            gyro = Input.gyro;
+            gyro.enabled = true;
+            cameraContainer.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
+            rot = new Quaternion(0, 0, 1, 0);
+            return true;
         }
 
         void Update()

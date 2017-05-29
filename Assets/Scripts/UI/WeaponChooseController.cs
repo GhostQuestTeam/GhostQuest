@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using HauntedCity.GameMechanics.BattleSystem;
+using UnityEngine;
 using UnityEngine.UI;
 
-namespace HauntedCity.GameMechanics.BattleSystem
+namespace HauntedCity.UI
 {
     public class WeaponChooseController : MonoBehaviour
     {

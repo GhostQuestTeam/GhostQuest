@@ -12,16 +12,22 @@ namespace HauntedCity.GameMechanics.BattleSystem
 
     public class WeaponLoader
     {
-        private const string _ROOT_FOLDER = "BattleSystem/Weapons/";
-
-        public static Weapon LoadWeapon(string weaponId)
+        public const string DEFAULT_ROOT_FOLDER = "BattleSystem/Weapons/";
+        private string _rootFolder;
+        
+        public Weapon LoadWeapon(string weaponId)
         {
-            var resource = Resources.Load(_ROOT_FOLDER + weaponId) as Weapon;
+            var resource = Resources.Load(_rootFolder + weaponId) as Weapon;
             if (resource == null)
             {
                 throw new WeaponLoaderException("Weapon with id: " + weaponId + " not found");
             }
             return resource;
+        }
+
+        public WeaponLoader(string rootFolder= DEFAULT_ROOT_FOLDER)
+        {
+            _rootFolder = rootFolder;
         }
     }
 }

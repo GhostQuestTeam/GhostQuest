@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using HauntedCity.GameMechanics.Main;
 using UnityEngine;
@@ -12,26 +13,35 @@ namespace HauntedCity.GameMechanics.BattleSystem
         private int _direction = -1;
 
         public string[] WeaponIDs;
+        
+        
 
         private Dictionary<string, bool> _blockedWeapons;
 
         void Awake()
         {
+            
+        }
+
+        void Start()
+        {
             _blockedWeapons = new Dictionary<string, bool>();
-            var battleStats = BattleStatsCalculator.CalculateBattleStats(GameController.GameStats);
+            PlayerBattleStats battleStats = null;
+            //var battleStats = BattleStatsCalculator.CalculateBattleStats(GameController.GameStats);
+            
+            BattleController = new PlayerBattleController(null, this, this);
+        }
+
+        public void Reset(PlayerBattleStats battleStats)
+        {
             foreach (var weapon in battleStats.Weapons)
             {
                 _blockedWeapons.Add(weapon.Id, false);
-                Debug.Log(weapon.Damage);
             }
-            BattleController = new PlayerBattleController(battleStats, this, this);
-        }
-
-        public void Reset()
-        {
-            StartCoroutine(Regenerate());
-            StartCoroutine(Oscillate());
+            BattleController.BattleStats = battleStats;
             BattleController.Reset();
+            StartCoroutine(Regenerate());
+            //StartCoroutine(Oscillate());
         }
 
         void Update()

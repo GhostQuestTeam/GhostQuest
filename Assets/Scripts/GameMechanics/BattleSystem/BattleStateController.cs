@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using HauntedCity.GameMechanics.Main;
 using UnityEngine;
+using Zenject;
 using Random = UnityEngine.Random;
 
 namespace HauntedCity.GameMechanics.BattleSystem
@@ -12,8 +14,9 @@ namespace HauntedCity.GameMechanics.BattleSystem
         public float MinDistance = 30f;
         public float MaxDistance = 70f;
 
+        
+        private BattleStatsCalculator _battleStatsCalculator;
 
-        private const string _ENEMIES_PREFABS_FOLDER = "BattleSystem/Enemies/";
         private bool _isBattleFinished;
         private int _totalScore;
 
@@ -25,9 +28,14 @@ namespace HauntedCity.GameMechanics.BattleSystem
         public event Action<int> OnWon;
         public event Action OnLose;
 
+        [Inject]
+        public void InitializeDependencies(BattleStatsCalculator battleStatsCalculator)
+        {
+            _battleStatsCalculator = battleStatsCalculator;
+        }
+        
         void Awake()
         {
-            DontDestroyOnLoad(transform.gameObject);
             _currentEnemies = new HashSet<GameObject>();
         }
 
@@ -48,7 +56,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
                 Destroy(enemy);
             }
             _currentEnemies.Clear();
-            _player.Reset();
+            _player.Reset(_battleStatsCalculator.CalculateBattleStats(GameController.GameStats));
 
             SpawnEnemies();
         }

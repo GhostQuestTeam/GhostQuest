@@ -3,13 +3,22 @@ using System.Collections.Generic;
 using HauntedCity.GameMechanics.BattleSystem;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace HauntedCity.UI
 {
     public class IndicatorsView : MonoBehaviour
     {
-        private PlayerBattleController _battleController;
+        //private PlayerBattleController _battleController;
 
+        private PlayerBattleBehavior _player;
+
+        [Inject]
+        public void InitializeDependencies(PlayerBattleBehavior player)
+        {
+            _player = player;
+        }
+        
         private Transform _energy;
         private Transform _health;
 
@@ -19,20 +28,17 @@ namespace HauntedCity.UI
         // Use this for initialization
         void Start()
         {
-            _battleController = GameObject.FindWithTag("Player").GetComponent<PlayerBattleBehavior>().BattleController;
+            //_player.BattleController = GameObject.FindWithTag("Player").GetComponent<PlayerBattleBehavior>().BattleController;
 
-            _battleController.OnEnergyChanged += UpdateEnergy;
-            _battleController.OnDamage += UpdateHealth;
-            _battleController.OnReset += ResetHandle;
+            _player.BattleController.OnEnergyChanged += UpdateEnergy;
+            _player.BattleController.OnDamage += UpdateHealth;
+            _player.BattleController.OnReset += ResetHandle;
 
             _health = transform.Find("HealthPanel");
             _energy = transform.Find("EnergyPanel");
 
             _healthBar = _health.Find("HealthBar");
             _energyBar = _energy.Find("EnergyBar");
-
-            UpdateEnergy(0);
-            UpdateHealth(0);
         }
 
         // Update is called once per frame
@@ -42,15 +48,15 @@ namespace HauntedCity.UI
 
         void OnDestroy()
         {
-            _battleController.OnEnergyChanged -= UpdateEnergy;
-            _battleController.OnDamage -= UpdateHealth;
-            _battleController.OnReset -= ResetHandle;
+            _player.BattleController.OnEnergyChanged -= UpdateEnergy;
+            _player.BattleController.OnDamage -= UpdateHealth;
+            _player.BattleController.OnReset -= ResetHandle;
         }
 
         public void UpdateEnergy(int delta)
         {
-            var currentEnergy = _battleController.BattleStats.CurrentEnergy;
-            var maxEnergy = _battleController.BattleStats.MaxEnergy;
+            var currentEnergy = _player.BattleController.BattleStats.CurrentEnergy;
+            var maxEnergy = _player.BattleController.BattleStats.MaxEnergy;
             _energy.GetComponentInChildren<Text>().text = currentEnergy + "/" + maxEnergy;
 
             var energyPercent = (float) currentEnergy / maxEnergy;
@@ -59,8 +65,8 @@ namespace HauntedCity.UI
 
         public void UpdateHealth(int delta)
         {
-            var currentHealth = _battleController.BattleStats.CurrentHealth;
-            var maxHealth = _battleController.BattleStats.MaxHealth;
+            var currentHealth = _player.BattleController.BattleStats.CurrentHealth;
+            var maxHealth = _player.BattleController.BattleStats.MaxHealth;
             _health.GetComponentInChildren<Text>().text = currentHealth + "/" + maxHealth;
 
             var healthPercent = (float) currentHealth / maxHealth;

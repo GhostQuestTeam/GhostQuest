@@ -328,7 +328,6 @@
      <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\ShellBehavior.cs" />
      <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\Solidity.cs" />
      <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\Weapon.cs" />
-     <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\WeaponChooseController.cs" />
      <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\WeaponInfo.cs" />
      <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\WeaponLoader.cs" />
      <Compile Include="Assets\Scripts\GameMechanics\Main\BattleStatsCalculator.cs" />
@@ -349,10 +348,13 @@
      <Compile Include="Assets\Scripts\UI\LoginPanel.cs" />
      <Compile Include="Assets\Scripts\UI\MapUIController.cs" />
      <Compile Include="Assets\Scripts\UI\RegistrationPanel.cs" />
+     <Compile Include="Assets\Scripts\UI\WeaponChooseController.cs" />
      <Compile Include="Assets\Scripts\Utils\BoundedInt.cs" />
      <Compile Include="Assets\Scripts\Utils\CameraClickHandler.cs" />
      <Compile Include="Assets\Scripts\Utils\Extensions\UnityTransformExtension.cs" />
      <Compile Include="Assets\Scripts\Utils\GameSparksManager.cs" />
+     <Compile Include="Assets\Scripts\Utils\Installers\BattleInstaller.cs" />
+     <Compile Include="Assets\Scripts\Utils\Installers\GameInstaller.cs" />
      <Compile Include="Assets\Scripts\Utils\SceneAgregator.cs" />
      <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\VortexEffect.shader" />
      <None Include="Assets\Libs\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
@@ -397,11 +399,13 @@
      <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionCurves.shader" />
      <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionCurvesSimple.shader" />
      <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\CreaseApply.shader" />
+     <None Include="Assets\Plugins\Zenject\LICENSE.txt" />
      <None Include="Assets\Libs\Mapbox\Core\Plugins\link.xml" />
      <None Include="Assets\Libs\Standard Assets\Effects\ToonShading\Shaders\ToonLitOutline.shader" />
      <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Luminance.shader" />
      <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionSelective.shader" />
      <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\Bokeh34.shader" />
+     <None Include="Assets\Plugins\Zenject\Version.txt" />
      <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\CameraMotionBlurDX11.shader" />
      <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\SeparableBlurPlus.shader" />
      <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\BlurEffectConeTaps.shader" />

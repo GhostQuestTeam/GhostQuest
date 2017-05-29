@@ -3,6 +3,7 @@ using HauntedCity.GameMechanics.BattleSystem;
 using HauntedCity.GameMechanics.SkillSystem;
 using HauntedCity.Utils;
 using UnityEngine;
+using Zenject;
 
 namespace HauntedCity.GameMechanics.Main
 {
@@ -15,20 +16,23 @@ namespace HauntedCity.GameMechanics.Main
 
         public string[] AllowableGhosts = {"shadow_skull", "devil_mask"};
 
+        [Inject]
+        public void InitializeDependencies(BattleStateController battleStateController, SceneAgregator sceneAgregator)
+        {
+            _battleStateController = battleStateController;
+            _sceneAgregator = sceneAgregator;
+        }
+        
         void Awake()
         {
-            DontDestroyOnLoad(transform.gameObject);
-            _battleStateController = GameObject.Find("BattleStateController").GetComponent<BattleStateController>();
-            _sceneAgregator = GameObject.Find("SceneAgregator").GetComponent<SceneAgregator>();
-            _sceneAgregator.OnSceneChange += OnSceneChange;
-            _sceneAgregator.OnAllScenesLoad += OnAllScenesLoad;
-            _battleStateController.OnWon += BattleWonHandle;
-            _battleStateController.OnLose += BattleLoseHandle;
-            //SceneManager.sceneLoaded += OnSceneLoad;
         }
 
         void Start()
         {
+            _sceneAgregator.OnSceneChange += OnSceneChange;
+            _sceneAgregator.OnAllScenesLoad += OnAllScenesLoad;
+            _battleStateController.OnWon += BattleWonHandle;
+            _battleStateController.OnLose += BattleLoseHandle;
         }
 
         private void OnAllScenesLoad()

@@ -78,6 +78,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
         public PlayerBattleStats BattleStats
         {
             get { return battleStats as PlayerBattleStats; }
+            set { battleStats = value; }
         }
 
         public void TryShoot()
