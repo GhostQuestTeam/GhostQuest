@@ -1,18 +1,17 @@
 ﻿using System;
-using UnityEngine;
 
-namespace  HauntedCity.GameMechanics.BattleSystem
+namespace HauntedCity.GameMechanics.BattleSystem
 {
     public delegate void ShellEffect(BattleStats stats);
 
     [Serializable]
     public class ShellInfo
     {
-
         public ShellEffect Effect;
 
         //Не свойства, чтобы были видны из инспектора Unity
         public int Damage;
+
         public float Velocity;
 
         public ShellInfo(int damage, int velocity, ShellEffect effect = null)
@@ -25,9 +24,9 @@ namespace  HauntedCity.GameMechanics.BattleSystem
     [Serializable]
     public class WeaponInfo
     {
-        public string Id;//{ get; }
-        public int ShootCost;// { get; set; }
-        public float Cooldown;// { get; set; }
+        public string Id; //{ get; }
+        public int ShootCost; // { get; set; }
+        public float Cooldown; // { get; set; }
 
         public WeaponInfo(string id, int shootCost, float cooldown)
         {
@@ -35,6 +34,5 @@ namespace  HauntedCity.GameMechanics.BattleSystem
             ShootCost = shootCost;
             Cooldown = cooldown;
         }
-
     }
 }

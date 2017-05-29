@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace HauntedCity.UI
 {
-    public class LoginPanel:MonoBehaviour
+    public class LoginPanel : MonoBehaviour
     {
         private InputField _login;
         private InputField _password;

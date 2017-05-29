@@ -19,7 +19,8 @@ namespace HauntedCity.UI
             var weapons = _battleController.BattleStats.Weapons;
             var battleStats = _battleController.BattleStats;
 
-            transform.Find("ButtonShoot").GetComponent<Button>().onClick.AddListener(()=> _battleController.TryShoot());
+            transform.Find("ButtonShoot").GetComponent<Button>().onClick
+                .AddListener(() => _battleController.TryShoot());
 
             _weaponButtonPrefab = Resources.Load(WeaponPrefabPath) as GameObject;
 
@@ -29,16 +30,12 @@ namespace HauntedCity.UI
             {
                 var weapon = battleStats.Weapons[i];
                 var button = Instantiate(_weaponButtonPrefab);
-                //var sprite = Resources.Load<Sprite>(_SPRITES_FOLDER + weapon.Id);
                 button.transform.Find("WeaponImage").GetComponent<Image>().sprite = weapon.Sprite;
 
                 button.transform.SetParent(_weaponsPanel);
-                var tmp = (uint)i;
+                var tmp = (uint) i;
                 button.GetComponent<Button>().onClick.AddListener(() => battleStats.CurrentWeaponId = tmp);
             }
-
-
-
         }
     }
 }

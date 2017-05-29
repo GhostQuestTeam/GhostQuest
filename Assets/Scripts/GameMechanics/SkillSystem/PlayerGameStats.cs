@@ -67,7 +67,6 @@ namespace HauntedCity.GameMechanics.SkillSystem
             {
                 OnAttributeChange();
             }
-
         }
 
         public void DecAttribute(PlayerAttributes attribute)
@@ -113,6 +112,7 @@ namespace HauntedCity.GameMechanics.SkillSystem
         #endregion
 
         #region Skills
+
         public List<AbstractSkill> Skills = new List<AbstractSkill>();
         private HashSet<string> _learnedSkills;
         public int SkillPoints { get; private set; }
@@ -120,8 +120,8 @@ namespace HauntedCity.GameMechanics.SkillSystem
 
         public void AddSkill(AbstractSkill skill)
         {
-            if(_learnedSkills.Contains(skill.name) ) return;
-            if (SkillPoints == 0 ) return;
+            if (_learnedSkills.Contains(skill.name)) return;
+            if (SkillPoints == 0) return;
             if (skill.Dependencies.Any(dependency => !_learnedSkills.Contains(dependency))) return;
 
             _learnedSkills.Add(skill.name);
@@ -156,6 +156,7 @@ namespace HauntedCity.GameMechanics.SkillSystem
                 _NextLevel();
             }
         }
+
         #endregion
 
         public PlayerGameStats()
@@ -173,5 +174,4 @@ namespace HauntedCity.GameMechanics.SkillSystem
             UpgradePoints = UPGRADE_POINTS_PER_LEVEL;
         }
     }
-
 }

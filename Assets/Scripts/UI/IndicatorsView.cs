@@ -45,7 +45,6 @@ namespace HauntedCity.UI
             _battleController.OnEnergyChanged -= UpdateEnergy;
             _battleController.OnDamage -= UpdateHealth;
             _battleController.OnReset -= ResetHandle;
-
         }
 
         public void UpdateEnergy(int delta)
@@ -74,6 +73,4 @@ namespace HauntedCity.UI
             UpdateHealth(0);
         }
     }
-
 }
-

@@ -3,7 +3,7 @@ using HauntedCity.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MapUIController:MonoBehaviour
+public class MapUIController : MonoBehaviour
 {
     private GameObject _attributesPanel;
     private GameObject _mainPanel;
@@ -18,13 +18,12 @@ public class MapUIController:MonoBehaviour
         {
             _attributesPanel.SetActive(true);
             _mainPanel.SetActive(false);
-            
         });
 
         var gameController = GameObject.Find("GameController").GetComponent<GameController>();
 
         GameObject.Find("StartBattle").GetComponent<Button>().onClick.AddListener(
-                () => gameController.StartBattle()
+            () => gameController.StartBattle()
         );
 
         //GameObject.Find("StartBattle").SetActive(false);
@@ -42,12 +41,12 @@ public class MapUIController:MonoBehaviour
 
         GameObject.Find("Level").GetComponent<Text>().text = level.ToString();
         GameObject.Find("Exp").GetComponent<Text>().text = currentExp + "/" + expToLevel;
-        GameObject.Find("ExpBar").GetComponent<Image>().fillAmount = (float)currentExp/ expToLevel;
+        GameObject.Find("ExpBar").GetComponent<Image>().fillAmount = (float) currentExp / expToLevel;
     }
 
     private void OnDestroy()
     {
-       _attributesPanel.GetComponent<AttributesView>().OnClose -= CloseHandler;
+        _attributesPanel.GetComponent<AttributesView>().OnClose -= CloseHandler;
     }
 
     void CloseHandler()

@@ -7,6 +7,7 @@ namespace HauntedCity.GameMechanics.Main
     public static class BattleStatsCalculator
     {
         #region Constants
+
         public const float HEALTH_PER_SURVIABIBILITY = 5f;
         public const float HEALTH_REGEN_PER_SURVIABIBILITY = 0.025f;
 
@@ -14,19 +15,20 @@ namespace HauntedCity.GameMechanics.Main
         public const float ENERGY_REGEN_PER_ENDURANCE = 0.04f;
 
         public const float DAMAGE_MODIFIER_PER_POWER = 0.04f;
+
         #endregion
 
         #region Apply modifiers
 
         private static void _ApplySurvivabilityModifiers(PlayerBattleStats battleStats, PlayerGameStats gameStats)
         {
-            battleStats.Solidity.MaxHealth += (uint) (gameStats.Survivability* HEALTH_PER_SURVIABIBILITY);
+            battleStats.Solidity.MaxHealth += (uint) (gameStats.Survivability * HEALTH_PER_SURVIABIBILITY);
             battleStats.Solidity.RegenPoints += (int) (gameStats.Survivability * HEALTH_REGEN_PER_SURVIABIBILITY);
         }
 
         private static void _ApplyEnduranceModifiers(PlayerBattleStats battleStats, PlayerGameStats gameStats)
         {
-            battleStats.MaxEnergy += (int) (gameStats.Endurance* ENERGY_PER_ENDURANCE);
+            battleStats.MaxEnergy += (int) (gameStats.Endurance * ENERGY_PER_ENDURANCE);
             battleStats.EnergyRegen += (int) (gameStats.Endurance * ENERGY_REGEN_PER_ENDURANCE);
         }
 
@@ -45,6 +47,7 @@ namespace HauntedCity.GameMechanics.Main
                 }
             }
         }
+
         #endregion
 
         public static PlayerBattleStats CalculateBattleStats(PlayerGameStats gameStats)
@@ -57,7 +60,7 @@ namespace HauntedCity.GameMechanics.Main
             weapons[2] = WeaponLoader.LoadWeapon("aura_1");
             weapons[3] = WeaponLoader.LoadWeapon("fireball_1");
 
-            var battleStats = new PlayerBattleStats(solidity, 50, 1, 1f ,weapons);
+            var battleStats = new PlayerBattleStats(solidity, 50, 1, 1f, weapons);
             _ApplySurvivabilityModifiers(battleStats, gameStats);
             _ApplyEnduranceModifiers(battleStats, gameStats);
             _ApplyPowerModifiers(battleStats, gameStats);
@@ -69,6 +72,4 @@ namespace HauntedCity.GameMechanics.Main
             return battleStats;
         }
     }
-
 }
-

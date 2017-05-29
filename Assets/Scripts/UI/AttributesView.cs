@@ -99,7 +99,8 @@ namespace HauntedCity.UI
         public void Close()
         {
             gameObject.SetActive(false);
-            if(OnClose != null){
+            if (OnClose != null)
+            {
                 OnClose();
             }
         }

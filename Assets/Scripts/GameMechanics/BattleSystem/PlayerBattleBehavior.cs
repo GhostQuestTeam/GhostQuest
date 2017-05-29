@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using HauntedCity.GameMechanics.Main;
 using UnityEngine;
 
-namespace  HauntedCity.GameMechanics.BattleSystem
+namespace HauntedCity.GameMechanics.BattleSystem
 {
     public class PlayerBattleBehavior : MonoBehaviour, IShooter, IWeaponSpeedController
     {
-        public PlayerBattleController BattleController; // { get; private set; }
+        public PlayerBattleController BattleController; 
 
         private int _direction = -1;
 
@@ -25,8 +25,6 @@ namespace  HauntedCity.GameMechanics.BattleSystem
                 Debug.Log(weapon.Damage);
             }
             BattleController = new PlayerBattleController(battleStats, this, this);
-
-            
         }
 
         public void Reset()

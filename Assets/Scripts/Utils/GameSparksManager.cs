@@ -7,12 +7,15 @@ namespace HauntedCity.Utils
     public class GameSparksManager : MonoBehaviour
     {
         private static GameSparksManager _instance = null;
-        void Awake() {
+
+        void Awake()
+        {
             if (_instance == null)
             {
                 _instance = this;
                 DontDestroyOnLoad(this.gameObject);
-            } else
+            }
+            else
             {
                 Destroy(this.gameObject);
             }

@@ -4,11 +4,11 @@ using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace  HauntedCity.GameMechanics.BattleSystem
+namespace HauntedCity.GameMechanics.BattleSystem
 {
-    public class BattleStateController:MonoBehaviour
+    public class BattleStateController : MonoBehaviour
     {
-        public int   MaxEnemiesOnScene = 7;
+        public int MaxEnemiesOnScene = 7;
         public float MinDistance = 30f;
         public float MaxDistance = 70f;
 
@@ -45,7 +45,7 @@ namespace  HauntedCity.GameMechanics.BattleSystem
             _allEnemies = enemies;
             foreach (var enemy in _currentEnemies)
             {
-               Destroy(enemy);
+                Destroy(enemy);
             }
             _currentEnemies.Clear();
             _player.Reset();
@@ -64,13 +64,13 @@ namespace  HauntedCity.GameMechanics.BattleSystem
                     _allEnemies.Remove(randEnemy);
                 }
 
-                var randomAngle = Random.Range(0.0f,Mathf.PI*2);
+                var randomAngle = Random.Range(0.0f, Mathf.PI * 2);
                 var randomSize = Random.Range(MinDistance, MaxDistance);
-                Vector3 randPosition = new Vector3(Mathf.Sin(randomAngle),0,Mathf.Cos(randomAngle)) * randomSize;
+                Vector3 randPosition = new Vector3(Mathf.Sin(randomAngle), 0, Mathf.Cos(randomAngle)) * randomSize;
 
                 var newEnemy = BattleObjectFactory.SpawnEnemy(randEnemy, randPosition);
                 newEnemy.GetComponent<EnemyBehavior>().BattleController.OnDeath +=
-                    () =>EnemyDeathHandle(newEnemy) ;
+                    () => EnemyDeathHandle(newEnemy);
                 newEnemy.transform.position += _player.transform.position;
                 _currentEnemies.Add(newEnemy);
             }
@@ -80,10 +80,11 @@ namespace  HauntedCity.GameMechanics.BattleSystem
         {
             _totalScore += enemy.GetComponent<EnemyBehavior>().Score;
             _currentEnemies.Remove(enemy);
-            if (_allEnemies.Count > 0 )
+            if (_allEnemies.Count > 0)
             {
                 SpawnEnemies();
-            } else if((_currentEnemies.Count == 0) && !_isBattleFinished )
+            }
+            else if ((_currentEnemies.Count == 0) && !_isBattleFinished)
             {
                 Debug.Log("You win! Score: " + _totalScore);
                 if (OnWon != null)
@@ -92,7 +93,6 @@ namespace  HauntedCity.GameMechanics.BattleSystem
                 }
                 _isBattleFinished = true;
             }
-
         }
 
         public void PlayerDeathHandle()
@@ -108,6 +108,5 @@ namespace  HauntedCity.GameMechanics.BattleSystem
                 }
             }
         }
-
     }
 }

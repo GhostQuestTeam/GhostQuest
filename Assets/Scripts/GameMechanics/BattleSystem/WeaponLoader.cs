@@ -1,12 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-namespace  HauntedCity.GameMechanics.BattleSystem
+namespace HauntedCity.GameMechanics.BattleSystem
 {
-
     public class WeaponLoaderException : Exception
     {
-        public WeaponLoaderException(string message):base(message){}
+        public WeaponLoaderException(string message) : base(message)
+        {
+        }
     }
 
     public class WeaponLoader

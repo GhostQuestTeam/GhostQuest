@@ -3,7 +3,7 @@ using HauntedCity.Utils;
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace  HauntedCity.GameMechanics.BattleSystem
+namespace HauntedCity.GameMechanics.BattleSystem
 {
     [Serializable]
     public class BattleStats
@@ -49,6 +49,7 @@ namespace  HauntedCity.GameMechanics.BattleSystem
                 }
             }
         }
+
         public Weapon[] Weapons { get; private set; }
         public uint CurrentWeaponId { get; set; }
 

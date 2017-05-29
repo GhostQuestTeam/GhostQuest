@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace  HauntedCity.GameMechanics.BattleSystem.ConcreteEnemyBehaviors
+namespace HauntedCity.GameMechanics.BattleSystem.ConcreteEnemyBehaviors
 {
     [RequireComponent(typeof(EnemyBehavior))]
     public class SkullGhostBehavior : MonoBehaviour

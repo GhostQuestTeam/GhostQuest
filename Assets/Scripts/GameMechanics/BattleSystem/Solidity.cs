@@ -7,7 +7,6 @@ namespace HauntedCity.GameMechanics.BattleSystem
     [Serializable]
     public class Solidity
     {
-
         public int RegenPoints;
         public int Defence;
         public uint MaxHealth;
@@ -30,7 +29,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
             {
                 damage -= Defence;
             }
-            _changeHealth( -damage);
+            _changeHealth(-damage);
         }
 
         public void Kill()
@@ -48,8 +47,9 @@ namespace HauntedCity.GameMechanics.BattleSystem
 
         public void ResetHealth()
         {
-            CurrentHealth = (int)MaxHealth;
+            CurrentHealth = (int) MaxHealth;
         }
+
         public void Regenerate()
         {
             Heal(RegenPoints);

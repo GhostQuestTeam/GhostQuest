@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace  HauntedCity.GameMechanics.BattleSystem
+namespace HauntedCity.GameMechanics.BattleSystem
 {
     public class EnemyBehavior : MonoBehaviour
     {
@@ -60,6 +60,5 @@ namespace  HauntedCity.GameMechanics.BattleSystem
             yield return new WaitForSeconds(delay);
             Destroy(gameObject);
         }
-
     }
 }

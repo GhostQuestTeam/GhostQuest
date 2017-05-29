@@ -6,16 +6,17 @@ using UnityEngine;
 
 namespace HauntedCity.GameMechanics.Main
 {
-    public class GameController:MonoBehaviour
+    public class GameController : MonoBehaviour
     {
         public static PlayerGameStats GameStats = new PlayerGameStats();
 
         private BattleStateController _battleStateController;
         private SceneAgregator _sceneAgregator;
 
-        public string[] AllowableGhosts = { "shadow_skull", "devil_mask"};
-    
-        void Awake() {
+        public string[] AllowableGhosts = {"shadow_skull", "devil_mask"};
+
+        void Awake()
+        {
             DontDestroyOnLoad(transform.gameObject);
             _battleStateController = GameObject.Find("BattleStateController").GetComponent<BattleStateController>();
             _sceneAgregator = GameObject.Find("SceneAgregator").GetComponent<SceneAgregator>();
@@ -24,25 +25,22 @@ namespace HauntedCity.GameMechanics.Main
             _battleStateController.OnWon += BattleWonHandle;
             _battleStateController.OnLose += BattleLoseHandle;
             //SceneManager.sceneLoaded += OnSceneLoad;
-
         }
 
         void Start()
         {
-
-
         }
 
         private void OnAllScenesLoad()
         {
             _sceneAgregator.switchToScene("map");
-        } 
-        
+        }
+
         private void OnSceneChange(string sceneName)
         {
             if (sceneName == "battle")
             {
-                _battleStateController.StartBattle(RandomGhosts()); 
+                _battleStateController.StartBattle(RandomGhosts());
             }
         }
 
@@ -51,7 +49,7 @@ namespace HauntedCity.GameMechanics.Main
             var result = new Dictionary<string, int>();
             foreach (var ghost in AllowableGhosts)
             {
-                result.Add(ghost, Random.Range(3,5));
+                result.Add(ghost, Random.Range(3, 5));
             }
             return result;
         }
@@ -65,7 +63,7 @@ namespace HauntedCity.GameMechanics.Main
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         public void InitStats()
         {
-            GameStats  = new PlayerGameStats();
+            GameStats = new PlayerGameStats();
         }
 
         public void BattleWonHandle(int score)
@@ -79,6 +77,5 @@ namespace HauntedCity.GameMechanics.Main
         {
             _sceneAgregator.switchToScene("map");
         }
-
     }
 }

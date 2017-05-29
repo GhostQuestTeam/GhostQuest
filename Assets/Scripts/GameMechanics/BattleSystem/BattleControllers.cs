@@ -123,13 +123,10 @@ namespace HauntedCity.GameMechanics.BattleSystem
             _shooter = shooter;
             _weaponSpeedController = speedController;
         }
-
     }
 
     public class EnemyBattleController : BattleController
     {
-
-
         public EnemyBattleStats BattleStats
         {
             get { return battleStats as EnemyBattleStats; }
