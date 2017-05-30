@@ -3,33 +3,35 @@ using System.Collections;
 using System.Collections.Generic;
 using HauntedCity.GameMechanics.Main;
 using UnityEngine;
+using Zenject;
 
 namespace HauntedCity.GameMechanics.BattleSystem
 {
     public class PlayerBattleBehavior : MonoBehaviour, IShooter, IWeaponSpeedController
     {
-        public PlayerBattleController BattleController; 
+        
+        public PlayerBattleController BattleController;
 
         private int _direction = -1;
 
         public string[] WeaponIDs;
-        
-        
+
 
         private Dictionary<string, bool> _blockedWeapons;
 
         void Awake()
         {
-            
-        }
-
-        void Start()
-        {
             _blockedWeapons = new Dictionary<string, bool>();
             PlayerBattleStats battleStats = null;
-            //var battleStats = BattleStatsCalculator.CalculateBattleStats(GameController.GameStats);
-            
+            //var battleStats = _battleStatsCalculator.CalculateBattleStats(GameController.GameStats);
+
             BattleController = new PlayerBattleController(null, this, this);
+        }
+        
+        
+        void Start()
+        {
+           
         }
 
         public void Reset(PlayerBattleStats battleStats)

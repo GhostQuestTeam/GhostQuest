@@ -47,7 +47,7 @@ namespace HauntedCity.Geo
             //_btnToEnable = GameObject.Find("StartBattle").GetComponent<Button>();
 
             _btnToEnable = GameObject.Find("StartBattle").GetComponent<Button>();
-            _btnToEnable.gameObject.SetActive(false);
+            //_btnToEnable.gameObject.SetActive(false);
             _root = new GameObject("POIRoot");
             _root.transform.SetParent(GameObject.Find("LocationProviderRoot").transform);
 

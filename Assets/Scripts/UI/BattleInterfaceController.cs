@@ -1,4 +1,5 @@
 ﻿using HauntedCity.GameMechanics.BattleSystem;
+using HauntedCity.Utils.Extensions;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -9,39 +10,41 @@ namespace HauntedCity.UI
     {
         
         
-        private PlayerBattleBehavior _player;
+        private PlayerBattleController _battleController;
         public string WeaponPrefabPath = "BattleSystem/UI/WeaponButton";
 
         [Inject]
-        public void InitializeDependencies(PlayerBattleBehavior player)
+        public void InitializeDependencies(PlayerBattleController battleController)
         {
-            _player = player;
+            _battleController = battleController;
         }
+        
         
         //private PlayerBattleController _battleController;
         private GameObject _weaponButtonPrefab;
         private Transform _weaponsPanel;
 
-
-        void Start()
+        //Метод Start не срабатывает, а в Awake BattleController ещё не инициализирован
+        void OnEnable()
         {
-            //_battleController = GameObject.FindWithTag("Player").GetComponent<PlayerBattleBehavior>().BattleController;
 
+//            _battleController = GameObject.Find("Player").GetComponent<PlayerBattleBehavior>().BattleController;
             transform.Find("ButtonShoot").GetComponent<Button>().onClick
-                .AddListener(() => _player.BattleController.TryShoot());
+                .AddListener(() => _battleController.TryShoot());
 
             _weaponButtonPrefab = Resources.Load(WeaponPrefabPath) as GameObject;
 
             _weaponsPanel = transform.Find("WeaponsPanel");
 
-            _player.BattleController.OnReset += ResetHandle;
+            _battleController.OnReset += ResetHandle;
 
         }
 
         void ResetHandle()
         {
-            var battleStats = _player.BattleController.BattleStats;
+            var battleStats = _battleController.BattleStats;
 
+            _weaponsPanel.Clear();
             for (var i = 0; i < battleStats.Weapons.Length; i++)
             {
                 var weapon = battleStats.Weapons[i];
