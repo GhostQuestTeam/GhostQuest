@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using GameSparks.Core;
 using HauntedCity.Utils;
 
 namespace HauntedCity.GameMechanics.SkillSystem
@@ -43,6 +44,52 @@ namespace HauntedCity.GameMechanics.SkillSystem
         public int Power
         {
             get { return _basePower.Val + _powerDelta; }
+        }
+
+        public GSRequestData GSData
+        {
+            get
+            {
+                var result = new GSRequestData();
+                
+                int pointsToSave = UpgradePoints;
+                int survivabilityToSave = Survivability;
+                int enduranceToSave = Endurance;
+                int powerToSave = Power;
+
+                pointsToSave += _enduranceDelta + _powerDelta + _surviabilityDelta;
+                survivabilityToSave -= _surviabilityDelta;
+                enduranceToSave -= _enduranceDelta;
+                powerToSave -= _powerDelta;
+
+                result.AddNumber("upgradePoints", pointsToSave)
+                    .AddNumber("survivability", survivabilityToSave)
+                    .AddNumber("endurance", enduranceToSave)
+                    .AddNumber("power", powerToSave)
+                    .AddNumber("level", Level)
+                    .AddNumber("exp", CurrentExp);
+                
+                return result;
+            }
+            set
+            {
+                UpgradePoints = (int) value.GetInt("upgradePoints");
+
+                _baseSurviability.Val = (int) value.GetInt("survivability");
+                _baseEndurance.Val = (int) value.GetInt("ebdurance");
+                _basePower.Val = (int) value.GetInt("power");
+
+                _surviabilityDelta = 0;
+                _enduranceDelta = 0;
+                _powerDelta = 0;
+
+                Level = (int) value.GetInt("level");
+                CurrentExp = (int) value.GetInt("exp");
+                
+                _UpdateExpToNextLevel();
+
+
+            }
         }
 
         public void IncAttribute(PlayerAttributes attribute)
