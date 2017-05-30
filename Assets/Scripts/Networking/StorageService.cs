@@ -11,7 +11,7 @@ namespace HauntedCity.Networking
 
              new GameSparks.Api.Requests.LogEventRequest()
                 .SetEventKey("SAVE_PLAYER")
-                .SetEventAttribute("player", player.GSData)
+                .SetEventAttribute("PLAYER", player.GSData)
                 .Send((response) => {
                 if (!response.HasErrors) {
                     Debug.Log("Player Saved To GameSparks...");
@@ -23,10 +23,12 @@ namespace HauntedCity.Networking
         
         public void LoadPlayer(PlayerGameStats player )
         {
-            new GameSparks.Api.Requests.LogEventRequest().SetEventKey("LOAD_PLAYER").Send((response) => {
+            new GameSparks.Api.Requests.LogEventRequest()
+                .SetEventKey("LOAD_PLAYER")
+                .Send((response) => {
                 if (!response.HasErrors) {
                     Debug.Log("Received Player Data From GameSparks...");
-                    GSData data = response.ScriptData.GetGSData("player_Data");
+                    GSData data = response.ScriptData.GetGSData("PLAYER");
                 } else {
                     Debug.Log("Error Loading Player Data...");
                 }
