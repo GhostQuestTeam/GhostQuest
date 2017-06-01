@@ -16,18 +16,18 @@ public class GetPOIsEventArg
 
 public class GameSparksPOIsExtraction : MonoBehaviour {
 
-    public float fake_lat = 55.5f;
-    public float fake_lon = 37.5f;
+    public float fake_lat = 55.66f;
+    public float fake_lon = 37.63f;
 
     // Use this for initialization
     void Start () {
-        doFakeAuth("a1", "a1", 3);
-        retrievePoints();
+        int depth = 5;
+        doFakeAuth("a1", "a1", depth, depth);
 	}
 
-    void doFakeAuth(string unm, string pass, int depth)
+    void doFakeAuth(string unm, string pass, int depthAuth, int depthRetrieve)
     {
-        if (depth == 0)
+        if (depthAuth == 0)
             return;
 
         new GameSparks.Api.Requests.AuthenticationRequest()
@@ -37,7 +37,7 @@ public class GameSparksPOIsExtraction : MonoBehaviour {
             {
                 if(responseAuth1.HasErrors)
                 {
-                    Debug.Log("Failed to auth on depth " + depth.ToString());
+                    Debug.Log("Failed to auth on depth " + depthAuth.ToString());
 
                     new GameSparks.Api.Requests.RegistrationRequest()
                     .SetDisplayName(unm)
@@ -47,20 +47,26 @@ public class GameSparksPOIsExtraction : MonoBehaviour {
                     {
                         if(!responseReg.HasErrors)
                         {
-                            Debug.Log("Succeded to register on depth " + depth.ToString());
-                            doFakeAuth(unm, pass, depth - 1);
+                            Debug.Log("Succeded to register on depth " + depthAuth.ToString());
+                            doFakeAuth(unm, pass, depthAuth - 1, depthRetrieve);
                         }
                         else
                         {
-                            Debug.Log("Failed to register on depth " + depth.ToString());
+                            Debug.Log("Failed to register on depth " + depthAuth.ToString());
                         }
                     });
+                }
+                else
+                {
+                    retrievePoints(depthRetrieve);
                 }
             });
     }
 
-    void retrievePoints()
+    void retrievePoints(int depth)
     {
+        if (depth == 0)
+            return;
 
         GetPOIsEventArg evArg = new GetPOIsEventArg(fake_lat, fake_lon);
 
@@ -72,6 +78,10 @@ public class GameSparksPOIsExtraction : MonoBehaviour {
                if(!response.HasErrors)
                {
                    Debug.Log(response.JSONString);
+               }
+               else
+               {
+                   retrievePoints(depth - 1);
                }
            });
     }
