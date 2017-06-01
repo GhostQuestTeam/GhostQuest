@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Mapbox.Utils;
+using Mapbox.Unity.Location;
+using Mapbox.Unity.MeshGeneration;
+using Mapbox.Unity.Utilities;
 
 [System.Serializable]
 public class GetPOIsEventArg
@@ -22,18 +25,56 @@ public class GameSparksPOIsExtraction : MonoBehaviour {
 
     public HashSet<Vector2d> _points = new HashSet<Vector2d>();
 
-    // Use this for initialization
-    void Start () {
-        Debug.Log("Started!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        int depth = 5;
-        doFakeAuth("a1", "a1", depth, depth);
-	}
-
-    void Update() {
-        GameSparks.Core.GS.GSPlatform.RequestTimeoutSeconds = 100;
+    ILocationProvider _locationProvider;
+    public ILocationProvider LocationProvider
+    {
+        get
+        {
+            if (_locationProvider == null)
+            {
+                _locationProvider = LocationProviderFactory.Instance.DefaultLocationProvider;
+            }
+            return _locationProvider;
+        }
+        set
+        {
+            _locationProvider = value;
+        }
     }
 
-    void doFakeAuth(string unm, string pass, int depthAuth, int depthRetrieve)
+    public bool UseLocationProvider = true;
+    public Vector2d CurPos
+    {
+        get
+        {
+            if(UseLocationProvider)
+            {
+                return LocationProvider.Location;
+            }
+            else
+            {
+                return new Vector2d(fake_lat, fake_lon);
+            }
+        }
+    }
+
+    // Use this for initialization
+    void Start () {
+        StartCoroutine(performExtraction());
+	}
+
+    IEnumerator performExtraction()
+    {
+        int depth = 5;
+        while (true)
+        {
+            doExtractionViaFakeAuth("a1", "a1", depth, depth);
+            yield return new WaitForSecondsRealtime(10);
+        }
+    }
+
+
+    void doExtractionViaFakeAuth(string unm, string pass, int depthAuth, int depthRetrieve)
     {
         if (depthAuth == 0)
             return;
@@ -56,7 +97,7 @@ public class GameSparksPOIsExtraction : MonoBehaviour {
                         if(!responseReg.HasErrors)
                         {
                             Debug.Log("Succeded to register on depth " + depthAuth.ToString());
-                            doFakeAuth(unm, pass, depthAuth - 1, depthRetrieve);
+                            doExtractionViaFakeAuth(unm, pass, depthAuth - 1, depthRetrieve);
                         }
                         else
                         {
@@ -76,7 +117,7 @@ public class GameSparksPOIsExtraction : MonoBehaviour {
         if (depth == 0)
             return;
 
-        GetPOIsEventArg evArg = new GetPOIsEventArg(fake_lat, fake_lon);
+        GetPOIsEventArg evArg = new GetPOIsEventArg((float)CurPos.x, (float)CurPos.y);
         string sEvArg = JsonUtility.ToJson(evArg);
         Debug.Log(sEvArg);
 
@@ -88,6 +129,7 @@ public class GameSparksPOIsExtraction : MonoBehaviour {
                Debug.Log(response.JSONString);
                if (!response.HasErrors)
                {
+                   _points.Clear();
                    SimpleJSON.JSONNode root = SimpleJSON.JSON.Parse(response.JSONString);
                    foreach(SimpleJSON.JSONNode node in root["scriptData"]["points"].AsArray)
                    {
