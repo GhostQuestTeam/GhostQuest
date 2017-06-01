@@ -1,5 +1,6 @@
 using HauntedCity.Networking;
 using UnityEngine;
+using Zenject;
 
 namespace HauntedCity.UI
 {
@@ -8,17 +9,17 @@ namespace HauntedCity.UI
         public GameObject[] ShowOnlyLoggedUser;
         public GameObject[] ShowOnlyNotLoggedUser;
 
+       
         private void Start()
         {
-            AuthService.Instance.Logout();
         }
         
         private void OnEnable()
         {
-            _ShowMenu(AuthService.Instance.IsAuthenticated);
+            ShowMenu(AuthService.Instance.IsAuthenticated);
         }
 
-        private void _ShowMenu(bool isAuthenticated)
+        public void ShowMenu(bool isAuthenticated)
         {
             foreach (var item in ShowOnlyLoggedUser)
             {
@@ -33,7 +34,7 @@ namespace HauntedCity.UI
         public void Logout()
         {
             AuthService.Instance.Logout();
-            _ShowMenu(AuthService.Instance.IsAuthenticated);
+            ShowMenu(AuthService.Instance.IsAuthenticated);
         }
     }
 }

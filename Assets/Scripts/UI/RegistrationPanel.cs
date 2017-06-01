@@ -64,6 +64,7 @@ namespace HauntedCity.UI
             if (!response.HasErrors)
             {
                 _screenManager.OpenPanel(MainMenu);
+                MainMenu.gameObject.GetComponent<MainMenuPanel>().ShowMenu(true);//Костыль
             }
             else
             {
