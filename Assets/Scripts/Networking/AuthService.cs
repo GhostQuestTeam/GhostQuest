@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using GameSparks.Core;
+using UnityEngine;
 
 namespace HauntedCity.Networking
 {
@@ -15,6 +16,12 @@ namespace HauntedCity.Networking
             get { return instance; }
         }
 
+
+        public bool IsAuthenticated
+        {
+            get { return GS.GSPlatform.AuthToken != null; }
+        }
+        
         public void Register(string login, string nickname, string password)
         {
             new GameSparks.Api.Requests.RegistrationRequest()
@@ -55,17 +62,18 @@ namespace HauntedCity.Networking
 
         public void Logout()
         {
-            new GameSparks.Api.Requests.LogEventRequest().SetEventKey("LOGOUT").Send((response) =>
-            {
-                if (!response.HasErrors)
-                {
-                    Debug.Log("Success logout");
-                }
-                else
-                {
-                    Debug.Log("Error logout...");
-                }
-            });
+            GS.GSPlatform.AuthToken = null;
+//            new GameSparks.Api.Requests.LogEventRequest().SetEventKey("LOGOUT").Send((response) =>
+//            {
+//                if (!response.HasErrors)
+//                {
+//                    Debug.Log("Success logout is:" + !GS.Authenticated );
+//                }
+//                else
+//                {
+//                    Debug.Log("Error logout...");
+//                }
+//            });
         }
     }
 }
