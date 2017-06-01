@@ -26,7 +26,6 @@ namespace HauntedCity.UI
         {
             _login = transform.Find("LoginForm/Login").GetComponent<InputField>();
             _password = transform.Find("LoginForm/Password").GetComponent<InputField>();
-            AuthService.Instance.OnLogin += OnLogin;
         }
 
         public void Login()
@@ -37,7 +36,12 @@ namespace HauntedCity.UI
             );
         }
 
-        private void OnDestroy()
+        private void OnEnable()
+        {
+            AuthService.Instance.OnLogin += OnLogin;
+        }
+        
+        private void OnDisable()
         {
             AuthService.Instance.OnLogin -= OnLogin;
         }

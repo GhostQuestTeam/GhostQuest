@@ -31,7 +31,7 @@ public class AccelerationCleaner : MonoBehaviour {
     {
         for(int i = 0; i < maxDepth; ++i)
         {
-            insertData(gc);
+            //insertData(gc);
         }
     }
 

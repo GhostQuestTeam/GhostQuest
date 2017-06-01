@@ -9,9 +9,9 @@ namespace HauntedCity.Utils.Installers
     {
         public override void InstallBindings()
         {
-            Container.Bind<GameController>().FromNewComponentOnNewGameObject().AsSingle().NonLazy();
-            Container.Bind<BattleStateController>().FromNewComponentOnNewGameObject().AsSingle().NonLazy(); 
-            Container.Bind<SceneAgregator>().FromNewComponentOnNewGameObject().AsSingle().NonLazy();
+            Container.Bind<GameController>().FromComponentInHierarchy().AsSingle().NonLazy();
+            Container.Bind<BattleStateController>().FromComponentInHierarchy().AsSingle().NonLazy(); 
+            Container.Bind<SceneAgregator>().FromComponentInHierarchy().AsSingle().NonLazy();
             Container.Bind<ScreenManager>().FromComponentInHierarchy().AsSingle().NonLazy();
             
             Container.Bind<WeaponLoader>().AsSingle();

@@ -27,8 +27,12 @@ namespace HauntedCity.UI
             _login = transform.Find("RegisterForm/Login").GetComponent<InputField>();
             _nickname = transform.Find("RegisterForm/Nickname").GetComponent<InputField>();
             _password = transform.Find("RegisterForm/Password").GetComponent<InputField>();
+        }
 
+        private void OnEnable()
+        {
             AuthService.Instance.OnRegister += OnRegister;
+            AuthService.Instance.OnLogin += OnLogin;
         }
 
         public void Register()
@@ -40,12 +44,22 @@ namespace HauntedCity.UI
             );
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             AuthService.Instance.OnRegister -= OnRegister;
+            AuthService.Instance.OnLogin -= OnLogin;
         }
         
         public void OnRegister(RegistrationResponse response)
+        {
+            if (response.HasErrors)
+            {
+                //TODO
+            }
+           
+        }
+        
+        public void OnLogin(AuthenticationResponse response)
         {
             if (!response.HasErrors)
             {

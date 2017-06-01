@@ -35,8 +35,8 @@ namespace HauntedCity.GameMechanics.BattleSystem.ConcreteEnemyBehaviors
 
         private void Update()
         {
-            _jaw.localPosition += new Vector3(0, _jawVelocity, 0);
-            _skull.localPosition += new Vector3(0, _skullVelocity, 0);
+            //_jaw.localPosition += new Vector3(0, _jawVelocity, 0);
+            //_skull.localPosition += new Vector3(0, _skullVelocity, 0);
         }
 
         public void TakeDamageAnimate(int hpDelta)

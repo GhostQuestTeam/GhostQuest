@@ -36,6 +36,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
 
         public void Reset(PlayerBattleStats battleStats)
         {
+            _blockedWeapons.Clear();
             foreach (var weapon in battleStats.Weapons)
             {
                 _blockedWeapons.Add(weapon.Id, false);

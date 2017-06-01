@@ -42,6 +42,7 @@ namespace HauntedCity.Networking
                         if (!response.HasErrors)
                         {
                             Debug.Log("Player Registered");
+                            Login(login, password);
                         }
                         else
                         {
