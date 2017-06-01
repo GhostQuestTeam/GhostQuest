@@ -1,4 +1,6 @@
-﻿using GameSparks.Core;
+﻿using System;
+using GameSparks.Api.Responses;
+using GameSparks.Core;
 using UnityEngine;
 
 namespace HauntedCity.Networking
@@ -9,9 +11,13 @@ namespace HauntedCity.Networking
 
         //Что-то по нормальному не получается сделать(
         private bool _isLogin;
+
+        public event Action<RegistrationResponse> OnRegister;
+        public event Action<AuthenticationResponse> OnLogin;
         
         private AuthService()
         {
+            
         }
 
         public static AuthService Instance
@@ -41,6 +47,10 @@ namespace HauntedCity.Networking
                         {
                             Debug.Log("Error Registering Player");
                         }
+                        if (OnRegister != null)
+                        {
+                            OnRegister(response);
+                        }
                     }
                 );
         }
@@ -60,6 +70,10 @@ namespace HauntedCity.Networking
                     else
                     {
                         Debug.Log("Error Authenticating Player...");
+                    }
+                    if (OnLogin != null)
+                    {
+                        OnLogin(response);
                     }
                 });
         }

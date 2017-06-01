@@ -37,7 +37,7 @@ namespace HauntedCity.GameMechanics.Main
 
         private void OnAllScenesLoad()
         {
-            _sceneAgregator.switchToScene("map");
+            //_sceneAgregator.switchToScene("map");
         }
 
         private void OnSceneChange(string sceneName)

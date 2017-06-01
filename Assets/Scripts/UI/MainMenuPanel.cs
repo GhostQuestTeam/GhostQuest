@@ -29,5 +29,11 @@ namespace HauntedCity.UI
                 item.SetActive(!isAuthenticated);
             }
         }
+
+        public void Logout()
+        {
+            AuthService.Instance.Logout();
+            _ShowMenu(AuthService.Instance.IsAuthenticated);
+        }
     }
 }
