@@ -21,9 +21,14 @@ public class GameSparksPOIsExtraction : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        Debug.Log("Started!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         int depth = 5;
         doFakeAuth("a1", "a1", depth, depth);
 	}
+
+    void Update() {
+        GameSparks.Core.GS.GSPlatform.RequestTimeoutSeconds = 100;
+    }
 
     void doFakeAuth(string unm, string pass, int depthAuth, int depthRetrieve)
     {
@@ -78,6 +83,8 @@ public class GameSparksPOIsExtraction : MonoBehaviour {
                if(!response.HasErrors)
                {
                    Debug.Log(response.JSONString);
+                   SimpleJSON.JSONNode root = SimpleJSON.JSON.Parse(response.JSONString);
+                   root.ToString();
                }
                else
                {
