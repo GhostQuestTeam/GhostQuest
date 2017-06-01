@@ -15,11 +15,13 @@ namespace HauntedCity.UI
         private InputField _password;
         
         private ScreenManager _screenManager;
+        private StorageService _storageService;
         
         [Inject]
-        public void InitializeDependencies(ScreenManager screenManager)
+        public void InitializeDependencies(ScreenManager screenManager, StorageService storageService)
         {
             _screenManager = screenManager;
+            _storageService = storageService;
         }
         
         private void Start()
@@ -52,6 +54,7 @@ namespace HauntedCity.UI
             {
                 _screenManager.OpenPanel(MainMenu);
                 MainMenu.gameObject.GetComponent<MainMenuPanel>().ShowMenu(true);//Костыль
+                _storageService.LoadPlayer();
             }
             else
             {

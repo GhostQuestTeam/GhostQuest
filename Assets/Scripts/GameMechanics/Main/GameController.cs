@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using HauntedCity.GameMechanics.BattleSystem;
 using HauntedCity.GameMechanics.SkillSystem;
+using HauntedCity.Networking;
 using HauntedCity.Utils;
 using UnityEngine;
 using Zenject;
@@ -13,14 +14,18 @@ namespace HauntedCity.GameMechanics.Main
 
         private BattleStateController _battleStateController;
         private SceneAgregator _sceneAgregator;
+        private StorageService _storageService;
 
         public string[] AllowableGhosts = {"shadow_skull", "devil_mask"};
 
         [Inject]
-        public void InitializeDependencies(BattleStateController battleStateController, SceneAgregator sceneAgregator)
+        public void InitializeDependencies(BattleStateController battleStateController, 
+            SceneAgregator sceneAgregator,
+            StorageService storageService)
         {
             _battleStateController = battleStateController;
             _sceneAgregator = sceneAgregator;
+            _storageService = storageService;
         }
         
         void Awake()
@@ -33,6 +38,9 @@ namespace HauntedCity.GameMechanics.Main
             _sceneAgregator.OnAllScenesLoad += OnAllScenesLoad;
             _battleStateController.OnWon += BattleWonHandle;
             _battleStateController.OnLose += BattleLoseHandle;
+
+            _storageService.OnLoad += OnPlayerLoad;
+            _storageService.LoadPlayer();
         }
 
         private void OnAllScenesLoad()
@@ -45,6 +53,14 @@ namespace HauntedCity.GameMechanics.Main
             _sceneAgregator.switchToScene("map");
         }
 
+        private void OnPlayerLoad()
+        {
+            if (_storageService.PlayerStats != null)
+            {
+                GameStats = _storageService.PlayerStats;
+            }
+        }
+        
         private void OnSceneChange(string sceneName)
         {
             if (sceneName == "battle")
@@ -80,11 +96,14 @@ namespace HauntedCity.GameMechanics.Main
             GameStats.AddExp(score);
             _sceneAgregator.switchToScene("map");
             Debug.Log("Level: " + GameStats.Level + "  " + GameStats.CurrentExp + "/" + GameStats.ExpToLevel);
+            _storageService.SavePlayer(GameStats);
         }
 
         public void BattleLoseHandle()
         {
             _sceneAgregator.switchToScene("map");
         }
+
+        
     }
 }

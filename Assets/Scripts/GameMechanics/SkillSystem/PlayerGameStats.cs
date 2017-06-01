@@ -73,18 +73,18 @@ namespace HauntedCity.GameMechanics.SkillSystem
             }
             set
             {
-                UpgradePoints = (int) value.GetInt("upgradePoints");
+                UpgradePoints = value.GetInt("upgradePoints") ?? 5;
 
-                _baseSurviability.Val = (int) value.GetInt("survivability");
-                _baseEndurance.Val = (int) value.GetInt("ebdurance");
-                _basePower.Val = (int) value.GetInt("power");
+                _baseSurviability.Val =  value.GetInt("survivability") ?? 5;
+                _baseEndurance.Val = value.GetInt("ebdurance") ?? 5;
+                _basePower.Val =  value.GetInt("power") ?? 5;
 
                 _surviabilityDelta = 0;
                 _enduranceDelta = 0;
                 _powerDelta = 0;
 
-                Level = (int) value.GetInt("level");
-                CurrentExp = (int) value.GetInt("exp");
+                Level =  value.GetInt("level") ?? 1;
+                CurrentExp = value.GetInt("exp") ?? 0;
                 
                 _UpdateExpToNextLevel();
 

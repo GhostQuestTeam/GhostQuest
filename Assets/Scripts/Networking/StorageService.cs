@@ -1,3 +1,4 @@
+using System;
 using GameSparks.Core;
 using HauntedCity.GameMechanics.SkillSystem;
 using UnityEngine;
@@ -6,6 +7,9 @@ namespace HauntedCity.Networking
 {
     public class StorageService
     {
+        public PlayerGameStats PlayerStats { get; private set; }
+        public event Action OnLoad;
+        
         public void SavePlayer(PlayerGameStats player )
         {
 
@@ -21,7 +25,7 @@ namespace HauntedCity.Networking
             });
         }
         
-        public void LoadPlayer(PlayerGameStats player )
+        public void LoadPlayer()
         {
             new GameSparks.Api.Requests.LogEventRequest()
                 .SetEventKey("LOAD_PLAYER")
@@ -29,6 +33,15 @@ namespace HauntedCity.Networking
                 if (!response.HasErrors) {
                     Debug.Log("Received Player Data From GameSparks...");
                     GSData data = response.ScriptData.GetGSData("PLAYER");
+                    if (PlayerStats == null)
+                    {
+                        PlayerStats = new PlayerGameStats();
+                    }
+                    PlayerStats.GSData = new GSRequestData(data);
+                    if (OnLoad != null)
+                    {
+                        OnLoad();
+                    }
                 } else {
                     Debug.Log("Error Loading Player Data...");
                 }
