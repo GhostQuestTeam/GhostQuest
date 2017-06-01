@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mapbox.Utils;
 
 [System.Serializable]
 public class GetPOIsEventArg
@@ -18,6 +19,8 @@ public class GameSparksPOIsExtraction : MonoBehaviour {
 
     public float fake_lat = 55.66f;
     public float fake_lon = 37.63f;
+
+    public HashSet<Vector2d> _points = new HashSet<Vector2d>();
 
     // Use this for initialization
     void Start () {
@@ -74,17 +77,26 @@ public class GameSparksPOIsExtraction : MonoBehaviour {
             return;
 
         GetPOIsEventArg evArg = new GetPOIsEventArg(fake_lat, fake_lon);
+        string sEvArg = JsonUtility.ToJson(evArg);
+        Debug.Log(sEvArg);
 
         new GameSparks.Api.Requests.LogEventRequest()
             .SetEventKey("GET_POIS")
-            .SetEventAttribute("POS", JsonUtility.ToJson(evArg))
+            .SetEventAttribute("POS", sEvArg)
             .Send((response) =>
            {
-               if(!response.HasErrors)
+               Debug.Log(response.JSONString);
+               if (!response.HasErrors)
                {
-                   Debug.Log(response.JSONString);
                    SimpleJSON.JSONNode root = SimpleJSON.JSON.Parse(response.JSONString);
-                   root.ToString();
+                   foreach(SimpleJSON.JSONNode node in root["scriptData"]["points"].AsArray)
+                   {
+                       SimpleJSON.JSONArray coords = node["geometry"]["coordinates"].AsArray;
+                       float lat = coords[0].AsFloat;
+                       float lon = coords[1].AsFloat;
+                       _points.Add(new Vector2d(lat, lon));
+                       Debug.Log(lat.ToString() + " " + lon.ToString());
+                   }
                }
                else
                {
