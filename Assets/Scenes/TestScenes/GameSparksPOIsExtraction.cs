@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mapbox.Utils;
@@ -43,6 +44,7 @@ public class GameSparksPOIsExtraction : MonoBehaviour {
     }
 
     public bool UseLocationProvider = true;
+
     public Vector2d CurPos
     {
         get
@@ -58,18 +60,35 @@ public class GameSparksPOIsExtraction : MonoBehaviour {
         }
     }
 
+    public class POIsExtractedEventArgs : EventArgs
+    {
+        public HashSet<Vector2d> points;
+        public POIsExtractedEventArgs(HashSet<Vector2d> p)
+        {
+            points = p;
+        }
+    }
+
+    public event EventHandler<POIsExtractedEventArgs> OnPOIsExtracted;
+
     // Use this for initialization
     void Start () {
         StartCoroutine(performExtraction());
 	}
 
+    public int depth = 5;
+
+    public void UpdatePointsNow()
+    {
+        doExtractionViaFakeAuth("a1", "a1", depth, depth);
+    }
+
     IEnumerator performExtraction()
     {
-        int depth = 5;
         while (true)
         {
             doExtractionViaFakeAuth("a1", "a1", depth, depth);
-            yield return new WaitForSecondsRealtime(10);
+            yield return new WaitForSecondsRealtime(45);
         }
     }
 
@@ -139,6 +158,7 @@ public class GameSparksPOIsExtraction : MonoBehaviour {
                        _points.Add(new Vector2d(lat, lon));
                        Debug.Log(lat.ToString() + " " + lon.ToString());
                    }
+                   OnPOIsExtracted(this, new POIsExtractedEventArgs(_points));
                }
                else
                {
