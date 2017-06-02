@@ -36,6 +36,12 @@ public class SceneRootController : MonoBehaviour {
     {
         while (true)
         {
+            if(SceneName == "battle")
+            {
+                GameObject ob = GameObject.Find("map");
+                if (ob != null)
+                    ob.SetActive(false);
+            }
             if(_sceneAgregator._currentScene != SceneName)
             {
                 gameObject.SetActive(false);

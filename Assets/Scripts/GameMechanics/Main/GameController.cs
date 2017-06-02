@@ -16,7 +16,8 @@ namespace HauntedCity.GameMechanics.Main
         private SceneAgregator _sceneAgregator;
         private StorageService _storageService;
 
-        public string[] AllowableGhosts = {"shadow_skull", "devil_mask"};
+        public string[] AllowableGhosts = { "shadow_skull", "devil_mask","skull_ghost" };
+
 
         [Inject]
         public void InitializeDependencies(BattleStateController battleStateController, 
@@ -82,6 +83,8 @@ namespace HauntedCity.GameMechanics.Main
 
         public void StartBattle()
         {
+            GameObject.Find("LocationProviderRoot").SetActive(false);
+
             _sceneAgregator.switchToScene("battle");
         }
 
@@ -94,6 +97,7 @@ namespace HauntedCity.GameMechanics.Main
         public void BattleWonHandle(int score)
         {
             GameStats.AddExp(score);
+            GameObject.Find("BattleRoot").SetActive(false);
             _sceneAgregator.switchToScene("map");
             Debug.Log("Level: " + GameStats.Level + "  " + GameStats.CurrentExp + "/" + GameStats.ExpToLevel);
             _storageService.SavePlayer(GameStats);
@@ -101,6 +105,7 @@ namespace HauntedCity.GameMechanics.Main
 
         public void BattleLoseHandle()
         {
+            GameObject.Find("BattleRoot").SetActive(false);
             _sceneAgregator.switchToScene("map");
         }
 
