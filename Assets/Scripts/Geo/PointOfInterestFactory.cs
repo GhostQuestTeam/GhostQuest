@@ -12,11 +12,12 @@ namespace HauntedCity.Geo
         public HashSet<Vector2d> _points = new HashSet<Vector2d>();
         public GameObject PointOfInterestPrefab;
         private Button _btnToEnable;
+        public GameObject GameSparksObj;
 
         void Start()
         {
             InitPoints();
-            Execute();
+            //Execute();
         }
 
         void Update()
@@ -25,7 +26,7 @@ namespace HauntedCity.Geo
 
         public void InitPoints()
         {
-              _points.Add(new Vector2d(55.8254, 49.0535));
+             /* _points.Add(new Vector2d(55.8254, 49.0535));
             _points.Add(new Vector2d(55.8260, 49.0532));
             _points.Add(new Vector2d(55.8265, 49.0534));
 
@@ -39,7 +40,21 @@ namespace HauntedCity.Geo
             _points.Add(new Vector2d(55.7514667, 37.6179211)); //Царь-пушка
             _points.Add(new Vector2d(55.7508375, 37.6184908)); //Царь-колокол
             _points.Add(new Vector2d(55.7653354, 37.6054856)); //памятник А. С. Пушкину
-            _points.Add(new Vector2d(55.7559664, 37.5891178)); //Городская усадьба С.С. Гагарина
+            _points.Add(new Vector2d(55.7559664, 37.5891178)); //Городская усадьба С.С. Гагарина*/
+
+            GameSparksPOIsExtraction ext = GameSparksObj.GetComponent<GameSparksPOIsExtraction>();
+            ext.OnPOIsExtracted += Ext_OnPOIsExtracted;
+        }
+
+        public void Ext_OnPOIsExtracted(object sender, GameSparksPOIsExtraction.POIsExtractedEventArgs e)
+        {
+            _points = e.points;
+            Execute();
+        }
+
+        void OnDestroy()
+        {
+            GameSparksObj.GetComponent<GameSparksPOIsExtraction>().OnPOIsExtracted -= Ext_OnPOIsExtracted;
         }
 
         public void Execute()
@@ -48,6 +63,10 @@ namespace HauntedCity.Geo
 
             _btnToEnable = GameObject.Find("StartBattle").GetComponent<Button>();
             //_btnToEnable.gameObject.SetActive(false);
+            GameObject _prevRoot = GameObject.Find("POIRoot");
+            if (_prevRoot != null)
+                Destroy(_prevRoot);
+
             _root = new GameObject("POIRoot");
             _root.transform.SetParent(GameObject.Find("LocationProviderRoot").transform);
 
