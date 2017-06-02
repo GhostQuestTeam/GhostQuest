@@ -24,6 +24,11 @@ namespace HauntedCity.Geo
         {
         }
 
+        void OnEnable()
+        {
+            GameSparksObj.GetComponent<GameSparksPOIsExtraction>().UpdatePointsNow();
+        }
+
         public void InitPoints()
         {
              /* _points.Add(new Vector2d(55.8254, 49.0535));
