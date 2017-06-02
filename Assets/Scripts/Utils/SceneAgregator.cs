@@ -11,7 +11,7 @@ namespace HauntedCity.Utils
         Scene _agregatorScene;
 
         float _hardcodedTimeDelta = 0.2f;
-        private string _currentScene;
+        public string _currentScene;
         private int _notLoadedScenes;
 
         public class LoadedScene
@@ -58,8 +58,10 @@ namespace HauntedCity.Utils
             Debug.Log("Merging scene " + scene.path + " loaded: " + scene.isLoaded + " valid: " + scene.IsValid());
 
             LoadedScene loadedScene = new LoadedScene(scene);
+            //string objName = loadedScene._rootObj.name;
             SceneManager.MergeScenes(scene, _agregatorScene);
 
+            //loadedScene._rootObj = GameObject.Find(objName);
             loadedScene._rootObj.SetActive(isRootEnabled);
 
             _LoadedScences.Add(loadedScene._name, loadedScene);
@@ -67,6 +69,7 @@ namespace HauntedCity.Utils
             if (_notLoadedScenes == 0 && OnAllScenesLoad != null)
             {
                 OnAllScenesLoad();
+                //StartCoroutine(Kostul());
             }
         }
 
@@ -78,9 +81,29 @@ namespace HauntedCity.Utils
         {
         }
 
+        public IEnumerator Kostul()
+        {
+            while(true)
+            {
+                foreach (string nameScene in _LoadedScences.Keys)
+                {
+                    if (nameScene.Equals(_currentScene))
+                        continue;
+                    _LoadedScences[nameScene]._rootObj.SetActive(false);
+                }
+                _LoadedScences[_currentScene]._rootObj.SetActive(true);
+                yield return new WaitForSecondsRealtime(0.1f);
+            }
+        }
+
         public void switchToScene(string name)
         {
-            _LoadedScences[_currentScene]._rootObj.SetActive(false);
+            //_LoadedScences[_currentScene]._rootObj.SetActive(false);
+            foreach(string nameScene in _LoadedScences.Keys)
+            {
+                if(!nameScene.Equals(_currentScene))
+                    _LoadedScences[nameScene]._rootObj.SetActive(false);
+            }
             _LoadedScences[name]._rootObj.SetActive(true);
             _currentScene = name;
             if (OnSceneChange != null)
