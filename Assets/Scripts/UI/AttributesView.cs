@@ -80,6 +80,17 @@ namespace HauntedCity.UI
 
             GameController.GameStats.OnAttributeChange += _UpdateView;
         }
+        
+        void OnDisable()
+        {
+            _incSurvivability.onClick.RemoveAllListeners();
+            _incEndurance.onClick.RemoveAllListeners();
+            _incPower.onClick.RemoveAllListeners();
+
+            _decSurvivability.onClick.RemoveAllListeners();
+            _decEndurance.onClick.RemoveAllListeners();
+            _decPower.onClick.RemoveAllListeners();
+        }
 
         private void _UpdateView()
         {
@@ -89,7 +100,7 @@ namespace HauntedCity.UI
             _upgradePoints.text = "Upgrade points: " + GameController.GameStats.UpgradePoints;
         }
 
-        void Start()
+        void OnEnable()
         {
             _InitElementReferences();
             _InitEvents();

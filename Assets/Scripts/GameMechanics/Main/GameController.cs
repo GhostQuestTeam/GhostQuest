@@ -41,7 +41,6 @@ namespace HauntedCity.GameMechanics.Main
             _battleStateController.OnLose += BattleLoseHandle;
 
             _storageService.OnLoad += OnPlayerLoad;
-            _storageService.LoadPlayer();
         }
 
         private void OnAllScenesLoad()
@@ -67,6 +66,7 @@ namespace HauntedCity.GameMechanics.Main
             if (sceneName == "battle")
             {
                 _battleStateController.StartBattle(RandomGhosts());
+                
             }
         }
 
@@ -107,6 +107,7 @@ namespace HauntedCity.GameMechanics.Main
         {
             GameObject.Find("BattleRoot").SetActive(false);
             _sceneAgregator.switchToScene("map");
+            _storageService.LoadPlayer();
         }
 
         

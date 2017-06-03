@@ -32,6 +32,11 @@ public class MapUIController : MonoBehaviour
 
         _attributesPanel.SetActive(false);
     }
+    
+    private void OnEnable()
+    {
+        _UpdateLevelView();
+    }
 
     private void _UpdateLevelView()
     {

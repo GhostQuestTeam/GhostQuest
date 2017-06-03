@@ -185,13 +185,14 @@ namespace HauntedCity.GameMechanics.SkillSystem
 
         private void _UpdateExpToNextLevel()
         {
-            ExpToLevel += 100 * Level * Level + 50 * Level + 1000;
+            ExpToLevel = 80 * Level * Level * Level + 50 * Level + 1000;
         }
 
         private void _NextLevel()
         {
             Level++;
             UpgradePoints += UPGRADE_POINTS_PER_LEVEL;
+            CurrentExp = 0;
             _UpdateExpToNextLevel();
         }
 
