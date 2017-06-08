@@ -19,28 +19,50 @@ namespace HauntedCity.Utils
             public string _name;
             public GameObject _rootObj;
 
-            public LoadedScene(Scene scene)
+            public LoadedScene(Scene scene, string nameOfRootObj)
             {
                 _name = scene.name;
-                _rootObj = scene.GetRootGameObjects()[0];
-            }
+                if (nameOfRootObj == null)
+                {
+                    _rootObj = scene.GetRootGameObjects()[0];
+                }
+                else
+                {
+                    foreach(GameObject obj in scene.GetRootGameObjects())
+                    {
+                        if (obj.name == nameOfRootObj)
+                            _rootObj = obj;
+                    }
+                    if(_rootObj == null)
+                        _rootObj = scene.GetRootGameObjects()[0];
+                }
+            }//ctr
         }
 
         public event Action OnAllScenesLoad;
         public event Action<string> OnSceneChange;
 
         public Dictionary<string, LoadedScene> _LoadedScences = new Dictionary<string, LoadedScene>();
+        public Dictionary<string, string> _NamesOfRoots = new Dictionary<string, string>();
 
         // Use this for initialization
         void Start()
         {
+            InitNamesOfRoots();
             _agregatorScene = SceneManager.GetActiveScene();
             _currentScene = _agregatorScene.name;
-            _LoadedScences.Add(_agregatorScene.name, new LoadedScene(_agregatorScene));
+            _LoadedScences.Add(_agregatorScene.name, new LoadedScene(_agregatorScene, _NamesOfRoots[_agregatorScene.name]));
             SceneManager.sceneLoaded += SceneManager_sceneLoaded;
             _notLoadedScenes = 2;
             SceneManager.LoadScene(1, LoadSceneMode.Additive);
             SceneManager.LoadScene(2, LoadSceneMode.Additive);
+        }
+
+        void InitNamesOfRoots()
+        {
+            _NamesOfRoots.Add("start_scene", "StartSceneRoot");
+            _NamesOfRoots.Add("map", "LocationProviderRoot");
+            _NamesOfRoots.Add("battle", "BattleRoot");
         }
 
         public void SceneManager_sceneLoaded(Scene scene, LoadSceneMode mode)
@@ -57,7 +79,7 @@ namespace HauntedCity.Utils
                 yield return new WaitForSecondsRealtime(_hardcodedTimeDelta);
             Debug.Log("Merging scene " + scene.path + " loaded: " + scene.isLoaded + " valid: " + scene.IsValid());
 
-            LoadedScene loadedScene = new LoadedScene(scene);
+            LoadedScene loadedScene = new LoadedScene(scene, scene.name);
             //string objName = loadedScene._rootObj.name;
             SceneManager.MergeScenes(scene, _agregatorScene);
 
@@ -98,7 +120,7 @@ namespace HauntedCity.Utils
 
         public void switchToScene(string name)
         {
-            //_LoadedScences[_currentScene]._rootObj.SetActive(false);
+            _LoadedScences[_currentScene]._rootObj.SetActive(false);
             foreach(string nameScene in _LoadedScences.Keys)
             {
                 if(!nameScene.Equals(_currentScene))
