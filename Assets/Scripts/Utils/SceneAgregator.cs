@@ -8,12 +8,13 @@ namespace HauntedCity.Utils
 {
     public class SceneAgregator : MonoBehaviour
     {
-        Scene _agregatorScene;
 
         float _hardcodedTimeDelta = 0.2f;
-        public string _currentScene;
+        public string[] ScenesToLoad;
+        
         private int _notLoadedScenes;
-
+        private readonly Dictionary<string, Scene> _loadedScenes = new Dictionary<string, Scene>();
+        
         public class LoadedScene
         {
             public string _name;
@@ -29,87 +30,66 @@ namespace HauntedCity.Utils
         public event Action OnAllScenesLoad;
         public event Action<string> OnSceneChange;
 
-        public Dictionary<string, LoadedScene> _LoadedScences = new Dictionary<string, LoadedScene>();
+        //public Dictionary<string, LoadedScene> _LoadedScences = new Dictionary<string, LoadedScene>();
 
         // Use this for initialization
         void Start()
         {
-            _agregatorScene = SceneManager.GetActiveScene();
-            _currentScene = _agregatorScene.name;
-            _LoadedScences.Add(_agregatorScene.name, new LoadedScene(_agregatorScene));
+            var currentScene = SceneManager.GetActiveScene();
+            _loadedScenes.Add(currentScene.name, currentScene);
             SceneManager.sceneLoaded += SceneManager_sceneLoaded;
-            _notLoadedScenes = 2;
-            SceneManager.LoadScene(1, LoadSceneMode.Additive);
-            SceneManager.LoadScene(2, LoadSceneMode.Additive);
+            SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
+            
+            _notLoadedScenes = ScenesToLoad.Length;
+            foreach (var sceneName in ScenesToLoad)
+            {
+                SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+            }
         }
 
         public void SceneManager_sceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            if (scene.buildIndex != _agregatorScene.buildIndex)
-            {
-                StartCoroutine(MergeScene(scene, false));
-            }
-        }
-
-        public IEnumerator MergeScene(Scene scene, bool isRootEnabled)
-        {
-            while ((!scene.isLoaded) || (!scene.IsValid()))
-                yield return new WaitForSecondsRealtime(_hardcodedTimeDelta);
-            Debug.Log("Merging scene " + scene.path + " loaded: " + scene.isLoaded + " valid: " + scene.IsValid());
-
-            LoadedScene loadedScene = new LoadedScene(scene);
-            //string objName = loadedScene._rootObj.name;
-            SceneManager.MergeScenes(scene, _agregatorScene);
-
-            //loadedScene._rootObj = GameObject.Find(objName);
-            loadedScene._rootObj.SetActive(isRootEnabled);
-
-            _LoadedScences.Add(loadedScene._name, loadedScene);
+            _loadedScenes.Add(scene.name, scene);
             _notLoadedScenes--;
+            scene.GetRootGameObjects()[0].SetActive(false);
             if (_notLoadedScenes == 0 && OnAllScenesLoad != null)
             {
                 OnAllScenesLoad();
-                //StartCoroutine(Kostul());
             }
         }
+
+        public void SceneManager_activeSceneChanged(Scene oldScene, Scene newScene)
+        {
+            oldScene.GetRootGameObjects()[0].SetActive(false);
+            newScene.GetRootGameObjects()[0].SetActive(true);
+            if (OnSceneChange != null)
+            {
+                OnSceneChange(newScene.name);
+            }
+        }
+
 
         void Update()
         {
         }
 
-        public void SetStateOfTheScene(string name, bool isActive)
+        void OnDestroy()
         {
-        }
-
-        public IEnumerator Kostul()
-        {
-            while(true)
-            {
-                foreach (string nameScene in _LoadedScences.Keys)
-                {
-                    if (nameScene.Equals(_currentScene))
-                        continue;
-                    _LoadedScences[nameScene]._rootObj.SetActive(false);
-                }
-                _LoadedScences[_currentScene]._rootObj.SetActive(true);
-                yield return new WaitForSecondsRealtime(0.1f);
-            }
+            SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
+            SceneManager.activeSceneChanged -= SceneManager_activeSceneChanged;
         }
 
         public void switchToScene(string name)
         {
-            //_LoadedScences[_currentScene]._rootObj.SetActive(false);
-            foreach(string nameScene in _LoadedScences.Keys)
+            if (!_loadedScenes.ContainsKey(name))
             {
-                if(!nameScene.Equals(_currentScene))
-                    _LoadedScences[nameScene]._rootObj.SetActive(false);
+                throw new ArgumentException("Scene with name " + name + " not loaded");
             }
-            _LoadedScences[name]._rootObj.SetActive(true);
-            _currentScene = name;
-            if (OnSceneChange != null)
-            {
-                OnSceneChange(name);
-            }
+            SceneManager.GetActiveScene().GetRootGameObjects()[0].SetActive(false);
+            SceneManager.SetActiveScene(_loadedScenes[name]);
+            _loadedScenes[name].GetRootGameObjects()[0].SetActive(true);
+            
+            
         }
     }
 }

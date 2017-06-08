@@ -1,47 +1,17 @@
-﻿using HauntedCity.Utils;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Zenject;
+using UnityEngine.SceneManagement;
 
-public class SceneRootController : MonoBehaviour {
-
-    SceneAgregator _sceneAgregator;
-    public string SceneName;
-
-    [Inject]
-    public void InitializeDependencies(SceneAgregator sceneAgregator)
-    
+namespace HauntedCity.Utils
+{
+    public class SceneRootController:MonoBehaviour
     {
-        _sceneAgregator = sceneAgregator;
-   
-    }
-
-    // Use this for initialization
-    void Start () {
-        _sceneAgregator.OnAllScenesLoad += OnAllSceneLoad;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    void OnAllSceneLoad()
-    {
-        StartCoroutine(DisableNotActive());
-    }
-
-    IEnumerator DisableNotActive()
-    {
-        while (true)
+        public string SceneName;
+        void OnEnable()
         {
-            
-            if(_sceneAgregator._currentScene != SceneName)
+            if (SceneManager.GetActiveScene().name != SceneName)
             {
                 gameObject.SetActive(false);
             }
-            yield return new WaitForSecondsRealtime(0.01f);
         }
     }
 }
