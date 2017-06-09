@@ -162,7 +162,7 @@ public class GameSparksPOIsExtraction : MonoBehaviour
                         float lat = coords[0].AsFloat;
                         float lon = coords[1].AsFloat;
                         _points.Add(new Vector2d(lat, lon));
-                        Debug.Log(lat.ToString() + " " + lon.ToString());
+                       //Debug.Log(lat.ToString() + " " + lon.ToString());
                     }
                     OnPOIsExtracted(this, new POIsExtractedEventArgs(_points));
                 }

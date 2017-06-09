@@ -36,7 +36,6 @@ GameObject:
   - component: {fileID: 4377360122394672}
   - component: {fileID: 114941372514905570}
   - component: {fileID: 136989352900493724}
-  - component: {fileID: 114201613774681814}
   - component: {fileID: 54714730913499994}
   m_Layer: 0
   m_Name: devil_mask
@@ -286,6 +285,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23274382103962862
 MeshRenderer:
@@ -317,6 +317,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23332868871906396
 MeshRenderer:
@@ -348,6 +349,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23632438888712792
 MeshRenderer:
@@ -379,6 +381,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23861514957166800
 MeshRenderer:
@@ -410,6 +413,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &33258383689512836
 MeshFilter:
@@ -461,18 +465,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114201613774681814
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1077638422908324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0df7680a3db1a740a3c689cc52447ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ExplosionPrefabPath: FX/SkullGhostExplosion
 --- !u!114 &114941372514905570
 MonoBehaviour:
   m_ObjectHideFlags: 1

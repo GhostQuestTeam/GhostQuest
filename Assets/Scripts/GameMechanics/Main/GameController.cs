@@ -66,7 +66,6 @@ namespace HauntedCity.GameMechanics.Main
             if (sceneName == "battle")
             {
                 _battleStateController.StartBattle(RandomGhosts());
-                
             }
         }
 
@@ -105,6 +104,7 @@ namespace HauntedCity.GameMechanics.Main
 
         public void BattleLoseHandle()
         {
+            Debug.Log("Lose in battle");
             GameObject.Find("BattleRoot").SetActive(false);
             _sceneAgregator.switchToScene("map");
             _storageService.LoadPlayer();

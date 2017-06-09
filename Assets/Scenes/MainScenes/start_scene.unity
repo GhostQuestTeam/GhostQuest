@@ -507,8 +507,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowOnlyLoggedUser:
   - {fileID: 1000743845}
-  - {fileID: 2126933698}
   - {fileID: 595966267}
+  - {fileID: 2126933698}
   ShowOnlyNotLoggedUser:
   - {fileID: 354401528}
   - {fileID: 1199595321}
@@ -1083,8 +1083,7 @@ MonoBehaviour:
   _installerPrefabs: []
   _scriptableObjectInstallers: []
   _parentNewObjectsUnderRoot: 0
-  _contractNames:
-  - StartScene
+  _contractNames: []
   _parentContractName: 
   _autoRun: 1
 --- !u!4 &239435625
@@ -1591,7 +1590,6 @@ MonoBehaviour:
   - shadow_skull
   - devil_mask
   - skull_ghost
-  - white_skull
 --- !u!224 &377680053
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2469,7 +2467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d792b3c2f84447e8841775ed57a8b3f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxEnemiesOnScene: 4
+  MaxEnemiesOnScene: 7
   MinDistance: 30
   MaxDistance: 70
 --- !u!4 &937666029
@@ -4127,8 +4125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f027997e4bfa62249b8459224493d87f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PointOfInterestPrefab: {fileID: 1197503163736148, guid: d1f0436a9ab87014fb76ae99e659cf66,
-    type: 2}
+  PointOfInterestPrefab: {fileID: 0}
   GameSparksObj: {fileID: 0}
 --- !u!4 &1501011778
 Transform:

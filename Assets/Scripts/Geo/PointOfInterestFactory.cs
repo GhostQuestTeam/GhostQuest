@@ -61,7 +61,7 @@ namespace HauntedCity.Geo
         {
             GameSparksObj.GetComponent<GameSparksPOIsExtraction>().OnPOIsExtracted -= Ext_OnPOIsExtracted;
         }
-
+ 
         public void Execute()
         {
             //_btnToEnable = GameObject.Find("StartBattle").GetComponent<Button>();
