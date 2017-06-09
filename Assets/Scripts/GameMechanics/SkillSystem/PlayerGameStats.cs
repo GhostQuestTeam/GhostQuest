@@ -18,6 +18,7 @@ namespace HauntedCity.GameMechanics.SkillSystem
         }
 
         public event Action OnAttributeChange;
+        public event Action OnAttributesUpgrade;
 
         private BoundedInt _baseSurviability;
         private BoundedInt _baseEndurance;
@@ -76,7 +77,7 @@ namespace HauntedCity.GameMechanics.SkillSystem
                 UpgradePoints = value.GetInt("upgradePoints") ?? 5;
 
                 _baseSurviability.Val =  value.GetInt("survivability") ?? 5;
-                _baseEndurance.Val = value.GetInt("ebdurance") ?? 5;
+                _baseEndurance.Val = value.GetInt("endurance") ?? 5;
                 _basePower.Val =  value.GetInt("power") ?? 5;
 
                 _surviabilityDelta = 0;
@@ -154,6 +155,11 @@ namespace HauntedCity.GameMechanics.SkillSystem
             _surviabilityDelta = 0;
             _enduranceDelta = 0;
             _powerDelta = 0;
+
+            if (OnAttributesUpgrade != null)
+            {
+                OnAttributesUpgrade();
+            }
         }
 
         #endregion
@@ -194,6 +200,7 @@ namespace HauntedCity.GameMechanics.SkillSystem
             UpgradePoints += UPGRADE_POINTS_PER_LEVEL;
             CurrentExp = 0;
             _UpdateExpToNextLevel();
+            
         }
 
         public void AddExp(int exp)

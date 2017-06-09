@@ -35,6 +35,8 @@ namespace HauntedCity.GameMechanics.Main
 
         void Start()
         {
+            GameStats.OnAttributesUpgrade += () => _storageService.SavePlayer(GameStats);
+            
             _sceneAgregator.OnSceneChange += OnSceneChange;
             _sceneAgregator.OnAllScenesLoad += OnAllScenesLoad;
             _battleStateController.OnWon += BattleWonHandle;
@@ -87,11 +89,6 @@ namespace HauntedCity.GameMechanics.Main
             _sceneAgregator.switchToScene("battle");
         }
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        public void InitStats()
-        {
-            GameStats = new PlayerGameStats();
-        }
 
         public void BattleWonHandle(int score)
         {
@@ -107,9 +104,8 @@ namespace HauntedCity.GameMechanics.Main
             Debug.Log("Lose in battle");
             GameObject.Find("BattleRoot").SetActive(false);
             _sceneAgregator.switchToScene("map");
-            _storageService.LoadPlayer();
+            _storageService.SavePlayer(GameStats);
         }
-
         
     }
 }
