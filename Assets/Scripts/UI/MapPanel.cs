@@ -2,35 +2,32 @@
 using HauntedCity.UI;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
-public class MapUIController : MonoBehaviour
+public class MapPanel : MonoBehaviour
 {
-    private GameObject _attributesPanel;
-    private GameObject _mainPanel;
+    public Button SkillsButton;
+    public Button StartButton;
+    public Animator AttributesPanel;
 
+    private ScreenManager _screenManager;
+
+    
     void Start()
     {
-        _attributesPanel = GameObject.Find("AttributesPanel");
-        _mainPanel = GameObject.Find("MainPanel");
-
+        _screenManager = GameObject.Find("ScreenManager").GetComponent<ScreenManager>();
+        
         _UpdateLevelView();
-        GameObject.Find("Skills").GetComponent<Button>().onClick.AddListener(() =>
+        SkillsButton.onClick.AddListener(() =>
         {
-            _attributesPanel.SetActive(true);
-            _mainPanel.SetActive(false);
+            _screenManager.OpenPanel(AttributesPanel);
         });
 
         var gameController = GameObject.Find("GameController").GetComponent<GameController>();
 
-        GameObject.Find("StartBattle").GetComponent<Button>().onClick.AddListener(
+        StartButton.onClick.AddListener(
             () => gameController.StartBattle()
         );
-
-        //GameObject.Find("StartBattle").SetActive(false);
-
-        _attributesPanel.GetComponent<AttributesView>().OnClose += CloseHandler;
-
-        _attributesPanel.SetActive(false);
     }
     
     private void OnEnable()
@@ -51,12 +48,5 @@ public class MapUIController : MonoBehaviour
 
     private void OnDestroy()
     {
-        _attributesPanel.GetComponent<AttributesView>().OnClose -= CloseHandler;
-    }
-
-    void CloseHandler()
-    {
-        _attributesPanel.SetActive(false);
-        _mainPanel.SetActive(true);
     }
 }

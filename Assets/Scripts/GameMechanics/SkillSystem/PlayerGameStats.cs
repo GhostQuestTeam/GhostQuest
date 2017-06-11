@@ -93,6 +93,21 @@ namespace HauntedCity.GameMechanics.SkillSystem
             }
         }
 
+        public int GetAttribute(PlayerAttributes attribute)
+        {
+            switch (attribute)
+            {
+                case PlayerAttributes.Survivability:
+                    return Survivability;
+                case PlayerAttributes.Endurance:
+                    return Endurance;
+                case PlayerAttributes.Power:
+                    return Power;
+                default:
+                    throw new ArgumentOutOfRangeException("attribute", attribute, null);
+            }
+        }
+
         public void IncAttribute(PlayerAttributes attribute)
         {
             if (UpgradePoints == 0) return;
