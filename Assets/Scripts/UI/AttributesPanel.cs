@@ -15,7 +15,7 @@ namespace HauntedCity.UI
 
         public Animator PrevPanel;
 
-        private ScreenManager _screenManager;
+        [Inject] private ScreenManager _screenManager;
 
         void Close()
         {
@@ -24,9 +24,7 @@ namespace HauntedCity.UI
         }
         
         void Start()
-        {
-            _screenManager = GameObject.Find("ScreenManager").GetComponent<ScreenManager>();
-            
+        {            
             OkButton.onClick.AddListener(() =>
                 {
                     GameController.GameStats.ConfirmUpgrades();

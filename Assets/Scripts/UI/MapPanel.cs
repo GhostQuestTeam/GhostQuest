@@ -10,26 +10,20 @@ public class MapPanel : MonoBehaviour
     public Button StartButton;
     public Animator AttributesPanel;
 
-    private ScreenManager _screenManager;
+    [Inject] private ScreenManager _screenManager;
+    [Inject] private GameController _gameController;
 
-    
     void Start()
     {
-        _screenManager = GameObject.Find("ScreenManager").GetComponent<ScreenManager>();
-        
-        _UpdateLevelView();
-        SkillsButton.onClick.AddListener(() =>
-        {
-            _screenManager.OpenPanel(AttributesPanel);
-        });
 
-        var gameController = GameObject.Find("GameController").GetComponent<GameController>();
+        _UpdateLevelView();
+        SkillsButton.onClick.AddListener(() => { _screenManager.OpenPanel(AttributesPanel); });
 
         StartButton.onClick.AddListener(
-            () => gameController.StartBattle()
+            () => _gameController.StartBattle()
         );
     }
-    
+
     private void OnEnable()
     {
         _UpdateLevelView();
