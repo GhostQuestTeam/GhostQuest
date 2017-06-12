@@ -89,7 +89,9 @@ namespace Mapbox.Unity.MeshGeneration
             /*
             * йняршкэ! йняршкэ! йняршкэ!
             */
-            _root.transform.SetParent(GameObject.Find("LocationProviderRoot").transform);
+            GameObject locRoot = GameObject.Find("LocationProviderRoot");
+            if(locRoot != null)
+                _root.transform.SetParent(locRoot.transform);
 
             var v2 = Conversions.GeoToWorldPosition(lat, lng, new Vector2d(0, 0));
             var tms = Conversions.MetersToTile(v2, zoom);
