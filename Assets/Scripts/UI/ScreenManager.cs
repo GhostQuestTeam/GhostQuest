@@ -44,7 +44,6 @@ namespace HauntedCity.UI
                 return;
 
             //Activate the new Screen hierarchy so we can animate it.
-            anim.gameObject.SetActive(true);
             //Save the currently selected button that was used to open this Screen. (CloseCurrent will modify it)
             var newPreviouslySelected = EventSystem.current.currentSelectedGameObject;
             //Move the Screen to front.
@@ -55,6 +54,7 @@ namespace HauntedCity.UI
             m_PreviouslySelected = newPreviouslySelected;
 
             //Set the new Screen as then open one.
+            anim.gameObject.SetActive(true);
             m_Open = anim;
             //Start the open animation
             m_Open.SetBool(m_OpenParameterId, true);

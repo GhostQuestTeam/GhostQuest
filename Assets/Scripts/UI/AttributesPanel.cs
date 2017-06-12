@@ -17,6 +17,12 @@ namespace HauntedCity.UI
 
         private ScreenManager _screenManager;
 
+        void Close()
+        {
+            gameObject.SetActive(false);
+            _screenManager.OpenPanel(PrevPanel);
+        }
+        
         void Start()
         {
             _screenManager = GameObject.Find("ScreenManager").GetComponent<ScreenManager>();
@@ -24,10 +30,10 @@ namespace HauntedCity.UI
             OkButton.onClick.AddListener(() =>
                 {
                     GameController.GameStats.ConfirmUpgrades();
-                    _screenManager.OpenPanel(PrevPanel);
+                    Close();
                 }
             );
-            BackButton.onClick.AddListener(() => _screenManager.OpenPanel(PrevPanel));
+            BackButton.onClick.AddListener(Close);
         }
 
         void OnEnable()
