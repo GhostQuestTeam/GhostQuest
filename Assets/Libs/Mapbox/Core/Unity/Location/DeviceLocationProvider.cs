@@ -66,10 +66,10 @@ namespace Mapbox.Unity.Location
 
         void OnEnable()
         {
-            if (_pollRoutine == null)
-            {
+           // if (_pollRoutine == null)
+           // {
                 _pollRoutine = StartCoroutine(PollLocationRoutine());
-            }
+           // }
         }
 
         /// <summary>
