@@ -65,7 +65,7 @@ namespace HauntedCity.GameMechanics.Main
         {
             if (sceneName == "battle")
             {
-                _battleStateController.StartBattle(RandomGhosts());
+                //_battleStateController.StartBattle(RandomGhosts());
                 
             }
         }

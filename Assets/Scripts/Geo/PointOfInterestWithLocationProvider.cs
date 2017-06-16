@@ -27,7 +27,9 @@ namespace HauntedCity.Geo
 			public GameObject UnityObject;
 		}
 
-		public event EventHandler<PointOfInterestEventArgs> OnPOIClose;
+        public GameSparksPOIsExtraction.ExtractedPointMetadata _metadata;
+
+        public event EventHandler<PointOfInterestEventArgs> OnPOIClose;
 
 		public float _myDistanceCutOff = 0.0005f;
 		public float _debug_DistanceToPlayer;
