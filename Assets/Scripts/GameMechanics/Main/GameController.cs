@@ -98,6 +98,23 @@ namespace HauntedCity.GameMechanics.Main
         {
             GameStats.AddExp(score);
             GameObject.Find("BattleRoot").SetActive(false);
+
+            new GameSparks.Api.Requests.LogEventRequest()
+            .SetEventKey("POI_CAP")
+            .SetEventAttribute("POI_ID", "123" /*КАК ПРАВИЛЬНО ПРОТЯНУТЬ СЮДА ID ТОЧКИ???*/)
+            .Send((response) =>
+            {
+                Debug.Log(response.JSONString);
+                if (!response.HasErrors)
+                {
+                    Debug.Log("Your capturing progress was not saved!");
+                }
+                else
+                {
+
+                }
+            });
+
             _sceneAgregator.switchToScene("map");
             Debug.Log("Level: " + GameStats.Level + "  " + GameStats.CurrentExp + "/" + GameStats.ExpToLevel);
             _storageService.SavePlayer(GameStats);
