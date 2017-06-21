@@ -15,9 +15,10 @@ namespace HauntedCity.GameMechanics.Main
         private BattleStateController _battleStateController;
         private SceneAgregator _sceneAgregator;
         private StorageService _storageService;
-        
+
         public string[] AllowableGhosts = {"shadow_skull", "devil_mask", "skull_ghost"};
 
+        private GameSparksPOIsExtraction.ExtractedPointMetadata _currentPOImeta;
 
         [Inject]
         public void InitializeDependencies(BattleStateController battleStateController,
@@ -71,9 +72,10 @@ namespace HauntedCity.GameMechanics.Main
             }
         }
 
-        public void StartBattle(Dictionary<string, int> enemiesDict)
+        public void StartBattle(GameSparksPOIsExtraction.ExtractedPointMetadata meta)
         {
-            _battleStateController.StartBattle(enemiesDict);
+            _currentPOImeta = meta;
+            _battleStateController.StartBattle(meta.enemies);
         }
 
         public void StartBattle()
@@ -94,9 +96,6 @@ namespace HauntedCity.GameMechanics.Main
         }
 
 
-       
-
-
         public void BattleWonHandle(int score)
         {
             GameStats.AddExp(score);
@@ -104,7 +103,7 @@ namespace HauntedCity.GameMechanics.Main
 
             new GameSparks.Api.Requests.LogEventRequest()
                 .SetEventKey("POI_CAP")
-                .SetEventAttribute("POI_ID", "123" /*КАК ПРАВИЛЬНО ПРОТЯНУТЬ СЮДА ID ТОЧКИ???*/)
+                .SetEventAttribute("POI_ID", _currentPOImeta.poid)
                 .Send((response) =>
                 {
                     Debug.Log(response.JSONString);
@@ -114,8 +113,17 @@ namespace HauntedCity.GameMechanics.Main
                     }
                     else
                     {
+                        Debug.Log(response.JSONString);
+                        if (!response.HasErrors)
+                        {
+                            Debug.Log("Your capturing progress was not saved!");
+                        }
+                        else
+                        {
+                        }
                     }
                 });
+
 
             _sceneAgregator.switchToScene("map");
             Debug.Log("Level: " + GameStats.Level + "  " + GameStats.CurrentExp + "/" + GameStats.ExpToLevel);

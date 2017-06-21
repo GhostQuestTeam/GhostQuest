@@ -110,7 +110,7 @@ namespace HauntedCity.Geo
 
             _currentStartBattleOnClickListener = () =>
             {
-                _gameController.StartBattle(meta.enemies);
+                _gameController.StartBattle(meta);
             };
 
             if (e.IsPlayerNear)
