@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using HauntedCity.GameMechanics.BattleSystem;
+using Zenject;
+using HauntedCity.GameMechanics.Main;
 
 namespace HauntedCity.Geo
 {
@@ -14,11 +16,12 @@ namespace HauntedCity.Geo
         public GameObject PointOfInterestPrefab;
         private Button _btnToEnable;
         public GameObject GameSparksObj;
-        private BattleStateController _battleStateController;
+
+        [Inject]
+        private GameController _gameController;
 
         void Start()
         {
-            _battleStateController = GameObject.Find("BattleStateController").GetComponent<BattleStateController>();
             _btnToEnable = GameObject.Find("StartBattle").GetComponent<Button>();
             setActiveBtnToEnable(false);
             InitPoints();
@@ -107,7 +110,7 @@ namespace HauntedCity.Geo
 
             _currentStartBattleOnClickListener = () =>
             {
-                _battleStateController.StartBattle(meta.enemies);
+                _gameController.StartBattle(meta.enemies);
             };
 
             if (e.IsPlayerNear)

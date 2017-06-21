@@ -70,6 +70,12 @@ namespace HauntedCity.GameMechanics.Main
             }
         }
 
+        public void StartBattle(Dictionary<string, int> enemiesDict)
+        {
+            _battleStateController.StartBattle(enemiesDict);
+        }
+
+
         public Dictionary<string, int> RandomGhosts()
         {
             var result = new Dictionary<string, int>();
