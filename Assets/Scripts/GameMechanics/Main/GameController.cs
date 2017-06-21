@@ -15,12 +15,12 @@ namespace HauntedCity.GameMechanics.Main
         private BattleStateController _battleStateController;
         private SceneAgregator _sceneAgregator;
         private StorageService _storageService;
-
-        public string[] AllowableGhosts = { "shadow_skull", "devil_mask","skull_ghost" };
+        
+        public string[] AllowableGhosts = {"shadow_skull", "devil_mask", "skull_ghost"};
 
 
         [Inject]
-        public void InitializeDependencies(BattleStateController battleStateController, 
+        public void InitializeDependencies(BattleStateController battleStateController,
             SceneAgregator sceneAgregator,
             StorageService storageService)
         {
@@ -28,13 +28,15 @@ namespace HauntedCity.GameMechanics.Main
             _sceneAgregator = sceneAgregator;
             _storageService = storageService;
         }
-        
+
         void Awake()
         {
         }
 
         void Start()
         {
+            GameStats.OnAttributesUpgrade += () => _storageService.SavePlayer(GameStats);
+
             _sceneAgregator.OnSceneChange += OnSceneChange;
             _sceneAgregator.OnAllScenesLoad += OnAllScenesLoad;
             _battleStateController.OnWon += BattleWonHandle;
@@ -60,13 +62,12 @@ namespace HauntedCity.GameMechanics.Main
                 GameStats = _storageService.PlayerStats;
             }
         }
-        
+
         private void OnSceneChange(string sceneName)
         {
             if (sceneName == "battle")
             {
-                //_battleStateController.StartBattle(RandomGhosts());
-                
+//                _battleStateController.StartBattle(RandomGhosts());
             }
         }
 
@@ -75,6 +76,12 @@ namespace HauntedCity.GameMechanics.Main
             _battleStateController.StartBattle(enemiesDict);
         }
 
+        public void StartBattle()
+        {
+            GameObject.Find("LocationProviderRoot").SetActive(false);
+
+            _sceneAgregator.switchToScene("battle");
+        }
 
         public Dictionary<string, int> RandomGhosts()
         {
@@ -87,18 +94,8 @@ namespace HauntedCity.GameMechanics.Main
         }
 
 
-        public void StartBattle()
-        {
-            GameObject.Find("LocationProviderRoot").SetActive(false);
+       
 
-            _sceneAgregator.switchToScene("battle");
-        }
-
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        public void InitStats()
-        {
-            GameStats = new PlayerGameStats();
-        }
 
         public void BattleWonHandle(int score)
         {
@@ -106,20 +103,19 @@ namespace HauntedCity.GameMechanics.Main
             GameObject.Find("BattleRoot").SetActive(false);
 
             new GameSparks.Api.Requests.LogEventRequest()
-            .SetEventKey("POI_CAP")
-            .SetEventAttribute("POI_ID", "123" /*КАК ПРАВИЛЬНО ПРОТЯНУТЬ СЮДА ID ТОЧКИ???*/)
-            .Send((response) =>
-            {
-                Debug.Log(response.JSONString);
-                if (!response.HasErrors)
+                .SetEventKey("POI_CAP")
+                .SetEventAttribute("POI_ID", "123" /*КАК ПРАВИЛЬНО ПРОТЯНУТЬ СЮДА ID ТОЧКИ???*/)
+                .Send((response) =>
                 {
-                    Debug.Log("Your capturing progress was not saved!");
-                }
-                else
-                {
-
-                }
-            });
+                    Debug.Log(response.JSONString);
+                    if (!response.HasErrors)
+                    {
+                        Debug.Log("Your capturing progress was not saved!");
+                    }
+                    else
+                    {
+                    }
+                });
 
             _sceneAgregator.switchToScene("map");
             Debug.Log("Level: " + GameStats.Level + "  " + GameStats.CurrentExp + "/" + GameStats.ExpToLevel);
@@ -128,11 +124,10 @@ namespace HauntedCity.GameMechanics.Main
 
         public void BattleLoseHandle()
         {
+            Debug.Log("Lose in battle");
             GameObject.Find("BattleRoot").SetActive(false);
             _sceneAgregator.switchToScene("map");
-            _storageService.LoadPlayer();
+            _storageService.SavePlayer(GameStats);
         }
-
-        
     }
 }

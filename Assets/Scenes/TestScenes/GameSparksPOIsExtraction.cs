@@ -169,7 +169,6 @@ public class GameSparksPOIsExtraction : MonoBehaviour
                         SimpleJSON.JSONArray coords = node["geometry"]["coordinates"].AsArray;
                         float lat = coords[0].AsFloat;
                         float lon = coords[1].AsFloat;
-
                         string uoid = node["properties"]["uoid"];
                         string poid = node["_id"]["$oid"];
 
@@ -187,6 +186,7 @@ public class GameSparksPOIsExtraction : MonoBehaviour
 
                         _points.Add(pointMeta);
                         Debug.Log(lat.ToString() + " " + lon.ToString());
+
                     }
                     OnPOIsExtracted(this, new POIsExtractedEventArgs(_points));
                 }

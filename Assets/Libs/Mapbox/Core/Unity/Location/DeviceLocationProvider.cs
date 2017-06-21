@@ -61,10 +61,12 @@ namespace Mapbox.Unity.Location
         void Start()
         {
             _wait = new WaitForSeconds(1f);
-            if (_pollRoutine == null)
-            {
-                _pollRoutine = StartCoroutine(PollLocationRoutine());
-            }
+            
+        }
+
+        void OnEnable()
+        {
+            _pollRoutine = StartCoroutine(PollLocationRoutine());
         }
 
         /// <summary>
@@ -137,9 +139,6 @@ namespace Mapbox.Unity.Location
             }
         }
 
-        void OnEnable()
-        {
-            _pollRoutine = StartCoroutine(PollLocationRoutine());
-        }
+        
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using HauntedCity.GameMechanics.Main;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Zenject;
 using Random = UnityEngine.Random;
 
@@ -17,7 +18,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
         
         private BattleStatsCalculator _battleStatsCalculator;
 
-        private bool _isBattleFinished;
+        private volatile bool _isBattleFinished;
         private int _totalScore;
 
         private Dictionary<string, int> _allEnemies;
@@ -45,17 +46,17 @@ namespace HauntedCity.GameMechanics.BattleSystem
 
         public void StartBattle(Dictionary<string, int> enemies)
         {
+            
+            //Debug.Log("Start battle on scene " + SceneManager.GetActiveScene().name);
             _player = GameObject.FindWithTag("Player").GetComponent<PlayerBattleBehavior>();
             _player.BattleController.OnDeath += PlayerDeathHandle;
 
             _totalScore = 0;
             _isBattleFinished = false;
             _allEnemies = enemies;
-            foreach (var enemy in _currentEnemies)
-            {
-                Destroy(enemy);
-            }
-            _currentEnemies.Clear();
+            
+            _ClearEnemies();
+            
             _player.Reset(_battleStatsCalculator.CalculateBattleStats(GameController.GameStats));
 
             SpawnEnemies();
@@ -84,6 +85,32 @@ namespace HauntedCity.GameMechanics.BattleSystem
             }
         }
 
+        private void _ClearEnemies()
+        {
+            foreach (var enemy in _currentEnemies)
+            {
+                Destroy(enemy);
+            }
+            _currentEnemies.Clear();
+            Debug.Log("Clear Enemies");
+
+        }
+        
+        private void _EndBattle( bool isWon)
+        {
+            _isBattleFinished = true;
+            _ClearEnemies();
+            if (isWon && OnWon != null)
+            {
+                OnWon(_totalScore);
+            }
+            else if (!isWon && OnLose != null)
+            {
+                Debug.Log("Call OnLose Mobs count " + _allEnemies.Count );
+                OnLose();
+            }
+        }
+
         public void EnemyDeathHandle(GameObject enemy)
         {
             _totalScore += enemy.GetComponent<EnemyBehavior>().Score;
@@ -94,12 +121,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
             }
             else if ((_currentEnemies.Count == 0) && !_isBattleFinished)
             {
-                Debug.Log("You win! Score: " + _totalScore);
-                if (OnWon != null)
-                {
-                    OnWon(_totalScore);
-                }
-                _isBattleFinished = true;
+                _EndBattle(true);
             }
         }
 
@@ -108,12 +130,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
             _player.BattleController.OnDeath -= PlayerDeathHandle;
             if (!_isBattleFinished)
             {
-                _isBattleFinished = true;
-                Debug.Log("You lose");
-                if (OnLose != null)
-                {
-                    OnLose();
-                }
+                _EndBattle(false);
             }
         }
     }
