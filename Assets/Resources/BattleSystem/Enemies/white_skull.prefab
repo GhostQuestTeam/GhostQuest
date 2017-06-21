@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 136581925833338858}
   - component: {fileID: 114089680514272716}
   - component: {fileID: 54960102227755008}
+  - component: {fileID: 95080613787990908}
   m_Layer: 0
   m_Name: white_skull
   m_TagString: Untagged
@@ -227,6 +228,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23337762206979394
 MeshRenderer:
@@ -258,6 +260,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23370023816112646
 MeshRenderer:
@@ -289,6 +292,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23860285931009854
 MeshRenderer:
@@ -320,6 +324,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &33075575895883860
 MeshFilter:
@@ -364,6 +369,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!95 &95080613787990908
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1623220306488110}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 418aa3c622d05044eab16ccb6a874267, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114089680514272716
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -387,6 +409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f3d94b1a6e88344affbc544d16575d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackType: 2
   BattleStats:
     Solidity:
       RegenPoints: 0
@@ -395,6 +418,8 @@ MonoBehaviour:
     Velocity: 0.2
     Damage: 10
   DeathDelay: 1
+  AttackRange: 0.05
+  AttackCooldown: 1
   Score: 100
 --- !u!136 &136581925833338858
 CapsuleCollider:

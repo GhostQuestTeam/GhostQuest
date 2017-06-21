@@ -47,7 +47,7 @@ namespace HauntedCity.GameMechanics.Main
 
         private void OnAllScenesLoad()
         {
-            //_sceneAgregator.switchToScene("battle");
+//            _sceneAgregator.switchToScene("battle");
         }
 
         public void StartGame()
@@ -84,7 +84,7 @@ namespace HauntedCity.GameMechanics.Main
 
         public void StartBattle()
         {
-            GameObject.Find("LocationProviderRoot").SetActive(false);
+            //GameObject.Find("LocationProviderRoot").SetActive(false);
 
             _sceneAgregator.switchToScene("battle");
         }

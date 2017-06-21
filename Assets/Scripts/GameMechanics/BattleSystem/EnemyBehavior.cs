@@ -15,6 +15,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
             Kamikaze
         }
         
+        private WaitForSecondsRealtime _microWait;
         private GameObject _followee;
         private Animator _animator;
 
@@ -22,7 +23,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
         public EnemyBattleController BattleController { get; private set; }
         public EnemyBattleStats BattleStats;
         public float DeathDelay = 0f;
-        public float AttackRange = 0.05f;
+        public float AttackRange = 1f;
         public float AttackCooldown = 1f;
         public int Score = 100;
       
@@ -31,6 +32,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
         // Use this for initialization
         void Awake()
         {
+            _microWait = new WaitForSecondsRealtime(0.2f);
             _animator = GetComponent<Animator>();
             _followee = GameObject.FindWithTag("Player");
             BattleStats.ResetHealth();
@@ -49,7 +51,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
         {
             transform.LookAt(_followee.transform);
             var distance = Vector3.Distance(transform.position, _followee.transform.position);
-            if (distance <= AttackRange)
+            if (distance > AttackRange)
             {
                 transform.position = Vector3.MoveTowards(transform.position, _followee.transform.position,
                     BattleStats.Velocity);
@@ -61,8 +63,11 @@ namespace HauntedCity.GameMechanics.BattleSystem
             while (true)
             {
                 var distance = Vector3.Distance(transform.position, _followee.transform.position);
-                if (distance > AttackRange) continue;
-                
+                if (distance > AttackRange)
+                {
+                    yield return _microWait;
+                    continue;
+                }
                 var player = _followee.GetComponent<PlayerBattleBehavior>();
                 _animator.SetTrigger("Attack");
                 switch (attackType)
