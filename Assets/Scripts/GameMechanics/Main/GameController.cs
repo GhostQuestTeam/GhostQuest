@@ -18,6 +18,7 @@ namespace HauntedCity.GameMechanics.Main
 
         public string[] AllowableGhosts = { "shadow_skull", "devil_mask","skull_ghost" };
 
+        private GameSparksPOIsExtraction.ExtractedPointMetadata _currentPOImeta;
 
         [Inject]
         public void InitializeDependencies(BattleStateController battleStateController, 
@@ -70,9 +71,10 @@ namespace HauntedCity.GameMechanics.Main
             }
         }
 
-        public void StartBattle(Dictionary<string, int> enemiesDict)
+        public void StartBattle(GameSparksPOIsExtraction.ExtractedPointMetadata meta)
         {
-            _battleStateController.StartBattle(enemiesDict);
+            _currentPOImeta = meta;
+            _battleStateController.StartBattle(meta.enemies);
         }
 
 
@@ -107,7 +109,7 @@ namespace HauntedCity.GameMechanics.Main
 
             new GameSparks.Api.Requests.LogEventRequest()
             .SetEventKey("POI_CAP")
-            .SetEventAttribute("POI_ID", "123" /*КАК ПРАВИЛЬНО ПРОТЯНУТЬ СЮДА ID ТОЧКИ???*/)
+            .SetEventAttribute("POI_ID", _currentPOImeta.poid)
             .Send((response) =>
             {
                 Debug.Log(response.JSONString);
