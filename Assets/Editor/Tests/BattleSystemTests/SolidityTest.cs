@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
-using BattleSystem;
+using HauntedCity.GameMechanics.BattleSystem;
 
-namespace BattleSystemTests
+namespace HauntedCityTests.BattleSystemTests
 {
     [TestFixture]
     public class SolidityTest

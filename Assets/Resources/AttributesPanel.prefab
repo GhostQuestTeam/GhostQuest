@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 114345854064992806}
   - component: {fileID: 114545082469884788}
   m_Layer: 5
-  m_Name: 'OkButton '
+  m_Name: OkButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -522,6 +522,7 @@ GameObject:
   - component: {fileID: 114831360472419534}
   - component: {fileID: 114673844317060982}
   - component: {fileID: 114761164634596870}
+  - component: {fileID: 114681658266843094}
   m_Layer: 5
   m_Name: AttributesPanel
   m_TagString: Untagged
@@ -886,9 +887,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
   m_MinWidth: 30
-  m_MinHeight: 30
-  m_PreferredWidth: 100
-  m_PreferredHeight: 100
+  m_MinHeight: 20
+  m_PreferredWidth: 80
+  m_PreferredHeight: 80
   m_FlexibleWidth: 0
   m_FlexibleHeight: 0.1
 --- !u!114 &114270474680410996
@@ -1064,10 +1065,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
+    m_Left: 10
+    m_Right: 10
+    m_Top: 10
+    m_Bottom: 10
   m_ChildAlignment: 0
   m_Spacing: 0
   m_ChildForceExpandWidth: 0
@@ -1088,8 +1089,8 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: 30
   m_MinHeight: 30
-  m_PreferredWidth: 100
-  m_PreferredHeight: 100
+  m_PreferredWidth: 80
+  m_PreferredHeight: 80
   m_FlexibleWidth: 0
   m_FlexibleHeight: 0.1
 --- !u!114 &114387448616166912
@@ -1384,10 +1385,10 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 3
+  m_ChildAlignment: 4
   m_Spacing: 30
   m_ChildForceExpandWidth: 0
-  m_ChildForceExpandHeight: 1
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
 --- !u!114 &114496170024552146
@@ -1613,6 +1614,17 @@ MonoBehaviour:
   QuestTitlePrefabPath: QuestsUI/QuestTitleButton
   QuestNotePrefabPath: QuestsUI/QuestNote
   TaskChecckboxPrefabPath: QuestsUI/TaskCheckbox
+--- !u!114 &114681658266843094
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1971859792853562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3825731ddfc94f57a7542413cf766d06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114683847723593126
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2341,7 +2353,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -35.000015, y: -35}
+  m_AnchoredPosition: {x: -43, y: -41.250015}
   m_SizeDelta: {x: 82.5, y: 82.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224071866632868574
@@ -2415,7 +2427,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -35.000015, y: -35}
+  m_AnchoredPosition: {x: -43, y: -40}
   m_SizeDelta: {x: 82.5, y: 82.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224398407205472104
@@ -2536,7 +2548,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 35, y: -35}
+  m_AnchoredPosition: {x: 40, y: -40}
   m_SizeDelta: {x: 82.5, y: 82.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224575003823787398
@@ -2572,7 +2584,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 41.3, y: -41.3}
+  m_AnchoredPosition: {x: 40, y: -40}
   m_SizeDelta: {x: 82.5, y: 82.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224772864188022396
@@ -2590,7 +2602,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -35.000015, y: -35}
+  m_AnchoredPosition: {x: -43, y: -40}
   m_SizeDelta: {x: 82.5, y: 82.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224775262567225002
@@ -2643,7 +2655,7 @@ RectTransform:
   - {fileID: 224782336254617934}
   - {fileID: 224538550077435752}
   m_Father: {fileID: 224811233292754772}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2697,14 +2709,14 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 224978725249308968}
   - {fileID: 224789986361440736}
+  - {fileID: 224978725249308968}
   m_Father: {fileID: 224150998655860106}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061034996, y: -0.25}
+  m_AnchoredPosition: {x: 0, y: -0.25}
   m_SizeDelta: {x: -0.00012207, y: -0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224848108426586350
@@ -2776,7 +2788,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 35, y: -35}
+  m_AnchoredPosition: {x: 40, y: -40}
   m_SizeDelta: {x: 82.5, y: 82.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224975003985730020
@@ -2810,7 +2822,7 @@ RectTransform:
   m_Children:
   - {fileID: 224520303493229712}
   m_Father: {fileID: 224811233292754772}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

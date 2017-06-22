@@ -86,7 +86,7 @@ Camera:
   m_GameObject: {fileID: 1065236599464800}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 3
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -99,7 +99,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -108,6 +108,8 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
+  m_AllowMSAA: 1
+  m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -187,7 +189,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1699716209724022}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 751514d7d00a11c438fb4f0d601e115c, type: 3}
+  m_Script: {fileID: 11500000, guid: 1cf5b25ff74f24445b71e14ca9d983c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gyroEnabled: 0
