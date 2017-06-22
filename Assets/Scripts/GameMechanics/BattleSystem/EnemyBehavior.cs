@@ -38,7 +38,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
             BattleStats.ResetHealth();
             BattleController = new EnemyBattleController(BattleStats);
             BattleController.OnDeath += () => StartCoroutine(Kill(DeathDelay));
-            BattleController.OnDamage += (damage) => _animator.SetTrigger("Hit");
+            //BattleController.OnDamage += (damage) => _animator.SetTrigger("Hit");
         }
 
         private void Start()
@@ -97,6 +97,8 @@ namespace HauntedCity.GameMechanics.BattleSystem
             if (shell != null)
             {
                 BattleController.TakeDamage(shell.Weapon.Damage);
+                _animator.SetTrigger("Hit");
+
             }
 //
 //            if (other.gameObject.CompareTag("Player"))
