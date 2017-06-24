@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace HauntedCity.Utils.Extensions
 {
-    public static class UnityTransformExtension
+    public static class UnityExtension
     {
         public static void Clear(this Transform transform)
         {
@@ -10,6 +11,16 @@ namespace HauntedCity.Utils.Extensions
             {
                 GameObject.Destroy(child.gameObject);
             }
+        }
+        
+        public static List<GameObject> GetChildren(this GameObject go)
+        {
+            List<GameObject> children = new List<GameObject>();
+            foreach (Transform tran in go.transform)
+            {
+                children.Add(tran.gameObject);
+            }
+            return children;
         }
     }
 }

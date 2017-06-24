@@ -336,6 +336,11 @@
     <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\Weapon.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\WeaponInfo.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\WeaponLoader.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\ItemSystem\Inventory.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\ItemSystem\Item.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\ItemSystem\ItemDragHandler.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\ItemSystem\Slot.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\ItemSystem\UsableItem.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\Main\BattleStatsCalculator.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\Main\GameController.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\Main\GyroControl.cs" />
@@ -353,6 +358,7 @@
     <Compile Include="Assets\Scripts\UI\BackgroundPlaneController.cs" />
     <Compile Include="Assets\Scripts\UI\BattleInterfaceController.cs" />
     <Compile Include="Assets\Scripts\UI\IndicatorsView.cs" />
+    <Compile Include="Assets\Scripts\UI\InventoryPanel.cs" />
     <Compile Include="Assets\Scripts\UI\LoginPanel.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenuPanel.cs" />
     <Compile Include="Assets\Scripts\UI\MapPanel.cs" />

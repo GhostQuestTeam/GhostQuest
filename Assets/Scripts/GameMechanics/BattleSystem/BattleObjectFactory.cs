@@ -43,7 +43,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
         private static BattleObjectLoader _shellLoader = new BattleObjectLoader("Shells/");
         private static BattleObjectLoader _enemyLoader = new BattleObjectLoader("Enemies/");
 
-        public static GameObject CreateShell(WeaponInfo weaponInfo)
+        public static GameObject CreateShell(Weapon weaponInfo)
         {
             return _shellLoader.Load(weaponInfo.Id);
         }
