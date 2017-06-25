@@ -4,10 +4,15 @@ using Mapbox.Unity.MeshGeneration;
 using Mapbox.Unity.Utilities;
 using Mapbox.Utils;
 using UnityEngine;
+using Zenject;
+using HauntedCity.GameMechanics.Main;
 
 namespace HauntedCity.Geo
 {
 	public class PointOfInterestWithLocationProvider : MonoBehaviour {
+
+        [Inject]
+        GameController _gameController;
 
 		[SerializeField]
 		float _positionFollowFactor;
@@ -131,9 +136,20 @@ namespace HauntedCity.Geo
 			}//if
 		}//fn
 
-	}
-	
 
+        public void OnClick()
+        {
+            var panelIntrPoint = GameObject.FindObjectOfType<POIInfoWindowUnityInteractionPoint>();
+            panelIntrPoint.Controller.applyPOIMetadata(_metadata);
+            panelIntrPoint.Controller.ToFightCallback = () =>
+            {
+                _gameController.StartBattle(_metadata);
+            };
+            panelIntrPoint.Controller.show();
+        }
+
+    }
+	
 
 }
 

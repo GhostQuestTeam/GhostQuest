@@ -40,8 +40,31 @@ public class POIInfoWindowController {
 
     private int _nFarPosition = 10000;
 
+    public void Initialize
+        (
+            string prefabPath = "",
+            GameObject parent = null,
+            Vector3 position = new Vector3(),
+            UnityAction closeCb = null,
+            UnityAction toFightCb = null
+        )
+    {
+        POIInfoWindowPrefabPath = prefabPath;
+        POIInfoWidowParent = parent;
+        Position = position;
+        CloseCallback = closeCb;
+        ToFightCallback = toFightCb;
+        make();
+    }
+
     public bool make()
     {
+        if(_poiInfoWindowObject != null)
+        {
+            GameObject.Destroy(_poiInfoWindowObject);
+            _poiInfoWindowObject = null;
+        }
+            
         _poiInfoWindowObject = GameObject.Instantiate<GameObject>
             (
                 Resources.Load<GameObject>(POIInfoWindowPrefabPath),
