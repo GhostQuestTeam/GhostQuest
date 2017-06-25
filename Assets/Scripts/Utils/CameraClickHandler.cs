@@ -49,7 +49,7 @@ namespace HauntedCity.Utils
             if (Physics.Raycast(ray, out hit))
             {
                 GameObject collideedObject = hit.transform.gameObject;
-                collideedObject.SendMessage("onRay");
+                collideedObject.SendMessage("OnRay");
             }
         }
     }

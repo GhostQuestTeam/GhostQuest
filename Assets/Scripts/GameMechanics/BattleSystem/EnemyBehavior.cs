@@ -26,7 +26,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
         public float AttackRange = 1f;
         public float AttackCooldown = 1f;
         public int Score = 100;
-      
+        public double BonusDropProb = 0.5;
 
 
         // Use this for initialization
@@ -38,7 +38,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
             BattleStats.ResetHealth();
             BattleController = new EnemyBattleController(BattleStats);
             BattleController.OnDeath += () => StartCoroutine(Kill(DeathDelay));
-            //BattleController.OnDamage += (damage) => _animator.SetTrigger("Hit");
+            //BattleController.OnHealthChange += (damage) => _animator.SetTrigger("Hit");
         }
 
         private void Start()
@@ -100,13 +100,6 @@ namespace HauntedCity.GameMechanics.BattleSystem
                 _animator.SetTrigger("Hit");
 
             }
-//
-//            if (other.gameObject.CompareTag("Player"))
-//            {
-//                var player = other.gameObject.GetComponent<PlayerBattleBehavior>();
-//                player.BattleController.TakeDamage(BattleStats.Damage);
-//                BattleController.Kill();
-//            }
         }
 
         public IEnumerator Kill(float delay)
@@ -114,7 +107,15 @@ namespace HauntedCity.GameMechanics.BattleSystem
             BattleStats.Velocity = 0;
             _animator.SetTrigger("Die");
             yield return new WaitForSeconds(delay);
+            var randValue = UnityEngine.Random.Range(0f, 1f);
+            if (randValue <= BonusDropProb)
+            {
+               var bonus = BattleObjectFactory.RandomBonus();
+               bonus.transform.position = transform.position;
+            }
+            
             Destroy(gameObject);
+            
         }
     }
 }
