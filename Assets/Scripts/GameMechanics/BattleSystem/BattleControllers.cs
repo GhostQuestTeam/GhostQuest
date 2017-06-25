@@ -95,10 +95,10 @@ namespace HauntedCity.GameMechanics.BattleSystem
             set { battleStats = value; }
         }
 
-        public void TryShoot()
+        public bool TryShoot()
         {
-            if (BattleStats.CurrentEnergy < BattleStats.CurrentWeapon.ShootCost) return;
-            if (!_weaponSpeedController.CanShoot(BattleStats.CurrentWeapon)) return;
+            if (BattleStats.CurrentEnergy < BattleStats.CurrentWeapon.ShootCost) return false;
+            if (!_weaponSpeedController.CanShoot(BattleStats.CurrentWeapon)) return false;
             _shooter.Shoot(BattleStats.CurrentWeapon);
             BattleStats.CurrentEnergy -= BattleStats.CurrentWeapon.ShootCost;
             if (OnEnergyChanged != null)
@@ -109,6 +109,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
             {
                 _weaponSpeedController.BlockWeapon(BattleStats.CurrentWeapon, BattleStats.CurrentWeapon.Cooldown);
             }
+            return true;
         }
 
         public override void Reset()
