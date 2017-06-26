@@ -17,7 +17,6 @@ namespace HauntedCity.Utils
         private int _notLoadedScenes;
         private readonly Dictionary<string, Scene> _loadedScenes = new Dictionary<string, Scene>();
 
-
         public event Action OnAllScenesLoad;
         public event Action<string> OnSceneChange;
 

@@ -24,7 +24,6 @@ namespace HauntedCity.GameMechanics.BattleSystem
 
         public void OnRay()
         {
-            Debug.Log("Zis iz worgs!!");
             switch (bonusType)
             {
                 case BonusType.Health:
