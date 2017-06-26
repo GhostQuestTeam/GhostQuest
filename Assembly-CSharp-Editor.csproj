@@ -65,6 +65,7 @@
     <Compile Include="Assets\Libs\Mapbox\Core\Unity\Editor\MeshFactoryEditor.cs" />
     <Compile Include="Assets\Libs\Mapbox\Core\Unity\Editor\TerrainFactoryEditor.cs" />
     <Compile Include="Assets\Libs\Mapbox\Examples\Drive\Editor\DirectionsFactoryEditor.cs" />
+    <Compile Include="Assets\Libs\PyroParticles\Prefab\Editor\PyroParticlesEditor.cs" />
     <Compile Include="Assets\Libs\Standard Assets\Editor\ImageEffects\AntialiasingEditor.cs" />
     <Compile Include="Assets\Libs\Standard Assets\Editor\ImageEffects\BloomAndFlaresEditor.cs" />
     <Compile Include="Assets\Libs\Standard Assets\Editor\ImageEffects\BloomEditor.cs" />
@@ -108,6 +109,7 @@
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\RadialBlur.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\DepthOfFieldDX11.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAAPreset3.shader" />
+    <None Include="Assets\Libs\PyroParticles\Prefab\Materials\AdditiveTintable.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Apply.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\frag_ao.cginc" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\TwirlEffect.shader" />
@@ -123,6 +125,7 @@
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionCurvesSimple.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\CreaseApply.shader" />
     <None Include="Assets\Plugins\Zenject\LICENSE.txt" />
+    <None Include="Assets\Libs\PyroParticles\Readme.txt" />
     <None Include="Assets\Libs\Mapbox\Core\Plugins\link.xml" />
     <None Include="Assets\Libs\Standard Assets\Effects\ToonShading\Shaders\ToonLitOutline.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Luminance.shader" />

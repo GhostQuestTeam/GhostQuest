@@ -274,6 +274,15 @@
     <Compile Include="Assets\Libs\Mapbox\Examples\_resources\Scripts\ForwardGeocodeUserInput.cs" />
     <Compile Include="Assets\Libs\Mapbox\Examples\_resources\Scripts\ReverseGeocodeUserInput.cs" />
     <Compile Include="Assets\Libs\Mapbox\Examples\_resources\Scripts\Slippy.cs" />
+    <Compile Include="Assets\Libs\PyroParticles\Demo\DemoScript.cs" />
+    <Compile Include="Assets\Libs\PyroParticles\Demo\DemoScriptEditor.cs" />
+    <Compile Include="Assets\Libs\PyroParticles\Prefab\Script\FireBaseScript.cs" />
+    <Compile Include="Assets\Libs\PyroParticles\Prefab\Script\FireCollisionForwardScript.cs" />
+    <Compile Include="Assets\Libs\PyroParticles\Prefab\Script\FireConstantBaseScript.cs" />
+    <Compile Include="Assets\Libs\PyroParticles\Prefab\Script\FireLightScript.cs" />
+    <Compile Include="Assets\Libs\PyroParticles\Prefab\Script\FireProjectileScript.cs" />
+    <Compile Include="Assets\Libs\PyroParticles\Prefab\Script\MeteorSwarmScript.cs" />
+    <Compile Include="Assets\Libs\PyroParticles\Prefab\Script\SingleLineAttribute.cs" />
     <Compile Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Scripts\Antialiasing.cs" />
     <Compile Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Scripts\Bloom.cs" />
     <Compile Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Scripts\BloomAndFlares.cs" />
@@ -403,6 +412,7 @@
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\RadialBlur.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\DepthOfFieldDX11.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAAPreset3.shader" />
+    <None Include="Assets\Libs\PyroParticles\Prefab\Materials\AdditiveTintable.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Apply.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\frag_ao.cginc" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\TwirlEffect.shader" />
@@ -418,6 +428,7 @@
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionCurvesSimple.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\CreaseApply.shader" />
     <None Include="Assets\Plugins\Zenject\LICENSE.txt" />
+    <None Include="Assets\Libs\PyroParticles\Readme.txt" />
     <None Include="Assets\Libs\Mapbox\Core\Plugins\link.xml" />
     <None Include="Assets\Libs\Standard Assets\Effects\ToonShading\Shaders\ToonLitOutline.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Luminance.shader" />

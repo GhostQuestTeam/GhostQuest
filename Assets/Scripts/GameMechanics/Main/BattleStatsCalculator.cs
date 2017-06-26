@@ -67,7 +67,7 @@ namespace HauntedCity.GameMechanics.Main
             weapons[0] = _weaponLoader.LoadWeapon("sphere");
             weapons[1] = _weaponLoader.LoadWeapon("orb_1");
             weapons[2] = _weaponLoader.LoadWeapon("aura_1");
-            weapons[3] = _weaponLoader.LoadWeapon("fireball_1");
+            weapons[3] = _weaponLoader.LoadWeapon("air_bolt");
 
             var battleStats = new PlayerBattleStats(solidity, 50, 1, 1f, weapons);
             _ApplySurvivabilityModifiers(battleStats, gameStats);
