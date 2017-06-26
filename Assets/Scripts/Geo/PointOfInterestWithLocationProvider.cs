@@ -145,6 +145,10 @@ namespace HauntedCity.Geo
             {
                 _gameController.StartBattle(_metadata);
             };
+            panelIntrPoint.Controller.CloseCallback = () =>
+            {
+                panelIntrPoint.Controller.hide();
+            };
             panelIntrPoint.Controller.show();
         }
 

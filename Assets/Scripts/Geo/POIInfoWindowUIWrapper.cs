@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class POIInfoWindowUIWrapper : MonoBehaviour {
+public class POIInfoWindowUIWrapper : MonoBehaviour
+{
 
     private GameObject _baseObj;
 
@@ -135,9 +136,9 @@ public class POIInfoWindowUIWrapper : MonoBehaviour {
         public bool bind()
         {
             _freePanelsPool.Clear();
-            int childCount =_baseObj.transform.childCount;
+            int childCount = _baseObj.transform.childCount;
             _nMaxSize = childCount;
-            for(int i = 0; i < childCount; i++)
+            for (int i = 0; i < childCount; i++)
             {
                 GameObject curChild = _baseObj.transform.GetChild(i).gameObject;
                 curChild.SetActive(false);
@@ -148,7 +149,7 @@ public class POIInfoWindowUIWrapper : MonoBehaviour {
 
         public bool add(string ghostType = "", int ghostNum = 0)
         {
-            if(!_panels.ContainsKey(ghostType) && _freePanelsPool.Capacity > 0 && _nCurSize <= _nMaxSize)
+            if (!_panels.ContainsKey(ghostType) && _freePanelsPool.Capacity > 0 && _nCurSize <= _nMaxSize)
             {
                 GameObject panel = _freePanelsPool[0];
                 _freePanelsPool.RemoveAt(0);
@@ -217,7 +218,7 @@ public class POIInfoWindowUIWrapper : MonoBehaviour {
             _ghosts = new Ghosts(ghostsObj);
             return true;
         }
-        catch(System.Exception e)
+        catch (System.Exception e)
         {
             Debug.Log(e.Message);
         }
@@ -225,5 +226,29 @@ public class POIInfoWindowUIWrapper : MonoBehaviour {
     }
 
     public POIInfoWindowUIWrapper() { }
+
+
+    public static bool operator ==(POIInfoWindowUIWrapper r1, POIInfoWindowUIWrapper r2)
+    {
+        if (object.ReferenceEquals(r1, r2))
+        {
+            // handles if both are null as well as object identity
+            return true;
+        }
+
+        if ((object)r1 == null || (object)r2 == null)
+        {
+            return false;
+        }
+
+        return (r1.BaseObject == r2.BaseObject);
+
+
+    }
+
+    public static bool operator !=(POIInfoWindowUIWrapper r1, POIInfoWindowUIWrapper r2)
+    {
+        return !(r1 == r2);
+    }
 
 }
