@@ -76,9 +76,8 @@ namespace HauntedCity.UI
                 var button = Instantiate(_weaponButtonPrefab);
                 button.transform.Find("WeaponImage").GetComponent<Image>().sprite = weapon.Sprite;
 
-                button.transform.SetParent(_weaponsPanel);
+                button.transform.SetParent(_weaponsPanel, false);
                 var tmp = (uint) i;
-                button.transform.localScale = Vector3.one;//Почему-то кнопка увеличивается при размещении
                 
                 button.GetComponent<Button>().onClick.AddListener(() => { battleStats.CurrentWeaponId = tmp; });
 
