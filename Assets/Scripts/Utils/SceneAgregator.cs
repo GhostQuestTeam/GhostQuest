@@ -40,7 +40,10 @@ namespace HauntedCity.Utils
         {
             _loadedScenes.Add(scene.name, scene);
             _notLoadedScenes--;
+
+            //У МЕНЯ НЕ РАБОТАЕТ, ПОХОЖЕ ЭТО ПЫТАЕТСЯ СРАБОТАТЬ В СОСТОЯНИИ СЦЕНЫ Loading, NO!!! РАНЬШЕ ЗДЕСЬ БЫЛИ КОСТЫЛИ С КОРУТИНОЙ!
             scene.GetRootGameObjects()[0].SetActive(false);
+
             if (_notLoadedScenes == 0 && OnAllScenesLoad != null)
             {
                 OnAllScenesLoad();

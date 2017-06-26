@@ -6,7 +6,7 @@ public class POIInfoWindowUnityInteractionPoint : MonoBehaviour {
 
     public POIInfoWindowController Controller;
 
-	void Awake () {
+	void Start () {
         Controller = new POIInfoWindowController();
         Controller.Initialize
             (

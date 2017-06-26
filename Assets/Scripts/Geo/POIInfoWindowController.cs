@@ -90,15 +90,16 @@ public class POIInfoWindowController {
 
     public void applyPOIMetadata(GameSparksPOIsExtraction.ExtractedPointMetadata metadata)
     {
-        if(_uiWrapper != null)
-        {
+        //КАКОЙ-ТО БАГ - ПРОВЕРКА НА NULL НЕ ПОХОДИТСЯ, НО РАБОТАЕТ 0_0
+        //if(_uiWrapper != null)
+        //{
             _uiWrapper.PointOwner = metadata.uoid; //ЭМ, ПОКА ЧТО
             _uiWrapper.Info = metadata.LatLon.ToString();
             foreach(string k in metadata.enemies.Keys)
             {
                 _uiWrapper.ghosts.add(k, metadata.enemies[k]);
             }
-        }
+        //}
     }
 
 
