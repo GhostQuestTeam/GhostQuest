@@ -1,4 +1,5 @@
-﻿using HauntedCity.GameMechanics.BattleSystem;
+﻿using System.Linq;
+using HauntedCity.GameMechanics.BattleSystem;
 using HauntedCity.GameMechanics.SkillSystem;
 using Zenject;
 
@@ -62,12 +63,12 @@ namespace HauntedCity.GameMechanics.Main
         public PlayerBattleStats CalculateBattleStats(PlayerGameStats gameStats)
         {
             var solidity = new Solidity(50, 0);
-            var weapons = new Weapon[4];
+            var weapons = gameStats.CurrentWeapons.Select((id) => _weaponLoader.LoadWeapon(id)).ToArray();
 
-            weapons[0] = _weaponLoader.LoadWeapon("sphere");
-            weapons[1] = _weaponLoader.LoadWeapon("orb_1");
-            weapons[2] = _weaponLoader.LoadWeapon("aura_1");
-            weapons[3] = _weaponLoader.LoadWeapon("air_bolt");
+//            weapons[0] = _weaponLoader.LoadWeapon("sphere");
+//            weapons[1] = _weaponLoader.LoadWeapon("orb_1");
+//            weapons[2] = _weaponLoader.LoadWeapon("aura_1");
+//            weapons[3] = _weaponLoader.LoadWeapon("air_bolt");
 
             var battleStats = new PlayerBattleStats(solidity, 50, 1, 1f, weapons);
             _ApplySurvivabilityModifiers(battleStats, gameStats);

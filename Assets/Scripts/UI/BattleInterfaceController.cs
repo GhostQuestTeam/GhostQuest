@@ -45,7 +45,7 @@ namespace HauntedCity.UI
 
             _weaponButtonPrefab = Resources.Load(WeaponPrefabPath) as GameObject;
 
-            _weaponsPanel = transform.Find("WeaponsPanel");
+            _weaponsPanel = transform.Find("WeaponPanelContainer/WeaponsPanel");
 
             _battleController.OnReset += ResetHandle;
         }
@@ -78,11 +78,14 @@ namespace HauntedCity.UI
 
                 button.transform.SetParent(_weaponsPanel);
                 var tmp = (uint) i;
+                button.transform.localScale = Vector3.one;//Почему-то кнопка увеличивается при размещении
+                
                 button.GetComponent<Button>().onClick.AddListener(() => { battleStats.CurrentWeaponId = tmp; });
 
                 _weaponCooldowns[i] = button.transform.Find("Cooldown").GetComponent<Image>();
                 _weaponCooldowns[i].fillAmount = 0f;
             }
+            
         }
     }
 }

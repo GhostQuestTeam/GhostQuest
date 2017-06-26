@@ -31,7 +31,9 @@ namespace HauntedCity.GameMechanics.SkillSystem
         public int UpgradePoints;
         private const int UPGRADE_POINTS_PER_LEVEL = 5;
 
-
+        public List<string> AllowableWeapons;
+        public List<string> CurrentWeapons;
+        
         public int Survivability
         {
             get { return _baseSurviability.Val + _surviabilityDelta; }
@@ -93,6 +95,7 @@ namespace HauntedCity.GameMechanics.SkillSystem
             }
         }
 
+        
         public int GetAttribute(PlayerAttributes attribute)
         {
             switch (attribute)
@@ -234,6 +237,7 @@ namespace HauntedCity.GameMechanics.SkillSystem
             Level = 1;
             CurrentExp = 0;
             _UpdateExpToNextLevel();
+            CurrentWeapons = new List<string>(){"sphere", "air_bolt"};
 
             _baseSurviability = new BoundedInt(100, 5, 5);
             _baseEndurance = new BoundedInt(100, 5, 5);
