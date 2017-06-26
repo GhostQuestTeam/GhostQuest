@@ -2938,7 +2938,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 640.2502, y: -477.99997}
+  m_AnchoredPosition: {x: 640.2502, y: -477.99994}
   m_SizeDelta: {x: 476, y: 83}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1097492848
@@ -3490,7 +3490,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1343380691}
-  - component: {fileID: 1343380692}
   m_Layer: 0
   m_Name: StartSceneRoot
   m_TagString: SceneRoot
@@ -3517,17 +3516,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1343380692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1343380690}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a978af6e255330f4db7b1016b1a60541, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1344487669
 GameObject:
   m_ObjectHideFlags: 0
