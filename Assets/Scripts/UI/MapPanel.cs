@@ -4,10 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-public class MapPanel : MonoBehaviour
+public class MapPanel : Panel
 {
     public Text CoinValue;
-    public Button SkillsButton;
     public Button StartButton;
     public Animator AttributesPanel;
 
@@ -21,7 +20,6 @@ public class MapPanel : MonoBehaviour
         
         UpdateLevelView();
         UpdateCoin();
-        SkillsButton.onClick.AddListener(() => { _screenManager.OpenPanel(AttributesPanel); });
 
         StartButton.onClick.AddListener(
             () => _gameController.StartBattle()

@@ -13,11 +13,6 @@ namespace HauntedCity.Utils.Extensions
                 GameObject.Destroy(child.gameObject);
             }
         }
-
-        public static void SetState(this Toggle toggle, bool isEnabled)
-        {
-            toggle.transform.Find("Background/Checkmark").gameObject.SetActive(isEnabled);
-        }
         
         public static List<GameObject> GetChildren(this GameObject go)
         {

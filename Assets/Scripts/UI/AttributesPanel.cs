@@ -7,37 +7,32 @@ using Zenject;
 
 namespace HauntedCity.UI
 {
-    public class AttributesPanel : MonoBehaviour
+    public class AttributesPanel : Panel
     {
         public Button OkButton;
         public Button BackButton;
         public Text UpgradePoints;
 
-        public Animator PrevPanel;
-
         [Inject] private ScreenManager _screenManager;
-
-        void Close()
-        {
-            gameObject.SetActive(false);
-            _screenManager.OpenPanel(PrevPanel);
-        }
-        
+  
         void Start()
         {            
             OkButton.onClick.AddListener(() =>
                 {
                     GameController.GameStats.ConfirmUpgrades();
-                    Close();
+                    Hide();
                 }
             );
-            BackButton.onClick.AddListener(Close);
         }
 
+        protected override void OnShow()
+        {
+            _UpdateView();
+        }
+        
         void OnEnable()
         {
             GameController.GameStats.OnAttributeChange += _UpdateView;
-            _UpdateView();
         }
 
         void OnDisable()

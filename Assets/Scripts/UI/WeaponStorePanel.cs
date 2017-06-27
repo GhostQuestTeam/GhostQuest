@@ -6,7 +6,7 @@ using Zenject;
 
 namespace HauntedCity.UI
 {
-    public class WeaponStorePanel:MonoBehaviour
+    public class WeaponStorePanel:Panel
     {
         public GameObject WeaponCardPrefab;
         public Transform CardContainer;

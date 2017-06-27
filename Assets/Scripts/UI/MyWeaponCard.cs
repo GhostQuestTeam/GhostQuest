@@ -16,7 +16,7 @@ namespace HauntedCity.UI
         public override void UpdateView()
         {
            base.UpdateView();
-           UseWeapon.SetState( GameController.GameStats.CurrentWeapons.Contains(_weapon.Id) );
+           UseWeapon.isOn = GameController.GameStats.CurrentWeapons.Contains(_weapon.Id) ;
         }
 
         //TODO ограничить количество используемых оружий

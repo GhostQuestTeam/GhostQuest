@@ -6,7 +6,7 @@ using Zenject;
 
 namespace HauntedCity.UI
 {
-    public class MyWeaponsPanel:MonoBehaviour
+    public class MyWeaponsPanel:Panel
     {
         public GameObject WeaponCardPrefab;
         public Transform CardContainer;
@@ -25,7 +25,12 @@ namespace HauntedCity.UI
             }
             UpdateView();
         }
-      
+
+        protected override void OnShow()
+        {
+            UpdateView();
+        }
+        
         public void UpdateView()
         {            
             foreach (var weapon in _playerWeapons)
