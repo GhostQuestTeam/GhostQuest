@@ -20,6 +20,7 @@ namespace HauntedCity.GameMechanics.SkillSystem
 
         public event Action OnAttributeChange;
         public event Action OnAttributesUpgrade;
+        public event Action OnCoinChange;
         public event Action<Weapon> OnWeaponBuy;
 
 
@@ -37,7 +38,20 @@ namespace HauntedCity.GameMechanics.SkillSystem
         public List<string> AllowableWeapons;
         public List<string> CurrentWeapons;
 
-        public int Money { get; set; }
+        private int _money;
+
+        public int Money
+        {
+            get { return _money; }
+            set
+            {
+                _money = value;
+                if (OnCoinChange != null)
+                {
+                    OnCoinChange();
+                }
+            }
+        }
 
         public int Survivability
         {

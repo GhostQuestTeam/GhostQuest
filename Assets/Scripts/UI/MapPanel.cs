@@ -6,6 +6,7 @@ using Zenject;
 
 public class MapPanel : MonoBehaviour
 {
+    public Text CoinValue;
     public Button SkillsButton;
     public Button StartButton;
     public Animator AttributesPanel;
@@ -16,7 +17,10 @@ public class MapPanel : MonoBehaviour
     void Start()
     {
 
-        _UpdateLevelView();
+        GameController.GameStats.OnCoinChange += UpdateCoin;
+        
+        UpdateLevelView();
+        UpdateCoin();
         SkillsButton.onClick.AddListener(() => { _screenManager.OpenPanel(AttributesPanel); });
 
         StartButton.onClick.AddListener(
@@ -26,10 +30,10 @@ public class MapPanel : MonoBehaviour
 
     private void OnEnable()
     {
-        _UpdateLevelView();
+        UpdateLevelView();
     }
 
-    private void _UpdateLevelView()
+    private void UpdateLevelView()
     {
         var level = GameController.GameStats.Level;
         var currentExp = GameController.GameStats.CurrentExp;
@@ -38,6 +42,11 @@ public class MapPanel : MonoBehaviour
         GameObject.Find("Level").GetComponent<Text>().text = level.ToString();
         GameObject.Find("Exp").GetComponent<Text>().text = currentExp + "/" + expToLevel;
         GameObject.Find("ExpBar").GetComponent<Image>().fillAmount = (float) currentExp / expToLevel;
+    }
+
+    private void UpdateCoin()
+    {
+        CoinValue.text = GameController.GameStats.Money.ToString();
     }
 
     private void OnDestroy()
