@@ -6,9 +6,9 @@ using Zenject;
 
 namespace HauntedCity.UI
 {
-    public class RegistrationPanel : MonoBehaviour
+    public class RegistrationPanel : Panel
     {
-        public Animator MainMenu;
+        public Panel MainMenu;
         
         private InputField _login;
         private InputField _nickname;
@@ -63,8 +63,7 @@ namespace HauntedCity.UI
         {
             if (!response.HasErrors)
             {
-                _screenManager.OpenPanel(MainMenu);
-                MainMenu.gameObject.GetComponent<MainMenuPanel>().ShowMenu(true);//Костыль
+                ShowInstead(MainMenu);
             }
             else
             {

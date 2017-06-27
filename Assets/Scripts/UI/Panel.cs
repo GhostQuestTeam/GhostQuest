@@ -9,7 +9,12 @@ namespace HauntedCity.UI
         {
             transform.localScale = Vector3.one;
             OnShow();
+        }
 
+        public void ShowInstead(Panel other)
+        {
+            Hide();
+            other.Show();
         }
         
         public void Hide()
