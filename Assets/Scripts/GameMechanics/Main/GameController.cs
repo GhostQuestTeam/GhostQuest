@@ -107,5 +107,11 @@ namespace HauntedCity.GameMechanics.Main
             _storageService.SavePlayer(GameStats);
         }
         
+        void OnDisable()
+        {
+            _storageService.SavePlayer(GameStats);
+        }
+
+        
     }
 }

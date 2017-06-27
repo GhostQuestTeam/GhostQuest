@@ -18,6 +18,8 @@ namespace HauntedCity.GameMechanics.SkillSystem
             Power
         }
 
+        public readonly List<string> DEFAULT_WEAPONS = new List<string>() {"sphere", "air_bolt"}; 
+        
         public event Action OnAttributeChange;
         public event Action OnAttributesUpgrade;
         public event Action OnCoinChange;
@@ -89,7 +91,10 @@ namespace HauntedCity.GameMechanics.SkillSystem
                     .AddNumber("endurance", enduranceToSave)
                     .AddNumber("power", powerToSave)
                     .AddNumber("level", Level)
-                    .AddNumber("exp", CurrentExp);
+                    .AddNumber("exp", CurrentExp)
+                    .AddNumber("money", Money)
+                    .AddStringList("currentWeapons", CurrentWeapons)
+                    .AddStringList("allowableWeapons", AllowableWeapons);
 
                 return result;
             }
@@ -107,6 +112,11 @@ namespace HauntedCity.GameMechanics.SkillSystem
 
                 Level = value.GetInt("level") ?? 1;
                 CurrentExp = value.GetInt("exp") ?? 0;
+                Money = value.GetInt("money") ?? 10000;
+
+                AllowableWeapons = value.GetStringList("allowableWeapons") ?? new List<string>(DEFAULT_WEAPONS);
+                CurrentWeapons = value.GetStringList("currentWeapons") ?? new List<string>(DEFAULT_WEAPONS);
+                
 
                 _UpdateExpToNextLevel();
             }
@@ -267,8 +277,8 @@ namespace HauntedCity.GameMechanics.SkillSystem
             Money = 10000;
             CurrentExp = 0;
             _UpdateExpToNextLevel();
-            CurrentWeapons = new List<string>() {"sphere", "air_bolt"};
-            AllowableWeapons = new List<string>(CurrentWeapons);
+            CurrentWeapons = new List<string>(DEFAULT_WEAPONS);
+            AllowableWeapons = new List<string>(DEFAULT_WEAPONS);
 
             _baseSurviability = new BoundedInt(100, 5, 5);
             _baseEndurance = new BoundedInt(100, 5, 5);

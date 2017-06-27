@@ -6,16 +6,16 @@ using Zenject;
 
 namespace HauntedCity.UI
 {
-    public class MyWeaponsPanel:Panel
+    public class MyWeaponsPanel : Panel
     {
         public GameObject WeaponCardPrefab;
         public Transform CardContainer;
-        
-        
+
+
         [Inject] private WeaponLoader _weaponLoader;
         private readonly Dictionary<string, WeaponCard> _weaponCards = new Dictionary<string, WeaponCard>();
         private List<string> _playerWeapons;
-        
+
         private void Start()
         {
             _playerWeapons = GameController.GameStats.AllowableWeapons;
@@ -30,9 +30,9 @@ namespace HauntedCity.UI
         {
             UpdateView();
         }
-        
+
         public void UpdateView()
-        {            
+        {
             foreach (var weapon in _playerWeapons)
             {
                 if (_weaponCards.ContainsKey(weapon))
@@ -43,21 +43,18 @@ namespace HauntedCity.UI
                 {
                     DrawWeaponCard(_weaponLoader.LoadWeapon(weapon));
                 }
-            } 
+            }
         }
-        
 
-        
-        
+
         private void DrawWeaponCard(Weapon weapon)
         {
             var weaponCard = Instantiate(WeaponCardPrefab);
-            weaponCard.transform.SetParent( CardContainer, false);
-            
-            var weaponCardComponent =weaponCard.GetComponent<WeaponCard>();
+            weaponCard.transform.SetParent(CardContainer, false);
+
+            var weaponCardComponent = weaponCard.GetComponent<WeaponCard>();
             weaponCardComponent.UpdateView(weapon);
             _weaponCards.Add(weapon.Id, weaponCardComponent);
-
         }
     }
 }
