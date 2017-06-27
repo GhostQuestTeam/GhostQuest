@@ -2938,7 +2938,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 640.2502, y: -477.99994}
+  m_AnchoredPosition: {x: 640.2502, y: -477.9999}
   m_SizeDelta: {x: 476, y: 83}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1097492848
@@ -5316,48 +5316,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2076661855}
---- !u!1001 &2079634703
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4225472235710826, guid: bdad4f717a4bbb5488138041ec8fc586, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 1450.7174
-      objectReference: {fileID: 0}
-    - target: {fileID: 4225472235710826, guid: bdad4f717a4bbb5488138041ec8fc586, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 776.24475
-      objectReference: {fileID: 0}
-    - target: {fileID: 4225472235710826, guid: bdad4f717a4bbb5488138041ec8fc586, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 3562.342
-      objectReference: {fileID: 0}
-    - target: {fileID: 4225472235710826, guid: bdad4f717a4bbb5488138041ec8fc586, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4225472235710826, guid: bdad4f717a4bbb5488138041ec8fc586, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4225472235710826, guid: bdad4f717a4bbb5488138041ec8fc586, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4225472235710826, guid: bdad4f717a4bbb5488138041ec8fc586, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4225472235710826, guid: bdad4f717a4bbb5488138041ec8fc586, type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: bdad4f717a4bbb5488138041ec8fc586, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &2126933698
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using GameSparks.Core;
+using HauntedCity.GameMechanics.BattleSystem;
 using HauntedCity.Utils;
 
 namespace HauntedCity.GameMechanics.SkillSystem
@@ -19,6 +20,8 @@ namespace HauntedCity.GameMechanics.SkillSystem
 
         public event Action OnAttributeChange;
         public event Action OnAttributesUpgrade;
+        public event Action<Weapon> OnWeaponBuy;
+
 
         private BoundedInt _baseSurviability;
         private BoundedInt _baseEndurance;
@@ -33,7 +36,9 @@ namespace HauntedCity.GameMechanics.SkillSystem
 
         public List<string> AllowableWeapons;
         public List<string> CurrentWeapons;
-        
+
+        public int Money { get; set; }
+
         public int Survivability
         {
             get { return _baseSurviability.Val + _surviabilityDelta; }
@@ -54,7 +59,7 @@ namespace HauntedCity.GameMechanics.SkillSystem
             get
             {
                 var result = new GSRequestData();
-                
+
                 int pointsToSave = UpgradePoints;
                 int survivabilityToSave = Survivability;
                 int enduranceToSave = Endurance;
@@ -71,31 +76,29 @@ namespace HauntedCity.GameMechanics.SkillSystem
                     .AddNumber("power", powerToSave)
                     .AddNumber("level", Level)
                     .AddNumber("exp", CurrentExp);
-                
+
                 return result;
             }
             set
             {
                 UpgradePoints = value.GetInt("upgradePoints") ?? 5;
 
-                _baseSurviability.Val =  value.GetInt("survivability") ?? 5;
+                _baseSurviability.Val = value.GetInt("survivability") ?? 5;
                 _baseEndurance.Val = value.GetInt("endurance") ?? 5;
-                _basePower.Val =  value.GetInt("power") ?? 5;
+                _basePower.Val = value.GetInt("power") ?? 5;
 
                 _surviabilityDelta = 0;
                 _enduranceDelta = 0;
                 _powerDelta = 0;
 
-                Level =  value.GetInt("level") ?? 1;
+                Level = value.GetInt("level") ?? 1;
                 CurrentExp = value.GetInt("exp") ?? 0;
-                
+
                 _UpdateExpToNextLevel();
-
-
             }
         }
 
-        
+
         public int GetAttribute(PlayerAttributes attribute)
         {
             switch (attribute)
@@ -218,7 +221,6 @@ namespace HauntedCity.GameMechanics.SkillSystem
             UpgradePoints += UPGRADE_POINTS_PER_LEVEL;
             CurrentExp = 0;
             _UpdateExpToNextLevel();
-            
         }
 
         public void AddExp(int exp)
@@ -232,12 +234,27 @@ namespace HauntedCity.GameMechanics.SkillSystem
 
         #endregion
 
+        public bool TryBuyWeapon(Weapon weapon)
+        {
+            if (weapon.Cost > Money) return false;
+
+            Money -= weapon.Cost;
+            AllowableWeapons.Add(weapon.Id);
+            if (OnWeaponBuy != null)
+            {
+                OnWeaponBuy(weapon);
+            }
+            return true;
+        }
+
         public PlayerGameStats()
         {
             Level = 1;
+            Money = 10000;
             CurrentExp = 0;
             _UpdateExpToNextLevel();
-            CurrentWeapons = new List<string>(){"sphere", "air_bolt"};
+            CurrentWeapons = new List<string>() {"sphere", "air_bolt"};
+            AllowableWeapons = new List<string>(CurrentWeapons);
 
             _baseSurviability = new BoundedInt(100, 5, 5);
             _baseEndurance = new BoundedInt(100, 5, 5);

@@ -13,7 +13,7 @@ namespace HauntedCity.UI
         public Text Cooldown;
         public Text Price;
 
-        public void UpdateView(Weapon weapon)
+        public virtual void UpdateView(Weapon weapon)
         {
             WeaponImage.sprite = weapon.Sprite;
             Title.text = weapon.Title;

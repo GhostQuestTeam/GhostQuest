@@ -593,58 +593,8 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 224357542980054390, guid: 3fde737a6c21a3d4f9a4f37204894482,
         type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224357542980054390, guid: 3fde737a6c21a3d4f9a4f37204894482,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224357542980054390, guid: 3fde737a6c21a3d4f9a4f37204894482,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -19.849998
-      objectReference: {fileID: 0}
-    - target: {fileID: 224357542980054390, guid: 3fde737a6c21a3d4f9a4f37204894482,
-        type: 2}
       propertyPath: m_SizeDelta.x
       value: 74.13128
-      objectReference: {fileID: 0}
-    - target: {fileID: 224357542980054390, guid: 3fde737a6c21a3d4f9a4f37204894482,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 39.699997
-      objectReference: {fileID: 0}
-    - target: {fileID: 224010770108211190, guid: 3fde737a6c21a3d4f9a4f37204894482,
-        type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224010770108211190, guid: 3fde737a6c21a3d4f9a4f37204894482,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224010770108211190, guid: 3fde737a6c21a3d4f9a4f37204894482,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 22.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224010770108211190, guid: 3fde737a6c21a3d4f9a4f37204894482,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -19.849998
-      objectReference: {fileID: 0}
-    - target: {fileID: 224010770108211190, guid: 3fde737a6c21a3d4f9a4f37204894482,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 224010770108211190, guid: 3fde737a6c21a3d4f9a4f37204894482,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 39.699997
       objectReference: {fileID: 0}
     - target: {fileID: 1008657335985168, guid: 3fde737a6c21a3d4f9a4f37204894482, type: 2}
       propertyPath: m_IsActive
@@ -710,10 +660,35 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: -90
       objectReference: {fileID: 0}
-    - target: {fileID: 224357542980054390, guid: 3fde737a6c21a3d4f9a4f37204894482,
+    - target: {fileID: 224010770108211190, guid: 3fde737a6c21a3d4f9a4f37204894482,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224010770108211190, guid: 3fde737a6c21a3d4f9a4f37204894482,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224010770108211190, guid: 3fde737a6c21a3d4f9a4f37204894482,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 77.06564
+      value: 22.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224010770108211190, guid: 3fde737a6c21a3d4f9a4f37204894482,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -19.849998
+      objectReference: {fileID: 0}
+    - target: {fileID: 224010770108211190, guid: 3fde737a6c21a3d4f9a4f37204894482,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 224010770108211190, guid: 3fde737a6c21a3d4f9a4f37204894482,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 39.699997
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3fde737a6c21a3d4f9a4f37204894482, type: 2}
@@ -1072,7 +1047,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

@@ -12,7 +12,6 @@ namespace HauntedCity.UI
         private GameObject _buttonPrefab;
         private PlayerBattleController _battleController;
 
-
         void Start()
         {
             _buttonPrefab = Resources.Load(ButtonPrefabPath) as GameObject;

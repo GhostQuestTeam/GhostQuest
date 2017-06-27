@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using HauntedCity.GameMechanics.BattleSystem;
+using HauntedCity.GameMechanics.Main;
 using Zenject;
 
 namespace HauntedCity.UI
@@ -9,10 +11,15 @@ namespace HauntedCity.UI
         public GameObject WeaponCardPrefab;
         public Transform CardContainer;
         
+        
         [Inject] private WeaponLoader _weaponLoader;
-
+        private readonly Dictionary<string, WeaponCard> _weaponCards = new Dictionary<string, WeaponCard>();
+        private List<string> _playerWeapons;
+        
         private void Start()
         {
+            GameController.GameStats.OnWeaponBuy += OnWeaponBuy;
+            _playerWeapons = GameController.GameStats.AllowableWeapons;
             if (_weaponLoader == null)
             {
                 _weaponLoader = new WeaponLoader();
@@ -24,16 +31,42 @@ namespace HauntedCity.UI
         {
             foreach (var weapon in _weaponLoader.WeaponList)
             {
+                if (!_playerWeapons.Contains(weapon.Id))
+                {
                     DrawWeaponCard(weapon);
+                }
             } 
         }
 
-        public void DrawWeaponCard(Weapon weapon)
+        public void UpdateView()
+        {
+            foreach (var weapon in _weaponLoader.WeaponList)
+            {
+                if (!_playerWeapons.Contains(weapon.Id) && _weaponCards.ContainsKey(weapon.Id))
+                {
+                    _weaponCards[weapon.Id].UpdateView(weapon);
+                }
+            } 
+        }
+        
+
+        public void OnWeaponBuy(Weapon weapon)
+        {
+            var toDelete = _weaponCards[weapon.Id];
+            _weaponCards.Remove(weapon.Id);
+            Destroy(toDelete.gameObject);
+            UpdateView();
+        }
+        
+        private void DrawWeaponCard(Weapon weapon)
         {
             var weaponCard = Instantiate(WeaponCardPrefab);
             weaponCard.transform.SetParent( CardContainer, false);
             
-            weaponCard.GetComponent<WeaponCard>().UpdateView(weapon);
+            var weaponCardComponent =weaponCard.GetComponent<WeaponCard>();
+            weaponCardComponent.UpdateView(weapon);
+            _weaponCards.Add(weapon.Id, weaponCardComponent);
+
         }
     }
 }

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 224251280028717162}
   - component: {fileID: 222680090117669308}
   - component: {fileID: 114904456429276628}
-  - component: {fileID: 114796773656331616}
+  - component: {fileID: 114917790325235958}
   m_Layer: 5
   m_Name: WeaponCard
   m_TagString: Untagged
@@ -582,23 +582,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114796773656331616
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1008657335985168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c77033f4191f4b50bbec0d96492aa273, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WeaponImage: {fileID: 114310691855311600}
-  Title: {fileID: 114284486488075430}
-  Damage: {fileID: 114971912546640256}
-  EnergyCost: {fileID: 114179952905338726}
-  Cooldown: {fileID: 114149771194788748}
-  Price: {fileID: 114843529532631290}
 --- !u!114 &114843529532631290
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -700,6 +683,24 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114917790325235958
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1008657335985168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67fa9d4e6f924b2abf252a12e478886d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WeaponImage: {fileID: 114310691855311600}
+  Title: {fileID: 114284486488075430}
+  Damage: {fileID: 114971912546640256}
+  EnergyCost: {fileID: 114179952905338726}
+  Cooldown: {fileID: 114149771194788748}
+  Price: {fileID: 114843529532631290}
+  BuyButton: {fileID: 114302314426831758}
 --- !u!114 &114931133941614646
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -961,10 +962,10 @@ RectTransform:
   m_Father: {fileID: 224891005155820604}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 77.06564, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 77.06564, y: -19.849998}
+  m_SizeDelta: {x: 0, y: 39.699997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224375970497527894
 RectTransform:
