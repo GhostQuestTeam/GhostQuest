@@ -9,19 +9,19 @@ namespace HauntedCity.UI
     public class StoreWeaponCard:WeaponCard
     {
         public Button BuyButton;
-        private Weapon _weapon;
-
+        public Text Price;
+        
         private void Start()
         {     
             BuyButton.onClick.AddListener(Buy);
         }
 
-        public override void UpdateView(Weapon weapon)
+        public override void UpdateView()
         {
-            base.UpdateView(weapon);
-            _weapon = weapon;
+            base.UpdateView();
+            Price.text = _weapon.Cost.ToString();
             BuyButton.gameObject.SetActive(
-                GameController.GameStats.Money >= weapon.Cost    
+                GameController.GameStats.Money >= _weapon.Cost    
             );
         }
 

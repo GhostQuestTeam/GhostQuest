@@ -11,16 +11,22 @@ namespace HauntedCity.UI
         public Text Damage;
         public Text EnergyCost;
         public Text Cooldown;
-        public Text Price;
 
+        protected Weapon _weapon;
+        
         public virtual void UpdateView(Weapon weapon)
         {
-            WeaponImage.sprite = weapon.Sprite;
-            Title.text = weapon.Title;
-            Damage.text = "Damage: " + weapon.Damage;
-            EnergyCost.text = "Energy cost: " + weapon.ShootCost;
-            Cooldown.text = "Cooldown: " + weapon.Cooldown + " sec";
-            Price.text = weapon.Cost.ToString();
+            _weapon = weapon;
+            UpdateView();
+        }
+        
+        public virtual void UpdateView()
+        {
+            WeaponImage.sprite = _weapon.Sprite;
+            Title.text = _weapon.Title;
+            Damage.text = "Damage: " + _weapon.Damage;
+            EnergyCost.text = "Energy cost: " + _weapon.ShootCost;
+            Cooldown.text = "Cooldown: " + _weapon.Cooldown + " sec";
         }
     }
 }
