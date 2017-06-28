@@ -23,7 +23,7 @@ public class GameSparksBattle : MonoBehaviour {
     }
 
 
-    public void sendStartBattle(string poid)
+    public void sendStartCapture(string poid)
     {
         new GameSparks.Api.Requests.LogEventRequest()
             .SetEventKey("POI_START_CAP")
@@ -41,10 +41,44 @@ public class GameSparksBattle : MonoBehaviour {
                 }
                 else
                 {
-                    arg.isError = false;
+                    arg.isError = true;
                 }
                 OnPOIStartCap(this, arg);
             });
     }//start cap
+
+
+
+
+    public event EventHandler<POI_SUCESS_CAP_ev_arg> OnPOISuccessCap;
+    public class POI_SUCESS_CAP_ev_arg
+    {
+        public bool isStarted;
+        public bool isError;
+    }
+
+    public void sendSuccessCapture(string poid)
+    {
+        new GameSparks.Api.Requests.LogEventRequest()
+            .SetEventKey("POI_SUCCESS_CAP")
+            .SetEventAttribute("POI_ID", poid) //может этот параметр и не нужен - и так до этого понятно, что захватывалось
+            .Send((response) =>
+            {
+                Debug.Log(response.JSONString);
+                POI_SUCESS_CAP_ev_arg arg = new POI_SUCESS_CAP_ev_arg();
+                if (!response.HasErrors)
+                {
+                    SimpleJSON.JSONNode root = SimpleJSON.JSON.Parse(response.JSONString);
+                    string result = root["scriptData"]["result"];
+                    arg.isStarted = (result == "OK");
+                    arg.isError = false;
+                }
+                else
+                {
+                    arg.isError = true;
+                }
+                OnPOISuccessCap(this, arg);
+            });
+    }//sucess cap
 
 }
