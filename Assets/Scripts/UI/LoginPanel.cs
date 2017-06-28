@@ -59,6 +59,8 @@ namespace HauntedCity.UI
         {
             if (!response.HasErrors)
             {
+                (new LeaderboardService()).GetLeaderboard();
+
                 ShowInstead(MainMenu);
                 _storageService.LoadPlayer();
             }
