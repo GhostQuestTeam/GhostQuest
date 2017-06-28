@@ -1,7 +1,4 @@
-﻿using System;
-using HauntedCity.GameMechanics.Main;
-using HauntedCity.GameMechanics.SkillSystem;
-using UnityEngine;
+﻿using HauntedCity.GameMechanics.Main;
 using UnityEngine.UI;
 using Zenject;
 
