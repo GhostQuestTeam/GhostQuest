@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -11,15 +11,13 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>5.5.2f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -345,6 +343,15 @@
     <Compile Include="Assets\Libs\Mapbox\Examples\_resources\Scripts\ForwardGeocodeUserInput.cs" />
     <Compile Include="Assets\Libs\Mapbox\Examples\_resources\Scripts\ReverseGeocodeUserInput.cs" />
     <Compile Include="Assets\Libs\Mapbox\Examples\_resources\Scripts\Slippy.cs" />
+    <Compile Include="Assets\Libs\PyroParticles\Demo\DemoScript.cs" />
+    <Compile Include="Assets\Libs\PyroParticles\Demo\DemoScriptEditor.cs" />
+    <Compile Include="Assets\Libs\PyroParticles\Prefab\Script\FireBaseScript.cs" />
+    <Compile Include="Assets\Libs\PyroParticles\Prefab\Script\FireCollisionForwardScript.cs" />
+    <Compile Include="Assets\Libs\PyroParticles\Prefab\Script\FireConstantBaseScript.cs" />
+    <Compile Include="Assets\Libs\PyroParticles\Prefab\Script\FireLightScript.cs" />
+    <Compile Include="Assets\Libs\PyroParticles\Prefab\Script\FireProjectileScript.cs" />
+    <Compile Include="Assets\Libs\PyroParticles\Prefab\Script\MeteorSwarmScript.cs" />
+    <Compile Include="Assets\Libs\PyroParticles\Prefab\Script\SingleLineAttribute.cs" />
     <Compile Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Scripts\Antialiasing.cs" />
     <Compile Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Scripts\Bloom.cs" />
     <Compile Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Scripts\BloomAndFlares.cs" />
@@ -399,6 +406,7 @@
     <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\BattleObjectFactory.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\BattleStateController.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\BattleStats.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\Bonus.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\ConcreteEnemyBehaviors\SkullGhostBehavior.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\EnemyBehavior.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\PlayerBattleBehavior.cs" />
@@ -407,36 +415,55 @@
     <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\Weapon.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\WeaponInfo.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\WeaponLoader.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\ItemSystem\Inventory.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\ItemSystem\Item.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\ItemSystem\ItemDragHandler.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\ItemSystem\Slot.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\ItemSystem\UsableItem.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\Main\BattleStatsCalculator.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\Main\GameController.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\Main\GyroControl.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\SkillSystem\PlayerGameStats.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\SkillSystem\SkillTypes.cs" />
     <Compile Include="Assets\Scripts\Geo\BuildMapAtLocation.cs" />
+    <Compile Include="Assets\Scripts\Geo\CameraHandler.cs" />
+    <Compile Include="Assets\Scripts\Geo\POIInfoWindowController.cs" />
+    <Compile Include="Assets\Scripts\Geo\POIInfoWindowUIWrapper.cs" />
+    <Compile Include="Assets\Scripts\Geo\POIInfoWindowUnityInteractionPoint.cs" />
     <Compile Include="Assets\Scripts\Geo\PointOfInterestFactory.cs" />
     <Compile Include="Assets\Scripts\Geo\PointOfInterestWithLocationProvider.cs" />
     <Compile Include="Assets\Scripts\Geo\PositionWithLocationProvider.cs" />
     <Compile Include="Assets\Scripts\Geo\RotateWithLocationProvider.cs" />
     <Compile Include="Assets\Scripts\Networking\AuthService.cs" />
     <Compile Include="Assets\Scripts\Networking\StorageService.cs" />
-    <Compile Include="Assets\Scripts\UI\AttributesView.cs" />
+    <Compile Include="Assets\Scripts\UI\Attributes\AttributeView.cs" />
+    <Compile Include="Assets\Scripts\UI\Attributes\AttributesPanel.cs" />
     <Compile Include="Assets\Scripts\UI\BackgroundPlaneController.cs" />
     <Compile Include="Assets\Scripts\UI\BattleInterfaceController.cs" />
+    <Compile Include="Assets\Scripts\UI\DropdownController.cs" />
     <Compile Include="Assets\Scripts\UI\IndicatorsView.cs" />
+    <Compile Include="Assets\Scripts\UI\InventoryPanel.cs" />
     <Compile Include="Assets\Scripts\UI\LoginPanel.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenuPanel.cs" />
-    <Compile Include="Assets\Scripts\UI\MapUIController.cs" />
+    <Compile Include="Assets\Scripts\UI\MapPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\Panel.cs" />
+    <Compile Include="Assets\Scripts\UI\PointInfo\GhostView.cs" />
+    <Compile Include="Assets\Scripts\UI\PointInfo\GhostsPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\PointInfo\PointInfoPanel.cs" />
     <Compile Include="Assets\Scripts\UI\RegistrationPanel.cs" />
     <Compile Include="Assets\Scripts\UI\ScreenManager.cs" />
-    <Compile Include="Assets\Scripts\UI\WeaponChooseController.cs" />
+    <Compile Include="Assets\Scripts\UI\WeaponPanels\MyWeaponCard.cs" />
+    <Compile Include="Assets\Scripts\UI\WeaponPanels\MyWeaponsPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\WeaponPanels\StoreWeaponCard.cs" />
+    <Compile Include="Assets\Scripts\UI\WeaponPanels\WeaponCard.cs" />
+    <Compile Include="Assets\Scripts\UI\WeaponPanels\WeaponStorePanel.cs" />
     <Compile Include="Assets\Scripts\Utils\BoundedInt.cs" />
     <Compile Include="Assets\Scripts\Utils\CameraClickHandler.cs" />
-    <Compile Include="Assets\Scripts\Utils\Extensions\UnityTransformExtension.cs" />
+    <Compile Include="Assets\Scripts\Utils\Extensions\UnityExtension.cs" />
     <Compile Include="Assets\Scripts\Utils\GameSparksManager.cs" />
     <Compile Include="Assets\Scripts\Utils\Installers\BattleInstaller.cs" />
     <Compile Include="Assets\Scripts\Utils\Installers\GameInstaller.cs" />
     <Compile Include="Assets\Scripts\Utils\SceneAgregator.cs" />
-    <Compile Include="Assets\Scripts\Utils\SceneRootController.cs" />
     <Compile Include="Assets\Scripts\Utils\SceneSwitchingProvider.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -456,6 +483,8 @@
     <None Include="Assets\Libs\Mapbox\Core\Plugins\link.xml" />
     <None Include="Assets\Libs\Mapbox\README.txt" />
     <None Include="Assets\Libs\Mapbox\Resources\Fonts\OpenSansLic.txt" />
+    <None Include="Assets\Libs\PyroParticles\Prefab\Materials\AdditiveTintable.shader" />
+    <None Include="Assets\Libs\PyroParticles\Readme.txt" />
     <None Include="Assets\Libs\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\BlendModesOverlay.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\BlurEffectConeTaps.shader" />
@@ -542,6 +571,34 @@
     <None Include="Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Media\Imported\Shaders\Add_Layer.shader" />
     <None Include="Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Media\Imported\Shaders\Particle Alpha Blend_IgnoreFog.shader" />
     <None Include="Assets\Plugins\Zenject\Version.txt" />
+    <None Include="Assets\Resources\Fonts\Abril_Fatface\OFL.txt" />
+    <None Include="Assets\Resources\Fonts\Bahiana\OFL.txt" />
+    <None Include="Assets\Resources\Fonts\Baloo_Bhaina\OFL.txt" />
+    <None Include="Assets\Resources\Fonts\Bangers\OFL.txt" />
+    <None Include="Assets\Resources\Fonts\Boogaloo\OFL.txt" />
+    <None Include="Assets\Resources\Fonts\Bowlby_One\OFL.txt" />
+    <None Include="Assets\Resources\Fonts\Bubbler_One\OFL.txt" />
+    <None Include="Assets\Resources\Fonts\Chewy\LICENSE.txt" />
+    <None Include="Assets\Resources\Fonts\Cinzel\OFL.txt" />
+    <None Include="Assets\Resources\Fonts\Fredoka_One\OFL.txt" />
+    <None Include="Assets\Resources\Fonts\Fresca\OFL.txt" />
+    <None Include="Assets\Resources\Fonts\Frijole\OFL.txt" />
+    <None Include="Assets\Resources\Fonts\Gloria_Hallelujah\OFL.txt" />
+    <None Include="Assets\Resources\Fonts\Indie_Flower\OFL.txt" />
+    <None Include="Assets\Resources\Fonts\Josefin_Sans\OFL.txt" />
+    <None Include="Assets\Resources\Fonts\Lobster_Two\OFL.txt" />
+    <None Include="Assets\Resources\Fonts\Love_Ya_Like_A_Sister\OFL.txt" />
+    <None Include="Assets\Resources\Fonts\Luckiest_Guy\LICENSE.txt" />
+    <None Include="Assets\Resources\Fonts\Monoton\OFL.txt" />
+    <None Include="Assets\Resources\Fonts\Montserrat\OFL.txt" />
+    <None Include="Assets\Resources\Fonts\Pacifico\OFL.txt" />
+    <None Include="Assets\Resources\Fonts\Passion_One\OFL.txt" />
+    <None Include="Assets\Resources\Fonts\Permanent_Marker\LICENSE.txt" />
+    <None Include="Assets\Resources\Fonts\Quicksand\OFL.txt" />
+    <None Include="Assets\Resources\Fonts\Righteous\OFL.txt" />
+    <None Include="Assets\Resources\Fonts\Shadows_Into_Light\OFL.txt" />
+    <None Include="Assets\Resources\Fonts\Slabo_27px\OFL.txt" />
+    <None Include="Assets\Resources\Fonts\Spectral\OFL.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
