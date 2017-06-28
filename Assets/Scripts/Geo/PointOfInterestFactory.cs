@@ -14,7 +14,6 @@ namespace HauntedCity.Geo
         private GameObject _root;
         public HashSet<GameSparksPOIsExtraction.ExtractedPointMetadata> _points = new HashSet<GameSparksPOIsExtraction.ExtractedPointMetadata>();
         public GameObject PointOfInterestPrefab;
-        private Button _btnToEnable;
         public GameObject GameSparksObj;
 
         [Inject]
@@ -22,8 +21,7 @@ namespace HauntedCity.Geo
 
         void Start()
         {
-            _btnToEnable = GameObject.Find("StartBattle").GetComponent<Button>();
-            setActiveBtnToEnable(false);
+        
             InitPoints();
             //Execute();
         }
@@ -93,49 +91,16 @@ namespace HauntedCity.Geo
                 PointOfInterestWithLocationProvider poiwtp = newPOI.GetComponent<PointOfInterestWithLocationProvider>();
                 poiwtp._myMapLocation = pointMeta.LatLon;
                 poiwtp._metadata = pointMeta;
-                poiwtp.OnPOIClose += PointOfInterestWithLocationProvider_OnPOIClose;
             }
         }
 
 
-        private UnityAction _currentStartBattleOnClickListener = null;
-
-        public void PointOfInterestWithLocationProvider_OnPOIClose(object sender,
-            PointOfInterestWithLocationProvider.PointOfInterestEventArgs e)
-        {
-            if (_currentStartBattleOnClickListener != null)
-                _btnToEnable.onClick.RemoveListener(_currentStartBattleOnClickListener);
-
-            GameSparksPOIsExtraction.ExtractedPointMetadata meta = e.UnityObject.GetComponent<PointOfInterestWithLocationProvider>()._metadata;
-
-            _currentStartBattleOnClickListener = () =>
-            {
-                _gameController.StartBattle(meta);
-            };
-
-            if (e.IsPlayerNear)
-            {
-                setActiveBtnToEnable(true);
-                _btnToEnable.onClick.AddListener(_currentStartBattleOnClickListener);
-            }
-            else
-            {
-                _btnToEnable.onClick.RemoveListener(_currentStartBattleOnClickListener);
-                setActiveBtnToEnable(false);
-            }
-        } //handler
 
         public void RemoveOnClick()
         {
         }
 
-        private void setActiveBtnToEnable(bool isActive)
-        {
-            if(isActive)
-                _btnToEnable.gameObject.transform.localScale = Vector3.one;
-            else
-                _btnToEnable.gameObject.transform.localScale = Vector3.zero;
-        }
+        
 
         public void MyLambdaSwitchEnablingMethod(GameObject obj, bool state)
         {
