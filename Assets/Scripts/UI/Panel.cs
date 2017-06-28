@@ -4,7 +4,7 @@ using UnityEngine;
 namespace HauntedCity.UI
 {
     public class Panel:MonoBehaviour
-    {                     
+    {   
         public void Show()
         {
             transform.localScale = Vector3.one;
