@@ -21,6 +21,7 @@ namespace HauntedCity.Utils.Installers
             Container.Bind<WeaponLoader>().AsSingle();
             Container.Bind<BattleStatsCalculator>().AsSingle();
             Container.Bind<StorageService>().AsSingle();
+            Container.Bind<LeaderboardService>().AsSingle();
             #endregion
 
         }
