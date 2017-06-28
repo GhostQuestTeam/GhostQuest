@@ -10,7 +10,8 @@ namespace HauntedCity.Networking
         private static readonly AuthService instance = new AuthService();
 
         //Что-то по нормальному не получается сделать(
-        private bool _isLogin;
+        public bool _isLogin;
+        public AuthenticationResponse LastAuthResponse = null;
 
         public event Action<RegistrationResponse> OnRegister;
         public event Action<AuthenticationResponse> OnLogin;
@@ -63,6 +64,7 @@ namespace HauntedCity.Networking
                 .SetPassword(password)
                 .Send((response) =>
                 {
+                    LastAuthResponse = response;
                     if (!response.HasErrors)
                     {
                         _isLogin = true;

@@ -26,7 +26,7 @@ public class GameSparksPOIsExtraction : MonoBehaviour
     public float fake_lat = 55.66f;
     public float fake_lon = 37.63f;
 
-    public HashSet<Vector2d> _points = new HashSet<Vector2d>();
+    public HashSet<ExtractedPointMetadata> _points = new HashSet<ExtractedPointMetadata>();
 
     ILocationProvider _locationProvider;
 
@@ -62,12 +62,20 @@ public class GameSparksPOIsExtraction : MonoBehaviour
 
     public class POIsExtractedEventArgs : EventArgs
     {
-        public HashSet<Vector2d> points;
+        public HashSet<ExtractedPointMetadata> points;
 
-        public POIsExtractedEventArgs(HashSet<Vector2d> p)
+        public POIsExtractedEventArgs(HashSet<ExtractedPointMetadata> p)
         {
             points = p;
         }
+    }
+
+    public class ExtractedPointMetadata
+    {
+        public Vector2d LatLon;
+        public Dictionary<string, int> enemies;
+        public string uoid;
+        public string poid;
     }
 
     public event EventHandler<POIsExtractedEventArgs> OnPOIsExtracted;
@@ -76,7 +84,7 @@ public class GameSparksPOIsExtraction : MonoBehaviour
     void Start()
     {
         
-        StartCoroutine(performExtraction());
+        //StartCoroutine(performExtraction());
     }
 
     public int depth = 5;
@@ -161,8 +169,24 @@ public class GameSparksPOIsExtraction : MonoBehaviour
                         SimpleJSON.JSONArray coords = node["geometry"]["coordinates"].AsArray;
                         float lat = coords[0].AsFloat;
                         float lon = coords[1].AsFloat;
-                        _points.Add(new Vector2d(lat, lon));
-                       //Debug.Log(lat.ToString() + " " + lon.ToString());
+                        string uoid = node["properties"]["uoid"];
+                        string poid = node["_id"]["$oid"];
+
+                        SimpleJSON.JSONNode enemies = node["properties"]["ghosts_num"];
+                        Dictionary<string, int> enemiesDict = new Dictionary<string, int>();
+                        enemiesDict.Add("shadow_skull", enemies["shadow_skull"]);
+                        enemiesDict.Add("devil_mask", enemies["devil_mask"]);
+                        enemiesDict.Add("skull_ghost", enemies["skull_ghost"]);
+
+                        ExtractedPointMetadata pointMeta = new ExtractedPointMetadata();
+                        pointMeta.LatLon = new Vector2d(lat, lon);
+                        pointMeta.uoid = uoid;
+                        pointMeta.poid = poid;
+                        pointMeta.enemies = enemiesDict;
+
+                        _points.Add(pointMeta);
+                        Debug.Log(lat.ToString() + " " + lon.ToString());
+
                     }
                     OnPOIsExtracted(this, new POIsExtractedEventArgs(_points));
                 }

@@ -357,6 +357,10 @@
     <Compile Include="Assets\Scripts\GameMechanics\SkillSystem\PlayerGameStats.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\SkillSystem\SkillTypes.cs" />
     <Compile Include="Assets\Scripts\Geo\BuildMapAtLocation.cs" />
+    <Compile Include="Assets\Scripts\Geo\CameraHandler.cs" />
+    <Compile Include="Assets\Scripts\Geo\POIInfoWindowController.cs" />
+    <Compile Include="Assets\Scripts\Geo\POIInfoWindowUIWrapper.cs" />
+    <Compile Include="Assets\Scripts\Geo\POIInfoWindowUnityInteractionPoint.cs" />
     <Compile Include="Assets\Scripts\Geo\PointOfInterestFactory.cs" />
     <Compile Include="Assets\Scripts\Geo\PointOfInterestWithLocationProvider.cs" />
     <Compile Include="Assets\Scripts\Geo\PositionWithLocationProvider.cs" />

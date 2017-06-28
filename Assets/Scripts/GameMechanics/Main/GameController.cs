@@ -18,6 +18,7 @@ namespace HauntedCity.GameMechanics.Main
 
         public string[] AllowableGhosts = { "shadow_skull", "devil_mask","skull_ghost" };
 
+        private GameSparksPOIsExtraction.ExtractedPointMetadata _currentPOImeta;
 
         [Inject]
         public void InitializeDependencies(BattleStateController battleStateController, 
@@ -47,7 +48,7 @@ namespace HauntedCity.GameMechanics.Main
 
         private void OnAllScenesLoad()
         {
-//            _sceneAgregator.switchToScene("battle");
+            //_sceneAgregator.switchToScene("battle");
         }
 
         public void StartGame()
@@ -71,6 +72,19 @@ namespace HauntedCity.GameMechanics.Main
             }
         }
 
+        public void StartBattle(GameSparksPOIsExtraction.ExtractedPointMetadata meta)
+        {
+            _currentPOImeta = meta;
+            _battleStateController.StartBattle(meta.enemies);
+        }
+
+        public void StartBattle()
+        {
+            GameObject.Find("LocationProviderRoot").SetActive(false);
+
+            _sceneAgregator.switchToScene("battle");
+        }
+
         public Dictionary<string, int> RandomGhosts()
         {
             var result = new Dictionary<string, int>();
@@ -82,18 +96,35 @@ namespace HauntedCity.GameMechanics.Main
         }
 
 
-        public void StartBattle()
-        {
-            //GameObject.Find("LocationProviderRoot").SetActive(false);
-
-            _sceneAgregator.switchToScene("battle");
-        }
-
-
         public void BattleWonHandle(int score)
         {
             GameStats.AddExp(score);
             GameObject.Find("BattleRoot").SetActive(false);
+
+            new GameSparks.Api.Requests.LogEventRequest()
+                .SetEventKey("POI_CAP")
+                .SetEventAttribute("POI_ID", _currentPOImeta.poid)
+                .Send((response) =>
+                {
+                    Debug.Log(response.JSONString);
+                    if (!response.HasErrors)
+                    {
+                        Debug.Log("Your capturing progress was not saved!");
+                    }
+                    else
+                    {
+                        Debug.Log(response.JSONString);
+                        if (!response.HasErrors)
+                        {
+                            Debug.Log("Your capturing progress was not saved!");
+                        }
+                        else
+                        {
+                        }
+                    }
+                });
+
+
             _sceneAgregator.switchToScene("map");
             Debug.Log("Level: " + GameStats.Level + "  " + GameStats.CurrentExp + "/" + GameStats.ExpToLevel);
             _storageService.SavePlayer(GameStats);
@@ -106,12 +137,6 @@ namespace HauntedCity.GameMechanics.Main
             _sceneAgregator.switchToScene("map");
             _storageService.SavePlayer(GameStats);
         }
-        
-        void OnDisable()
-        {
-            _storageService.SavePlayer(GameStats);
-        }
-
         
     }
 }
