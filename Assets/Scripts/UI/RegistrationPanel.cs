@@ -14,6 +14,8 @@ namespace HauntedCity.UI
         private InputField _nickname;
         private InputField _password;
 
+        public GameObject ErrorField;
+        
         private ScreenManager _screenManager;
         
         [Inject]
@@ -54,9 +56,14 @@ namespace HauntedCity.UI
         {
             if (response.HasErrors)
             {
-                //TODO
+                ErrorField.SetActive(true);
             }
            
+        }
+        
+        protected override void OnShow()
+        {
+            ErrorField.SetActive(false);
         }
         
         public void OnLogin(AuthenticationResponse response)
@@ -67,7 +74,7 @@ namespace HauntedCity.UI
             }
             else
             {
-                //TODO
+                ErrorField.SetActive(true);    
             }
         }
     }

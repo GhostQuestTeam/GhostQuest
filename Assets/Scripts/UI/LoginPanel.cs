@@ -1,5 +1,6 @@
 ﻿using GameSparks.Api.Responses;
 using HauntedCity.Networking;
+using HauntedCity.Utils.Extensions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,7 +11,8 @@ namespace HauntedCity.UI
     public class LoginPanel : Panel
     {
         public Panel MainMenu;
-        
+
+        public GameObject ErrorField;
         private InputField _login;
         private InputField _password;
         
@@ -47,7 +49,12 @@ namespace HauntedCity.UI
         {
             AuthService.Instance.OnLogin -= OnLogin;
         }
-        
+
+        protected override void OnShow()
+        {
+            ErrorField.SetActive(false);
+        }
+
         public void OnLogin(AuthenticationResponse response)
         {
             if (!response.HasErrors)
@@ -57,7 +64,7 @@ namespace HauntedCity.UI
             }
             else
             {
-                //TODO
+                ErrorField.SetActive(true);
             }
         }
     }
