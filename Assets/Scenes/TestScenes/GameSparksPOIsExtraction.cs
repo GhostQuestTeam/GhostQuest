@@ -182,11 +182,11 @@ public class GameSparksPOIsExtraction : MonoBehaviour
                         string name = node["properties"]["name"];
                         string owner_display_name = node["properties"]["owner_display_name"];
                         string owner_user_name = node["properties"]["owner_user_name"];
-                        int income_level = node["properties"]["income_level"];
-                        int guards_level = node["properties"]["guards_level"];
-                        int shields_level = node["properties"]["shields_level"];
-                        int current_money = node["properties"]["current_money"];
-                        int current_shields = node["properties"]["current_shields"];
+                        int income_level = node["properties"]["income_level"].AsInt;
+                        int guards_level = node["properties"]["guards_level"].AsInt;
+                        int shields_level = node["properties"]["shields_level"].AsInt;
+                        int current_money = node["properties"]["current_money"].AsInt;
+                        int current_shields = node["properties"]["current_shields"].AsInt;
 
                         SimpleJSON.JSONNode enemies = node["properties"]["ghosts_num"];
                         Dictionary<string, int> enemiesDict = new Dictionary<string, int>();
