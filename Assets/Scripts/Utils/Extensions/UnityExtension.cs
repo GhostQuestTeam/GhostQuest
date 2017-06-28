@@ -14,6 +14,18 @@ namespace HauntedCity.Utils.Extensions
             }
         }
         
+        public static void ChangeVisibility(this Transform transform, bool isVisible)
+        {
+            if (isVisible)
+            {
+                transform.localScale = Vector3.one;
+            }
+            else
+            {
+                transform.localScale = Vector3.zero;
+            }
+        }
+        
         public static List<GameObject> GetChildren(this GameObject go)
         {
             List<GameObject> children = new List<GameObject>();
