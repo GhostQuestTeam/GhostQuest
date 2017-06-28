@@ -16,8 +16,9 @@ public class GameSparksBattle : MonoBehaviour {
 	}
 
     public event EventHandler<POI_START_CAP_ev_arg> OnPOIStartCap;
-    public class POI_START_CAP_ev_arg
+    public class POI_START_CAP_ev_arg : EventArgs
     {
+        public string poid;
         public bool isStarted;
         public bool isError;
     }
@@ -37,11 +38,14 @@ public class GameSparksBattle : MonoBehaviour {
                     SimpleJSON.JSONNode root = SimpleJSON.JSON.Parse(response.JSONString);
                     string result = root["scriptData"]["started"];
                     arg.isStarted = (result == "OK");
-                    arg.isError = false;           
+                    arg.isError = false;
+                    arg.poid = poid;           
                 }
                 else
                 {
                     arg.isError = true;
+                    arg.poid = poid;
+                    arg.isStarted = false;
                 }
                 OnPOIStartCap(this, arg);
             });
@@ -51,9 +55,10 @@ public class GameSparksBattle : MonoBehaviour {
 
 
     public event EventHandler<POI_SUCESS_CAP_ev_arg> OnPOISuccessCap;
-    public class POI_SUCESS_CAP_ev_arg
+    public class POI_SUCESS_CAP_ev_arg : EventArgs
     {
-        public bool isStarted;
+        public string poid;
+        public bool isSuccess;
         public bool isError;
     }
 
@@ -70,15 +75,52 @@ public class GameSparksBattle : MonoBehaviour {
                 {
                     SimpleJSON.JSONNode root = SimpleJSON.JSON.Parse(response.JSONString);
                     string result = root["scriptData"]["result"];
-                    arg.isStarted = (result == "OK");
+                    arg.isSuccess = (result == "OK");
                     arg.isError = false;
+                    arg.poid = poid;
                 }
                 else
                 {
                     arg.isError = true;
+                    arg.poid = poid;
+                    arg.isSuccess = false;
                 }
                 OnPOISuccessCap(this, arg);
             });
     }//sucess cap
 
-}
+
+    public event EventHandler<GET_LEADERBOARD_ev_arg> OnGetLeaderboard;
+    public class GET_LEADERBOARD_ev_arg : EventArgs
+    {
+        public string data;
+        public bool isError;
+    }
+
+    public void sendGetLeaderboard()
+    {
+        new GameSparks.Api.Requests.LogEventRequest()
+            .SetEventKey("POI_SUCCESS_CAP")
+            .Send((response) =>
+            {
+                Debug.Log(response.JSONString);
+                GET_LEADERBOARD_ev_arg arg = new GET_LEADERBOARD_ev_arg();
+                if (!response.HasErrors)
+                {
+                    SimpleJSON.JSONNode root = SimpleJSON.JSON.Parse(response.JSONString);
+                    string result = root["scriptData"]["players"];
+                    arg.data = result;
+                    arg.isError = false;
+                }
+                else
+                {
+                    arg.isError = true;
+                    arg.data = null;
+                }
+                OnGetLeaderboard(this, arg);
+            });
+    }//get leaderboard
+
+
+
+}//main class
