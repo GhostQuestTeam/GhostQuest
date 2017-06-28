@@ -7,7 +7,6 @@ using Zenject;
 public class MapPanel : Panel
 {
     public Text CoinValue;
-    public Button StartButton;
     public Animator AttributesPanel;
 
     [Inject] private ScreenManager _screenManager;
@@ -21,9 +20,6 @@ public class MapPanel : Panel
         UpdateLevelView();
         UpdateCoin();
 
-        StartButton.onClick.AddListener(
-            () => _gameController.StartBattle()
-        );
     }
 
     private void OnEnable()
