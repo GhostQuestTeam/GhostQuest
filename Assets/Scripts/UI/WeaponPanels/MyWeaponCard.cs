@@ -3,7 +3,7 @@ using HauntedCity.GameMechanics.Main;
 using HauntedCity.Utils.Extensions;
 using UnityEngine.UI;
 
-namespace HauntedCity.UI
+namespace HauntedCity.UI.WeaponPanels
 {
     public class MyWeaponCard:WeaponCard
     {

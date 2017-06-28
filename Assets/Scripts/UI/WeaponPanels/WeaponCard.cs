@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace HauntedCity.UI
+namespace HauntedCity.UI.WeaponPanels
 {
     public class WeaponCard:MonoBehaviour
     {

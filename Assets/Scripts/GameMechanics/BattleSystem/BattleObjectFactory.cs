@@ -53,7 +53,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
 
         public static GameObject SpawnEnemy(string enemyId, Vector3 position)
         {
-            var enemy = _enemyLoader.Load(enemyId);
+            var enemy = _enemyLoader.Load(enemyId + "/" + enemyId);//временно
             enemy.transform.position = position;
             return enemy;
         }

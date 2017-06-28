@@ -4,7 +4,7 @@ using HauntedCity.GameMechanics.BattleSystem;
 using HauntedCity.GameMechanics.Main;
 using Zenject;
 
-namespace HauntedCity.UI
+namespace HauntedCity.UI.WeaponPanels
 {
     public class WeaponStorePanel:Panel
     {

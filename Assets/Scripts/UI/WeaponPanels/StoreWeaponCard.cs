@@ -4,7 +4,7 @@ using HauntedCity.GameMechanics.Main;
 using UnityEngine.UI;
 using Zenject;
 
-namespace HauntedCity.UI
+namespace HauntedCity.UI.WeaponPanels
 {
     public class StoreWeaponCard:WeaponCard
     {

@@ -6,6 +6,7 @@ using Mapbox.Utils;
 using UnityEngine;
 using Zenject;
 using HauntedCity.GameMechanics.Main;
+using HauntedCity.UI.PointInfo;
 
 namespace HauntedCity.Geo
 {
@@ -139,17 +140,19 @@ namespace HauntedCity.Geo
 
         public void OnClick()
         {
-            var panelIntrPoint = GameObject.FindObjectOfType<POIInfoWindowUnityInteractionPoint>();
-            panelIntrPoint.Controller.applyPOIMetadata(_metadata);
-            panelIntrPoint.Controller.ToFightCallback = () =>
-            {
-                _gameController.StartBattle(_metadata);
-            };
-            panelIntrPoint.Controller.CloseCallback = () =>
-            {
-                panelIntrPoint.Controller.hide();
-            };
-            panelIntrPoint.Controller.show();
+	        var infoPanel = GameObject.FindObjectOfType<PointInfoPanel>();
+	        infoPanel.Show(_metadata);
+//            var panelIntrPoint = GameObject.FindObjectOfType<POIInfoWindowUnityInteractionPoint>();
+//            panelIntrPoint.Controller.applyPOIMetadata(_metadata);
+//            panelIntrPoint.Controller.ToFightCallback = () =>
+//            {
+//                _gameController.StartBattle(_metadata);
+//            };
+//            panelIntrPoint.Controller.CloseCallback = () =>
+//            {
+//                panelIntrPoint.Controller.hide();
+//            };
+//            panelIntrPoint.Controller.show();
         }
 
     }

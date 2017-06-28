@@ -68,14 +68,15 @@ namespace HauntedCity.GameMechanics.Main
         {
             if (sceneName == "battle")
             {
-                _battleStateController.StartBattle(RandomGhosts());
+                _battleStateController.StartBattle(_currentPOImeta.enemies);
             }
         }
 
         public void StartBattle(GameSparksPOIsExtraction.ExtractedPointMetadata meta)
         {
             _currentPOImeta = meta;
-            _battleStateController.StartBattle(meta.enemies);
+            
+            _sceneAgregator.switchToScene("battle");
         }
 
         public void StartBattle()

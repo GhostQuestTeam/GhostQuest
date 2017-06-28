@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace HauntedCity.UI
+namespace HauntedCity.UI.Attributes
 {
     public class AttributesPanel : Panel
     {

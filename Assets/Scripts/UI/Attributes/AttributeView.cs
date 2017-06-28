@@ -3,7 +3,7 @@ using HauntedCity.GameMechanics.SkillSystem;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace HauntedCity.UI
+namespace HauntedCity.UI.Attributes
 {
     public class AttributeView:MonoBehaviour
     {
