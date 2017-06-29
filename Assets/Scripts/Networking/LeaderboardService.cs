@@ -6,7 +6,7 @@ namespace HauntedCity.Networking
 {
     public class LeaderboardService
     {
-        public event Action<LeaderboardItem[]> OnLoad;
+        public event Action<LeaderboardItem[], LeaderboardItem> OnLoad;
         public event Action OnError;
 
         public class LeaderboardItem
@@ -17,8 +17,15 @@ namespace HauntedCity.Networking
 
             public LeaderboardItem(GSData data)
             {
+                if (data == null)
+                {
+                    Name = AuthService.Instance.Nickname;
+                    Place = Points = 0;
+                    return;
+                }
                 Name = data.GetString("displayName");
                 Points = data.GetInt("numOfPOIs") ?? 0;
+                Place = data.GetInt("place") ?? 0;
             }
         }
 
@@ -30,15 +37,25 @@ namespace HauntedCity.Networking
                 {
                     if (!response.HasErrors)
                     {
+                        var user = response.ScriptData.GetGSData("rank");
+                        var userResult = new LeaderboardItem(user);
                         var players = response.ScriptData.GetGSDataList("players");
-                        var leaderboardItems = new LeaderboardItem[players.Count];                       
+                        var leaderboardItems = new LeaderboardItem[players.Count];
+                        var currentPlace = 1;
+                        var currentMax = players[0].GetInt("numOfPOIs");
                         for (int i = 0; i < players.Count; i++)
                         {
-                            leaderboardItems[i] = new LeaderboardItem(players[i]) {Place = i + 1};
+                            leaderboardItems[i] = new LeaderboardItem(players[i]) ;
+                            if (leaderboardItems[i].Points < currentMax)
+                            {
+                                currentMax = leaderboardItems[i].Points;
+                                currentPlace++;
+                            }
+                            leaderboardItems[i].Place = currentPlace;
                         }
                         if (OnLoad != null)
                         {
-                            OnLoad(leaderboardItems);
+                            OnLoad(leaderboardItems, userResult);
                         }
                     }
                     else

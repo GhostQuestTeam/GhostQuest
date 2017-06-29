@@ -7,10 +7,10 @@ namespace HauntedCity.UI
     public class LeaderboardPanel : Panel
     {
         [Inject] private LeaderboardService _leaderboardService;
-        
+
         public LeaderboardItemView[] Items;
         public LeaderboardItemView UserResult;
-        
+
         void Start()
         {
             _leaderboardService.OnError += OnError;
@@ -28,12 +28,15 @@ namespace HauntedCity.UI
             //TODO
         }
 
-        private void OnLeaderboarbLoad(LeaderboardService.LeaderboardItem[] leaderboardItems)
+        private void OnLeaderboarbLoad(LeaderboardService.LeaderboardItem[] leaderboardItems,
+            LeaderboardService.LeaderboardItem userResult
+        )
         {
             for (int i = 0; i < Math.Min(leaderboardItems.Length, Items.Length); i++)
             {
                 Items[i].UpdateView(leaderboardItems[i]);
             }
+            UserResult.UpdateView(userResult);
         }
     }
 }

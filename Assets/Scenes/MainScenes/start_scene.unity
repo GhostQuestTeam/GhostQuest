@@ -391,6 +391,7 @@ GameObject:
   - component: {fileID: 250661117}
   - component: {fileID: 250661116}
   - component: {fileID: 250661115}
+  - component: {fileID: 250661118}
   m_Layer: 5
   m_Name: UserResultPanel
   m_TagString: Untagged
@@ -478,6 +479,20 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 250661113}
+--- !u!114 &250661118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 250661113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 410760d25d32402b8b633dae6b62d2b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Place: {fileID: 586022543}
+  Name: {fileID: 848667716}
+  Points: {fileID: 895141205}
 --- !u!114 &251516122 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114470701826203280, guid: 19cfa89824cc5d046a6324b89b7e7072,
@@ -2708,12 +2723,12 @@ Prefab:
     - target: {fileID: 224293368433133400, guid: 46f62c01e48a42442a2c1e1ef645d32b,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -209.5
       objectReference: {fileID: 0}
     - target: {fileID: 224923768152622924, guid: 46f62c01e48a42442a2c1e1ef645d32b,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -278.5
       objectReference: {fileID: 0}
     - target: {fileID: 114038864118729654, guid: 46f62c01e48a42442a2c1e1ef645d32b,
         type: 2}
@@ -4359,17 +4374,17 @@ Prefab:
     - target: {fileID: 224555080903911066, guid: fe21b9dbc400ccb449eb173da285ccc8,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -179.5
       objectReference: {fileID: 0}
     - target: {fileID: 224425024744228676, guid: fe21b9dbc400ccb449eb173da285ccc8,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -248.5
       objectReference: {fileID: 0}
     - target: {fileID: 224949768386907884, guid: fe21b9dbc400ccb449eb173da285ccc8,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -317.5
       objectReference: {fileID: 0}
     - target: {fileID: 224533536083499464, guid: fe21b9dbc400ccb449eb173da285ccc8,
         type: 2}
@@ -4781,7 +4796,7 @@ MonoBehaviour:
   - {fileID: 725278594}
   - {fileID: 2035799638}
   - {fileID: 1799875652}
-  UserResult: {fileID: 0}
+  UserResult: {fileID: 250661118}
 --- !u!114 &1708342374
 MonoBehaviour:
   m_ObjectHideFlags: 0
