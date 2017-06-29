@@ -17,7 +17,7 @@ namespace HauntedCity.UI.Attributes
             OkButton.onClick.AddListener(() =>
                 {
                     GameController.GameStats.ConfirmUpgrades();
-                    Hide();
+                    ShowInstead(FindObjectOfType<MapPanel>());
                 }
             );
         }
