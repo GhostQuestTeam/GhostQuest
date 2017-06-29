@@ -6444,18 +6444,17 @@ RectTransform:
 --- !u!114 &1293087564
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114837054221290642, guid: 0c2f3257bacd39349b14efff52377a9e,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1293087562}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e90214c752ad4b40b2cf1faf0baae03b, type: 3}
+  m_Script: {fileID: 11500000, guid: 425937c34d60430f9210c3bfb9ab2f36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PointOwner: {fileID: 751642167}
   PointInfo: {fileID: 113119548}
   GhostPanel: {fileID: 53477090}
+  PointOwner: {fileID: 751642167}
 --- !u!114 &1293087565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9835,7 +9834,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CoinValue: {fileID: 587839454}
-  StartButton: {fileID: 2057234704}
   AttributesPanel: {fileID: 2110777302}
 --- !u!95 &1882859088
 Animator:

@@ -26,6 +26,8 @@ namespace HauntedCity.Networking
             get { return instance; }
         }
 
+        public string Nickname { get; private set; }
+
 
         public bool IsAuthenticated
         {
@@ -68,6 +70,8 @@ namespace HauntedCity.Networking
                     if (!response.HasErrors)
                     {
                         _isLogin = true;
+
+                        Nickname = response.DisplayName;
                         Debug.Log("Player Authenticated...");
                     }
                     else

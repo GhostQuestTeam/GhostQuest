@@ -7,18 +7,16 @@ namespace HauntedCity.UI.PointInfo
 {
     public class PointInfoPanel:Panel
     {
-        private GameSparksPOIsExtraction.ExtractedPointMetadata _point;
+        protected GameSparksPOIsExtraction.ExtractedPointMetadata _point;
 
-        [Inject] private GameController _gameController;
+        [Inject] protected GameController _gameController;
         
-        public Text PointOwner;
         public Text PointInfo;
         public GhostsPanel GhostPanel;
 
-        public void UpdateView(GameSparksPOIsExtraction.ExtractedPointMetadata point)
+        public virtual void UpdateView(GameSparksPOIsExtraction.ExtractedPointMetadata point)
         {
             _point = point;
-            PointOwner.text = _point.uoid;
             PointInfo.text = _point.LatLon.ToString();
             GhostPanel.UpdateView(_point);
         }
@@ -29,10 +27,7 @@ namespace HauntedCity.UI.PointInfo
             Show();
         }
 
-        public void ToFight()
-        {
-            _gameController.StartBattle(_point);
-        }
+        
 
     }
 }
