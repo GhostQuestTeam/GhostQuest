@@ -85,6 +85,10 @@ public class GameSparksPOIsExtraction : MonoBehaviour
             get
             {
                 var result = new GSRequestData();
+                result.AddNumber("income_level", incomeLevel);
+                result.AddNumber("shields_level", shieldLevel);
+                result.AddNumber("current_money", currentMoney);
+                result.AddNumber("current_shields", currentShield);
                 return result;
             }
         }
@@ -225,7 +229,17 @@ public class GameSparksPOIsExtraction : MonoBehaviour
 
     public void UpdatePoint(ExtractedPointMetadata point)
     {
-        throw new System.NotImplementedException();
+        new GameSparks.Api.Requests.LogEventRequest()
+            .SetEventKey("UPDATE_POINT")
+            .SetEventAttribute("POINT_ID", point.poid)
+            .SetEventAttribute("POINT_DATA", point.SparksData)
+            .Send((response) => {
+                if (!response.HasErrors) {
+                    Debug.Log("Point updated...");
+                } else {
+                    Debug.Log("Error on save point..");
+                }
+            });
     }
 
 
@@ -255,6 +269,12 @@ public class GameSparksPOIsExtraction : MonoBehaviour
                         float lon = coords[1].AsFloat;
                         string uoid = node["properties"]["uoid"];
                         string poid = node["_id"]["$oid"];
+                        
+                        int currentMoney = node["properties"]["current_money"].AsInt;
+                        int currenShields = node["properties"]["current_shields"].AsInt;                      
+                        int incomeLevel = node["properties"]["income_level"].AsInt;
+                        int shieldLevel = node["properties"]["shields_level"].AsInt;
+
 
                         SimpleJSON.JSONNode enemies = node["properties"]["ghosts_num"];
                         Dictionary<string, int> enemiesDict = new Dictionary<string, int>();
@@ -268,6 +288,11 @@ public class GameSparksPOIsExtraction : MonoBehaviour
                         pointMeta.poid = poid;
                         pointMeta.enemies = enemiesDict;
 
+                        pointMeta.currentMoney = currentMoney;
+                        pointMeta.currentShield = currenShields;
+                        pointMeta.incomeLevel = incomeLevel;
+                        pointMeta.shieldLevel = shieldLevel;
+            
                         _points.Add(pointMeta);
                         Debug.Log(lat.ToString() + " " + lon.ToString());
 
