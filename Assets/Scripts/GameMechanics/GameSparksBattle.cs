@@ -38,8 +38,12 @@ public class GameSparksBattle : MonoBehaviour {
     {
         SCRIPT_MESSAGE_ev_arg arg = new SCRIPT_MESSAGE_ev_arg();
         arg.message = message;
-        OnScriptMessage(this, arg);
+
+        if(OnScriptMessage != null)
+            OnScriptMessage(this, arg);
+
         string type = message.Data.GetString("type");
+
         if (type == null)
             return;
 
@@ -66,7 +70,8 @@ public class GameSparksBattle : MonoBehaviour {
             {
                 ownerChangeArg.isError = true;
             }
-            OnScriptMessagePOIOwnerChange(this, ownerChangeArg);
+            if(OnScriptMessagePOIOwnerChange != null)
+                OnScriptMessagePOIOwnerChange(this, ownerChangeArg);
         }//type owner change
 
 
@@ -111,7 +116,8 @@ public class GameSparksBattle : MonoBehaviour {
                     arg.poid = poid;
                     arg.isStarted = false;
                 }
-                OnPOIStartCap(this, arg);
+                if(OnPOIStartCap != null)
+                    OnPOIStartCap(this, arg);
             });
     }//start cap
 
@@ -149,7 +155,8 @@ public class GameSparksBattle : MonoBehaviour {
                     arg.poid = poid;
                     arg.isSuccess = false;
                 }
-                OnPOISuccessCap(this, arg);
+                if(OnPOISuccessCap != null)
+                    OnPOISuccessCap(this, arg);
             });
     }//sucess cap
 
@@ -157,7 +164,8 @@ public class GameSparksBattle : MonoBehaviour {
     public event EventHandler<GET_LEADERBOARD_ev_arg> OnGetLeaderboard;
     public class GET_LEADERBOARD_ev_arg : EventArgs
     {
-        public string data;
+        public string rank;
+        public string players;
         public bool isError;
     }
 
@@ -172,16 +180,20 @@ public class GameSparksBattle : MonoBehaviour {
                 if (!response.HasErrors)
                 {
                     SimpleJSON.JSONNode root = SimpleJSON.JSON.Parse(response.JSONString);
-                    string result = root["scriptData"]["players"];
-                    arg.data = result;
+                    string players = root["scriptData"]["players"];
+                    string rank = root["scriptData"]["rank"];
+                    arg.players = players;
+                    arg.rank = rank;
                     arg.isError = false;
                 }
                 else
                 {
                     arg.isError = true;
-                    arg.data = null;
+                    arg.players = null;
+                    arg.rank = null;
                 }
-                OnGetLeaderboard(this, arg);
+                if(OnGetLeaderboard != null)
+                    OnGetLeaderboard(this, arg);
             });
     }//get leaderboard
 
