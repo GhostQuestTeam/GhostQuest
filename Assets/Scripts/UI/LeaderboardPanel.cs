@@ -9,7 +9,7 @@ namespace HauntedCity.UI
         [Inject] private LeaderboardService _leaderboardService;
         
         public LeaderboardItemView[] Items;
-
+        public LeaderboardItemView UserResult;
         
         void Start()
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using GameSparks.Core;
 using HauntedCity.Networking;
 using UnityEngine;
 using Mapbox.Utils;
@@ -72,6 +73,15 @@ public class GameSparksPOIsExtraction : MonoBehaviour
 
     public class ExtractedPointMetadata
     {
+        public GSRequestData SparksData
+        {
+            get
+            {
+                var result = new GSRequestData();
+                return result;
+            }
+        }
+        
         public Vector2d LatLon;
         public Dictionary<string, int> enemies;
         public string uoid;
@@ -144,6 +154,12 @@ public class GameSparksPOIsExtraction : MonoBehaviour
                 }
             });
     }
+
+    public void UpdatePoint(ExtractedPointMetadata point)
+    {
+        throw new System.NotImplementedException();
+    }
+
 
     void retrievePoints(int depth)
     {

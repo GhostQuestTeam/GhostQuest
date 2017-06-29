@@ -37,6 +37,8 @@ namespace HauntedCity.GameMechanics.SkillSystem
         public int UpgradePoints;
         private const int UPGRADE_POINTS_PER_LEVEL = 5;
 
+        public int POIs { get;  set; }
+
         public List<string> AllowableWeapons;
         public List<string> CurrentWeapons;
 
@@ -116,7 +118,7 @@ namespace HauntedCity.GameMechanics.SkillSystem
 
                 AllowableWeapons = value.GetStringList("allowableWeapons") ?? new List<string>(DEFAULT_WEAPONS);
                 CurrentWeapons = value.GetStringList("currentWeapons") ?? new List<string>(DEFAULT_WEAPONS);
-                
+                POIs = value.GetInt("numOfPOIs") ?? 0;
 
                 _UpdateExpToNextLevel();
             }

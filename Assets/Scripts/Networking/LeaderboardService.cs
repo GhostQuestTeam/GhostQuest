@@ -31,7 +31,7 @@ namespace HauntedCity.Networking
                     if (!response.HasErrors)
                     {
                         var players = response.ScriptData.GetGSDataList("players");
-                        var leaderboardItems = new LeaderboardItem[players.Count];
+                        var leaderboardItems = new LeaderboardItem[players.Count];                       
                         for (int i = 0; i < players.Count; i++)
                         {
                             leaderboardItems[i] = new LeaderboardItem(players[i]) {Place = i + 1};
