@@ -73,6 +73,8 @@ public class GameSparksPOIsExtraction : MonoBehaviour
         }
     }
 
+
+    [Serializable]
     public class ExtractedPointMetadata
     {
         private PlayerGameStats _playerStats = GameController.GameStats;
