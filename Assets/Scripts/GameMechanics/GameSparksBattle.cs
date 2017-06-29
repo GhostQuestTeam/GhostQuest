@@ -2,18 +2,82 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using HauntedCity.Networking;
+using GameSparks.Api.Messages;
 
 public class GameSparksBattle : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
 	
-	// Update is called once per frame
-	void Update () {
-		
+	void Awake () {
+        GameSparks.Api.Messages.ScriptMessage.Listener += ScriptMessageListener;
 	}
+
+
+    public event EventHandler<SCRIPT_MESSAGE_ev_arg> OnScriptMessage;
+    public class SCRIPT_MESSAGE_ev_arg : EventArgs
+    {
+        public ScriptMessage message;
+    }
+
+    public event EventHandler<SCRIPT_MESSAGE_POI_OWNER_CHANGE_ev_arg> OnScriptMessagePOIOwnerChange;
+    public class SCRIPT_MESSAGE_POI_OWNER_CHANGE_ev_arg : EventArgs
+    {
+        public ScriptMessage message;
+        public bool isError;
+        public bool hasPrevOwner;
+        public string poid;
+        public string newOwnerUoid;
+        public string prevOwnerUoid;
+        public string newOwnerDisplayName;
+        public string prevOwnerDisplayName;
+        public string newOwnerUserName;
+        public string prevOwnerUserName;
+    }
+
+    void ScriptMessageListener(ScriptMessage message)
+    {
+        SCRIPT_MESSAGE_ev_arg arg = new SCRIPT_MESSAGE_ev_arg();
+        arg.message = message;
+        OnScriptMessage(this, arg);
+        string type = message.Data.GetString("type");
+        if (type == null)
+            return;
+
+        if(type == "TYPE_POI_OWNER_CHANGE")
+        {
+            SCRIPT_MESSAGE_POI_OWNER_CHANGE_ev_arg ownerChangeArg = new SCRIPT_MESSAGE_POI_OWNER_CHANGE_ev_arg();
+            ownerChangeArg.message = message;
+            if(!message.HasErrors)
+            {
+                ownerChangeArg.isError = false;
+                ownerChangeArg.poid = message.Data.GetString("poid");
+                ownerChangeArg.newOwnerUoid = message.Data.GetString("newOwnerUoid");
+                ownerChangeArg.newOwnerDisplayName = message.Data.GetString("newOwnerDisplayName");
+                ownerChangeArg.newOwnerUserName = message.Data.GetString("newOwnerUserName");
+                ownerChangeArg.hasPrevOwner = (bool)message.Data.GetBoolean("hasPrevOwner");
+                if (ownerChangeArg.hasPrevOwner)
+                {
+                    ownerChangeArg.prevOwnerUoid = message.Data.GetString("prevOwnerUoid");
+                    ownerChangeArg.prevOwnerDisplayName = message.Data.GetString("prevOwnerDisplayName");
+                    ownerChangeArg.prevOwnerUserName = message.Data.GetString("prevOwnerUserName");
+                }
+            }
+            else
+            {
+                ownerChangeArg.isError = true;
+            }
+            OnScriptMessagePOIOwnerChange(this, ownerChangeArg);
+        }//type owner change
+
+
+        if(type == "TYPE_POI_FAIL_CAPTURE")
+        {
+            //
+            //TODO
+            //
+        }
+
+    }//func
 
     public event EventHandler<POI_START_CAP_ev_arg> OnPOIStartCap;
     public class POI_START_CAP_ev_arg : EventArgs
