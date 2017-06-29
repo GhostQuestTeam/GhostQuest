@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using GameSparks.Core;
+using HauntedCity.GameMechanics.Main;
+using HauntedCity.GameMechanics.SkillSystem;
 using HauntedCity.Networking;
 using UnityEngine;
 using Mapbox.Utils;
@@ -73,6 +75,11 @@ public class GameSparksPOIsExtraction : MonoBehaviour
 
     public class ExtractedPointMetadata
     {
+        private PlayerGameStats _playerStats = GameController.GameStats;
+        public const int RESTORE_SHIELD_PRICE = 3000;
+        public const int SHIELD_UPGRADE_PRICE = 4000;
+        public const int INCOME_UPGRADE_PRICE = 4000;
+        
         public GSRequestData SparksData
         {
             get
@@ -82,8 +89,69 @@ public class GameSparksPOIsExtraction : MonoBehaviour
             }
         }
         
+        
         public Vector2d LatLon;
         public Dictionary<string, int> enemies;
+        public int incomeLevel;
+        public int shieldLevel;
+        public int currentShield;
+        public int currentMoney;
+
+        public int MaxMoney
+        {
+            get {  return incomeLevel * 900; }
+        }
+
+        public int MaxShield
+        {
+            get { return shieldLevel * 300; }
+        }
+
+        #region ActionsWithPoint //TODO Избавиться от копипасты
+        public bool TryUpgradeShield()
+        {
+            if (_playerStats.Money >= SHIELD_UPGRADE_PRICE)
+            {
+                _playerStats.Money -= SHIELD_UPGRADE_PRICE;
+                shieldLevel++;
+                return true;
+            }
+            return false;
+        }
+        
+        public bool TryUpgradeIncome()
+        {
+            if (_playerStats.Money >= INCOME_UPGRADE_PRICE)
+            {
+                _playerStats.Money -= INCOME_UPGRADE_PRICE;
+                incomeLevel++;
+                return true;
+            }
+            return false;
+        }
+        
+        public bool TryRestoreShield()
+        {
+            if (_playerStats.Money >= RESTORE_SHIELD_PRICE)
+            {
+                _playerStats.Money -= RESTORE_SHIELD_PRICE;
+                currentShield = MaxShield;
+                return true;
+            }
+            return false;
+        }
+
+        public void GetMoney()
+        {
+            _playerStats.Money += currentMoney;
+            currentMoney = 0;
+        }
+        
+
+        #endregion
+        
+        
+        public string displayName;
         public string uoid;
         public string poid;
     }
