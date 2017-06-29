@@ -20,6 +20,8 @@ namespace HauntedCity.GameMechanics.Main
 
         private GameSparksPOIsExtraction.ExtractedPointMetadata _currentPOImeta;
 
+        private GameSparksBattle _gsb;
+
         [Inject]
         public void InitializeDependencies(BattleStateController battleStateController, 
             SceneAgregator sceneAgregator,
@@ -36,6 +38,9 @@ namespace HauntedCity.GameMechanics.Main
 
         void Start()
         {
+            _gsb = GameObject.Find("GameSparks").GetComponent<GameSparksBattle>();
+            _gsb.OnPOISuccessCap += OnSuccessCapture;
+            _gsb.OnPOIFailCapConfirm += OnFailCaptureConfirm;
             GameStats.OnAttributesUpgrade += () => _storageService.SavePlayer(GameStats);
             
             _sceneAgregator.OnSceneChange += OnSceneChange;
@@ -44,6 +49,34 @@ namespace HauntedCity.GameMechanics.Main
             _battleStateController.OnLose += BattleLoseHandle;
 
             _storageService.OnLoad += OnPlayerLoad;
+        }
+
+
+        public void OnDestroy()
+        {
+            _gsb.OnPOISuccessCap -= OnSuccessCapture;
+            _gsb.OnPOIFailCapConfirm -= OnFailCaptureConfirm;
+        }
+
+        public void OnSuccessCapture(object sender, GameSparksBattle.POI_SUCESS_CAP_ev_arg arg)
+        {
+            if(arg.poid == _currentPOImeta.poid)
+            {
+                //_gsb.OnPOISuccessCap -= OnSuccessCapture;
+                if(!arg.isError && arg.isSuccess)
+                {
+                    //WE REALLY SUCCEDED CAPTURE
+                }
+                else
+                {
+                    //WE FAILED CAPTURE
+                }
+            }
+        }
+
+        public void OnFailCaptureConfirm(object sender, GameSparksBattle.POI_FAIL_CAP_CONFIRM_ev_arg arg)
+        {
+            //WE CONFIRMED CAPTURE AND GOT RESULT - SHALL WE DO SMTH?
         }
 
         private void OnAllScenesLoad()
@@ -100,30 +133,9 @@ namespace HauntedCity.GameMechanics.Main
         public void BattleWonHandle(int score)
         {
             GameStats.AddExp(score);
+            _gsb.sendSuccessCapture(_currentPOImeta.poid);
+            //DONT WE DISABLE OURSELVES AND SCRIPT DOES NOT FINISH?
             GameObject.Find("BattleRoot").SetActive(false);
-
-            new GameSparks.Api.Requests.LogEventRequest()
-                .SetEventKey("POI_CAP")
-                .SetEventAttribute("POI_ID", _currentPOImeta.poid)
-                .Send((response) =>
-                {
-                    Debug.Log(response.JSONString);
-                    if (!response.HasErrors)
-                    {
-                        Debug.Log("Your capturing progress was not saved!");
-                    }
-                    else
-                    {
-                        Debug.Log(response.JSONString);
-                        if (!response.HasErrors)
-                        {
-                            Debug.Log("Your capturing progress was not saved!");
-                        }
-                        else
-                        {
-                        }
-                    }
-                });
 
 
             _sceneAgregator.switchToScene("map");
@@ -135,6 +147,7 @@ namespace HauntedCity.GameMechanics.Main
         {
             Debug.Log("Lose in battle");
             GameObject.Find("BattleRoot").SetActive(false);
+            _gsb.sendFailCaptureConfirm(_currentPOImeta.poid);
             _sceneAgregator.switchToScene("map");
             _storageService.SavePlayer(GameStats);
         }

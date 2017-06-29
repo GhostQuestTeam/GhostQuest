@@ -83,6 +83,11 @@ namespace HauntedCity.Geo
 			{
 				LocationProvider.OnLocationUpdated -= LocationProvider_OnLocationUpdated;
 			}
+            if(_gsb != null)
+            {
+                _gsb.OnScriptMessagePOIOwnerChange -= OnOwnerChange;
+            }
+
 		}
 
 		void LocationProvider_OnLocationUpdated(object sender, LocationUpdatedEventArgs e)

@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using System;
 
 namespace HauntedCity.UI.PointInfo
 {
@@ -29,9 +30,39 @@ namespace HauntedCity.UI.PointInfo
             Show();
         }
 
+
+        private GameSparksBattle _gsb;
+
+        public void OnStartCapture(object sender, GameSparksBattle.POI_START_CAP_ev_arg arg)
+        {
+            if (arg.poid == _point.poid)
+            {
+                //_gsb.OnPOIStartCap -= OnStartCapture;
+                if (arg.isError || !arg.isStarted)
+                {
+                    //WE DID NOT START - TODO SHOW ERROR
+                }
+                else
+                {
+                    _gameController.StartBattle(_point);
+                }
+                
+            }
+        }
+
         public void ToFight()
         {
-            _gameController.StartBattle(_point);
+            if (_gsb == null)
+            {
+                _gsb = GameObject.Find("GameSparks").GetComponent<GameSparksBattle>();
+                _gsb.OnPOIStartCap += OnStartCapture;
+            }
+            _gsb.sendStartCapture(_point.poid);
+        }
+
+        public void OnDestroy()
+        {
+            _gsb.OnPOIStartCap -= OnStartCapture;
         }
 
     }

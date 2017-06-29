@@ -161,6 +161,45 @@ public class GameSparksBattle : MonoBehaviour {
     }//sucess cap
 
 
+
+    public event EventHandler<POI_FAIL_CAP_CONFIRM_ev_arg> OnPOIFailCapConfirm;
+    public class POI_FAIL_CAP_CONFIRM_ev_arg : EventArgs
+    {
+        public string poid;
+        public bool isSuccess;
+        public bool isError;
+    }
+
+    public void sendFailCaptureConfirm(string poid)
+    {
+        new GameSparks.Api.Requests.LogEventRequest()
+            .SetEventKey("POI_FAIL_CAP_CONFIRM")
+            .SetEventAttribute("POI_ID", poid) //может этот параметр и не нужен - и так до этого понятно, что захватывалось
+            .Send((response) =>
+            {
+                Debug.Log(response.JSONString);
+                POI_FAIL_CAP_CONFIRM_ev_arg arg = new POI_FAIL_CAP_CONFIRM_ev_arg();
+                if (!response.HasErrors)
+                {
+                    SimpleJSON.JSONNode root = SimpleJSON.JSON.Parse(response.JSONString);
+                    string result = root["scriptData"]["result"];
+                    arg.isSuccess = (result == "OK");
+                    arg.isError = false;
+                    arg.poid = poid;
+                }
+                else
+                {
+                    arg.isError = true;
+                    arg.poid = poid;
+                    arg.isSuccess = false;
+                }
+                if (OnPOIFailCapConfirm != null)
+                    OnPOIFailCapConfirm(this, arg);
+            });
+    }//fail cap confirm
+
+
+
     public event EventHandler<GET_LEADERBOARD_ev_arg> OnGetLeaderboard;
     public class GET_LEADERBOARD_ev_arg : EventArgs
     {
