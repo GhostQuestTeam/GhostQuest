@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
 using Mapbox.Utils;
 using UnityEngine;
 using UnityEngine.Events;
@@ -6,18 +7,25 @@ using UnityEngine.UI;
 using HauntedCity.GameMechanics.BattleSystem;
 using Zenject;
 using HauntedCity.GameMechanics.Main;
+using HauntedCity.Utils.Extensions;
 
 namespace HauntedCity.Geo
 {
     public class PointOfInterestFactory : MonoBehaviour
     {
-        private GameObject _root;
+        public GameObject _root;
         public HashSet<GameSparksPOIsExtraction.ExtractedPointMetadata> _points = new HashSet<GameSparksPOIsExtraction.ExtractedPointMetadata>();
         public GameObject PointOfInterestPrefab;
         public GameObject GameSparksObj;
 
         [Inject]
         private GameController _gameController;
+
+        private void Awake()
+        {
+//            _root = new GameObject("POIRoot");
+//            _root.transform.SetParent(GameObject.Find("LocationProviderRoot").transform);
+        }
 
         void Start()
         {
@@ -34,6 +42,8 @@ namespace HauntedCity.Geo
         {
             GameSparksObj.GetComponent<GameSparksPOIsExtraction>().UpdatePointsNow();
         }
+        
+        
 
         public void InitPoints()
         {
@@ -76,12 +86,11 @@ namespace HauntedCity.Geo
             //_btnToEnable = GameObject.Find("StartBattle").GetComponent<Button>();
             //_btnToEnable.gameObject.SetActive(false);
 
-            GameObject _prevRoot = GameObject.Find("POIRoot");
-            if (_prevRoot != null)
-                Destroy(_prevRoot);
+//            GameObject _prevRoot = GameObject.Find("POIRoot");
+//            if (_prevRoot != null)
+//                Destroy(_prevRoot);
 
-            _root = new GameObject("POIRoot");
-            _root.transform.SetParent(GameObject.Find("LocationProviderRoot").transform);
+            _root.transform.Clear();
 
             foreach (GameSparksPOIsExtraction.ExtractedPointMetadata pointMeta in _points)
             {

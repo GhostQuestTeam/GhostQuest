@@ -140,7 +140,7 @@ namespace HauntedCity.Geo
 
         public void OnClick()
         {
-	        var infoPanel = GameObject.FindObjectOfType<YourPointInfoPanel>();
+	        var infoPanel = GameObject.FindObjectOfType<PointInfoPanelController>();
 	        infoPanel.Show(_metadata);
 //            var panelIntrPoint = GameObject.FindObjectOfType<POIInfoWindowUnityInteractionPoint>();
 //            panelIntrPoint.Controller.applyPOIMetadata(_metadata);

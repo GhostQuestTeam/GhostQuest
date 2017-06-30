@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using GameSparks.Core;
 using HauntedCity.GameMechanics.Main;
 using HauntedCity.GameMechanics.SkillSystem;
+using HauntedCity.Geo;
 using HauntedCity.Networking;
 using UnityEngine;
 using Mapbox.Utils;
@@ -54,7 +55,11 @@ public class GameSparksPOIsExtraction : MonoBehaviour
         {
             if (UseLocationProvider)
             {
-                return LocationProvider.Location;
+                #if UNITY_EDITOR
+                return  LocationProvider.Location;
+                #else
+                return new Vector2d(Input.location.lastData.latitude, Input.location.lastData.longitude);
+                #endif
             }
             else
             {
@@ -250,6 +255,7 @@ public class GameSparksPOIsExtraction : MonoBehaviour
         if (depth == 0)
             return;
 
+        FindObjectOfType<DebugPanel>().Log(CurPos.ToString());
         GetPOIsEventArg evArg = new GetPOIsEventArg((float) CurPos.x, (float) CurPos.y);
         string sEvArg = JsonUtility.ToJson(evArg);
         Debug.Log(sEvArg);
@@ -262,6 +268,7 @@ public class GameSparksPOIsExtraction : MonoBehaviour
                 Debug.Log(response.JSONString);
                 if (!response.HasErrors)
                 {
+                    
                     _points.Clear();
                     SimpleJSON.JSONNode root = SimpleJSON.JSON.Parse(response.JSONString);
                     foreach (SimpleJSON.JSONNode node in root["scriptData"]["points"].AsArray)
@@ -270,6 +277,7 @@ public class GameSparksPOIsExtraction : MonoBehaviour
                         float lat = coords[0].AsFloat;
                         float lon = coords[1].AsFloat;
                         string uoid = node["properties"]["uoid"];
+                        string displayName = node["properties"]["owner_display_name"];
                         string poid = node["_id"]["$oid"];
                         
                         int currentMoney = node["properties"]["current_money"].AsInt;
@@ -280,15 +288,21 @@ public class GameSparksPOIsExtraction : MonoBehaviour
 
                         SimpleJSON.JSONNode enemies = node["properties"]["ghosts_num"];
                         Dictionary<string, int> enemiesDict = new Dictionary<string, int>();
+                      
                         enemiesDict.Add("shadow_skull", enemies["shadow_skull"]);
                         enemiesDict.Add("devil_mask", enemies["devil_mask"]);
                         enemiesDict.Add("skull_ghost", enemies["skull_ghost"]);
+                        enemiesDict.Add("white_skull", enemies["white_skull"]);
+                        enemiesDict.Add("headless", enemies["headless"]);
+                        enemiesDict.Add("skeleton", enemies["skeleton"]);
+
 
                         ExtractedPointMetadata pointMeta = new ExtractedPointMetadata();
                         pointMeta.LatLon = new Vector2d(lat, lon);
                         pointMeta.uoid = uoid;
                         pointMeta.poid = poid;
                         pointMeta.enemies = enemiesDict;
+                        pointMeta.displayName = displayName;
 
                         pointMeta.currentMoney = currentMoney;
                         pointMeta.currentShield = currenShields;
@@ -303,7 +317,7 @@ public class GameSparksPOIsExtraction : MonoBehaviour
                 }
                 else
                 {
-                    retrievePoints(depth - 1);
+                    //retrievePoints(depth - 1);
                 }
             });
     }
