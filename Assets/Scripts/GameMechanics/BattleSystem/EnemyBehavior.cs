@@ -2,6 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using HauntedCity.Utils;
+using Zenject;
+using UnityEngine.SceneManagement;
 
 namespace HauntedCity.GameMechanics.BattleSystem
 {
@@ -27,7 +30,8 @@ namespace HauntedCity.GameMechanics.BattleSystem
         public float AttackCooldown = 1f;
         public int Score = 100;
         public double BonusDropProb = 0.5;
-
+        
+        [Inject] SceneAgregator  _sceneAgregator;
 
         // Use this for initialization
         void Awake()
@@ -55,6 +59,10 @@ namespace HauntedCity.GameMechanics.BattleSystem
             {
                 transform.position = Vector3.MoveTowards(transform.position, _followee.transform.position,
                     BattleStats.Velocity);
+            }
+            if (SceneManager.GetActiveScene().name != "battle" )
+            {
+                Destroy(gameObject);
             }
         }
 
