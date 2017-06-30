@@ -68,7 +68,7 @@ namespace HauntedCity.GameMechanics.Main
         {
             if (sceneName == "battle")
             {
-                _battleStateController.StartBattle(_currentPOImeta.enemies);
+                _battleStateController.StartBattle(new Dictionary<string, int>( _currentPOImeta.enemies) );
             }
         }
 
