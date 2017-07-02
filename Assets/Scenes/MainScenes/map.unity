@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38073996, b: 0.35872692, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -3573,17 +3573,17 @@ Prefab:
     - target: {fileID: 224238451791355610, guid: 671d9ee46e2a03947b3aaeabcc38372a,
         type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224238451791355610, guid: 671d9ee46e2a03947b3aaeabcc38372a,
         type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224238451791355610, guid: 671d9ee46e2a03947b3aaeabcc38372a,
         type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224238451791355610, guid: 671d9ee46e2a03947b3aaeabcc38372a,
         type: 2}
@@ -3828,7 +3828,7 @@ Prefab:
     - target: {fileID: 224469461708233386, guid: 671d9ee46e2a03947b3aaeabcc38372a,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 48.61111
+      value: 48.598873
       objectReference: {fileID: 0}
     - target: {fileID: 224469461708233386, guid: 671d9ee46e2a03947b3aaeabcc38372a,
         type: 2}
@@ -3838,7 +3838,7 @@ Prefab:
     - target: {fileID: 224469461708233386, guid: 671d9ee46e2a03947b3aaeabcc38372a,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 97.22222
+      value: 97.19775
       objectReference: {fileID: 0}
     - target: {fileID: 224469461708233386, guid: 671d9ee46e2a03947b3aaeabcc38372a,
         type: 2}
@@ -3858,7 +3858,7 @@ Prefab:
     - target: {fileID: 224126009644854206, guid: 671d9ee46e2a03947b3aaeabcc38372a,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 138.61111
+      value: 138.59888
       objectReference: {fileID: 0}
     - target: {fileID: 224126009644854206, guid: 671d9ee46e2a03947b3aaeabcc38372a,
         type: 2}
@@ -3868,7 +3868,7 @@ Prefab:
     - target: {fileID: 224126009644854206, guid: 671d9ee46e2a03947b3aaeabcc38372a,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 82.77778
+      value: 82.802246
       objectReference: {fileID: 0}
     - target: {fileID: 224126009644854206, guid: 671d9ee46e2a03947b3aaeabcc38372a,
         type: 2}
@@ -3958,7 +3958,7 @@ Prefab:
     - target: {fileID: 224306862218412860, guid: 671d9ee46e2a03947b3aaeabcc38372a,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -97.77777
+      value: -97.77778
       objectReference: {fileID: 0}
     - target: {fileID: 224306862218412860, guid: 671d9ee46e2a03947b3aaeabcc38372a,
         type: 2}
@@ -4254,6 +4254,41 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.y
       value: 65.55556
+      objectReference: {fileID: 0}
+    - target: {fileID: 224238451791355610, guid: 671d9ee46e2a03947b3aaeabcc38372a,
+        type: 2}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224238451791355610, guid: 671d9ee46e2a03947b3aaeabcc38372a,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224238451791355610, guid: 671d9ee46e2a03947b3aaeabcc38372a,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114666543031088786, guid: 671d9ee46e2a03947b3aaeabcc38372a,
+        type: 2}
+      propertyPath: m_Text
+      value: 1200/1200
+      objectReference: {fileID: 0}
+    - target: {fileID: 224308224985076912, guid: 671d9ee46e2a03947b3aaeabcc38372a,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114666543031088786, guid: 671d9ee46e2a03947b3aaeabcc38372a,
+        type: 2}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114604572471246326, guid: 671d9ee46e2a03947b3aaeabcc38372a,
+        type: 2}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 671d9ee46e2a03947b3aaeabcc38372a, type: 2}
@@ -6992,7 +7027,6 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
 --- !u!1 &1641066587
 GameObject:
   m_ObjectHideFlags: 0
