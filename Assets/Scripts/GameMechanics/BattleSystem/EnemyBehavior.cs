@@ -105,6 +105,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
             if (shell != null)
             {
                 BattleController.TakeDamage(shell.Weapon.Damage);
+                _animator.SetTrigger("Hit");
                 transform.position = Vector3.MoveTowards(
                     transform.position,
                     -1*_followee.transform.position,

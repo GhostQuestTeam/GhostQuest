@@ -10,7 +10,7 @@ namespace HauntedCity.UI.PointInfo
 
         public void Show(GameSparksPOIsExtraction.ExtractedPointMetadata point)
         {
-            if (point.displayName == AuthService.Instance.Nickname)
+            if (point.displayName == AuthService.Instance.Nickname && point.displayName != "")
             {
                 yourPointrPanelTemplate.Show(point);
             }
