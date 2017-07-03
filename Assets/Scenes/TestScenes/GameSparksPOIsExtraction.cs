@@ -165,6 +165,14 @@ public class GameSparksPOIsExtraction : MonoBehaviour
         public string displayName;
         public string uoid;
         public string poid;
+        public string name;
+        public string owner_display_name;
+        public string owner_user_name;
+        public int income_level;
+        public int guards_level;
+        public int shields_level;
+        public int current_money;
+        public int current_shields;
     }
 
     public event EventHandler<POIsExtractedEventArgs> OnPOIsExtracted;
@@ -282,6 +290,14 @@ public class GameSparksPOIsExtraction : MonoBehaviour
                         string uoid = node["properties"]["uoid"];
                         string displayName = node["properties"]["owner_display_name"];
                         string poid = node["_id"]["$oid"];
+                        string name = node["properties"]["name"];
+                        string owner_display_name = node["properties"]["owner_display_name"];
+                        string owner_user_name = node["properties"]["owner_user_name"];
+                        int income_level = node["properties"]["income_level"].AsInt;
+                        int guards_level = node["properties"]["guards_level"].AsInt;
+                        int shields_level = node["properties"]["shields_level"].AsInt;
+                        int current_money = node["properties"]["current_money"].AsInt;
+                        int current_shields = node["properties"]["current_shields"].AsInt;
 
                         int currentMoney = node["properties"]["current_money"].AsInt;
                         int currenShields = node["properties"]["current_shields"].AsInt;
@@ -304,6 +320,14 @@ public class GameSparksPOIsExtraction : MonoBehaviour
                         pointMeta.LatLon = new Vector2d(lat, lon);
                         pointMeta.uoid = uoid;
                         pointMeta.poid = poid;
+                        pointMeta.name = name;
+                        pointMeta.owner_display_name = owner_display_name;
+                        pointMeta.owner_user_name = owner_user_name;
+                        pointMeta.income_level = income_level;
+                        pointMeta.guards_level = guards_level;
+                        pointMeta.shields_level = shields_level;
+                        pointMeta.current_money = current_money;
+                        pointMeta.current_shields = current_shields;
                         pointMeta.enemies = enemiesDict;
                         pointMeta.displayName = displayName;
 
