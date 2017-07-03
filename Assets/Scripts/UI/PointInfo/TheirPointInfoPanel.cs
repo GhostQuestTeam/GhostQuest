@@ -9,7 +9,7 @@ namespace HauntedCity.UI.PointInfo
         public override void UpdateView(GameSparksPOIsExtraction.ExtractedPointMetadata point)
         {
             base.UpdateView(point);
-            PointOwner.text = _point.uoid;
+            PointOwner.text = _point.displayName;
         }
 
         public void ToFight()
