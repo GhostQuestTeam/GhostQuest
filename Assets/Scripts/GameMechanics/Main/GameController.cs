@@ -102,6 +102,7 @@ namespace HauntedCity.GameMechanics.Main
             GameStats.AddExp(score);
             GameObject.Find("BattleRoot").SetActive(false);
 
+            _currentPOImeta.displayName = AuthService.Instance.Nickname;
             new GameSparks.Api.Requests.LogEventRequest()
                 .SetEventKey("POI_CAP")
                 .SetEventAttribute("POI_ID", _currentPOImeta.poid)
