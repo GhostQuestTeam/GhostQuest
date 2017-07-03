@@ -152,7 +152,8 @@ public class GameSparksPOIsExtraction : MonoBehaviour
             }
             return false;
         }
-
+        
+        
         public void GetMoney()
         {
             _playerStats.Money += currentMoney;
@@ -161,6 +162,10 @@ public class GameSparksPOIsExtraction : MonoBehaviour
 
         #endregion
 
+        public bool IsYour()
+        {
+            return displayName == AuthService.Instance.Nickname;
+        }
 
         public string displayName;
         public string uoid;
