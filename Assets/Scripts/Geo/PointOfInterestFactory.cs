@@ -40,10 +40,19 @@ namespace HauntedCity.Geo
 
         void OnEnable()
         {
-            GameSparksObj.GetComponent<GameSparksPOIsExtraction>().UpdatePointsNow();
+            var ext = GameSparksObj.GetComponent<GameSparksPOIsExtraction>();
+            ext.UpdatePointsNow();
+            ext.OnPOIsExtracted += Ext_OnPOIsExtracted;
+
         }
-        
-        
+
+        private void OnDisable()
+        {
+            var ext = GameSparksObj.GetComponent<GameSparksPOIsExtraction>();
+            ext.OnPOIsExtracted -= Ext_OnPOIsExtracted;
+
+        }
+
 
         public void InitPoints()
         {
@@ -63,8 +72,6 @@ namespace HauntedCity.Geo
             _points.Add(new Vector2d(55.7653354, 37.6054856)); //памятник А. С. Пушкину
             _points.Add(new Vector2d(55.7559664, 37.5891178)); //Городская усадьба С.С. Гагарина*/
 
-            GameSparksPOIsExtraction ext = GameSparksObj.GetComponent<GameSparksPOIsExtraction>();
-            ext.OnPOIsExtracted += Ext_OnPOIsExtracted;
         }
 
         public void Ext_OnPOIsExtracted(object sender, GameSparksPOIsExtraction.POIsExtractedEventArgs e)

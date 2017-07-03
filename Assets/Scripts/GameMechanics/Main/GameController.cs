@@ -134,9 +134,9 @@ namespace HauntedCity.GameMechanics.Main
 
         public void BattleLoseHandle()
         {
+            _gsb.sendFailCaptureConfirm(_currentPOImeta.poid);
             Debug.Log("Lose in battle");
             GameObject.Find("BattleRoot").SetActive(false);
-            _gsb.sendFailCaptureConfirm(_currentPOImeta.poid);
             _sceneAgregator.switchToScene("map");
             _storageService.SavePlayer(GameStats);
         }

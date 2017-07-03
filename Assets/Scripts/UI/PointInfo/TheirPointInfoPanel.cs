@@ -26,6 +26,7 @@ namespace HauntedCity.UI.PointInfo
                 }
                 else
                 {
+                    Hide();
                     _gameController.StartBattle(_point);
                 }
                 
@@ -34,7 +35,6 @@ namespace HauntedCity.UI.PointInfo
 
         public void ToFight()
         {
-            Hide();
             if (_gsb == null)
             {
                 _gsb = GameObject.Find("GameSparks").GetComponent<GameSparksBattle>();
