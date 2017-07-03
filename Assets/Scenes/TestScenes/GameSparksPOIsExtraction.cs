@@ -55,9 +55,9 @@ public class GameSparksPOIsExtraction : MonoBehaviour
         {
             if (UseLocationProvider)
             {
-                #if UNITY_EDITOR
-                return  LocationProvider.Location;
-                #else
+#if UNITY_EDITOR
+                return LocationProvider.Location;
+#else
                 return new Vector2d(Input.location.lastData.latitude, Input.location.lastData.longitude);
                 #endif
             }
@@ -86,7 +86,7 @@ public class GameSparksPOIsExtraction : MonoBehaviour
         public const int RESTORE_SHIELD_PRICE = 3000;
         public const int SHIELD_UPGRADE_PRICE = 4000;
         public const int INCOME_UPGRADE_PRICE = 4000;
-        
+
         public GSRequestData SparksData
         {
             get
@@ -99,8 +99,8 @@ public class GameSparksPOIsExtraction : MonoBehaviour
                 return result;
             }
         }
-        
-        
+
+
         public Vector2d LatLon;
         public Dictionary<string, int> enemies;
         public int incomeLevel;
@@ -110,7 +110,7 @@ public class GameSparksPOIsExtraction : MonoBehaviour
 
         public int MaxMoney
         {
-            get {  return incomeLevel * 900; }
+            get { return incomeLevel * 900; }
         }
 
         public int MaxShield
@@ -119,6 +119,7 @@ public class GameSparksPOIsExtraction : MonoBehaviour
         }
 
         #region ActionsWithPoint //TODO Избавиться от копипасты
+
         public bool TryUpgradeShield()
         {
             if (_playerStats.Money >= SHIELD_UPGRADE_PRICE)
@@ -129,7 +130,7 @@ public class GameSparksPOIsExtraction : MonoBehaviour
             }
             return false;
         }
-        
+
         public bool TryUpgradeIncome()
         {
             if (_playerStats.Money >= INCOME_UPGRADE_PRICE)
@@ -140,7 +141,7 @@ public class GameSparksPOIsExtraction : MonoBehaviour
             }
             return false;
         }
-        
+
         public bool TryRestoreShield()
         {
             if (_playerStats.Money >= RESTORE_SHIELD_PRICE)
@@ -157,11 +158,10 @@ public class GameSparksPOIsExtraction : MonoBehaviour
             _playerStats.Money += currentMoney;
             currentMoney = 0;
         }
-        
 
         #endregion
-        
-        
+
+
         public string displayName;
         public string uoid;
         public string poid;
@@ -172,7 +172,6 @@ public class GameSparksPOIsExtraction : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        
         //StartCoroutine(performExtraction());
     }
 
@@ -180,7 +179,8 @@ public class GameSparksPOIsExtraction : MonoBehaviour
 
     public void UpdatePointsNow()
     {
-        if(AuthService.Instance.IsAuthenticated){
+        if (AuthService.Instance.IsAuthenticated)
+        {
             retrievePoints(depth);
         }
         //doExtractionViaFakeAuth("a1", "a1", depth, depth);
@@ -240,10 +240,14 @@ public class GameSparksPOIsExtraction : MonoBehaviour
             .SetEventKey("UPDATE_POINT")
             .SetEventAttribute("POINT_ID", point.poid)
             .SetEventAttribute("POINT_DATA", point.SparksData)
-            .Send((response) => {
-                if (!response.HasErrors) {
+            .Send((response) =>
+            {
+                if (!response.HasErrors)
+                {
                     Debug.Log("Point updated...");
-                } else {
+                }
+                else
+                {
                     Debug.Log("Error on save point..");
                 }
             });
@@ -268,7 +272,6 @@ public class GameSparksPOIsExtraction : MonoBehaviour
                 Debug.Log(response.JSONString);
                 if (!response.HasErrors)
                 {
-                    
                     _points.Clear();
                     SimpleJSON.JSONNode root = SimpleJSON.JSON.Parse(response.JSONString);
                     foreach (SimpleJSON.JSONNode node in root["scriptData"]["points"].AsArray)
@@ -279,16 +282,16 @@ public class GameSparksPOIsExtraction : MonoBehaviour
                         string uoid = node["properties"]["uoid"];
                         string displayName = node["properties"]["owner_display_name"];
                         string poid = node["_id"]["$oid"];
-                        
+
                         int currentMoney = node["properties"]["current_money"].AsInt;
-                        int currenShields = node["properties"]["current_shields"].AsInt;                      
+                        int currenShields = node["properties"]["current_shields"].AsInt;
                         int incomeLevel = node["properties"]["income_level"].AsInt;
                         int shieldLevel = node["properties"]["shields_level"].AsInt;
 
 
                         SimpleJSON.JSONNode enemies = node["properties"]["ghosts_num"];
                         Dictionary<string, int> enemiesDict = new Dictionary<string, int>();
-                      
+
                         enemiesDict.Add("shadow_skull", enemies["shadow_skull"]);
                         enemiesDict.Add("devil_mask", enemies["devil_mask"]);
                         enemiesDict.Add("skull_ghost", enemies["skull_ghost"]);
@@ -296,7 +299,7 @@ public class GameSparksPOIsExtraction : MonoBehaviour
                         enemiesDict.Add("headless", enemies["headless"]);
                         enemiesDict.Add("skeleton", enemies["skeleton"]);
 
-
+                        
                         ExtractedPointMetadata pointMeta = new ExtractedPointMetadata();
                         pointMeta.LatLon = new Vector2d(lat, lon);
                         pointMeta.uoid = uoid;
@@ -308,10 +311,9 @@ public class GameSparksPOIsExtraction : MonoBehaviour
                         pointMeta.currentShield = currenShields;
                         pointMeta.incomeLevel = incomeLevel;
                         pointMeta.shieldLevel = shieldLevel;
-            
+
                         _points.Add(pointMeta);
                         Debug.Log(lat.ToString() + " " + lon.ToString());
-
                     }
                     OnPOIsExtracted(this, new POIsExtractedEventArgs(_points));
                 }
