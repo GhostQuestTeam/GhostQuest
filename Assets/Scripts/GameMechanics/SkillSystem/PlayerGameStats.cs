@@ -262,6 +262,7 @@ namespace HauntedCity.GameMechanics.SkillSystem
 
         public bool TryBuyWeapon(Weapon weapon)
         {
+            if (AllowableWeapons.Contains(weapon.Id)) return false;
             if (weapon.Cost > Money) return false;
 
             Money -= weapon.Cost;

@@ -89,7 +89,11 @@ namespace HauntedCity.GameMechanics.Main
         {
             if (SceneManager.GetActiveScene().name == "start_scene")
             {
-                GameObject.Find("LocationProviderRoot").SetActive(false);
+                var mapRoot =GameObject.Find("LocationProviderRoot");
+                if (mapRoot != null)
+                {
+                    mapRoot.SetActive(false);
+                }
             }
         }
 
