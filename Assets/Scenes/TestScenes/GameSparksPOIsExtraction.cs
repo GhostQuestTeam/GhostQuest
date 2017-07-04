@@ -315,7 +315,8 @@ public class GameSparksPOIsExtraction : MonoBehaviour
                         _points.Add(pointMeta);
                         Debug.Log(lat.ToString() + " " + lon.ToString());
                     }
-                    OnPOIsExtracted(this, new POIsExtractedEventArgs(_points));
+                    if(OnPOIsExtracted != null)
+                        OnPOIsExtracted(this, new POIsExtractedEventArgs(_points));
                 }
                 else
                 {
