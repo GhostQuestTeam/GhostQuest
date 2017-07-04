@@ -22,6 +22,7 @@ namespace HauntedCity.GameMechanics.Main
         private GameSparksPOIsExtraction.ExtractedPointMetadata _currentPOImeta;
 
         private GameSparksBattle _gsb;
+        private int _lastScore;
 
         [Inject]
         public void InitializeDependencies(BattleStateController battleStateController, 
@@ -64,14 +65,20 @@ namespace HauntedCity.GameMechanics.Main
             if(arg.poid == _currentPOImeta.poid)
             {
                 //_gsb.OnPOISuccessCap -= OnSuccessCapture;
-                if(!arg.isError && arg.isSuccess)
-                {
+//                if(!arg.isError && arg.isSuccess)
+//                {
+                    GameStats.AddExp(_lastScore);
+                    _storageService.SavePlayer(GameStats);
+
                     //WE REALLY SUCCEDED CAPTURE
-                }
-                else
-                {
-                    //WE FAILED CAPTURE
-                }
+//                }
+//                else
+//                {
+//                    WE FAILED CAPTURE
+//                }
+                GameObject.Find("BattleRoot").SetActive(false);
+                _sceneAgregator.switchToScene("map");
+                Debug.Log("Level: " + GameStats.Level + "  " + GameStats.CurrentExp + "/" + GameStats.ExpToLevel);
             }
         }
 
@@ -85,6 +92,7 @@ namespace HauntedCity.GameMechanics.Main
             //_sceneAgregator.switchToScene("battle");
         }
 
+        //TODO
         private void Update()
         {
             if (SceneManager.GetActiveScene().name == "start_scene")
@@ -112,6 +120,7 @@ namespace HauntedCity.GameMechanics.Main
         
         private void OnSceneChange(string sceneName)
         {
+            GameStats.StorageService = _storageService;
             if (sceneName == "battle")
             {
                 _battleStateController.StartBattle(new Dictionary<string, int>( _currentPOImeta.enemies) );
@@ -137,17 +146,14 @@ namespace HauntedCity.GameMechanics.Main
         {
             _gsb.sendSuccessCapture(_currentPOImeta.poid);
             _currentPOImeta.displayName = AuthService.Instance.Nickname;
+            _lastScore = score;
             //DONT WE DISABLE OURSELVES AND SCRIPT DOES NOT FINISH?
-            GameObject.Find("BattleRoot").SetActive(false);
-
-
-            _sceneAgregator.switchToScene("map");
-            Debug.Log("Level: " + GameStats.Level + "  " + GameStats.CurrentExp + "/" + GameStats.ExpToLevel);
-            _storageService.SavePlayer(GameStats);
+          
         }
 
         public void BattleLoseHandle()
         {
+            _lastScore = 0;
             _gsb.sendFailCaptureConfirm(_currentPOImeta.poid);
             Debug.Log("Lose in battle");
             GameObject.Find("BattleRoot").SetActive(false);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using GameSparks.Core;
 using HauntedCity.GameMechanics.BattleSystem;
+using HauntedCity.Networking;
 using HauntedCity.Utils;
 
 namespace HauntedCity.GameMechanics.SkillSystem
@@ -11,6 +12,7 @@ namespace HauntedCity.GameMechanics.SkillSystem
     {
         #region PlayerAttributes
 
+        public StorageService StorageService;
         public enum PlayerAttributes
         {
             Survivability,
@@ -18,8 +20,8 @@ namespace HauntedCity.GameMechanics.SkillSystem
             Power
         }
 
-        public readonly List<string> DEFAULT_WEAPONS = new List<string>() {"sphere", "air_bolt"}; 
-        
+        public readonly List<string> DEFAULT_WEAPONS = new List<string>() {"sphere", "air_bolt"};
+
         public event Action OnAttributeChange;
         public event Action OnAttributesUpgrade;
         public event Action OnCoinChange;
@@ -37,7 +39,7 @@ namespace HauntedCity.GameMechanics.SkillSystem
         public int UpgradePoints;
         private const int UPGRADE_POINTS_PER_LEVEL = 5;
 
-        public int POIs { get;  set; }
+        public int POIs { get; set; }
 
         public List<string> AllowableWeapons;
         public List<string> CurrentWeapons;
@@ -207,6 +209,7 @@ namespace HauntedCity.GameMechanics.SkillSystem
             {
                 OnAttributesUpgrade();
             }
+            StorageService.SavePlayer(this);
         }
 
         #endregion
@@ -251,11 +254,21 @@ namespace HauntedCity.GameMechanics.SkillSystem
 
         public void AddExp(int exp)
         {
-            CurrentExp += exp;
-            while (CurrentExp > ExpToLevel)
+            do
             {
-                _NextLevel();
-            }
+                var tmp = (ExpToLevel - CurrentExp);
+                if (exp >= tmp)
+                {
+                    exp -= tmp;
+                    _NextLevel();
+                    if (exp < 0)
+                    {
+                        break;
+                    }
+                }
+            } while (CurrentExp >= ExpToLevel);
+            CurrentExp += exp;
+
         }
 
         #endregion

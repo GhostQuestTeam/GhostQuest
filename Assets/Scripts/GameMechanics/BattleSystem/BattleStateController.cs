@@ -107,6 +107,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
             _ClearEnemies();
             if (isWon && OnWon != null)
             {
+                Debug.Log("You won! Score: " + _totalScore);
                 OnWon(_totalScore);
             }
             else if (!isWon && OnLose != null)
