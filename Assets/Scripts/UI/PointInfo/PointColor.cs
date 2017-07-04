@@ -2,7 +2,7 @@
 
 namespace HauntedCity.UI.PointInfo
 {
-    public class PointView:MonoBehaviour
+    public class PointColor:MonoBehaviour
     {
         public ParticleSystem MainPS;
         public ParticleSystem AuxPS;

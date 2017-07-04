@@ -73,7 +73,7 @@ namespace HauntedCity.Geo
             _playerObject = GameObject.FindGameObjectWithTag("Player");
             _gsb = GameObject.Find("GameSparks").GetComponent<GameSparksBattle>();
             _gsb.OnScriptMessagePOIOwnerChange += OnOwnerChange;
-            GetComponent<PointView>().UpdateView(_metadata.IsYour());
+            GetComponent<PointColor>().UpdateView(_metadata.IsYour());
         }
 
         void OnDestroy()
@@ -172,7 +172,7 @@ namespace HauntedCity.Geo
                 _metadata.uoid = arg.newOwnerUoid;
                 _metadata.owner_display_name = arg.newOwnerDisplayName;
                 _metadata.owner_user_name = arg.newOwnerUserName;
-                GetComponent<PointView>().UpdateView(_metadata.IsYour());
+                GetComponent<PointColor>().UpdateView(_metadata.IsYour());
             }
         }
     }

@@ -4,6 +4,7 @@ using HauntedCity.GameMechanics.SkillSystem;
 using HauntedCity.Networking;
 using HauntedCity.Utils;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace HauntedCity.GameMechanics.Main
@@ -84,6 +85,14 @@ namespace HauntedCity.GameMechanics.Main
             //_sceneAgregator.switchToScene("battle");
         }
 
+        private void Update()
+        {
+            if (SceneManager.GetActiveScene().name == "start_scene")
+            {
+                GameObject.Find("LocationProviderRoot").SetActive(false);
+            }
+        }
+
         public void StartGame()
         {
             _sceneAgregator.switchToScene("map");
@@ -103,6 +112,7 @@ namespace HauntedCity.GameMechanics.Main
             {
                 _battleStateController.StartBattle(new Dictionary<string, int>( _currentPOImeta.enemies) );
             }
+            
         }
 
         public void StartBattle(GameSparksPOIsExtraction.ExtractedPointMetadata meta)
