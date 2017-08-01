@@ -24,7 +24,19 @@ public class MapPanel : Panel
 
     private void OnEnable()
     {
+        _gameController.OnPlayerStatsUpdate += UpdateView;
         UpdateLevelView();
+    }
+
+    private void OnDisable()
+    {
+        _gameController.OnPlayerStatsUpdate -= UpdateView;
+    }
+
+    private void UpdateView()
+    {
+        UpdateLevelView();
+        UpdateCoin();
     }
 
     private void UpdateLevelView()
@@ -45,6 +57,7 @@ public class MapPanel : Panel
 
     private void OnDestroy()
     {
+        
     }
 
 }

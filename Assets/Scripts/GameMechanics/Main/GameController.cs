@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using GameSparks.Core;
 using HauntedCity.GameMechanics.BattleSystem;
 using HauntedCity.GameMechanics.SkillSystem;
@@ -13,6 +14,8 @@ namespace HauntedCity.GameMechanics.Main
     public class GameController : MonoBehaviour
     {
         public static PlayerGameStats GameStats = new PlayerGameStats();
+
+        public event Action OnPlayerStatsUpdate;
 
         private BattleStateController _battleStateController;
         private SceneAgregator _sceneAgregator;
@@ -61,7 +64,10 @@ namespace HauntedCity.GameMechanics.Main
         {
             GSRequestData requestData = new GSRequestData(data); 
             GameStats.GSData = requestData;
-            Debug.Log("Update");
+            if (OnPlayerStatsUpdate != null)
+            {
+                OnPlayerStatsUpdate();
+            }
         }
         
         public void OnDestroy()

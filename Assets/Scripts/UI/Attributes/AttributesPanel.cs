@@ -10,8 +10,8 @@ namespace HauntedCity.UI.Attributes
         public Button BackButton;
         public Text UpgradePoints;
 
-        [Inject] private ScreenManager _screenManager;
-  
+        [Inject] private GameController _gameController;
+        
         void Start()
         {            
             OkButton.onClick.AddListener(() =>
@@ -30,11 +30,13 @@ namespace HauntedCity.UI.Attributes
         void OnEnable()
         {
             GameController.GameStats.OnAttributeChange += _UpdateView;
+            _gameController.OnPlayerStatsUpdate += _UpdateView;
         }
 
         void OnDisable()
         {
             GameController.GameStats.OnAttributeChange -= _UpdateView;
+            _gameController.OnPlayerStatsUpdate -= _UpdateView;
         }
 
         private void _UpdateView()

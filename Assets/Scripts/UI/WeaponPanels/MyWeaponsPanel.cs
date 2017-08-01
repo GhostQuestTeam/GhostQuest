@@ -11,7 +11,7 @@ namespace HauntedCity.UI.WeaponPanels
         public GameObject WeaponCardPrefab;
         public Transform CardContainer;
 
-
+        [Inject] private GameController _gameController;
         [Inject] private WeaponLoader _weaponLoader;
         private readonly Dictionary<string, WeaponCard> _weaponCards = new Dictionary<string, WeaponCard>();
         private List<string> _playerWeapons;
@@ -29,6 +29,16 @@ namespace HauntedCity.UI.WeaponPanels
         protected override void OnShow()
         {
             UpdateView();
+        }
+
+        private void OnEnable()
+        {
+            _gameController.OnPlayerStatsUpdate += UpdateView;
+        }
+
+        private void OnDisable()
+        {
+            _gameController.OnPlayerStatsUpdate -= UpdateView;
         }
 
         public void UpdateView()
