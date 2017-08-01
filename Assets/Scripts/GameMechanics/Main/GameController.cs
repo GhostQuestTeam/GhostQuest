@@ -20,8 +20,11 @@ namespace HauntedCity.GameMechanics.Main
         private BattleStateController _battleStateController;
         private SceneAgregator _sceneAgregator;
         private StorageService _storageService;
-        [Inject] private MessageRetranslator _messageRetranslator;
 
+        [Inject] private MessageRetranslator _messageRetranslator;
+        [Inject] private AuthService _authService;
+
+        
         public string[] AllowableGhosts = { "shadow_skull", "devil_mask","skull_ghost" };
 
         private GameSparksPOIsExtraction.ExtractedPointMetadata _currentPOImeta;
@@ -161,7 +164,7 @@ namespace HauntedCity.GameMechanics.Main
         public void BattleWonHandle(int score)
         {
             _gsb.sendSuccessCapture(_currentPOImeta.poid);
-            _currentPOImeta.displayName = AuthService.Instance.Nickname;
+            _currentPOImeta.displayName = _authService.Nickname;
             _lastScore = score;
             //DONT WE DISABLE OURSELVES AND SCRIPT DOES NOT FINISH?
           

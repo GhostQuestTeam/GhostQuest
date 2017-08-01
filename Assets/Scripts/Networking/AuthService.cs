@@ -7,7 +7,6 @@ namespace HauntedCity.Networking
 {
     public class AuthService
     {
-        private static readonly AuthService instance = new AuthService();
 
         //Что-то по нормальному не получается сделать(
         public bool _isLogin;
@@ -16,16 +15,6 @@ namespace HauntedCity.Networking
         public event Action<RegistrationResponse> OnRegister;
         public event Action<AuthenticationResponse> OnLogin;
         
-        private AuthService()
-        {
-            
-        }
-
-        public static AuthService Instance
-        {
-            get { return instance; }
-        }
-
         public string Nickname { get; private set; }
 
 
@@ -89,17 +78,6 @@ namespace HauntedCity.Networking
         {
             GS.GSPlatform.AuthToken = null;
             _isLogin = false;
-//            new GameSparks.Api.Requests.LogEventRequest().SetEventKey("LOGOUT").Send((response) =>
-//            {
-//                if (!response.HasErrors)
-//                {
-//                    Debug.Log("Success logout is:" + !GS.Authenticated );
-//                }
-//                else
-//                {
-//                    Debug.Log("Error logout...");
-//                }
-//            });
         }
     }
 }

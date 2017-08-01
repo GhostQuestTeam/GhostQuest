@@ -15,14 +15,8 @@ namespace HauntedCity.UI
         private InputField _password;
 
         public GameObject ErrorField;
-        
-        private ScreenManager _screenManager;
-        
-        [Inject]
-        public void InitializeDependencies(ScreenManager screenManager)
-        {
-            _screenManager = screenManager;
-        }
+
+        [Inject] private AuthService _authService;
         
         private void Start()
         {
@@ -33,13 +27,13 @@ namespace HauntedCity.UI
 
         private void OnEnable()
         {
-            AuthService.Instance.OnRegister += OnRegister;
-            AuthService.Instance.OnLogin += OnLogin;
+            _authService.OnRegister += OnRegister;
+            _authService.OnLogin += OnLogin;
         }
 
         public void Register()
         {
-            AuthService.Instance.Register(
+            _authService.Register(
                 _login.text,
                 _nickname.text,
                 _password.text
@@ -48,8 +42,8 @@ namespace HauntedCity.UI
 
         private void OnDisable()
         {
-            AuthService.Instance.OnRegister -= OnRegister;
-            AuthService.Instance.OnLogin -= OnLogin;
+            _authService.OnRegister -= OnRegister;
+            _authService.OnLogin -= OnLogin;
         }
         
         public void OnRegister(RegistrationResponse response)

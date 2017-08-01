@@ -1,6 +1,7 @@
 ﻿using System;
 using GameSparks.Core;
 using UnityEngine;
+using Zenject;
 
 namespace HauntedCity.Networking
 {
@@ -9,17 +10,22 @@ namespace HauntedCity.Networking
         public event Action<LeaderboardItem[], LeaderboardItem> OnLoad;
         public event Action OnError;
 
+        [Inject] private AuthService _authService;
+
+        
         public class LeaderboardItem
         {
             public int Place { get; set; }
             public int Points { get; set; }
             public string Name { get; set; }
+            [Inject] private AuthService _authService;
 
+            
             public LeaderboardItem(GSData data)
             {
                 if (data == null)
                 {
-                    Name = AuthService.Instance.Nickname;
+                    Name = _authService.Nickname;
                     Place = Points = 0;
                     return;
                 }

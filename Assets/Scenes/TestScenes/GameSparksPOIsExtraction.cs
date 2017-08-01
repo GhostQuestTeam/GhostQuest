@@ -8,6 +8,7 @@ using HauntedCity.Networking;
 using UnityEngine;
 using Mapbox.Utils;
 using Mapbox.Unity.Location;
+using Zenject;
 
 [System.Serializable]
 public class GetPOIsEventArg
@@ -24,11 +25,13 @@ public class GetPOIsEventArg
 
 public class GameSparksPOIsExtraction : MonoBehaviour
 {
+    
     public float fake_lat = 55.66f;
     public float fake_lon = 37.63f;
 
     public HashSet<ExtractedPointMetadata> _points = new HashSet<ExtractedPointMetadata>();
 
+    [Inject] private AuthService _authService;
     ILocationProvider _locationProvider;
 
     public ILocationProvider LocationProvider
@@ -105,6 +108,8 @@ public class GameSparksPOIsExtraction : MonoBehaviour
         public int currentShield;
         public int currentMoney;
 
+        [Inject] private AuthService _authService;
+        
         public int MaxMoney
         {
             get { return incomeLevel * 900; }
@@ -115,6 +120,7 @@ public class GameSparksPOIsExtraction : MonoBehaviour
             get { return shieldLevel * 300; }
         }
 
+        
         #region ActionsWithPoint //TODO Избавиться от копипасты
 
         public bool TryUpgradeShield()
@@ -161,7 +167,7 @@ public class GameSparksPOIsExtraction : MonoBehaviour
 
         public bool IsYour()
         {
-            return displayName == AuthService.Instance.Nickname;
+            return displayName == _authService.Nickname;
         }
 
         public string displayName;
@@ -189,7 +195,7 @@ public class GameSparksPOIsExtraction : MonoBehaviour
 
     public void UpdatePointsNow()
     {
-        if (AuthService.Instance.IsAuthenticated)
+        if (_authService.IsAuthenticated)
         {
             retrievePoints(depth);
         }

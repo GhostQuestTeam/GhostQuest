@@ -18,6 +18,8 @@ namespace HauntedCity.UI
         
         private ScreenManager _screenManager;
         private StorageService _storageService;
+        [Inject] private AuthService _authService;
+
         
         [Inject]
         public void InitializeDependencies(ScreenManager screenManager, StorageService storageService)
@@ -34,7 +36,7 @@ namespace HauntedCity.UI
 
         public void Login()
         {
-            AuthService.Instance.Login(
+            _authService.Login(
                 _login.text,
                 _password.text
             );
@@ -42,12 +44,12 @@ namespace HauntedCity.UI
 
         private void OnEnable()
         {
-            AuthService.Instance.OnLogin += OnLogin;
+            _authService.OnLogin += OnLogin;
         }
         
         private void OnDisable()
         {
-            AuthService.Instance.OnLogin -= OnLogin;
+            _authService.OnLogin -= OnLogin;
         }
 
         protected override void OnShow()
