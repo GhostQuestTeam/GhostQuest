@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using GameSparks.Core;
 using HauntedCity.GameMechanics.BattleSystem;
 using HauntedCity.GameMechanics.SkillSystem;
 using HauntedCity.Networking;
@@ -16,6 +17,7 @@ namespace HauntedCity.GameMechanics.Main
         private BattleStateController _battleStateController;
         private SceneAgregator _sceneAgregator;
         private StorageService _storageService;
+        [Inject] private MessageRetranslator _messageRetranslator;
 
         public string[] AllowableGhosts = { "shadow_skull", "devil_mask","skull_ghost" };
 
@@ -50,10 +52,18 @@ namespace HauntedCity.GameMechanics.Main
             _battleStateController.OnWon += BattleWonHandle;
             _battleStateController.OnLose += BattleLoseHandle;
 
+            _messageRetranslator.Subscribe(MessageType.PLAYER_STATS_UPDATE, UpdateStats);
+            
             _storageService.OnLoad += OnPlayerLoad;
         }
 
-
+        void UpdateStats(GSData data)
+        {
+            GSRequestData requestData = new GSRequestData(data); 
+            GameStats.GSData = requestData;
+            Debug.Log("Update");
+        }
+        
         public void OnDestroy()
         {
             _gsb.OnPOISuccessCap -= OnSuccessCapture;

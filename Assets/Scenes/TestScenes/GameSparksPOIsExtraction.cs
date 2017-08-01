@@ -4,13 +4,10 @@ using System.Collections.Generic;
 using GameSparks.Core;
 using HauntedCity.GameMechanics.Main;
 using HauntedCity.GameMechanics.SkillSystem;
-using HauntedCity.Geo;
 using HauntedCity.Networking;
 using UnityEngine;
 using Mapbox.Utils;
 using Mapbox.Unity.Location;
-using Mapbox.Unity.MeshGeneration;
-using Mapbox.Unity.Utilities;
 
 [System.Serializable]
 public class GetPOIsEventArg
@@ -55,11 +52,11 @@ public class GameSparksPOIsExtraction : MonoBehaviour
         {
             if (UseLocationProvider)
             {
-#if UNITY_EDITOR
+            #if UNITY_EDITOR
                 return LocationProvider.Location;
-#else
+            #else
                 return new Vector2d(Input.location.lastData.latitude, Input.location.lastData.longitude);
-                #endif
+            #endif
             }
             else
             {
@@ -144,7 +141,7 @@ public class GameSparksPOIsExtraction : MonoBehaviour
 
         public bool TryRestoreShield()
         {
-            if (_playerStats.Money >= RESTORE_SHIELD_PRICE)
+            if (_playerStats.Money >= RESTORE_SHIELD_PRICE && (currentShield < MaxShield))
             {
                 _playerStats.Money -= RESTORE_SHIELD_PRICE;
                 currentShield = MaxShield;
@@ -152,8 +149,8 @@ public class GameSparksPOIsExtraction : MonoBehaviour
             }
             return false;
         }
-        
-        
+
+
         public void GetMoney()
         {
             _playerStats.Money += currentMoney;
@@ -313,6 +310,7 @@ public class GameSparksPOIsExtraction : MonoBehaviour
                         SimpleJSON.JSONNode enemies = node["properties"]["ghosts_num"];
                         Dictionary<string, int> enemiesDict = new Dictionary<string, int>();
 
+                        //TODO сделать по-нормальному
                         enemiesDict.Add("shadow_skull", enemies["shadow_skull"]);
                         enemiesDict.Add("devil_mask", enemies["devil_mask"]);
                         enemiesDict.Add("skull_ghost", enemies["skull_ghost"]);
@@ -320,7 +318,7 @@ public class GameSparksPOIsExtraction : MonoBehaviour
                         enemiesDict.Add("headless", enemies["headless"]);
                         enemiesDict.Add("skeleton", enemies["skeleton"]);
 
-                        
+
                         ExtractedPointMetadata pointMeta = new ExtractedPointMetadata();
                         pointMeta.LatLon = new Vector2d(lat, lon);
                         pointMeta.uoid = uoid;
@@ -344,7 +342,7 @@ public class GameSparksPOIsExtraction : MonoBehaviour
                         _points.Add(pointMeta);
                         Debug.Log(lat.ToString() + " " + lon.ToString());
                     }
-                    if(OnPOIsExtracted != null)
+                    if (OnPOIsExtracted != null)
                         OnPOIsExtracted(this, new POIsExtractedEventArgs(_points));
                 }
                 else

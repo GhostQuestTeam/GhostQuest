@@ -18,6 +18,7 @@ namespace HauntedCity.Utils.Installers
             #endregion
             
             #region NormalClasses
+            Container.Bind<MessageRetranslator>().AsSingle();
             Container.Bind<WeaponLoader>().AsSingle();
             Container.Bind<BattleStatsCalculator>().AsSingle();
             Container.Bind<StorageService>().AsSingle();
