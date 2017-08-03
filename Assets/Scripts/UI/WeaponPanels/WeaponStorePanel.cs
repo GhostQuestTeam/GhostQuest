@@ -2,6 +2,7 @@
 using UnityEngine;
 using HauntedCity.GameMechanics.BattleSystem;
 using HauntedCity.GameMechanics.Main;
+using HauntedCity.Networking.Interfaces;
 using Zenject;
 
 namespace HauntedCity.UI.WeaponPanels
@@ -10,8 +11,8 @@ namespace HauntedCity.UI.WeaponPanels
     {
         public GameObject WeaponCardPrefab;
         public Transform CardContainer;
-        
-        
+
+        [Inject] private IPlayerStatsManager _playerStatsManager;
         [Inject] private WeaponLoader _weaponLoader;
         private readonly Dictionary<string, WeaponCard> _weaponCards = new Dictionary<string, WeaponCard>();
         private List<string> _playerWeapons;
@@ -63,7 +64,8 @@ namespace HauntedCity.UI.WeaponPanels
             var weaponCard = Instantiate(WeaponCardPrefab);
             weaponCard.transform.SetParent( CardContainer, false);
             
-            var weaponCardComponent =weaponCard.GetComponent<WeaponCard>();
+            var weaponCardComponent =weaponCard.GetComponent<StoreWeaponCard>();
+            weaponCardComponent.PlayerStatsManager = _playerStatsManager;
             weaponCardComponent.UpdateView(weapon);
             _weaponCards.Add(weapon.Id, weaponCardComponent);
 

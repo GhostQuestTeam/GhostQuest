@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using HauntedCity.GameMechanics.BattleSystem;
 using HauntedCity.GameMechanics.Main;
+using HauntedCity.Networking.Interfaces;
 using UnityEngine;
 using Zenject;
 
@@ -13,6 +15,7 @@ namespace HauntedCity.UI.WeaponPanels
 
         [Inject] private GameController _gameController;
         [Inject] private WeaponLoader _weaponLoader;
+        [Inject] private IPlayerStatsManager _playerStatsManager;
         private readonly Dictionary<string, WeaponCard> _weaponCards = new Dictionary<string, WeaponCard>();
         private List<string> _playerWeapons;
 
@@ -29,6 +32,11 @@ namespace HauntedCity.UI.WeaponPanels
         protected override void OnShow()
         {
             UpdateView();
+        }
+
+        protected override void OnHide()
+        {
+            _playerStatsManager.ChooseWeapons(GameController.GameStats.CurrentWeapons);
         }
 
         private void OnEnable()

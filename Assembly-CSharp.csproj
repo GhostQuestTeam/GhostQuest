@@ -367,6 +367,8 @@
     <Compile Include="Assets\Scripts\Geo\PositionWithLocationProvider.cs" />
     <Compile Include="Assets\Scripts\Geo\RotateWithLocationProvider.cs" />
     <Compile Include="Assets\Scripts\Networking\AuthService.cs" />
+    <Compile Include="Assets\Scripts\Networking\GameSparksImpl\GameSparksPlayerStatsManager.cs" />
+    <Compile Include="Assets\Scripts\Networking\Interfaces\IPlayerStatsManager.cs" />
     <Compile Include="Assets\Scripts\Networking\LeaderboardService.cs" />
     <Compile Include="Assets\Scripts\Networking\MessageRetranslator.cs" />
     <Compile Include="Assets\Scripts\Networking\StorageService.cs" />

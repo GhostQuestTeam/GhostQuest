@@ -1,6 +1,8 @@
 using HauntedCity.GameMechanics.BattleSystem;
 using HauntedCity.GameMechanics.Main;
 using HauntedCity.Networking;
+using HauntedCity.Networking.GameSparksImpl;
+using HauntedCity.Networking.Interfaces;
 using HauntedCity.UI;
 using Zenject;
 
@@ -24,6 +26,7 @@ namespace HauntedCity.Utils.Installers
             Container.Bind<StorageService>().AsSingle();
             Container.Bind<LeaderboardService>().AsSingle();
             Container.Bind<AuthService>().AsSingle();
+            Container.Bind<IPlayerStatsManager>().To<GameSparksPlayerStatsManager>().AsSingle();
             #endregion
 
         }

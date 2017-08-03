@@ -1,4 +1,5 @@
 ﻿using HauntedCity.GameMechanics.Main;
+using HauntedCity.Networking.Interfaces;
 using UnityEngine.UI;
 using Zenject;
 
@@ -11,11 +12,18 @@ namespace HauntedCity.UI.Attributes
         public Text UpgradePoints;
 
         [Inject] private GameController _gameController;
+        [Inject] private IPlayerStatsManager _playerStatsManager;
         
         void Start()
         {            
             OkButton.onClick.AddListener(() =>
                 {
+                    
+                    _playerStatsManager.UpgradeAttributes(
+                         GameController.GameStats.SurvivabilityDelta,
+                         GameController.GameStats.EnduranceDelta,
+                         GameController.GameStats.PowerDelta
+                     );
                     GameController.GameStats.ConfirmUpgrades();
                     ShowInstead(FindObjectOfType<MapPanel>());
                 }

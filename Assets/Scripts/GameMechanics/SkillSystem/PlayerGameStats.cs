@@ -13,6 +13,7 @@ namespace HauntedCity.GameMechanics.SkillSystem
         #region PlayerAttributes
 
         public StorageService StorageService;
+
         public enum PlayerAttributes
         {
             Survivability,
@@ -32,9 +33,24 @@ namespace HauntedCity.GameMechanics.SkillSystem
         private BoundedInt _baseEndurance;
         private BoundedInt _basePower;
 
-        private int _surviabilityDelta;
+        public int _surviabilityDelta;
         private int _enduranceDelta;
         private int _powerDelta;
+
+        public int SurvivabilityDelta
+        {
+            get { return _surviabilityDelta; }
+        }
+
+        public int EnduranceDelta
+        {
+            get { return _enduranceDelta; }
+        }
+        
+        public int PowerDelta
+        {
+            get { return _powerDelta; }
+        }
 
         public int UpgradePoints;
         private const int UPGRADE_POINTS_PER_LEVEL = 5;
@@ -45,6 +61,7 @@ namespace HauntedCity.GameMechanics.SkillSystem
         public List<string> CurrentWeapons;
 
         private int _money;
+
 
         public int Money
         {
@@ -268,7 +285,6 @@ namespace HauntedCity.GameMechanics.SkillSystem
                 }
             } while (CurrentExp >= ExpToLevel);
             CurrentExp += exp;
-
         }
 
         #endregion
