@@ -108,7 +108,7 @@ public class GameSparksPOIsExtraction : MonoBehaviour
         public int currentShield;
         public int currentMoney;
 
-        [Inject] private AuthService _authService;
+        private AuthService _authService;
         
         public int MaxMoney
         {
@@ -181,6 +181,11 @@ public class GameSparksPOIsExtraction : MonoBehaviour
         public int shields_level;
         public int current_money;
         public int current_shields;
+
+        public ExtractedPointMetadata(AuthService authService)
+        {
+            _authService = authService;
+        }
     }
 
     public event EventHandler<POIsExtractedEventArgs> OnPOIsExtracted;
@@ -325,7 +330,7 @@ public class GameSparksPOIsExtraction : MonoBehaviour
                         enemiesDict.Add("skeleton", enemies["skeleton"]);
 
 
-                        ExtractedPointMetadata pointMeta = new ExtractedPointMetadata();
+                        ExtractedPointMetadata pointMeta = new ExtractedPointMetadata(_authService);
                         pointMeta.LatLon = new Vector2d(lat, lon);
                         pointMeta.uoid = uoid;
                         pointMeta.poid = poid;
