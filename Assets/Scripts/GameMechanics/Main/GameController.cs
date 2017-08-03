@@ -97,7 +97,7 @@ namespace HauntedCity.GameMechanics.Main
 //                }
                 GameObject.Find("BattleRoot").SetActive(false);
                 _sceneAgregator.switchToScene("map");
-                Debug.Log("Level: " + GameStats.Level + "  " + GameStats.CurrentExp + "/" + GameStats.ExpToLevel);
+//                Debug.Log("Level: " + GameStats.PlayerExperience.Level + "  " + GameStats.CurrentExp + "/" + GameStats.ExpToLevel);
             }
         }
 

@@ -41,9 +41,9 @@ public class MapPanel : Panel
 
     private void UpdateLevelView()
     {
-        var level = GameController.GameStats.Level;
-        var currentExp = GameController.GameStats.CurrentExp;
-        var expToLevel = GameController.GameStats.ExpToLevel;
+        var level = GameController.GameStats.PlayerExperience.Level;
+        var currentExp = GameController.GameStats.PlayerExperience.CurrentExp;
+        var expToLevel = GameController.GameStats.PlayerExperience.ExpToLevel;
 
         GameObject.Find("Level").GetComponent<Text>().text = level.ToString();
         GameObject.Find("Exp").GetComponent<Text>().text = currentExp + "/" + expToLevel;

@@ -111,8 +111,8 @@ namespace HauntedCity.GameMechanics.SkillSystem
                     .AddNumber("survivability", survivabilityToSave)
                     .AddNumber("endurance", enduranceToSave)
                     .AddNumber("power", powerToSave)
-                    .AddNumber("level", Level)
-                    .AddNumber("exp", CurrentExp)
+                    .AddNumber("level", PlayerExperience.Level)
+                    .AddNumber("exp", PlayerExperience.CurrentExp)
                     .AddNumber("money", Money)
                     .AddStringList("currentWeapons", CurrentWeapons)
                     .AddStringList("allowableWeapons", AllowableWeapons);
@@ -131,15 +131,16 @@ namespace HauntedCity.GameMechanics.SkillSystem
                 _enduranceDelta = 0;
                 _powerDelta = 0;
 
-                Level = value.GetInt("level") ?? 1;
-                CurrentExp = value.GetInt("exp") ?? 0;
+                PlayerExperience = new Experience(
+                    value.GetInt("level") ?? 1,
+                    value.GetInt("exp") ?? 0
+                 );
                 Money = value.GetInt("money") ?? 10000;
 
                 AllowableWeapons = value.GetStringList("allowableWeapons") ?? new List<string>(DEFAULT_WEAPONS);
                 CurrentWeapons = value.GetStringList("currentWeapons") ?? new List<string>(DEFAULT_WEAPONS);
                 POIs = value.GetInt("numOfPOIs") ?? 0;
 
-                _UpdateExpToNextLevel();
             }
         }
 
@@ -250,44 +251,13 @@ namespace HauntedCity.GameMechanics.SkillSystem
 
         #endregion
 
-        #region LevelsAndExp
-
-        public int Level { get; private set; }
-        public int CurrentExp { get; private set; }
-        public int ExpToLevel { get; private set; }
-
-        private void _UpdateExpToNextLevel()
-        {
-            ExpToLevel = 80 * Level * Level * Level + 50 * Level + 1000;
-        }
-
-        private void _NextLevel()
-        {
-            Level++;
-            UpgradePoints += UPGRADE_POINTS_PER_LEVEL;
-            CurrentExp = 0;
-            _UpdateExpToNextLevel();
-        }
+        public Experience PlayerExperience;
 
         public void AddExp(int exp)
         {
-            do
-            {
-                var tmp = (ExpToLevel - CurrentExp);
-                if (exp >= tmp)
-                {
-                    exp -= tmp;
-                    _NextLevel();
-                    if (exp < 0)
-                    {
-                        break;
-                    }
-                }
-            } while (CurrentExp >= ExpToLevel);
-            CurrentExp += exp;
+            var earnedLevels = PlayerExperience.AddExp(exp);
+            UpgradePoints += 5 * earnedLevels;
         }
-
-        #endregion
 
         public bool TryBuyWeapon(Weapon weapon)
         {
@@ -305,10 +275,8 @@ namespace HauntedCity.GameMechanics.SkillSystem
 
         public PlayerGameStats()
         {
-            Level = 1;
             Money = 10000;
-            CurrentExp = 0;
-            _UpdateExpToNextLevel();
+            PlayerExperience = new Experience();
             CurrentWeapons = new List<string>(DEFAULT_WEAPONS);
             AllowableWeapons = new List<string>(DEFAULT_WEAPONS);
 
