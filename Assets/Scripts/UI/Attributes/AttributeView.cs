@@ -46,6 +46,10 @@ namespace HauntedCity.UI.Attributes
 
         public override void UpdateView()
         {
+            Plus.gameObject.SetActive(GameController.GameStats.CharacteristicManager.CanIncCharacteristic(
+                Characteristic));
+            Minus.gameObject.SetActive(GameController.GameStats.CharacteristicManager.CanDecCharacteristic(
+                Characteristic));
             Value.text = GameController.GameStats.CharacteristicManager.GetCharacteristic(Characteristic).ToString();
         }
     }
