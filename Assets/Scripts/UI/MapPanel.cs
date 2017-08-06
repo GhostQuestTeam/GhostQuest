@@ -9,7 +9,6 @@ public class MapPanel : Panel
     public Text CoinValue;
     public Animator AttributesPanel;
 
-    [Inject] private ScreenManager _screenManager;
     [Inject] private GameController _gameController;
 
     void Start()

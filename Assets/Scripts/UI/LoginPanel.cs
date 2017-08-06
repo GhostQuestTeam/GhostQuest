@@ -16,17 +16,9 @@ namespace HauntedCity.UI
         private InputField _login;
         private InputField _password;
         
-        private ScreenManager _screenManager;
-        private StorageService _storageService;
+        [Inject] private StorageService _storageService;
         [Inject] private AuthService _authService;
-
         
-        [Inject]
-        public void InitializeDependencies(ScreenManager screenManager, StorageService storageService)
-        {
-            _screenManager = screenManager;
-            _storageService = storageService;
-        }
         
         private void Start()
         {

@@ -1,6 +1,6 @@
 using HauntedCity.GameMechanics.Main;
 using HauntedCity.GameMechanics.SkillSystem;
-using HauntedCity.Utils.DataBinding;
+using HauntedCity.Utils;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;

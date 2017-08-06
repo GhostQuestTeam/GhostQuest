@@ -16,7 +16,6 @@ namespace HauntedCity.Utils.Installers
             Container.Bind<GameController>().FromComponentInHierarchy().AsSingle().NonLazy();
             Container.Bind<BattleStateController>().FromComponentInHierarchy().AsSingle().NonLazy(); 
             Container.Bind<SceneAgregator>().FromComponentInHierarchy().AsSingle().NonLazy();
-            Container.Bind<ScreenManager>().FromComponentInHierarchy().AsSingle().NonLazy();
             #endregion
             
             #region NormalClasses

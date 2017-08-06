@@ -1,4 +1,4 @@
-﻿using HauntedCity.Utils.DataBinding;
+﻿using HauntedCity.Utils;
 using UnityEngine;
 
 namespace HauntedCity.UI

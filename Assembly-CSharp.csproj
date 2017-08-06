@@ -344,13 +344,9 @@
     <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\ShellBehavior.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\Solidity.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\Weapon.cs" />
-    <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\WeaponInfo.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\WeaponLoader.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\GameSparksBattle.cs" />
-    <Compile Include="Assets\Scripts\GameMechanics\ItemSystem\Inventory.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\ItemSystem\Item.cs" />
-    <Compile Include="Assets\Scripts\GameMechanics\ItemSystem\ItemDragHandler.cs" />
-    <Compile Include="Assets\Scripts\GameMechanics\ItemSystem\Slot.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\ItemSystem\UsableItem.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\Main\BattleStatsCalculator.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\Main\GameController.cs" />
@@ -382,7 +378,6 @@
     <Compile Include="Assets\Scripts\UI\BattleInterfaceController.cs" />
     <Compile Include="Assets\Scripts\UI\DropdownController.cs" />
     <Compile Include="Assets\Scripts\UI\IndicatorsView.cs" />
-    <Compile Include="Assets\Scripts\UI\InventoryPanel.cs" />
     <Compile Include="Assets\Scripts\UI\KeyInputHandler.cs" />
     <Compile Include="Assets\Scripts\UI\LeaderboardItemView.cs" />
     <Compile Include="Assets\Scripts\UI\LeaderboardPanel.cs" />
@@ -398,7 +393,6 @@
     <Compile Include="Assets\Scripts\UI\PointInfo\TheirPointInfoPanel.cs" />
     <Compile Include="Assets\Scripts\UI\PointInfo\YourPointInfoPanel.cs" />
     <Compile Include="Assets\Scripts\UI\RegistrationPanel.cs" />
-    <Compile Include="Assets\Scripts\UI\ScreenManager.cs" />
     <Compile Include="Assets\Scripts\UI\WeaponPanels\MyWeaponCard.cs" />
     <Compile Include="Assets\Scripts\UI\WeaponPanels\MyWeaponsPanel.cs" />
     <Compile Include="Assets\Scripts\UI\WeaponPanels\StoreWeaponCard.cs" />
@@ -406,14 +400,12 @@
     <Compile Include="Assets\Scripts\UI\WeaponPanels\WeaponStorePanel.cs" />
     <Compile Include="Assets\Scripts\Utils\BoundedInt.cs" />
     <Compile Include="Assets\Scripts\Utils\CameraClickHandler.cs" />
-    <Compile Include="Assets\Scripts\Utils\DataBinding\Model.cs" />
-    <Compile Include="Assets\Scripts\Utils\DataBinding\View.cs" />
     <Compile Include="Assets\Scripts\Utils\Extensions\UnityExtension.cs" />
     <Compile Include="Assets\Scripts\Utils\GameSparksManager.cs" />
     <Compile Include="Assets\Scripts\Utils\Installers\BattleInstaller.cs" />
     <Compile Include="Assets\Scripts\Utils\Installers\GameInstaller.cs" />
+    <Compile Include="Assets\Scripts\Utils\Model.cs" />
     <Compile Include="Assets\Scripts\Utils\SceneAgregator.cs" />
-    <Compile Include="Assets\Scripts\Utils\SceneSwitchingProvider.cs" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\VortexEffect.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />

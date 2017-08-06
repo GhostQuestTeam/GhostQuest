@@ -1,7 +1,7 @@
 ﻿using System;
 using HauntedCity.GameMechanics.Main;
 using HauntedCity.Networking.Interfaces;
-using HauntedCity.Utils.DataBinding;
+using HauntedCity.Utils;
 using UnityEngine.UI;
 using Zenject;
 
@@ -24,24 +24,23 @@ namespace HauntedCity.UI.Attributes
         {
             return GameController.GameStats.CharacteristicManager;
         }
-        
+
         void Start()
-        {            
+        {
             OkButton.onClick.AddListener(() =>
                 {
                     //TODO Убрать привязку к конкретным характеристикам
                     _playerStatsManager.UpgradeAttributes(
-                         GameController.GameStats.SurvivabilityDelta,
-                         GameController.GameStats.EnduranceDelta,
-                         GameController.GameStats.PowerDelta
-                     );
+                        GameController.GameStats.SurvivabilityDelta,
+                        GameController.GameStats.EnduranceDelta,
+                        GameController.GameStats.PowerDelta
+                    );
                     GameController.GameStats.CharacteristicManager.ConfirmUpgrades();
                     ShowInstead(FindObjectOfType<MapPanel>());
                 }
             );
-
         }
-        
+
         void OnEnable()
         {
             _gameController.OnPlayerStatsUpdate += UpdateView;

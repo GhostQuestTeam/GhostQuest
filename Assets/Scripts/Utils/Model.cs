@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HauntedCity.Utils.DataBinding
+namespace HauntedCity.Utils
 {
     public class Model
     {

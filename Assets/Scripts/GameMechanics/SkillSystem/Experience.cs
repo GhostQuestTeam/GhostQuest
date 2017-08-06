@@ -8,16 +8,16 @@ namespace HauntedCity.GameMechanics.SkillSystem
         public int CurrentExp { get; private set; }
         public int ExpToLevel { get; private set; }
 
-        private void UpdateExpToNextLevel()
+        private void _UpdateExpToNextLevel()
         {
             ExpToLevel = 80 * Level * Level * Level + 50 * Level + 1000;
         }
 
-        private void NextLevel()
+        private void _NextLevel()
         {
             Level++;
             CurrentExp = 0;
-            UpdateExpToNextLevel();
+            _UpdateExpToNextLevel();
         }
 
         public int AddExp(int exp)
@@ -29,7 +29,7 @@ namespace HauntedCity.GameMechanics.SkillSystem
                 if (exp >= tmp)
                 {
                     exp -= tmp;
-                    NextLevel();
+                    _NextLevel();
                     earnedLevels++;
                     if (exp < 0)
                     {
@@ -45,7 +45,7 @@ namespace HauntedCity.GameMechanics.SkillSystem
         {
             Level = level;
             ExpToLevel = 0;
-            UpdateExpToNextLevel();
+            _UpdateExpToNextLevel();
             AddExp(exp);
         }
     }
