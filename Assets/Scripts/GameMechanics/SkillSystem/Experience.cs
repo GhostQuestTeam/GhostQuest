@@ -3,9 +3,7 @@
 namespace HauntedCity.GameMechanics.SkillSystem
 {
     public class Experience
-    {
-        public event Action OnLevelUp;
-        
+    {        
         public int Level { get; private set; }
         public int CurrentExp { get; private set; }
         public int ExpToLevel { get; private set; }

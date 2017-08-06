@@ -1,45 +1,52 @@
 using HauntedCity.GameMechanics.Main;
 using HauntedCity.GameMechanics.SkillSystem;
+using HauntedCity.Utils.DataBinding;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
 namespace HauntedCity.UI.Attributes
 {
-    public class AttributeView:MonoBehaviour
+    public class AttributeView : Panel
     {
-        public PlayerGameStats.PlayerAttributes Attribute;
+        public PlayerCharacteristics Characteristic;
         public Button Plus;
         public Button Minus;
         public Text Value;
 
         [Inject] private GameController _gameController;
+
+        protected override Model GetModel()
+        {
+            return GameController.GameStats.CharacteristicManager;
+        }
         
         void Start()
         {
-            Plus.onClick.AddListener(() => GameController.GameStats.IncAttribute(Attribute));
-            Minus.onClick.AddListener(() => GameController.GameStats.DecAttribute(Attribute));
-            _gameController.OnPlayerStatsUpdate += UpdateView;
+            Plus.onClick.AddListener(() =>
+                GameController.GameStats.CharacteristicManager.TryIncCharacteristic(Characteristic));
+            Minus.onClick.AddListener(() =>
+                GameController.GameStats.CharacteristicManager.TryDecCharacteristic(Characteristic));
+
+            Show();
             UpdateView();
         }
-        
+
         void OnEnable()
         {
-            GameController.GameStats.OnAttributeChange += UpdateView;
-            _gameController.OnPlayerStatsUpdate += UpdateView;
+            
+             _gameController.OnPlayerStatsUpdate += UpdateView;
         }
 
         void OnDisable()
         {
-            GameController.GameStats.OnAttributeChange -= UpdateView;
-            _gameController.OnPlayerStatsUpdate -= UpdateView;
+             
+             _gameController.OnPlayerStatsUpdate -= UpdateView;
         }
 
-        private void UpdateView()
+        public override void UpdateView()
         {
-            Value.text = GameController.GameStats.GetAttribute(Attribute).ToString();
+            Value.text = GameController.GameStats.CharacteristicManager.GetCharacteristic(Characteristic).ToString();
         }
-        
-        
     }
 }

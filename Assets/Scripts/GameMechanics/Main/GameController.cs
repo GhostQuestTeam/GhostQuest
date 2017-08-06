@@ -51,7 +51,6 @@ namespace HauntedCity.GameMechanics.Main
             _gsb = GameObject.FindObjectOfType<GameSparksBattle>();
             _gsb.OnPOISuccessCap += OnSuccessCapture;
             _gsb.OnPOIFailCapConfirm += OnFailCaptureConfirm;
-            GameStats.OnAttributesUpgrade += () => _storageService.SavePlayer(GameStats);
             
             _sceneAgregator.OnSceneChange += OnSceneChange;
             _sceneAgregator.OnAllScenesLoad += OnAllScenesLoad;
@@ -87,7 +86,6 @@ namespace HauntedCity.GameMechanics.Main
 //                if(!arg.isError && arg.isSuccess)
 //                {
                     GameStats.AddExp(_lastScore);
-                    _storageService.SavePlayer(GameStats);
 
                     //WE REALLY SUCCEDED CAPTURE
 //                }
@@ -177,7 +175,6 @@ namespace HauntedCity.GameMechanics.Main
             Debug.Log("Lose in battle");
             GameObject.Find("BattleRoot").SetActive(false);
             _sceneAgregator.switchToScene("map");
-            _storageService.SavePlayer(GameStats);
         }
         
     }

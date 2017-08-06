@@ -1,5 +1,7 @@
-﻿using HauntedCity.GameMechanics.Main;
+﻿using System;
+using HauntedCity.GameMechanics.Main;
 using HauntedCity.Networking.Interfaces;
+using HauntedCity.Utils.DataBinding;
 using UnityEngine.UI;
 using Zenject;
 
@@ -13,43 +15,46 @@ namespace HauntedCity.UI.Attributes
 
         [Inject] private GameController _gameController;
         [Inject] private IPlayerStatsManager _playerStatsManager;
+
+        private void Awake()
+        {
+        }
+
+        protected override Model GetModel()
+        {
+            return GameController.GameStats.CharacteristicManager;
+        }
         
         void Start()
         {            
             OkButton.onClick.AddListener(() =>
                 {
-                    
+                    //TODO Убрать привязку к конкретным характеристикам
                     _playerStatsManager.UpgradeAttributes(
                          GameController.GameStats.SurvivabilityDelta,
                          GameController.GameStats.EnduranceDelta,
                          GameController.GameStats.PowerDelta
                      );
-                    GameController.GameStats.ConfirmUpgrades();
+                    GameController.GameStats.CharacteristicManager.ConfirmUpgrades();
                     ShowInstead(FindObjectOfType<MapPanel>());
                 }
             );
-        }
 
-        protected override void OnShow()
-        {
-            _UpdateView();
         }
         
         void OnEnable()
         {
-            GameController.GameStats.OnAttributeChange += _UpdateView;
-            _gameController.OnPlayerStatsUpdate += _UpdateView;
+            _gameController.OnPlayerStatsUpdate += UpdateView;
         }
 
         void OnDisable()
         {
-            GameController.GameStats.OnAttributeChange -= _UpdateView;
-            _gameController.OnPlayerStatsUpdate -= _UpdateView;
+            _gameController.OnPlayerStatsUpdate -= UpdateView;
         }
 
-        private void _UpdateView()
+        public override void UpdateView()
         {
-            UpgradePoints.text = "Upgrade points: " + GameController.GameStats.UpgradePoints;
+            UpgradePoints.text = "Upgrade points: " + GameController.GameStats.CharacteristicManager.UpgradePoints;
         }
 
 

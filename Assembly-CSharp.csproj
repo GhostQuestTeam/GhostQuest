@@ -356,6 +356,9 @@
     <Compile Include="Assets\Scripts\GameMechanics\Main\GameController.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\Main\GyroControl.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\SkillSystem\Experience.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\SkillSystem\PlayerCharacteristic.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\SkillSystem\PlayerCharacteristicManager.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\SkillSystem\PlayerCharacteristics.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\SkillSystem\PlayerGameStats.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\SkillSystem\SkillTypes.cs" />
     <Compile Include="Assets\Scripts\Geo\BuildMapAtLocation.cs" />
@@ -403,6 +406,8 @@
     <Compile Include="Assets\Scripts\UI\WeaponPanels\WeaponStorePanel.cs" />
     <Compile Include="Assets\Scripts\Utils\BoundedInt.cs" />
     <Compile Include="Assets\Scripts\Utils\CameraClickHandler.cs" />
+    <Compile Include="Assets\Scripts\Utils\DataBinding\Model.cs" />
+    <Compile Include="Assets\Scripts\Utils\DataBinding\View.cs" />
     <Compile Include="Assets\Scripts\Utils\Extensions\UnityExtension.cs" />
     <Compile Include="Assets\Scripts\Utils\GameSparksManager.cs" />
     <Compile Include="Assets\Scripts\Utils\Installers\BattleInstaller.cs" />

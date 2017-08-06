@@ -22,7 +22,7 @@ namespace HauntedCity.Networking.GameSparksImpl
                 {
                     if (response.HasErrors)
                     {
-                        Debug.Log("Some erron in BuyWeapon");
+                        Debug.Log("Some erron in UpgradeAttributes");
                     }
                 });
         }

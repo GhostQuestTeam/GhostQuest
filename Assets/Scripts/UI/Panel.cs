@@ -1,4 +1,4 @@
-﻿using GameSparks.Api.Responses;
+﻿using HauntedCity.Utils.DataBinding;
 using UnityEngine;
 
 namespace HauntedCity.UI
@@ -9,6 +9,11 @@ namespace HauntedCity.UI
         {
             transform.localScale = Vector3.one;
             OnShow();
+        }
+        
+        protected virtual Model GetModel()
+        {
+            return null;
         }
 
         public void ShowInstead(Panel other)
@@ -22,9 +27,24 @@ namespace HauntedCity.UI
             transform.localScale = Vector3.zero;
             OnHide();
         }
+
+        protected virtual void OnShow()
+        {
+            if (GetModel() != null)
+            {
+                GetModel().OnChange += UpdateView;
+            }
+            UpdateView();
+        }
+
+        protected virtual void OnHide()
+        {
+            if (GetModel() != null)
+            {
+                GetModel().OnChange += UpdateView;
+            }
+        }
         
-        protected virtual void OnShow(){}
-        
-        protected virtual void OnHide(){}
+        public virtual void UpdateView(){} 
     }
 }
