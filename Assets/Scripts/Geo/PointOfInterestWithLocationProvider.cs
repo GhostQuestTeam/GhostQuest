@@ -1,5 +1,6 @@
 ﻿using System;
 using HauntedCity.GameMechanics.Main;
+using HauntedCity.UI;
 using HauntedCity.UI.PointInfo;
 using Mapbox.Unity.Location;
 using Mapbox.Unity.MeshGeneration;
@@ -147,21 +148,10 @@ namespace HauntedCity.Geo
         } //fn
 
 
-        public void OnClick()
+        public void OnRay()
         {
             var infoPanel = FindObjectOfType<PointInfoPanelController>();
             infoPanel.Show(_metadata);
-//            var panelIntrPoint = GameObject.FindObjectOfType<POIInfoWindowUnityInteractionPoint>();
-//            panelIntrPoint.Controller.applyPOIMetadata(_metadata);
-//            panelIntrPoint.Controller.ToFightCallback = () =>
-//            {
-//                _gameController.StartBattle(_metadata);
-//            };
-//            panelIntrPoint.Controller.CloseCallback = () =>
-//            {
-//                panelIntrPoint.Controller.hide();
-//            };
-//            panelIntrPoint.Controller.show();
         }
 
 
@@ -175,5 +165,6 @@ namespace HauntedCity.Geo
                 GetComponent<PointColor>().UpdateView(_metadata.IsYour());
             }
         }
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace HauntedCity.Utils
 {
@@ -45,6 +46,11 @@ namespace HauntedCity.Utils
                 }
             }
 
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+            
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {

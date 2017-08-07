@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -423,8 +423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27bfe7938fce53247b408d3230ebd642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillsButton: {fileID: 1431449666}
-  StartButton: {fileID: 0}
+  CoinValue: {fileID: 0}
   AttributesPanel: {fileID: 0}
 --- !u!95 &115440636
 Animator:
@@ -820,7 +819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f9b510c69cac746b79f68d1ef9830e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Attribute: 1
+  Characteristic: 0
   Plus: {fileID: 1220811740}
   Minus: {fileID: 1762314502}
   Value: {fileID: 1116710881}
@@ -1062,6 +1061,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f027997e4bfa62249b8459224493d87f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _root: {fileID: 0}
   PointOfInterestPrefab: {fileID: 1037555086737886, guid: dfe014c2ccdf32c4daedb84d4f4832ca,
     type: 2}
   GameSparksObj: {fileID: 19226165}
@@ -1178,6 +1178,7 @@ GameObject:
   - component: {fileID: 580608873}
   - component: {fileID: 580608872}
   - component: {fileID: 580608871}
+  - component: {fileID: 580608876}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1255,6 +1256,20 @@ Transform:
   m_Father: {fileID: 1934621224}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 70, y: 0, z: 0}
+--- !u!114 &580608876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 580608870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -768656878, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &631181939
 GameObject:
   m_ObjectHideFlags: 0
@@ -1828,7 +1843,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 521745876}
-  - {fileID: 2032383161}
+  - {fileID: 1708590011}
   - {fileID: 638788353}
   m_Father: {fileID: 1533077342}
   m_RootOrder: 3
@@ -3969,7 +3984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f9b510c69cac746b79f68d1ef9830e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Attribute: 2
+  Characteristic: 0
   Plus: {fileID: 1584434174}
   Minus: {fileID: 1454250291}
   Value: {fileID: 1865013474}
@@ -5237,6 +5252,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f5038a068594c80479859322d8b6eadb, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &1708590011 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 1708590010}
 --- !u!1 &1754148604
 GameObject:
   m_ObjectHideFlags: 0
@@ -5273,7 +5292,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 55, y: -245}
+  m_AnchoredPosition: {x: 55, y: -244.99998}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1754148606
@@ -6016,7 +6035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f9b510c69cac746b79f68d1ef9830e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Attribute: 0
+  Characteristic: 0
   Plus: {fileID: 1087938436}
   Minus: {fileID: 2136368867}
   Value: {fileID: 1960827505}
@@ -6161,11 +6180,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2020254022}
---- !u!224 &2032383161 stripped
-RectTransform:
-  m_PrefabParentObject: {fileID: 224970499036777756, guid: f5038a068594c80479859322d8b6eadb,
-    type: 2}
-  m_PrefabInternal: {fileID: 1708590010}
 --- !u!1 &2074472354
 GameObject:
   m_ObjectHideFlags: 0
@@ -6358,7 +6372,6 @@ MonoBehaviour:
   OkButton: {fileID: 1521017873}
   BackButton: {fileID: 706229624}
   UpgradePoints: {fileID: 1521213798}
-  PrevPanel: {fileID: 0}
 --- !u!114 &2110777299
 MonoBehaviour:
   m_ObjectHideFlags: 0
