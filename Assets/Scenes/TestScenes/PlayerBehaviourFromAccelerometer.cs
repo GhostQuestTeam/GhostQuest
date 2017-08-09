@@ -59,8 +59,6 @@ public class PlayerBehaviourFromAccelerometer : MonoBehaviour {
         moveVector *= Time.deltaTime;
         moveVector.z = 0;
         characterController.Move(moveVector);
-
-
     }
 
 

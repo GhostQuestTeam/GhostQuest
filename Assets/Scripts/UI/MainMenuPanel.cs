@@ -4,19 +4,21 @@ using Zenject;
 
 namespace HauntedCity.UI
 {
-    public class MainMenuPanel : MonoBehaviour
+    public class MainMenuPanel : Panel
     {
         public GameObject[] ShowOnlyLoggedUser;
         public GameObject[] ShowOnlyNotLoggedUser;
 
-       
+        [Inject] private AuthService _authService;
+
+
         private void Start()
         {
         }
-        
-        private void OnEnable()
+
+        protected override void OnShow()
         {
-            ShowMenu(AuthService.Instance.IsAuthenticated);
+            ShowMenu(_authService.IsAuthenticated);
         }
 
         public void ShowMenu(bool isAuthenticated)
@@ -33,8 +35,8 @@ namespace HauntedCity.UI
 
         public void Logout()
         {
-            AuthService.Instance.Logout();
-            ShowMenu(AuthService.Instance.IsAuthenticated);
+            _authService.Logout();
+            ShowMenu(_authService.IsAuthenticated);
         }
     }
 }

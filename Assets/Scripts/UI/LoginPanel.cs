@@ -1,5 +1,6 @@
 ﻿using GameSparks.Api.Responses;
 using HauntedCity.Networking;
+using HauntedCity.Utils.Extensions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,22 +8,17 @@ using Zenject;
 
 namespace HauntedCity.UI
 {
-    public class LoginPanel : MonoBehaviour
+    public class LoginPanel : Panel
     {
-        public Animator MainMenu;
-        
+        public Panel MainMenu;
+
+        public GameObject ErrorField;
         private InputField _login;
         private InputField _password;
         
-        private ScreenManager _screenManager;
-        private StorageService _storageService;
+        [Inject] private StorageService _storageService;
+        [Inject] private AuthService _authService;
         
-        [Inject]
-        public void InitializeDependencies(ScreenManager screenManager, StorageService storageService)
-        {
-            _screenManager = screenManager;
-            _storageService = storageService;
-        }
         
         private void Start()
         {
@@ -32,7 +28,7 @@ namespace HauntedCity.UI
 
         public void Login()
         {
-            AuthService.Instance.Login(
+            _authService.Login(
                 _login.text,
                 _password.text
             );
@@ -40,25 +36,31 @@ namespace HauntedCity.UI
 
         private void OnEnable()
         {
-            AuthService.Instance.OnLogin += OnLogin;
+            _authService.OnLogin += OnLogin;
         }
         
         private void OnDisable()
         {
-            AuthService.Instance.OnLogin -= OnLogin;
+            _authService.OnLogin -= OnLogin;
         }
-        
+
+        protected override void OnShow()
+        {
+            ErrorField.SetActive(false);
+        }
+
         public void OnLogin(AuthenticationResponse response)
         {
             if (!response.HasErrors)
             {
-                _screenManager.OpenPanel(MainMenu);
-                MainMenu.gameObject.GetComponent<MainMenuPanel>().ShowMenu(true);//Костыль
+                (new LeaderboardService()).GetLeaderboard();
+
+                ShowInstead(MainMenu);
                 _storageService.LoadPlayer();
             }
             else
             {
-                //TODO
+                ErrorField.SetActive(true);
             }
         }
     }

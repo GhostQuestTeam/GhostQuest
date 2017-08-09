@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23411731498133028}
   - component: {fileID: 54836773526280440}
   - component: {fileID: 114555946752155956}
-  - component: {fileID: 75381650252652416}
+  - component: {fileID: 95006722601841456}
   m_Layer: 0
   m_Name: sphere
   m_TagString: Untagged
@@ -75,6 +75,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &33562321064145066
 MeshFilter:
@@ -98,17 +99,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!75 &75381650252652416
-ConstantForce:
+--- !u!95 &95006722601841456
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1085134594611616}
   m_Enabled: 1
-  m_Force: {x: 0, y: 0, z: 0}
-  m_RelativeForce: {x: 0, y: 0, z: 0}
-  m_Torque: {x: 45, y: 0, z: 45}
-  m_RelativeTorque: {x: 0, y: 45, z: 0}
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 283d6fc73e8af574aa5db3582af47a6c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114555946752155956
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -120,10 +127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 651abeadb4944844caca55606611e1cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShellInfo:
-    Damage: 15
-    Velocity: 40
-  Ttl: 3
+  DestroyTimeout: 0.01
+  Weapon: {fileID: 0}
 --- !u!135 &135526982016006666
 SphereCollider:
   m_ObjectHideFlags: 1

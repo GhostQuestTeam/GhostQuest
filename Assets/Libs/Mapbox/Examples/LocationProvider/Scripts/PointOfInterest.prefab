@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4201648486012002}
   - component: {fileID: 114865616936375728}
+  - component: {fileID: 136145659703004848}
   m_Layer: 0
   m_Name: PointOfInterest
   m_TagString: Untagged
@@ -98,7 +99,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1037555086737886}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 100, y: 100, z: 0}
+  m_LocalPosition: {x: 24.995928, y: 10.66, z: 25.73479}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4934798900839108}
@@ -253,3 +254,16 @@ MonoBehaviour:
   _playerObject: {fileID: 0}
   _myDistanceCutOff: 0.0004
   _debug_DistanceToPlayer: 0
+--- !u!136 &136145659703004848
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1037555086737886}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 3
+  m_Height: 10
+  m_Direction: 1
+  m_Center: {x: 0, y: 5, z: 0}

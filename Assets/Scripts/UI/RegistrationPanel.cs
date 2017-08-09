@@ -6,21 +6,17 @@ using Zenject;
 
 namespace HauntedCity.UI
 {
-    public class RegistrationPanel : MonoBehaviour
+    public class RegistrationPanel : Panel
     {
-        public Animator MainMenu;
+        public Panel MainMenu;
         
         private InputField _login;
         private InputField _nickname;
         private InputField _password;
 
-        private ScreenManager _screenManager;
-        
-        [Inject]
-        public void InitializeDependencies(ScreenManager screenManager)
-        {
-            _screenManager = screenManager;
-        }
+        public GameObject ErrorField;
+
+        [Inject] private AuthService _authService;
         
         private void Start()
         {
@@ -31,13 +27,13 @@ namespace HauntedCity.UI
 
         private void OnEnable()
         {
-            AuthService.Instance.OnRegister += OnRegister;
-            AuthService.Instance.OnLogin += OnLogin;
+            _authService.OnRegister += OnRegister;
+            _authService.OnLogin += OnLogin;
         }
 
         public void Register()
         {
-            AuthService.Instance.Register(
+            _authService.Register(
                 _login.text,
                 _nickname.text,
                 _password.text
@@ -46,29 +42,33 @@ namespace HauntedCity.UI
 
         private void OnDisable()
         {
-            AuthService.Instance.OnRegister -= OnRegister;
-            AuthService.Instance.OnLogin -= OnLogin;
+            _authService.OnRegister -= OnRegister;
+            _authService.OnLogin -= OnLogin;
         }
         
         public void OnRegister(RegistrationResponse response)
         {
             if (response.HasErrors)
             {
-                //TODO
+                ErrorField.SetActive(true);
             }
            
+        }
+        
+        protected override void OnShow()
+        {
+            ErrorField.SetActive(false);
         }
         
         public void OnLogin(AuthenticationResponse response)
         {
             if (!response.HasErrors)
             {
-                _screenManager.OpenPanel(MainMenu);
-                MainMenu.gameObject.GetComponent<MainMenuPanel>().ShowMenu(true);//Костыль
+                ShowInstead(MainMenu);
             }
             else
             {
-                //TODO
+                ErrorField.SetActive(true);    
             }
         }
     }

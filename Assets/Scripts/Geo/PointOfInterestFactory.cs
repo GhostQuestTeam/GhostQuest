@@ -1,21 +1,35 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
 using Mapbox.Utils;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using HauntedCity.GameMechanics.BattleSystem;
+using Zenject;
+using HauntedCity.GameMechanics.Main;
+using HauntedCity.Utils.Extensions;
 
 namespace HauntedCity.Geo
 {
     public class PointOfInterestFactory : MonoBehaviour
     {
-        private GameObject _root;
-        public HashSet<Vector2d> _points = new HashSet<Vector2d>();
+        public GameObject _root;
+        public HashSet<GameSparksPOIsExtraction.ExtractedPointMetadata> _points = new HashSet<GameSparksPOIsExtraction.ExtractedPointMetadata>();
         public GameObject PointOfInterestPrefab;
-        private Button _btnToEnable;
         public GameObject GameSparksObj;
+
+        [Inject]
+        private GameController _gameController;
+
+        private void Awake()
+        {
+//            _root = new GameObject("POIRoot");
+//            _root.transform.SetParent(GameObject.Find("LocationProviderRoot").transform);
+        }
 
         void Start()
         {
+        
             InitPoints();
             //Execute();
         }
@@ -26,8 +40,19 @@ namespace HauntedCity.Geo
 
         void OnEnable()
         {
-            GameSparksObj.GetComponent<GameSparksPOIsExtraction>().UpdatePointsNow();
+            var ext = GameSparksObj.GetComponent<GameSparksPOIsExtraction>();
+            ext.UpdatePointsNow();
+            ext.OnPOIsExtracted += Ext_OnPOIsExtracted;
+
         }
+
+        private void OnDisable()
+        {
+            var ext = GameSparksObj.GetComponent<GameSparksPOIsExtraction>();
+            ext.OnPOIsExtracted -= Ext_OnPOIsExtracted;
+
+        }
+
 
         public void InitPoints()
         {
@@ -47,12 +72,11 @@ namespace HauntedCity.Geo
             _points.Add(new Vector2d(55.7653354, 37.6054856)); //памятник А. С. Пушкину
             _points.Add(new Vector2d(55.7559664, 37.5891178)); //Городская усадьба С.С. Гагарина*/
 
-            GameSparksPOIsExtraction ext = GameSparksObj.GetComponent<GameSparksPOIsExtraction>();
-            ext.OnPOIsExtracted += Ext_OnPOIsExtracted;
         }
 
         public void Ext_OnPOIsExtracted(object sender, GameSparksPOIsExtraction.POIsExtractedEventArgs e)
         {
+            GameSparksObj.GetComponent<GameSparksPOIsExtraction>().OnPOIsExtracted -= Ext_OnPOIsExtracted;
             _points = e.points;
             Execute();
         }
@@ -66,53 +90,33 @@ namespace HauntedCity.Geo
         {
             //_btnToEnable = GameObject.Find("StartBattle").GetComponent<Button>();
 
-            _btnToEnable = GameObject.Find("StartBattle").GetComponent<Button>();
+            //_btnToEnable = GameObject.Find("StartBattle").GetComponent<Button>();
             //_btnToEnable.gameObject.SetActive(false);
-            GameObject _prevRoot = GameObject.Find("POIRoot");
-            if (_prevRoot != null)
-                Destroy(_prevRoot);
 
-            _root = new GameObject("POIRoot");
-            _root.transform.SetParent(GameObject.Find("LocationProviderRoot").transform);
+//            GameObject _prevRoot = GameObject.Find("POIRoot");
+//            if (_prevRoot != null)
+//                Destroy(_prevRoot);
 
-            foreach (Vector2d point in _points)
+            _root.transform.Clear();
+
+            foreach (GameSparksPOIsExtraction.ExtractedPointMetadata pointMeta in _points)
             {
                 GameObject newPOI = Instantiate(PointOfInterestPrefab, 100 * Vector3.down, Quaternion.identity,
                     _root.transform);
                 newPOI.SetActive(true);
                 PointOfInterestWithLocationProvider poiwtp = newPOI.GetComponent<PointOfInterestWithLocationProvider>();
-                poiwtp._myMapLocation = point;
-                poiwtp.OnPOIClose += PointOfInterestWithLocationProvider_OnPOIClose;
+                poiwtp._myMapLocation = pointMeta.LatLon;
+                poiwtp._metadata = pointMeta;
             }
         }
 
-        public void PointOfInterestWithLocationProvider_OnPOIClose(object sender,
-            PointOfInterestWithLocationProvider.PointOfInterestEventArgs e)
-        {
-            var tmp = e.Location;
-            UnityAction listener = () =>
-            {
-                MyLambdaSwitchEnablingMethod(e.UnityObject.transform.GetChild(0).gameObject, false);
-                _btnToEnable.gameObject.SetActive(false);
-                _points.Remove(tmp);
-            };
 
-            if (e.IsPlayerNear)
-            {
-                _btnToEnable.gameObject.SetActive(true);
-                _btnToEnable.onClick.AddListener(listener);
-            }
-            else
-            {
-                _btnToEnable.gameObject.SetActive(false);
-                _btnToEnable.onClick.RemoveListener(listener);
-                e.UnityObject.SetActive(false);
-            }
-        } //handler
 
         public void RemoveOnClick()
         {
         }
+
+        
 
         public void MyLambdaSwitchEnablingMethod(GameObject obj, bool state)
         {

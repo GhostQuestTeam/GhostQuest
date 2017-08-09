@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 135099828351197114}
   - component: {fileID: 114896147222490458}
   - component: {fileID: 75536623616044708}
+  - component: {fileID: 95875925812292142}
   m_Layer: 0
   m_Name: fireball_1
   m_TagString: Untagged
@@ -100,6 +101,23 @@ ConstantForce:
   m_RelativeForce: {x: 0, y: 0, z: 0}
   m_Torque: {x: 0, y: 0, z: 0}
   m_RelativeTorque: {x: 0, y: 0, z: 0}
+--- !u!95 &95875925812292142
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1317742615186908}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 283d6fc73e8af574aa5db3582af47a6c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114896147222490458
 MonoBehaviour:
   m_ObjectHideFlags: 1

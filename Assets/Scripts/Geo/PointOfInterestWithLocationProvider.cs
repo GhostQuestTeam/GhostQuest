@@ -1,137 +1,170 @@
 ﻿using System;
+using HauntedCity.GameMechanics.Main;
+using HauntedCity.UI;
+using HauntedCity.UI.PointInfo;
 using Mapbox.Unity.Location;
 using Mapbox.Unity.MeshGeneration;
 using Mapbox.Unity.Utilities;
 using Mapbox.Utils;
 using UnityEngine;
+using Zenject;
 
 namespace HauntedCity.Geo
 {
-	public class PointOfInterestWithLocationProvider : MonoBehaviour {
+    public class PointOfInterestWithLocationProvider : MonoBehaviour
+    {
+        [Inject] GameController _gameController;
 
-		[SerializeField]
-		float _positionFollowFactor;
+        [SerializeField] float _positionFollowFactor;
 
-		[SerializeField]
-		bool _useTransformLocationProvider;
+        [SerializeField] bool _useTransformLocationProvider;
 
-		public Vector2d _myMapLocation = new Vector2d (55.8257f, 49.0538f);
-		public bool _IsPlayerNear = false;
+        public Vector2d _myMapLocation = new Vector2d(55.8257f, 49.0538f);
+        public bool _IsPlayerNear = false;
 
-		public GameObject _playerObject;
+        public GameObject _playerObject;
 
-		public class PointOfInterestEventArgs : EventArgs
-		{
-			public Vector2d Location;
-			public bool IsPlayerNear;
-			public GameObject UnityObject;
-		}
+        public class PointOfInterestEventArgs : EventArgs
+        {
+            public Vector2d Location;
+            public bool IsPlayerNear;
+            public GameObject UnityObject;
+        }
 
-		public event EventHandler<PointOfInterestEventArgs> OnPOIClose;
+        public GameSparksPOIsExtraction.ExtractedPointMetadata _metadata;
 
-		public float _myDistanceCutOff = 0.0005f;
-		public float _debug_DistanceToPlayer;
+        public event EventHandler<PointOfInterestEventArgs> OnPOIClose;
 
-		ILocationProvider _locationProvider;
-		public ILocationProvider LocationProvider
-		{
-			private get
-			{
-				if (_locationProvider == null)
-				{
-					_locationProvider = _useTransformLocationProvider ? 
-						LocationProviderFactory.Instance.TransformLocationProvider : LocationProviderFactory.Instance.DefaultLocationProvider;
-				}
+        public float _myDistanceCutOff = 0.0005f;
+        public float _debug_DistanceToPlayer;
 
-				return _locationProvider;
-			}
-			set
-			{
-				if (_locationProvider != null)
-				{
-					_locationProvider.OnLocationUpdated -= LocationProvider_OnLocationUpdated;
+        ILocationProvider _locationProvider;
 
-				}
-				_locationProvider = value;
-				_locationProvider.OnLocationUpdated += LocationProvider_OnLocationUpdated;
-			}
-		}
+        public ILocationProvider LocationProvider
+        {
+            private get
+            {
+                if (_locationProvider == null)
+                {
+                    _locationProvider = _useTransformLocationProvider
+                        ? LocationProviderFactory.Instance.TransformLocationProvider
+                        : LocationProviderFactory.Instance.DefaultLocationProvider;
+                }
 
-		Vector3 _targetPosition;
+                return _locationProvider;
+            }
+            set
+            {
+                if (_locationProvider != null)
+                {
+                    _locationProvider.OnLocationUpdated -= LocationProvider_OnLocationUpdated;
+                }
+                _locationProvider = value;
+                _locationProvider.OnLocationUpdated += LocationProvider_OnLocationUpdated;
+            }
+        }
 
-		void Start()
-		{
-			LocationProvider.OnLocationUpdated += LocationProvider_OnLocationUpdated;
-			_playerObject = GameObject.FindGameObjectWithTag ("Player");
-		}
+        Vector3 _targetPosition;
 
-		void OnDestroy()
-		{
-			if (LocationProvider != null)
-			{
-				LocationProvider.OnLocationUpdated -= LocationProvider_OnLocationUpdated;
-			}
-		}
+        private GameSparksBattle _gsb;
 
-		void LocationProvider_OnLocationUpdated(object sender, LocationUpdatedEventArgs e)
-		{
-			if (MapController.ReferenceTileRect == null)
-			{
-				return;
-			}
+        void Start()
+        {
+            LocationProvider.OnLocationUpdated += LocationProvider_OnLocationUpdated;
+            _playerObject = GameObject.FindGameObjectWithTag("Player");
+            _gsb = GameObject.Find("GameSparks").GetComponent<GameSparksBattle>();
+            _gsb.OnScriptMessagePOIOwnerChange += OnOwnerChange;
+            GetComponent<PointColor>().UpdateView(_metadata.IsYour());
+        }
 
-			_targetPosition = Conversions.GeoToWorldPosition(_myMapLocation,
-				MapController.ReferenceTileRect.Center, 
-				MapController.WorldScaleFactor).ToVector3xz();
-		
-		}
+        void OnDestroy()
+        {
+            if (LocationProvider != null)
+            {
+                LocationProvider.OnLocationUpdated -= LocationProvider_OnLocationUpdated;
+            }
+            if (_gsb != null)
+            {
+                _gsb.OnScriptMessagePOIOwnerChange -= OnOwnerChange;
+            }
+        }
 
-		void Update()
-		{
-			transform.position = Vector3.Lerp(transform.position, _targetPosition, Time.deltaTime * _positionFollowFactor);
-			checkDistanceToPlayerEvklid ();
-		}
+        void LocationProvider_OnLocationUpdated(object sender, LocationUpdatedEventArgs e)
+        {
+            if (MapController.ReferenceTileRect == null)
+            {
+                return;
+            }
 
-		void checkDistanceToPlayerEvklid() {
-			Vector2d interestLocation = _myMapLocation;
-			Vector2d playerLocation = _playerObject.GetComponent<PositionWithLocationProvider> ()._myCurrentLocation;
-			float distanceToInterest = (float)Vector2d.Distance (interestLocation, playerLocation);
-			_debug_DistanceToPlayer = distanceToInterest;
+            _targetPosition = Conversions.GeoToWorldPosition(_myMapLocation,
+                MapController.ReferenceTileRect.Center,
+                MapController.WorldScaleFactor).ToVector3xz();
+        }
 
-			if(OnPOIClose == null)
-			{
-				return;
-			}
+        void Update()
+        {
+            transform.position =
+                Vector3.Lerp(transform.position, _targetPosition, Time.deltaTime * _positionFollowFactor);
+            checkDistanceToPlayerEvklid();
+        }
 
-			PointOfInterestEventArgs e = new PointOfInterestEventArgs();
-			e.Location = _myMapLocation;
-			e.UnityObject = gameObject;
+        void checkDistanceToPlayerEvklid()
+        {
+            Vector2d interestLocation = _myMapLocation;
+            Vector2d playerLocation = _playerObject.GetComponent<PositionWithLocationProvider>()._myCurrentLocation;
+            float distanceToInterest = (float) Vector2d.Distance(interestLocation, playerLocation);
+            _debug_DistanceToPlayer = distanceToInterest;
 
-			//if player really near
-			if (distanceToInterest < _myDistanceCutOff) {
-				//if player was not near before
-				if(!_IsPlayerNear)
-				{
-					_IsPlayerNear = true;
-					e.IsPlayerNear = true;
-					OnPOIClose(this, e);
-				}
-			}
-			else //if player really NOT near
-			{
-				//if player was near before
-				if (_IsPlayerNear)
-				{
-					_IsPlayerNear = false;
-					e.IsPlayerNear = false;
-					OnPOIClose(this, e);
-				}
-			}//if
-		}//fn
+            if (OnPOIClose == null)
+            {
+                return;
+            }
 
-	}
-	
+            PointOfInterestEventArgs e = new PointOfInterestEventArgs();
+            e.Location = _myMapLocation;
+            e.UnityObject = gameObject;
+
+            //if player really near
+            if (distanceToInterest < _myDistanceCutOff)
+            {
+                //if player was not near before
+                if (!_IsPlayerNear)
+                {
+                    _IsPlayerNear = true;
+                    e.IsPlayerNear = true;
+                    OnPOIClose(this, e);
+                }
+            }
+            else //if player really NOT near
+            {
+                //if player was near before
+                if (_IsPlayerNear)
+                {
+                    _IsPlayerNear = false;
+                    e.IsPlayerNear = false;
+                    OnPOIClose(this, e);
+                }
+            } //if
+        } //fn
 
 
+        public void OnRay()
+        {
+            var infoPanel = FindObjectOfType<PointInfoPanelController>();
+            infoPanel.Show(_metadata);
+        }
+
+
+        public void OnOwnerChange(object sender, GameSparksBattle.SCRIPT_MESSAGE_POI_OWNER_CHANGE_ev_arg arg)
+        {
+            if ((arg != null) && (!arg.isError) && (arg.poid == _metadata.poid))
+            {
+                _metadata.uoid = arg.newOwnerUoid;
+                _metadata.owner_display_name = arg.newOwnerDisplayName;
+                _metadata.owner_user_name = arg.newOwnerUserName;
+                GetComponent<PointColor>().UpdateView(_metadata.IsYour());
+            }
+        }
+
+    }
 }
-

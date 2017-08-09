@@ -17,7 +17,6 @@ namespace HauntedCity.Utils
         private int _notLoadedScenes;
         private readonly Dictionary<string, Scene> _loadedScenes = new Dictionary<string, Scene>();
 
-
         public event Action OnAllScenesLoad;
         public event Action<string> OnSceneChange;
 
@@ -40,7 +39,10 @@ namespace HauntedCity.Utils
         {
             _loadedScenes.Add(scene.name, scene);
             _notLoadedScenes--;
+
+            //У МЕНЯ НЕ РАБОТАЕТ, ПОХОЖЕ ЭТО ПЫТАЕТСЯ СРАБОТАТЬ В СОСТОЯНИИ СЦЕНЫ Loading, NO!!! РАНЬШЕ ЗДЕСЬ БЫЛИ КОСТЫЛИ С КОРУТИНОЙ!
             scene.GetRootGameObjects()[0].SetActive(false);
+
             if (_notLoadedScenes == 0 && OnAllScenesLoad != null)
             {
                 OnAllScenesLoad();

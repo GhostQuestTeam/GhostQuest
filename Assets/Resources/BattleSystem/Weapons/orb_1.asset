@@ -11,12 +11,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e76f45922ce043b7a8ff167863a08007, type: 3}
   m_Name: orb_1
   m_EditorClassIdentifier: 
+  Picture: {fileID: 0}
+  Title: Bubble
+  Description: 
+  Cost: 7500
+  Stackable: 0
+  IsDisposable: 0
+  UseCost: 5
+  Cooldown: 0.4
+  Force: 0
   Prefab: {fileID: 1723824446074100, guid: c245f67b389de9d4fa54c4025b603f40, type: 2}
   Sprite: {fileID: 21300000, guid: 99529c0958c704c45989fd81e617c84e, type: 3}
   BaseDamage: 13
   Velocity: 20
   Id: orb_1
-  ShootCost: 3
-  Cooldown: 0.4
   Ttl: 1
   DamageModifier: 1.2

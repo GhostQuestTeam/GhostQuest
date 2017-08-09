@@ -4,43 +4,59 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-public class MapPanel : MonoBehaviour
+public class MapPanel : Panel
 {
-    public Button SkillsButton;
-    public Button StartButton;
+    public Text CoinValue;
     public Animator AttributesPanel;
 
-    [Inject] private ScreenManager _screenManager;
     [Inject] private GameController _gameController;
 
     void Start()
     {
 
-        _UpdateLevelView();
-        SkillsButton.onClick.AddListener(() => { _screenManager.OpenPanel(AttributesPanel); });
+        GameController.GameStats.OnCoinChange += UpdateCoin;
+        
+        UpdateLevelView();
+        UpdateCoin();
 
-        StartButton.onClick.AddListener(
-            () => _gameController.StartBattle()
-        );
     }
 
     private void OnEnable()
     {
-        _UpdateLevelView();
+        _gameController.OnPlayerStatsUpdate += UpdateView;
+        UpdateLevelView();
     }
 
-    private void _UpdateLevelView()
+    private void OnDisable()
     {
-        var level = GameController.GameStats.Level;
-        var currentExp = GameController.GameStats.CurrentExp;
-        var expToLevel = GameController.GameStats.ExpToLevel;
+        _gameController.OnPlayerStatsUpdate -= UpdateView;
+    }
+
+    private void UpdateView()
+    {
+        UpdateLevelView();
+        UpdateCoin();
+    }
+
+    private void UpdateLevelView()
+    {
+        var level = GameController.GameStats.PlayerExperience.Level;
+        var currentExp = GameController.GameStats.PlayerExperience.CurrentExp;
+        var expToLevel = GameController.GameStats.PlayerExperience.ExpToLevel;
 
         GameObject.Find("Level").GetComponent<Text>().text = level.ToString();
         GameObject.Find("Exp").GetComponent<Text>().text = currentExp + "/" + expToLevel;
         GameObject.Find("ExpBar").GetComponent<Image>().fillAmount = (float) currentExp / expToLevel;
     }
 
+    private void UpdateCoin()
+    {
+        CoinValue.text = GameController.GameStats.Money.ToString();
+    }
+
     private void OnDestroy()
     {
+        
     }
+
 }

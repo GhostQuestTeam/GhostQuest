@@ -14,7 +14,7 @@ namespace HauntedCity.Geo
 
         ILocationProvider _locationProvider;
 
-        ILocationProvider LocationProvider
+        public ILocationProvider LocationProvider
         {
             get
             {

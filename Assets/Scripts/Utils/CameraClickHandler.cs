@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace HauntedCity.Utils
 {
@@ -14,42 +15,35 @@ namespace HauntedCity.Utils
         void Update()
         {
             Ray ray;
-            if (SystemInfo.deviceType == DeviceType.Handheld)
-            {
-                if (Input.touches.Length > 0)
-                {
-                    Touch touch = Input.GetTouch(0);
-                    if (touch.phase == TouchPhase.Began)
-                    {
-                        ray = camera.ScreenPointToRay(touch.position);
-                    }
-                    else
-                    {
-                        return;
-                    }
-                }
-                else
+            
+            #if UNITY_STANDALONE || UNITY_EDITOR
+                if (!Input.GetMouseButtonDown(0))
                 {
                     return;
                 }
-            }
-            else
-            {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    ray = camera.ScreenPointToRay(Input.mousePosition);
-                }
-                else
-                {
-                    return;
-                }
-            }
 
+                ray = camera.ScreenPointToRay(Input.mousePosition);
+                if (EventSystem.current.IsPointerOverGameObject())
+                {
+                    return;
+                }
+
+            #else
+                if (Input.touches.Length <= 0) return;
+                Touch touch = Input.GetTouch(0);
+                if (touch.phase != TouchPhase.Began) return;
+               
+                ray = camera.ScreenPointToRay(touch.position);
+                if (EventSystem.current.IsPointerOverGameObject(touch.fingerID))
+                {
+                    return;
+                }    
+            #endif
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
                 GameObject collideedObject = hit.transform.gameObject;
-                collideedObject.SendMessage("onRay");
+                collideedObject.SendMessage("OnRay");
             }
         }
     }

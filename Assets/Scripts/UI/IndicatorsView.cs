@@ -31,7 +31,7 @@ namespace HauntedCity.UI
             //_battleController = GameObject.Find("Player").GetComponent<PlayerBattleBehavior>().BattleController;
 
             _battleController.OnEnergyChanged += UpdateEnergy;
-            _battleController.OnDamage += UpdateHealth;
+            _battleController.OnHealthChange += UpdateHealth;
             _battleController.OnReset += ResetHandle;
 
             _health = transform.Find("HealthPanel");
@@ -49,7 +49,7 @@ namespace HauntedCity.UI
         void OnDestroy()
         {
             _battleController.OnEnergyChanged -= UpdateEnergy;
-            _battleController.OnDamage -= UpdateHealth;
+            _battleController.OnHealthChange -= UpdateHealth;
             _battleController.OnReset -= ResetHandle;
         }
 

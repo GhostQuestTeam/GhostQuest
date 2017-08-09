@@ -25,7 +25,7 @@ namespace HauntedCity.GameMechanics.BattleSystem.ConcreteEnemyBehaviors
             _battleController = GetComponent<EnemyBehavior>().BattleController;
             _battleStats = GetComponent<EnemyBehavior>().BattleStats;
 
-            _battleController.OnDamage += TakeDamageAnimate;
+            _battleController.OnHealthChange += TakeHealthChangeAnimate;
             _battleController.OnDeath += DeathAnimate;
 
 
@@ -39,7 +39,7 @@ namespace HauntedCity.GameMechanics.BattleSystem.ConcreteEnemyBehaviors
             _skull.localPosition += new Vector3(0, _skullVelocity, 0);
         }
 
-        public void TakeDamageAnimate(int hpDelta)
+        public void TakeHealthChangeAnimate(int hpDelta)
         {
             if (_battleStats.Solidity.IsAlive())
             {

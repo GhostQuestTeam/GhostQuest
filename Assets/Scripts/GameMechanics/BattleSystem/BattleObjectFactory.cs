@@ -42,17 +42,26 @@ namespace HauntedCity.GameMechanics.BattleSystem
     {
         private static BattleObjectLoader _shellLoader = new BattleObjectLoader("Shells/");
         private static BattleObjectLoader _enemyLoader = new BattleObjectLoader("Enemies/");
+        private static BattleObjectLoader _bonusLoader = new BattleObjectLoader("Bonuses/");
 
-        public static GameObject CreateShell(WeaponInfo weaponInfo)
+        private static readonly string[] Bonuses = new[]{"HealthBonus", "EnergyBonus"}; 
+
+        public static GameObject CreateShell(Weapon weaponInfo)
         {
             return _shellLoader.Load(weaponInfo.Id);
         }
 
         public static GameObject SpawnEnemy(string enemyId, Vector3 position)
         {
-            var enemy = _enemyLoader.Load(enemyId);
+            var enemy = _enemyLoader.Load(enemyId + "/" + enemyId);//временно
             enemy.transform.position = position;
             return enemy;
+        }
+
+        public static GameObject RandomBonus()
+        {
+            int index = UnityEngine.Random.Range(0, Bonuses.Length);
+            return _bonusLoader.Load(Bonuses[index]);
         }
     }
 }

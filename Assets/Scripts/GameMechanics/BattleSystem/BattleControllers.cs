@@ -18,7 +18,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
     {
         public event Action OnReset;
         public event Action OnDeath;
-        public event Action<int> OnDamage;
+        public event Action<int> OnHealthChange;
 
         protected BattleStats battleStats;
 
@@ -38,9 +38,9 @@ namespace HauntedCity.GameMechanics.BattleSystem
             int deltaHealth = startedHealth - battleStats.CurrentHealth;
             if (deltaHealth != 0)
             {
-                if (OnDamage != null)
+                if (OnHealthChange != null)
                 {
-                    OnDamage(deltaHealth);
+                    OnHealthChange(-deltaHealth);
                 }
             }
             if (!battleStats.Solidity.IsAlive())
@@ -48,6 +48,20 @@ namespace HauntedCity.GameMechanics.BattleSystem
                 if (OnDeath != null)
                 {
                     OnDeath();
+                }
+            }
+        }
+
+        public void Heal(int healPoints)
+        {
+            int startedHealth = battleStats.CurrentHealth;
+            battleStats.Solidity.Heal(healPoints);
+            int deltaHealth = startedHealth - battleStats.CurrentHealth;
+            if (deltaHealth != 0)
+            {
+                if (OnHealthChange != null)
+                {
+                    OnHealthChange(deltaHealth);
                 }
             }
         }
@@ -73,7 +87,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
         private IWeaponSpeedController _weaponSpeedController;
         public event Action<int> OnEnergyChanged;
 
-        private const float _TOLERANCE = 0.000001f;
+        private const float _TOLERANCE = 0.0001f;
 
         public PlayerBattleStats BattleStats
         {
@@ -81,10 +95,10 @@ namespace HauntedCity.GameMechanics.BattleSystem
             set { battleStats = value; }
         }
 
-        public void TryShoot()
+        public bool TryShoot()
         {
-            if (BattleStats.CurrentEnergy < BattleStats.CurrentWeapon.ShootCost) return;
-            if (!_weaponSpeedController.CanShoot(BattleStats.CurrentWeapon)) return;
+            if (BattleStats.CurrentEnergy < BattleStats.CurrentWeapon.ShootCost) return false;
+            if (!_weaponSpeedController.CanShoot(BattleStats.CurrentWeapon)) return false;
             _shooter.Shoot(BattleStats.CurrentWeapon);
             BattleStats.CurrentEnergy -= BattleStats.CurrentWeapon.ShootCost;
             if (OnEnergyChanged != null)
@@ -95,6 +109,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
             {
                 _weaponSpeedController.BlockWeapon(BattleStats.CurrentWeapon, BattleStats.CurrentWeapon.Cooldown);
             }
+            return true;
         }
 
         public override void Reset()
@@ -103,19 +118,24 @@ namespace HauntedCity.GameMechanics.BattleSystem
             base.Reset();
         }
 
-        public override void Regenerate()
+        public void RestoreEnergy(int energyPoint)
         {
-            base.Regenerate();
             int oldEnergy = BattleStats.CurrentEnergy;
-            BattleStats.CurrentEnergy += BattleStats.EnergyRegen;
+            BattleStats.CurrentEnergy += energyPoint;
             int energyDelta = BattleStats.CurrentEnergy - oldEnergy;
-            if (energyDelta != 0)
-            {
+//            if (energyDelta != 0)
+//            {
                 if (OnEnergyChanged != null)
                 {
                     OnEnergyChanged(energyDelta);
                 }
-            }
+//            }
+        }
+        
+        public override void Regenerate()
+        {
+            base.Regenerate();
+            RestoreEnergy(BattleStats.EnergyRegen);
         }
 
         public PlayerBattleController(PlayerBattleStats stats, IShooter shooter, IWeaponSpeedController speedController)

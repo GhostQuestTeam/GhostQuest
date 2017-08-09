@@ -10,21 +10,6 @@ namespace HauntedCity.Networking
         public PlayerGameStats PlayerStats { get; private set; }
         public event Action OnLoad;
         
-        public void SavePlayer(PlayerGameStats player )
-        {
-
-             new GameSparks.Api.Requests.LogEventRequest()
-                .SetEventKey("SAVE_PLAYER")
-                .SetEventAttribute("PLAYER", player.GSData)
-                .Send((response) => {
-                if (!response.HasErrors) {
-                    Debug.Log("Player Saved To GameSparks...");
-                } else {
-                    Debug.Log("Error Saving Player Data...");
-                }
-            });
-        }
-        
         public void LoadPlayer()
         {
             new GameSparks.Api.Requests.LogEventRequest()

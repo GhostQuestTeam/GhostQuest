@@ -67,6 +67,11 @@ namespace HauntedCity.GameMechanics.BattleSystem
             while ((_currentEnemies.Count < MaxEnemiesOnScene) && (_allEnemies.Count > 0))
             {
                 var randEnemy = _allEnemies.ElementAt(Random.Range(0, _allEnemies.Count)).Key;
+                if (_allEnemies[randEnemy] == 0)
+                {
+                    _allEnemies.Remove(randEnemy);
+                    continue;
+                }
                 _allEnemies[randEnemy]--;
                 if (_allEnemies[randEnemy] == 0)
                 {
@@ -102,6 +107,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
             _ClearEnemies();
             if (isWon && OnWon != null)
             {
+                Debug.Log("You won! Score: " + _totalScore);
                 OnWon(_totalScore);
             }
             else if (!isWon && OnLose != null)

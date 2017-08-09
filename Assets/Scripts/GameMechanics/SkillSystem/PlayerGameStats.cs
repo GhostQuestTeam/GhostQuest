@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using GameSparks.Core;
+using HauntedCity.GameMechanics.BattleSystem;
+using HauntedCity.Networking;
 using HauntedCity.Utils;
 
 namespace HauntedCity.GameMechanics.SkillSystem
@@ -10,6 +12,8 @@ namespace HauntedCity.GameMechanics.SkillSystem
     {
         #region PlayerAttributes
 
+        public StorageService StorageService;
+
         public enum PlayerAttributes
         {
             Survivability,
@@ -17,165 +21,88 @@ namespace HauntedCity.GameMechanics.SkillSystem
             Power
         }
 
-        public event Action OnAttributeChange;
-        public event Action OnAttributesUpgrade;
+        public readonly List<string> DEFAULT_WEAPONS = new List<string>() {"sphere", "air_bolt"};
 
-        private BoundedInt _baseSurviability;
-        private BoundedInt _baseEndurance;
-        private BoundedInt _basePower;
+        public event Action OnCoinChange;
+        public event Action<Weapon> OnWeaponBuy;
 
-        private int _surviabilityDelta;
-        private int _enduranceDelta;
-        private int _powerDelta;
 
-        public int UpgradePoints;
         private const int UPGRADE_POINTS_PER_LEVEL = 5;
 
+        public int POIs { get; set; }
 
+        public List<string> AllowableWeapons;
+        public List<string> CurrentWeapons;
+
+        private int _money;
+
+
+        public int Money
+        {
+            get { return _money; }
+            set
+            {
+                _money = value;
+                if (OnCoinChange != null)
+                {
+                    OnCoinChange();
+                }
+            }
+        }
+
+        public PlayerCharacteristicManager CharacteristicManager { get; private set; }
+        
         public int Survivability
         {
-            get { return _baseSurviability.Val + _surviabilityDelta; }
+            get { return CharacteristicManager.GetCharacteristic(PlayerCharacteristics.Survivability); }
         }
 
         public int Endurance
         {
-            get { return _baseEndurance.Val + _enduranceDelta; }
+            get { return CharacteristicManager.GetCharacteristic(PlayerCharacteristics.Endurance); }
         }
 
         public int Power
         {
-            get { return _basePower.Val + _powerDelta; }
+            get { return CharacteristicManager.GetCharacteristic(PlayerCharacteristics.Power); }
+        }
+        
+        public int SurvivabilityDelta
+        {
+            get { return CharacteristicManager.GetDelta(PlayerCharacteristics.Survivability); }
+        }
+
+        public int EnduranceDelta
+        {
+            get { return CharacteristicManager.GetDelta(PlayerCharacteristics.Endurance); }
+        }
+
+        public int PowerDelta
+        {
+            get { return CharacteristicManager.GetDelta(PlayerCharacteristics.Power); }
         }
 
         public GSRequestData GSData
         {
-            get
-            {
-                var result = new GSRequestData();
-                
-                int pointsToSave = UpgradePoints;
-                int survivabilityToSave = Survivability;
-                int enduranceToSave = Endurance;
-                int powerToSave = Power;
-
-                pointsToSave += _enduranceDelta + _powerDelta + _surviabilityDelta;
-                survivabilityToSave -= _surviabilityDelta;
-                enduranceToSave -= _enduranceDelta;
-                powerToSave -= _powerDelta;
-
-                result.AddNumber("upgradePoints", pointsToSave)
-                    .AddNumber("survivability", survivabilityToSave)
-                    .AddNumber("endurance", enduranceToSave)
-                    .AddNumber("power", powerToSave)
-                    .AddNumber("level", Level)
-                    .AddNumber("exp", CurrentExp);
-                
-                return result;
-            }
             set
             {
-                UpgradePoints = value.GetInt("upgradePoints") ?? 5;
+                CharacteristicManager.SetGSData(value);
 
-                _baseSurviability.Val =  value.GetInt("survivability") ?? 5;
-                _baseEndurance.Val = value.GetInt("endurance") ?? 5;
-                _basePower.Val =  value.GetInt("power") ?? 5;
+                PlayerExperience = new Experience(
+                    value.GetInt("level") ?? 1,
+                    value.GetInt("exp") ?? 0
+                 );
+                Money = value.GetInt("money") ?? 10000;
 
-                _surviabilityDelta = 0;
-                _enduranceDelta = 0;
-                _powerDelta = 0;
-
-                Level =  value.GetInt("level") ?? 1;
-                CurrentExp = value.GetInt("exp") ?? 0;
-                
-                _UpdateExpToNextLevel();
-
+                AllowableWeapons = value.GetStringList("allowableWeapons") ?? new List<string>(DEFAULT_WEAPONS);
+                CurrentWeapons = value.GetStringList("currentWeapons") ?? new List<string>(DEFAULT_WEAPONS);
+                POIs = value.GetInt("numOfPOIs") ?? 0;
 
             }
         }
 
-        public int GetAttribute(PlayerAttributes attribute)
-        {
-            switch (attribute)
-            {
-                case PlayerAttributes.Survivability:
-                    return Survivability;
-                case PlayerAttributes.Endurance:
-                    return Endurance;
-                case PlayerAttributes.Power:
-                    return Power;
-                default:
-                    throw new ArgumentOutOfRangeException("attribute", attribute, null);
-            }
-        }
 
-        public void IncAttribute(PlayerAttributes attribute)
-        {
-            if (UpgradePoints == 0) return;
-            UpgradePoints--;
-            switch (attribute)
-            {
-                case PlayerAttributes.Survivability:
-                    _surviabilityDelta++;
-                    break;
-                case PlayerAttributes.Endurance:
-                    _enduranceDelta++;
-                    break;
-                case PlayerAttributes.Power:
-                    _powerDelta++;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException("attribute", attribute, null);
-            }
-            if (OnAttributeChange != null)
-            {
-                OnAttributeChange();
-            }
-        }
-
-        public void DecAttribute(PlayerAttributes attribute)
-        {
-            switch (attribute)
-            {
-                case PlayerAttributes.Survivability:
-                    _DecAttributeDelta(ref _surviabilityDelta);
-                    break;
-                case PlayerAttributes.Endurance:
-                    _DecAttributeDelta(ref _enduranceDelta);
-                    break;
-                case PlayerAttributes.Power:
-                    _DecAttributeDelta(ref _powerDelta);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException("attribute", attribute, null);
-            }
-            if (OnAttributeChange != null)
-            {
-                OnAttributeChange();
-            }
-        }
-
-        private void _DecAttributeDelta(ref int attributeDelta)
-        {
-            if (attributeDelta == 0) return;
-            attributeDelta--;
-            UpgradePoints++;
-        }
-
-        public void ConfirmUpgrades()
-        {
-            _baseSurviability.Val += _surviabilityDelta;
-            _baseEndurance.Val += _enduranceDelta;
-            _basePower.Val += _powerDelta;
-
-            _surviabilityDelta = 0;
-            _enduranceDelta = 0;
-            _powerDelta = 0;
-
-            if (OnAttributesUpgrade != null)
-            {
-                OnAttributesUpgrade();
-            }
-        }
+       
 
         #endregion
 
@@ -198,50 +125,39 @@ namespace HauntedCity.GameMechanics.SkillSystem
 
         #endregion
 
-        #region LevelsAndExp
-
-        public int Level { get; private set; }
-        public int CurrentExp { get; private set; }
-        public int ExpToLevel { get; private set; }
-
-        private void _UpdateExpToNextLevel()
-        {
-            ExpToLevel = 80 * Level * Level * Level + 50 * Level + 1000;
-        }
-
-        private void _NextLevel()
-        {
-            Level++;
-            UpgradePoints += UPGRADE_POINTS_PER_LEVEL;
-            CurrentExp = 0;
-            _UpdateExpToNextLevel();
-            
-        }
+        public Experience PlayerExperience;
 
         public void AddExp(int exp)
         {
-            CurrentExp += exp;
-            while (CurrentExp > ExpToLevel)
-            {
-                _NextLevel();
-            }
+            var earnedLevels = PlayerExperience.AddExp(exp);
+            CharacteristicManager.AccruePoints(earnedLevels);
         }
 
-        #endregion
+        public bool TryBuyWeapon(Weapon weapon)
+        {
+            if (AllowableWeapons.Contains(weapon.Id)) return false;
+            if (weapon.Cost > Money) return false;
+
+            Money -= weapon.Cost;
+            AllowableWeapons.Add(weapon.Id);
+            if (OnWeaponBuy != null)
+            {
+                OnWeaponBuy(weapon);
+            }
+            return true;
+        }
 
         public PlayerGameStats()
         {
-            Level = 1;
-            CurrentExp = 0;
-            _UpdateExpToNextLevel();
+            Money = 10000;
+            PlayerExperience = new Experience();
+            CurrentWeapons = new List<string>(DEFAULT_WEAPONS);
+            AllowableWeapons = new List<string>(DEFAULT_WEAPONS);
 
-            _baseSurviability = new BoundedInt(100, 5, 5);
-            _baseEndurance = new BoundedInt(100, 5, 5);
-            _basePower = new BoundedInt(100, 5, 5);
+            CharacteristicManager = new PlayerCharacteristicManager();
 
             SkillPoints = SKILL_POINTS_PER_LEVEL;
 
-            UpgradePoints = UPGRADE_POINTS_PER_LEVEL;
         }
     }
 }

@@ -1,16 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
+    <LangVersion>4</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{0E2B38E3-E1D8-CD28-E8F2-78F39801526F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-Editor-firstpass</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>Assets</BaseDirectory>
   </PropertyGroup>
@@ -19,7 +23,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_5_6_1;UNITY_5_6;UNITY_5;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_RUNTIME_NAVMESH_BUILDING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;INCLUDE_DYNAMIC_GI;INCLUDE_GI;PLATFORM_SUPPORTS_MONO;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_SCRIPTING_NEW_CSHARP_COMPILER;ENABLE_VIDEO;UNITY_ANDROID;ENABLE_SUBSTANCE;UNITY_ANDROID_API;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;PLATFORM_SUPPORTS_ADS_ID;UNITY_CAN_SHOW_SPLASH_SCREEN;ENABLE_VR;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_2_0_SUBSET;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE;UNITY_HAS_GOOGLEVR;ENABLE_DUCK_TYPING</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_5_6_2;UNITY_5_6;UNITY_5;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_RUNTIME_NAVMESH_BUILDING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;INCLUDE_DYNAMIC_GI;INCLUDE_GI;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_SCRIPTING_NEW_CSHARP_COMPILER;ENABLE_VIDEO;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_EVENT_QUEUE;ENABLE_CLUSTERINPUT;ENABLE_VR;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_2_0_SUBSET;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -46,187 +50,217 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Plugins\Zenject\Source\Editor\EditorStaticInstaller.cs" />
-     <Compile Include="Assets\Plugins\Zenject\Source\Editor\EditorWindow\ZenjectEditorWindow.cs" />
-     <Compile Include="Assets\Plugins\Zenject\Source\Editor\Editors\ContextEditor.cs" />
-     <Compile Include="Assets\Plugins\Zenject\Source\Editor\Editors\GameObjectContextEditor.cs" />
-     <Compile Include="Assets\Plugins\Zenject\Source\Editor\Editors\ProjectContextEditor.cs" />
-     <Compile Include="Assets\Plugins\Zenject\Source\Editor\Editors\SceneContextEditor.cs" />
-     <Compile Include="Assets\Plugins\Zenject\Source\Editor\Editors\SceneDecoratorContextEditor.cs" />
-     <Compile Include="Assets\Plugins\Zenject\Source\Editor\ObjectGraphVisualizer.cs" />
-     <Compile Include="Assets\Plugins\Zenject\Source\Editor\Testing\ValidateOnlyAttribute.cs" />
-     <Compile Include="Assets\Plugins\Zenject\Source\Editor\Testing\ZenjectIntegrationTestFixture.cs" />
-     <Compile Include="Assets\Plugins\Zenject\Source\Editor\Testing\ZenjectUnitTestFixture.cs" />
-     <Compile Include="Assets\Plugins\Zenject\Source\Editor\UnityInspectorListEditor.cs" />
-     <Compile Include="Assets\Plugins\Zenject\Source\Editor\ZenMenuItems.cs" />
-     <Compile Include="Assets\Plugins\Zenject\Source\Editor\ZenUnityEditorUtil.cs" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\VortexEffect.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
-     <None Include="Assets\Libs\GameSparks\Plugins\GameSparksRT.xml" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ToonShading\Shaders\ToonBasic.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />
-     <None Include="Assets\Libs\UniWeb-Free\FAQ.txt" />
-     <None Include="Assets\Libs\GameSparks\Plugins\Metro\GameSparksRT.xml" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ShowAlphaChannel.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\CameraMotionBlur.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\SunShaftsComposite.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\NFAA.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ScreenSpaceRaytrace.cginc" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\VignettingShader.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\TiltShiftHdrLensBlur.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ContrastComposite.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\VignetteShader.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\DepthOfFieldScatter.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\Projectors\Guidelines.txt" />
-     <None Include="Assets\Libs\Mapbox\Resources\Fonts\OpenSansLic.txt" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\MotionBlur.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\MobileBloom.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\FisheyeShader.shader" />
-     <None Include="Assets\Libs\Mapbox\README.txt" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\MinMaxReduction.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\SSAA.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\RadialBlur.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\DepthOfFieldDX11.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAAPreset3.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Apply.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\frag_ao.cginc" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\TwirlEffect.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ScreenSpaceAmbientObscurance.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\PrepareSunShaftsBlur.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionEffect.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\DepthOfField34.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\NoiseAndGrainDX11.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\MobileBlur.shader" />
-     <None Include="Assets\Libs\UniWeb-Free\README.txt" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ConvertDepth.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionCurves.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionCurvesSimple.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\CreaseApply.shader" />
-     <None Include="Assets\Plugins\Zenject\LICENSE.txt" />
-     <None Include="Assets\Libs\Mapbox\Core\Plugins\link.xml" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ToonShading\Shaders\ToonLitOutline.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Luminance.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionSelective.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\Bokeh34.shader" />
-     <None Include="Assets\Plugins\Zenject\Version.txt" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\CameraMotionBlurDX11.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\SeparableBlurPlus.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\BlurEffectConeTaps.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\Projectors\Shaders\ProjectorLight.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ToonShading\Shaders\ToonBasicOutline.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\MultiPassHollywoodFlares.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\DLAA.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\EdgeDetectNormals.shader" />
-     <None Include="Assets\Libs\GameSparks\README.txt" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BrightPassFilter2.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\SeparableBlur.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\GrayscaleEffect.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\SepiaToneEffect.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Adaptation.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\MotionBlurClear.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\NoiseAndGrain.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\Projectors\Shaders\ProjectorMultiply.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\SSAOShader.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\Tonemapper.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BrightPassFilter.shader" />
-     <None Include="Assets\Libs\GameSparks\link.xml" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAA2.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularSmooth.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderYUV.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrection3DLut.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ToonShading\Shaders\ToonLit.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ChromaticAberrationShader.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\LensFlareCreate.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\Blend.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\BlendModesOverlay.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\SimpleClear.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularDisplacement.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAA3Console.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAAPreset2.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\GlobalFog.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlurAndFlares.shader" />
-     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendForBloom.shader" />
- <Reference Include="UnityEditor.Advertisements">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.UI">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/Editor/UnityEditor.UI.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Networking">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.Networking">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/Editor/UnityEditor.Networking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.TestRunner">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/Editor/UnityEditor.TestRunner.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.TestRunner">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
- </Reference>
- <Reference Include="nunit.framework">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/nunit.framework.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.TreeEditor">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Analytics">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.Analytics">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/Editor/UnityEditor.Analytics.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.HoloLens">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/Editor/UnityEditor.HoloLens.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.HoloLens">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.Purchasing">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityPurchasing/Editor/UnityEditor.Purchasing.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.VR">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.VR">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.Graphs">
- <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.Android.Extensions">
- <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.WindowsStandalone.Extensions">
- <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
- </Reference>
- <Reference Include="BouncyCastle_GameSparks">
- <HintPath>E:/Unity Projects/GhostQuest/Assets/Libs/GameSparks/Plugins/BouncyCastle_GameSparks.dll</HintPath>
- </Reference>
- <Reference Include="GameSparks.Api">
- <HintPath>E:/Unity Projects/GhostQuest/Assets/Libs/GameSparks/Plugins/GameSparks.Api.dll</HintPath>
- </Reference>
- <Reference Include="GameSparks">
- <HintPath>E:/Unity Projects/GhostQuest/Assets/Libs/GameSparks/Plugins/GameSparks.dll</HintPath>
- </Reference>
- <Reference Include="GameSparksRT">
- <HintPath>E:/Unity Projects/GhostQuest/Assets/Libs/GameSparks/Plugins/GameSparksRT.dll</HintPath>
- </Reference>
- <Reference Include="Mapbox.Json">
- <HintPath>E:/Unity Projects/GhostQuest/Assets/Libs/Mapbox/Core/Plugins/ThirdParty/Mapbox.Json/Net35/Mapbox.Json.dll</HintPath>
- </Reference>
- <Reference Include="UniWeb-Free">
- <HintPath>E:/Unity Projects/GhostQuest/Assets/Libs/UniWeb-Free/UniWeb-Free.dll</HintPath>
- </Reference>
+    <Compile Include="Assets\Plugins\Editor\JetBrains\Unity3DRider.cs" />
+    <Compile Include="Assets\Plugins\Zenject\Source\Editor\EditorStaticInstaller.cs" />
+    <Compile Include="Assets\Plugins\Zenject\Source\Editor\EditorWindow\ZenjectEditorWindow.cs" />
+    <Compile Include="Assets\Plugins\Zenject\Source\Editor\Editors\ContextEditor.cs" />
+    <Compile Include="Assets\Plugins\Zenject\Source\Editor\Editors\GameObjectContextEditor.cs" />
+    <Compile Include="Assets\Plugins\Zenject\Source\Editor\Editors\ProjectContextEditor.cs" />
+    <Compile Include="Assets\Plugins\Zenject\Source\Editor\Editors\SceneContextEditor.cs" />
+    <Compile Include="Assets\Plugins\Zenject\Source\Editor\Editors\SceneDecoratorContextEditor.cs" />
+    <Compile Include="Assets\Plugins\Zenject\Source\Editor\ObjectGraphVisualizer.cs" />
+    <Compile Include="Assets\Plugins\Zenject\Source\Editor\Testing\ValidateOnlyAttribute.cs" />
+    <Compile Include="Assets\Plugins\Zenject\Source\Editor\Testing\ZenjectIntegrationTestFixture.cs" />
+    <Compile Include="Assets\Plugins\Zenject\Source\Editor\Testing\ZenjectUnitTestFixture.cs" />
+    <Compile Include="Assets\Plugins\Zenject\Source\Editor\UnityInspectorListEditor.cs" />
+    <Compile Include="Assets\Plugins\Zenject\Source\Editor\ZenMenuItems.cs" />
+    <Compile Include="Assets\Plugins\Zenject\Source\Editor\ZenUnityEditorUtil.cs" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\VortexEffect.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
+    <None Include="Assets\Resources\Fonts\Montserrat\OFL.txt" />
+    <None Include="Assets\Libs\GameSparks\Plugins\GameSparksRT.xml" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ToonShading\Shaders\ToonBasic.shader" />
+    <None Include="Assets\Resources\Fonts\Bubbler_One\OFL.txt" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />
+    <None Include="Assets\Libs\UniWeb-Free\FAQ.txt" />
+    <None Include="Assets\Libs\GameSparks\Plugins\Metro\GameSparksRT.xml" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ShowAlphaChannel.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\CameraMotionBlur.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\SunShaftsComposite.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\NFAA.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ScreenSpaceRaytrace.cginc" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\VignettingShader.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\TiltShiftHdrLensBlur.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ContrastComposite.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\VignetteShader.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\DepthOfFieldScatter.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\Projectors\Guidelines.txt" />
+    <None Include="Assets\Resources\Fonts\Frijole\OFL.txt" />
+    <None Include="Assets\Resources\Fonts\Baloo_Bhaina\OFL.txt" />
+    <None Include="Assets\Resources\Fonts\Bahiana\OFL.txt" />
+    <None Include="Assets\Libs\Mapbox\Resources\Fonts\OpenSansLic.txt" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\MotionBlur.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\MobileBloom.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\FisheyeShader.shader" />
+    <None Include="Assets\Resources\Fonts\Permanent_Marker\LICENSE.txt" />
+    <None Include="Assets\Libs\Mapbox\README.txt" />
+    <None Include="Assets\Resources\Fonts\Abril_Fatface\OFL.txt" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\MinMaxReduction.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\SSAA.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\RadialBlur.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\DepthOfFieldDX11.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAAPreset3.shader" />
+    <None Include="Assets\Resources\Fonts\Bowlby_One\OFL.txt" />
+    <None Include="Assets\Resources\Fonts\Fredoka_One\OFL.txt" />
+    <None Include="Assets\Libs\PyroParticles\Prefab\Materials\AdditiveTintable.shader" />
+    <None Include="Assets\Resources\Fonts\Fresca\OFL.txt" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Apply.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\frag_ao.cginc" />
+    <None Include="Assets\Resources\Fonts\Luckiest_Guy\LICENSE.txt" />
+    <None Include="Assets\Resources\Fonts\Pacifico\OFL.txt" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\TwirlEffect.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ScreenSpaceAmbientObscurance.shader" />
+    <None Include="Assets\Resources\Fonts\Boogaloo\OFL.txt" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\PrepareSunShaftsBlur.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionEffect.shader" />
+    <None Include="Assets\Resources\Fonts\Gloria_Hallelujah\OFL.txt" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\DepthOfField34.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\NoiseAndGrainDX11.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\MobileBlur.shader" />
+    <None Include="Assets\Libs\UniWeb-Free\README.txt" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ConvertDepth.shader" />
+    <None Include="Assets\Resources\Fonts\Slabo_27px\OFL.txt" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionCurves.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionCurvesSimple.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\CreaseApply.shader" />
+    <None Include="Assets\Plugins\Zenject\LICENSE.txt" />
+    <None Include="Assets\Resources\Fonts\Passion_One\OFL.txt" />
+    <None Include="Assets\Libs\PyroParticles\Readme.txt" />
+    <None Include="Assets\Libs\Mapbox\Core\Plugins\link.xml" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ToonShading\Shaders\ToonLitOutline.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Luminance.shader" />
+    <None Include="Assets\Resources\Fonts\Love_Ya_Like_A_Sister\OFL.txt" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionSelective.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\Bokeh34.shader" />
+    <None Include="Assets\Resources\Fonts\Shadows_Into_Light\OFL.txt" />
+    <None Include="Assets\Resources\Fonts\Quicksand\OFL.txt" />
+    <None Include="Assets\Plugins\Zenject\Version.txt" />
+    <None Include="Assets\Resources\Fonts\Spectral\OFL.txt" />
+    <None Include="Assets\Resources\Fonts\Cinzel\OFL.txt" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\CameraMotionBlurDX11.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\SeparableBlurPlus.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\BlurEffectConeTaps.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\Projectors\Shaders\ProjectorLight.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ToonShading\Shaders\ToonBasicOutline.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\MultiPassHollywoodFlares.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\DLAA.shader" />
+    <None Include="Assets\Resources\Fonts\Josefin_Sans\OFL.txt" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\EdgeDetectNormals.shader" />
+    <None Include="Assets\Libs\GameSparks\README.txt" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BrightPassFilter2.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\SeparableBlur.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\GrayscaleEffect.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\SepiaToneEffect.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Adaptation.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\MotionBlurClear.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\NoiseAndGrain.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\Projectors\Shaders\ProjectorMultiply.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\SSAOShader.shader" />
+    <None Include="Assets\Resources\Fonts\Monoton\OFL.txt" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\Tonemapper.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BrightPassFilter.shader" />
+    <None Include="Assets\Libs\GameSparks\link.xml" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAA2.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularSmooth.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderYUV.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrection3DLut.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ToonShading\Shaders\ToonLit.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ChromaticAberrationShader.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\LensFlareCreate.shader" />
+    <None Include="Assets\Resources\Fonts\Righteous\OFL.txt" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\Blend.shader" />
+    <None Include="Assets\Resources\Fonts\Lobster_Two\OFL.txt" />
+    <None Include="Assets\Resources\Fonts\Chewy\LICENSE.txt" />
+    <None Include="Assets\Resources\Fonts\Indie_Flower\OFL.txt" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\BlendModesOverlay.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\SimpleClear.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularDisplacement.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAA3Console.shader" />
+    <None Include="Assets\Resources\Fonts\Bangers\OFL.txt" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAAPreset2.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\GlobalFog.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlurAndFlares.shader" />
+    <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendForBloom.shader" />
+    <Reference Include="UnityEditor.Advertisements">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/Editor/UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Networking">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/Editor/UnityEditor.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.TestRunner">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/Editor/UnityEditor.TestRunner.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TestRunner">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.TreeEditor">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Analytics">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Analytics">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/Editor/UnityEditor.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.HoloLens">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/Editor/UnityEditor.HoloLens.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.HoloLens">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Purchasing">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityPurchasing/Editor/UnityEditor.Purchasing.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.VR">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VR">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Graphs">
+      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.WindowsStandalone.Extensions">
+      <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle_GameSparks">
+      <HintPath>C:/Users/Dan/Documents/GitHub/GhostQuest/Assets/Libs/GameSparks/Plugins/BouncyCastle_GameSparks.dll</HintPath>
+    </Reference>
+    <Reference Include="GameSparks.Api">
+      <HintPath>C:/Users/Dan/Documents/GitHub/GhostQuest/Assets/Libs/GameSparks/Plugins/GameSparks.Api.dll</HintPath>
+    </Reference>
+    <Reference Include="GameSparks">
+      <HintPath>C:/Users/Dan/Documents/GitHub/GhostQuest/Assets/Libs/GameSparks/Plugins/GameSparks.dll</HintPath>
+    </Reference>
+    <Reference Include="GameSparksRT">
+      <HintPath>C:/Users/Dan/Documents/GitHub/GhostQuest/Assets/Libs/GameSparks/Plugins/GameSparksRT.dll</HintPath>
+    </Reference>
+    <Reference Include="Mapbox.Json">
+      <HintPath>C:/Users/Dan/Documents/GitHub/GhostQuest/Assets/Libs/Mapbox/Core/Plugins/ThirdParty/Mapbox.Json/Net35/Mapbox.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="UniWeb-Free">
+      <HintPath>C:/Users/Dan/Documents/GitHub/GhostQuest/Assets/Libs/UniWeb-Free/UniWeb-Free.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{312E6C74-2368-041F-79DE-C258943CC3D8}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{312E6C74-2368-041F-79DE-C258943CC3D8}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -236,5 +270,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  
 </Project>

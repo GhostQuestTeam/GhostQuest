@@ -66,10 +66,7 @@ namespace Mapbox.Unity.Location
 
         void OnEnable()
         {
-           // if (_pollRoutine == null)
-           // {
-                _pollRoutine = StartCoroutine(PollLocationRoutine());
-           // }
+            _pollRoutine = StartCoroutine(PollLocationRoutine());
         }
 
         /// <summary>
@@ -141,5 +138,7 @@ namespace Mapbox.Unity.Location
                 OnLocationUpdated(this, new LocationUpdatedEventArgs() { Location = location });
             }
         }
+
+        
     }
 }

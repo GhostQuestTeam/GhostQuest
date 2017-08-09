@@ -605,6 +605,7 @@ GameObject:
   - component: {fileID: 114164237636340510}
   - component: {fileID: 114994710096404992}
   - component: {fileID: 114959585366588840}
+  - component: {fileID: 114249101793380042}
   m_Layer: 5
   m_Name: GhostsPanel
   m_TagString: Untagged
@@ -1046,6 +1047,7 @@ GameObject:
   - component: {fileID: 222464142163314284}
   - component: {fileID: 114033935856106830}
   - component: {fileID: 114965453729132468}
+  - component: {fileID: 114511216005591154}
   m_Layer: 5
   m_Name: UserPointInfoWindow
   m_TagString: Untagged
@@ -1533,6 +1535,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Ghost1
+--- !u!114 &114249101793380042
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1558090670625674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c532f2d53cd740609a2159688d4e9152, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GhostInfoPrefab: {fileID: 1734232980041126, guid: 70d66a6dfe2b22b438456557fa3ffcc4,
+    type: 2}
+  GhostContainer: {fileID: 224618837536176372}
 --- !u!114 &114252395687477508
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2359,6 +2375,23 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Ghost1
+--- !u!114 &114511216005591154
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1895624447956158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe4cf7506f004eaa86d2a6002679f04b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PointInfo: {fileID: 114866693457260130}
+  GhostPanel: {fileID: 114249101793380042}
+  IncomeLevel: {fileID: 114457138442090488}
+  DefenceLevel: {fileID: 114848411920798034}
+  Money: {fileID: 114955892626337970}
+  Shield: {fileID: 114323019871853532}
 --- !u!114 &114542847932163394
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4447,7 +4480,7 @@ RectTransform:
   m_GameObject: {fileID: 1895624447956158}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
   - {fileID: 224924650359654194}
   - {fileID: 224305688430382708}
