@@ -36,4 +36,4 @@ namespace HauntedCity.UI.WeaponPanels
             PlayerStatsManager.BuyWeapon(_weapon.Id);
         }
     }
-}
+}  

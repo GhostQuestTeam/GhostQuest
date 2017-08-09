@@ -1,4 +1,5 @@
-﻿using UnityEngine.UI;
+﻿using HauntedCity.Geo;
+using UnityEngine.UI;
 using UnityEngine;
 
 namespace HauntedCity.UI.PointInfo
@@ -7,17 +8,17 @@ namespace HauntedCity.UI.PointInfo
     {
         public Text PointOwner;
 
-        public override void UpdateView(GameSparksPOIsExtraction.ExtractedPointMetadata point)
+        public override void UpdateView(PointOfInterestData point)
         {
             base.UpdateView(point);
-            PointOwner.text = _point.displayName;
+            PointOwner.text = _point.DisplayName;
         }
 
         private GameSparksBattle _gsb;
 
         public void OnStartCapture(object sender, GameSparksBattle.POI_START_CAP_ev_arg arg)
         {
-            if (arg.poid == _point.poid)
+            if (arg.poid == _point.Poid)
             {
                 //_gsb.OnPOIStartCap -= OnStartCapture;
                 if (arg.isError || !arg.isStarted)
@@ -40,7 +41,7 @@ namespace HauntedCity.UI.PointInfo
                 _gsb = GameObject.Find("GameSparks").GetComponent<GameSparksBattle>();
                 _gsb.OnPOIStartCap += OnStartCapture;
             }
-            _gsb.sendStartCapture(_point.poid);
+            _gsb.sendStartCapture(_point.Poid);
         }
 
         public void OnDestroy()

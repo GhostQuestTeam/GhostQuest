@@ -1,4 +1,5 @@
-﻿using HauntedCity.Networking;
+﻿using HauntedCity.Geo;
+using HauntedCity.Networking;
 using UnityEngine;
 using Zenject;
 
@@ -12,9 +13,9 @@ namespace HauntedCity.UI.PointInfo
         public TheirPointInfoPanel theirPointPanelTemplate;
         
 
-        public void Show(GameSparksPOIsExtraction.ExtractedPointMetadata point)
+        public void Show(PointOfInterestData point)
         {
-            if (point.displayName == _authService.Nickname && point.displayName != "")
+            if (point.DisplayName == _authService.Nickname && point.DisplayName != "")
             {
                 yourPointrPanelTemplate.Show(point);
             }

@@ -31,7 +31,7 @@ public class DebugPanel : MonoBehaviour
         {
             var poi = Instantiate(prefab);
             poi.transform.SetParent(container, false);
-            poi.GetComponent<Text>().text = child.GetComponent<PointOfInterestWithLocationProvider>()._metadata.LatLon.ToString();
+            poi.GetComponent<Text>().text = child.GetComponent<PointOfInterestWithLocationProvider>().Metadata.LatLon.ToString();
             
         }
     }

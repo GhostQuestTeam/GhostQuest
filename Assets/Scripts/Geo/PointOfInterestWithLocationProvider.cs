@@ -31,7 +31,7 @@ namespace HauntedCity.Geo
             public GameObject UnityObject;
         }
 
-        public GameSparksPOIsExtraction.ExtractedPointMetadata _metadata;
+        public PointOfInterestData Metadata { get; set; }
 
         public event EventHandler<PointOfInterestEventArgs> OnPOIClose;
 
@@ -74,7 +74,7 @@ namespace HauntedCity.Geo
             _playerObject = GameObject.FindGameObjectWithTag("Player");
             _gsb = GameObject.Find("GameSparks").GetComponent<GameSparksBattle>();
             _gsb.OnScriptMessagePOIOwnerChange += OnOwnerChange;
-            GetComponent<PointColor>().UpdateView(_metadata.IsYour());
+            GetComponent<PointColor>().UpdateView(Metadata.IsYour());
         }
 
         void OnDestroy()
@@ -151,18 +151,17 @@ namespace HauntedCity.Geo
         public void OnRay()
         {
             var infoPanel = FindObjectOfType<PointInfoPanelController>();
-            infoPanel.Show(_metadata);
+            infoPanel.Show(Metadata);
         }
 
 
         public void OnOwnerChange(object sender, GameSparksBattle.SCRIPT_MESSAGE_POI_OWNER_CHANGE_ev_arg arg)
         {
-            if ((arg != null) && (!arg.isError) && (arg.poid == _metadata.poid))
+            if ((arg != null) && (!arg.isError) && (arg.poid == Metadata.Poid))
             {
-                _metadata.uoid = arg.newOwnerUoid;
-                _metadata.owner_display_name = arg.newOwnerDisplayName;
-                _metadata.owner_user_name = arg.newOwnerUserName;
-                GetComponent<PointColor>().UpdateView(_metadata.IsYour());
+                Metadata.Uoid = arg.newOwnerUoid;
+                Metadata.DisplayName = arg.newOwnerDisplayName;
+                GetComponent<PointColor>().UpdateView(Metadata.IsYour());
             }
         }
 

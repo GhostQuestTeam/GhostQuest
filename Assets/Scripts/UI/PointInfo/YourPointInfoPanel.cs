@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using HauntedCity.Geo;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace HauntedCity.UI.PointInfo
@@ -17,13 +18,13 @@ namespace HauntedCity.UI.PointInfo
             _geoService = GameObject.FindObjectOfType<GameSparksPOIsExtraction>();
         }
         
-        public override void UpdateView(GameSparksPOIsExtraction.ExtractedPointMetadata point)
+        public override void UpdateView(PointOfInterestData point)
         {
             base.UpdateView(point);
-            IncomeLevel.text = _point.incomeLevel.ToString();
-            DefenceLevel.text = _point.shieldLevel.ToString();
-            Money.text = _point.currentMoney + "/" + _point.MaxMoney;
-            Shield.text = _point.currentShield + "/" + _point.MaxShield;
+            IncomeLevel.text = _point.Money.Level.ToString();
+            DefenceLevel.text = _point.Shield.Level.ToString();
+            Money.text = _point.Money.Value + "/" + _point.Money.MaxValue;
+            Shield.text = _point.Shield.Value + "/" + _point.Shield.MaxValue;
         }
         
         public void UpdateView()
@@ -32,30 +33,26 @@ namespace HauntedCity.UI.PointInfo
         }
 
         public void UpgradeIncome()
-        {;
-            _point.TryUpgradeIncome();
-            _geoService.UpdatePoint(_point);
+        {
+            _point.Money.TryUpgrade();
             UpdateView();
         }
         
         public void UpgradeShields()
         {
-            _point.TryUpgradeShield();
-            _geoService.UpdatePoint(_point);
+            _point.Shield.TryUpgrade();
             UpdateView();
         }
         
         public void GetMoney()
         {
-            _point.GetMoney();
-            _geoService.UpdatePoint(_point);
+            _point.Money.TakeMoney();
             UpdateView();
         }
         
         public void RestoreShield()
         {
-            _point.TryRestoreShield();
-            _geoService.UpdatePoint(_point);
+            _point.Shield.TryRestore();
             UpdateView();
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using GameSparks.Core;
 using HauntedCity.GameMechanics.BattleSystem;
 using HauntedCity.GameMechanics.SkillSystem;
+using HauntedCity.Geo;
 using HauntedCity.Networking;
 using HauntedCity.Utils;
 using UnityEngine;
@@ -27,7 +28,7 @@ namespace HauntedCity.GameMechanics.Main
         
         public string[] AllowableGhosts = { "shadow_skull", "devil_mask","skull_ghost" };
 
-        private GameSparksPOIsExtraction.ExtractedPointMetadata _currentPOImeta;
+        private PointOfInterestData _currentPOImeta;
 
         private GameSparksBattle _gsb;
         private int _lastScore;
@@ -80,7 +81,7 @@ namespace HauntedCity.GameMechanics.Main
 
         public void OnSuccessCapture(object sender, GameSparksBattle.POI_SUCESS_CAP_ev_arg arg)
         {
-            if(arg.poid == _currentPOImeta.poid)
+            if(arg.poid == _currentPOImeta.Poid)
             {
                 //_gsb.OnPOISuccessCap -= OnSuccessCapture;
 //                if(!arg.isError && arg.isSuccess)
@@ -140,12 +141,12 @@ namespace HauntedCity.GameMechanics.Main
             GameStats.StorageService = _storageService;
             if (sceneName == "battle")
             {
-                _battleStateController.StartBattle(new Dictionary<string, int>( _currentPOImeta.enemies) );
+                _battleStateController.StartBattle(new Dictionary<string, int>( _currentPOImeta.Enemies) );
             }
             
         }
 
-        public void StartBattle(GameSparksPOIsExtraction.ExtractedPointMetadata meta)
+        public void StartBattle(PointOfInterestData meta)
         {
             _currentPOImeta = meta;
             
@@ -161,8 +162,8 @@ namespace HauntedCity.GameMechanics.Main
 
         public void BattleWonHandle(int score)
         {
-            _gsb.sendSuccessCapture(_currentPOImeta.poid);
-            _currentPOImeta.displayName = _authService.Nickname;
+            _gsb.sendSuccessCapture(_currentPOImeta.Poid);
+            _currentPOImeta.DisplayName = _authService.Nickname;
             _lastScore = score;
             //DONT WE DISABLE OURSELVES AND SCRIPT DOES NOT FINISH?
           
@@ -171,7 +172,7 @@ namespace HauntedCity.GameMechanics.Main
         public void BattleLoseHandle()
         {
             _lastScore = 0;
-            _gsb.sendFailCaptureConfirm(_currentPOImeta.poid);
+            _gsb.sendFailCaptureConfirm(_currentPOImeta.Poid);
             Debug.Log("Lose in battle");
             GameObject.Find("BattleRoot").SetActive(false);
             _sceneAgregator.switchToScene("map");

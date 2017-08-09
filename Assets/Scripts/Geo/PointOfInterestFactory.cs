@@ -14,7 +14,7 @@ namespace HauntedCity.Geo
     public class PointOfInterestFactory : MonoBehaviour
     {
         public GameObject _root;
-        public HashSet<GameSparksPOIsExtraction.ExtractedPointMetadata> _points = new HashSet<GameSparksPOIsExtraction.ExtractedPointMetadata>();
+        public HashSet<PointOfInterestData> _points = new HashSet<PointOfInterestData>();
         public GameObject PointOfInterestPrefab;
         public GameObject GameSparksObj;
 
@@ -99,14 +99,14 @@ namespace HauntedCity.Geo
 
             _root.transform.Clear();
 
-            foreach (GameSparksPOIsExtraction.ExtractedPointMetadata pointMeta in _points)
+            foreach (var pointMeta in _points)
             {
                 GameObject newPOI = Instantiate(PointOfInterestPrefab, 100 * Vector3.down, Quaternion.identity,
                     _root.transform);
                 newPOI.SetActive(true);
                 PointOfInterestWithLocationProvider poiwtp = newPOI.GetComponent<PointOfInterestWithLocationProvider>();
                 poiwtp._myMapLocation = pointMeta.LatLon;
-                poiwtp._metadata = pointMeta;
+                poiwtp.Metadata = pointMeta;
             }
         }
 

@@ -5,6 +5,7 @@ using GameSparks.Core;
 using HauntedCity.GameMechanics.BattleSystem;
 using HauntedCity.Networking;
 using HauntedCity.Utils;
+using UnityEngine;
 
 namespace HauntedCity.GameMechanics.SkillSystem
 {
@@ -133,6 +134,13 @@ namespace HauntedCity.GameMechanics.SkillSystem
             CharacteristicManager.AccruePoints(earnedLevels);
         }
 
+        public bool TryGetMoney(int amount)
+        {
+            if (amount < Money) return false;
+            Money -= amount;
+            return true;
+        }
+        
         public bool TryBuyWeapon(Weapon weapon)
         {
             if (AllowableWeapons.Contains(weapon.Id)) return false;
