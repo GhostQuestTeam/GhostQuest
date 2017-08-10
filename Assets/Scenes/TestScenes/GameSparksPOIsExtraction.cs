@@ -153,7 +153,7 @@ public class GameSparksPOIsExtraction : MonoBehaviour
                     foreach (GSData pointGsData in pointsGSData)
                     {
                        
-                        var pointMeta = new PointOfInterestData();
+                        var pointMeta = new PointOfInterestData(_authService);
                         pointMeta.SetGSData(pointGsData);
 
                         _points.Add(pointMeta);

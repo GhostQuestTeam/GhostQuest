@@ -11,7 +11,7 @@ namespace HauntedCity.Geo
     [Serializable]
     public class PointOfInterestData
     {
-        [Inject] private AuthService _authService;
+        private AuthService _authService;
 
         public Vector2d LatLon { get; private set; }
         public Dictionary<string, int> Enemies { get; private set; }
@@ -58,11 +58,12 @@ namespace HauntedCity.Geo
 
         public bool IsYour()
         {
-            return DisplayName == _authService.Nickname;
+            return DisplayName == _authService.Nickname;//TODO Проверять по ID
         }
 
-        public PointOfInterestData()
+        public PointOfInterestData(AuthService authService)
         {
+            _authService = authService;
             Enemies = new Dictionary<string, int>();
         }
     }
