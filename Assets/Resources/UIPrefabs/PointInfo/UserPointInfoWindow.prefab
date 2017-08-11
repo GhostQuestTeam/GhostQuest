@@ -1413,6 +1413,11 @@ MonoBehaviour:
   DefenceLevel: {fileID: 114572573789879444}
   Money: {fileID: 114604572471246326}
   Shield: {fileID: 114666543031088786}
+  ShieldUpgradePrice: {fileID: 114475420070469626}
+  IncomeUpgradePrice: {fileID: 114704602883908150}
+  ShieldUpgradeButton: {fileID: 1629353199772872}
+  IncomeUpgradeButton: {fileID: 1142302326653434}
+  TakeMoneyButton: {fileID: 1178278047919788}
 --- !u!114 &114328822982713122
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2178,7 +2183,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 24
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 3
@@ -2370,7 +2375,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 24
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 3
@@ -2379,7 +2384,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 4682
+  m_Text: 1200/1200
 --- !u!114 &114667831264461796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3460,7 +3465,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1586537010448070}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:

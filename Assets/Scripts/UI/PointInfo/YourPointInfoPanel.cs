@@ -10,10 +10,13 @@ namespace HauntedCity.UI.PointInfo
         public Text DefenceLevel;
         public Text Money;
         public Text Shield;
-
         public Text ShieldUpgradePrice;
         public Text IncomeUpgradePrice;
 
+        public GameObject ShieldUpgradeButton;
+        public GameObject IncomeUpgradeButton;
+        public GameObject TakeMoneyButton;
+        
         private GameSparksPOIsExtraction _geoService;
         
         void Awake()
@@ -30,8 +33,10 @@ namespace HauntedCity.UI.PointInfo
             Shield.text = _point.Shield.Value + "/" + _point.Shield.MaxValue;
             ShieldUpgradePrice.text = _point.Shield.Price.ToString();
             IncomeUpgradePrice.text = _point.Money.Price.ToString();
-                      
-            
+           
+            ShieldUpgradeButton.SetActive(_point.Shield.CanUpgrade());
+            IncomeUpgradeButton.SetActive(_point.Money.CanUpgrade());
+//            TakeMoneyButton.SetActive(_point.Money.CanTakeMoney());
         }
         
         public void UpdateView()
