@@ -1341,19 +1341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f3d94b1a6e88344affbc544d16575d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackType: 0
-  BattleStats:
-    Solidity:
-      RegenPoints: 0
-      Defence: 0
-      MaxHealth: 40
-    Velocity: 0.1
-    Damage: 5
-  DeathDelay: 0.1
-  AttackRange: 6
-  AttackCooldown: 1
-  Score: 500
-  BonusDropProb: 0.5
+  enemyInfo: {fileID: 11400000, guid: 49143fc3b6874e547959710554d656e3, type: 2}
 --- !u!136 &136275621453660734
 CapsuleCollider:
   m_ObjectHideFlags: 1

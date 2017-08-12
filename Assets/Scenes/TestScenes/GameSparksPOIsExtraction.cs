@@ -134,7 +134,6 @@ public class GameSparksPOIsExtraction : MonoBehaviour
         if (depth == 0)
             return;
 
-        FindObjectOfType<DebugPanel>().Log(CurPos.ToString());
         GetPOIsEventArg evArg = new GetPOIsEventArg((float) CurPos.x, (float) CurPos.y);
         string sEvArg = JsonUtility.ToJson(evArg);
         Debug.Log(sEvArg);

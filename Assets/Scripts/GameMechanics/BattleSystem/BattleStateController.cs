@@ -119,7 +119,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
 
         public void EnemyDeathHandle(GameObject enemy)
         {
-            _totalScore += enemy.GetComponent<EnemyBehavior>().Score;
+            _totalScore += enemy.GetComponent<EnemyBehavior>().enemyInfo.Score;
             _currentEnemies.Remove(enemy);
             if (_allEnemies.Count > 0)
             {

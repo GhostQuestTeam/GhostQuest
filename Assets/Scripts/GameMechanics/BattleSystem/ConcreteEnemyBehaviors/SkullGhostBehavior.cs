@@ -9,7 +9,7 @@ namespace HauntedCity.GameMechanics.BattleSystem.ConcreteEnemyBehaviors
         public string ExplosionPrefabPath = "FX/SkullGhostExplosion";
 
         private BattleController _battleController;
-        private BattleStats _battleStats;
+//        private BattleStats _battleStats;
         private Transform _jaw;
         private Transform _skull;
 
@@ -23,7 +23,7 @@ namespace HauntedCity.GameMechanics.BattleSystem.ConcreteEnemyBehaviors
             _explosionPrefab = Resources.Load(ExplosionPrefabPath) as GameObject;
 
             _battleController = GetComponent<EnemyBehavior>().BattleController;
-            _battleStats = GetComponent<EnemyBehavior>().BattleStats;
+//            _battleStats = GetComponent<EnemyBehavior>().BattleStats;
 
             _battleController.OnHealthChange += TakeHealthChangeAnimate;
             _battleController.OnDeath += DeathAnimate;
@@ -41,10 +41,10 @@ namespace HauntedCity.GameMechanics.BattleSystem.ConcreteEnemyBehaviors
 
         public void TakeHealthChangeAnimate(int hpDelta)
         {
-            if (_battleStats.Solidity.IsAlive())
-            {
-                StartCoroutine(TakeDamageAnimateCorutine());
-            }
+//            if (_battleStats.Solidity.IsAlive())
+//            {
+//                StartCoroutine(TakeDamageAnimateCorutine());
+//            }
         }
 
         public void DeathAnimate()
