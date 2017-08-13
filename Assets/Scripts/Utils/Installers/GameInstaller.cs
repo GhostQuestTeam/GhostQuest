@@ -26,6 +26,7 @@ namespace HauntedCity.Utils.Installers
             Container.Bind<LeaderboardService>().AsSingle();
             Container.Bind<AuthService>().AsSingle();
             Container.Bind<IPlayerStatsManager>().To<GameSparksPlayerStatsManager>().AsSingle();
+            Container.Bind<IPOIStatsManager>().To<GameSparksPOIStatsManager>().AsSingle();
             #endregion
 
         }

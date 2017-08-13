@@ -850,7 +850,9 @@ MonoBehaviour:
   _root: {fileID: 851327782}
   PointOfInterestPrefab: {fileID: 1102547347441302, guid: 9aab74fc74b850248b10c824e19e40e5,
     type: 2}
-  GameSparksObj: {fileID: 1676136147}
+  GameSparksObj: {fileID: 0}
+  UpdatePeriod: 45
+  locationProviderWrapper: {fileID: 881584376}
 --- !u!1 &508458328
 GameObject:
   m_ObjectHideFlags: 0
@@ -2475,6 +2477,7 @@ GameObject:
   m_Component:
   - component: {fileID: 881584374}
   - component: {fileID: 881584375}
+  - component: {fileID: 881584376}
   m_Layer: 0
   m_Name: LocationProvider
   m_TagString: Untagged
@@ -2512,6 +2515,17 @@ MonoBehaviour:
   _deviceLocationProvider: {fileID: 347197285}
   _editorLocationProvider: {fileID: 714770510}
   _transformLocationProvider: {fileID: 792959033}
+--- !u!114 &881584376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 881584373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e832d70d779a40448d1a23ecac8d33d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &885268309
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3836,7 +3850,7 @@ Prefab:
     - target: {fileID: 224306862218412860, guid: 671d9ee46e2a03947b3aaeabcc38372a,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -97.77778
+      value: -97.77777
       objectReference: {fileID: 0}
     - target: {fileID: 224306862218412860, guid: 671d9ee46e2a03947b3aaeabcc38372a,
         type: 2}
@@ -6379,7 +6393,6 @@ Transform:
   - {fileID: 1320159504}
   - {fileID: 2107687414}
   - {fileID: 851327783}
-  - {fileID: 1676136148}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6857,50 +6870,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1658306121}
---- !u!1 &1676136147
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1676136148}
-  - component: {fileID: 1676136149}
-  m_Layer: 0
-  m_Name: PointExtractor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1676136148
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1676136147}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1533077342}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1676136149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1676136147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f29bb4eb0250ea644a3f5796c5f73037, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fake_lat: 55.5
-  fake_lon: 37.5
-  UseLocationProvider: 1
-  depth: 5
 --- !u!1 &1702865256
 GameObject:
   m_ObjectHideFlags: 0

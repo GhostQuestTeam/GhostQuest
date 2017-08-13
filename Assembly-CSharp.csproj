@@ -329,7 +329,6 @@
     <Compile Include="Assets\Libs\UniWeb-Free\Examples\WebsocketClientEcho.cs" />
     <Compile Include="Assets\Libs\UniWeb-Free\Examples\WebsocketClientExample.cs" />
     <Compile Include="Assets\Scenes\TestScenes\AccelerationCleaner.cs" />
-    <Compile Include="Assets\Scenes\TestScenes\GameSparksPOIsExtraction.cs" />
     <Compile Include="Assets\Scenes\TestScenes\PlayerBehaviourFromAccelerometer.cs" />
     <Compile Include="Assets\Scenes\TestScenes\TestDeviceLocation.cs" />
     <Compile Include="Assets\Scenes\TestScenes\TrivialPlayerBehaviourFromAccelerometer.cs" />
@@ -360,6 +359,7 @@
     <Compile Include="Assets\Scripts\GameMechanics\SkillSystem\PlayerGameStats.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\SkillSystem\SkillTypes.cs" />
     <Compile Include="Assets\Scripts\Geo\BuildMapAtLocation.cs" />
+    <Compile Include="Assets\Scripts\Geo\LocationProviderWrapper.cs" />
     <Compile Include="Assets\Scripts\Geo\POIMoney.cs" />
     <Compile Include="Assets\Scripts\Geo\POIShield.cs" />
     <Compile Include="Assets\Scripts\Geo\POIStat.cs" />
@@ -369,7 +369,9 @@
     <Compile Include="Assets\Scripts\Geo\PositionWithLocationProvider.cs" />
     <Compile Include="Assets\Scripts\Geo\RotateWithLocationProvider.cs" />
     <Compile Include="Assets\Scripts\Networking\AuthService.cs" />
+    <Compile Include="Assets\Scripts\Networking\GameSparksImpl\GameSparksPOIStatsManager.cs" />
     <Compile Include="Assets\Scripts\Networking\GameSparksImpl\GameSparksPlayerStatsManager.cs" />
+    <Compile Include="Assets\Scripts\Networking\Interfaces\IPOIStatsManager.cs" />
     <Compile Include="Assets\Scripts\Networking\Interfaces\IPlayerStatsManager.cs" />
     <Compile Include="Assets\Scripts\Networking\LeaderboardService.cs" />
     <Compile Include="Assets\Scripts\Networking\MessageRetranslator.cs" />

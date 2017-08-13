@@ -17,11 +17,9 @@ namespace HauntedCity.UI.PointInfo
         public GameObject IncomeUpgradeButton;
         public GameObject TakeMoneyButton;
         
-        private GameSparksPOIsExtraction _geoService;
         
         void Awake()
         {
-            _geoService = GameObject.FindObjectOfType<GameSparksPOIsExtraction>();
         }
         
         public override void UpdateView(PointOfInterestData point)
