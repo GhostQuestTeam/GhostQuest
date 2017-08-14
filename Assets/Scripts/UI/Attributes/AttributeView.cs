@@ -15,14 +15,11 @@ namespace HauntedCity.UI.Attributes
         public Text Value;
 
         [Inject] private GameController _gameController;
-
-        protected override Model GetModel()
-        {
-            return GameController.GameStats.CharacteristicManager;
-        }
         
         void Start()
         {
+            Model = GameController.GameStats.CharacteristicManager;
+
             Plus.onClick.AddListener(() =>
                 GameController.GameStats.CharacteristicManager.TryIncCharacteristic(Characteristic));
             Minus.onClick.AddListener(() =>

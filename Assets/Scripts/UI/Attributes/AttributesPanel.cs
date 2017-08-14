@@ -16,17 +16,11 @@ namespace HauntedCity.UI.Attributes
         [Inject] private GameController _gameController;
         [Inject] private IPlayerStatsManager _playerStatsManager;
 
-        private void Awake()
-        {
-        }
-
-        protected override Model GetModel()
-        {
-            return GameController.GameStats.CharacteristicManager;
-        }
-
+     
         void Start()
         {
+            Model = GameController.GameStats.CharacteristicManager;
+            
             OkButton.onClick.AddListener(() =>
                 {
                     //TODO Убрать привязку к конкретным характеристикам

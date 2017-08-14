@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using GameSparks.Core;
 using HauntedCity.GameMechanics.Main;
 using HauntedCity.Networking;
+using HauntedCity.Utils;
 using HauntedCity.Utils.Extensions;
 using Mapbox.Utils;
 using Zenject;
@@ -10,7 +11,7 @@ using Zenject;
 namespace HauntedCity.Geo
 {
     [Serializable]
-    public class PointOfInterestData
+    public class PointOfInterestData:Model
     {
         private AuthService _authService;
 
@@ -54,8 +55,39 @@ namespace HauntedCity.Geo
                 properties.GetInt("shields_level" ) ??  1,
                 properties.GetInt("current_shields") ?? 0
             );
-                  
+            _NotifyChanges();
         }
+
+        public void TakeMoney()
+        {
+            Money.TakeMoney();
+            _NotifyChanges();
+        }
+
+        public void UpgradeShield()
+        {
+            Shield.TryUpgrade();
+            _NotifyChanges();
+        }
+        
+        public void RestoreShield()
+        {
+            Shield.TryRestore();
+            _NotifyChanges();
+        }
+        
+        public void AttackShield()
+        {
+            Shield.TryAttack();
+            _NotifyChanges();
+        }
+
+        public void UpgradeIncome()
+        {
+            Money.TryUpgrade();
+            _NotifyChanges();
+        }
+        
 
         public bool IsYour()
         {

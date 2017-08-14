@@ -89,12 +89,18 @@ namespace HauntedCity.Geo
 
         private void OnEnable()
         {
-            messageRetranslator.Subscribe(MessageType.POI_UPDATE, OnPOIUpdate);
+            if (messageRetranslator != null)
+            {
+                messageRetranslator.Subscribe(MessageType.POI_UPDATE, OnPOIUpdate);
+            }
         }
         
         private void OnDisable()
-        {
-            messageRetranslator.Unsubscribe(MessageType.POI_UPDATE, OnPOIUpdate );
+        {   
+            if(messageRetranslator != null)
+            {
+                messageRetranslator.Unsubscribe(MessageType.POI_UPDATE, OnPOIUpdate);
+            }
         }
 
         void Start()

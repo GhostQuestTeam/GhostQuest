@@ -17,8 +17,14 @@ namespace HauntedCity.UI.PointInfo
         public virtual void UpdateView(PointOfInterestData point)
         {
             _point = point;
+            Model = _point;
             PointInfo.text = _point.LatLon.ToString();
             GhostPanel.UpdateView(_point);
+        }
+
+        public override void UpdateView()
+        {
+            UpdateView(_point);
         }
 
         public void Show(PointOfInterestData point)

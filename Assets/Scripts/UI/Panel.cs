@@ -1,19 +1,36 @@
-﻿using HauntedCity.Utils;
+﻿using System.Runtime.InteropServices;
+using HauntedCity.Utils;
 using UnityEngine;
 
 namespace HauntedCity.UI
 {
-    public class Panel:MonoBehaviour
-    {   
+    public class Panel : MonoBehaviour
+    {
         public void Show()
         {
             transform.localScale = Vector3.one;
             OnShow();
         }
-        
-        protected virtual Model GetModel()
+
+        private Model _model;
+
+        protected virtual Model Model
         {
-            return null;
+            get { return _model; }
+            set
+            {
+                if (_model == value) return;
+                if (_model != null)
+                {
+                    _model.OnChange -= UpdateView;
+                }
+                _model = value;
+                if (_model != null)
+                {
+                    _model.OnChange += UpdateView;
+                }
+                UpdateView();
+            }
         }
 
         public void ShowInstead(Panel other)
@@ -21,7 +38,7 @@ namespace HauntedCity.UI
             Hide();
             other.Show();
         }
-        
+
         public void Hide()
         {
             transform.localScale = Vector3.zero;
@@ -30,21 +47,15 @@ namespace HauntedCity.UI
 
         protected virtual void OnShow()
         {
-            if (GetModel() != null)
-            {
-                GetModel().OnChange += UpdateView;
-            }
             UpdateView();
         }
 
         protected virtual void OnHide()
         {
-            if (GetModel() != null)
-            {
-                GetModel().OnChange += UpdateView;
-            }
         }
-        
-        public virtual void UpdateView(){} 
+
+        public virtual void UpdateView()
+        {
+        }
     }
 }

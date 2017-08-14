@@ -1,5 +1,6 @@
 ﻿using HauntedCity.Geo;
 using HauntedCity.Networking.Interfaces;
+using HauntedCity.Utils;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -42,26 +43,22 @@ namespace HauntedCity.UI.PointInfo
 //            TakeMoneyButton.SetActive(_point.Money.CanTakeMoney());
         }
 
-        public void UpdateView()
-        {
-            UpdateView(_point);
-        }
-
+  
         public void UpgradeIncome()
         {
-            if (_point.Money.TryUpgrade())
+            if (_point.Money.CanUpgrade())
             {
+                _point.UpgradeIncome();
                 _poiStatsManager.UpgradeIncome(_point.Poid);
-                UpdateView();
             }
         }
 
         public void UpgradeShields()
         {
-            if (_point.Shield.TryUpgrade())
+            if (_point.Shield.CanUpgrade())
             {
+                _point.UpgradeShield();
                 _poiStatsManager.UpgradeShield(_point.Poid);
-                UpdateView();
             }
         }
 
@@ -69,15 +66,14 @@ namespace HauntedCity.UI.PointInfo
         {
             _point.Money.TakeMoney();
             _poiStatsManager.TakeMoney(_point.Poid);
-            UpdateView();
         }
 
         public void RestoreShield()
         {
-            if (_point.Shield.TryRestore())
+            if (_point.Shield.CanRestore())
             {
+                _point.RestoreShield();
                 _poiStatsManager.RestoreShield(_point.Poid);
-                UpdateView();
             }
         }
     }
