@@ -9,10 +9,7 @@ namespace HauntedCity.UI.PointInfo
 {
     public class YourPointInfoPanel : PointInfoPanel
     {
-        public Text IncomeLevel;
-        public Text DefenceLevel;
-        public Text Money;
-        public Text Shield;
+        
         public Text ShieldUpgradePrice;
         public Text IncomeUpgradePrice;
         public Text RestoreShieldPrice;
@@ -21,7 +18,6 @@ namespace HauntedCity.UI.PointInfo
         public GameObject IncomeUpgradeButton;
         public GameObject TakeMoneyButton;
 
-        [Inject] private IPOIStatsManager _poiStatsManager;
 
         void Awake()
         {
@@ -30,10 +26,7 @@ namespace HauntedCity.UI.PointInfo
         public override void UpdateView(PointOfInterestData point)
         {
             base.UpdateView(point);
-            IncomeLevel.text = _point.Money.Level.ToString();
-            DefenceLevel.text = _point.Shield.Level.ToString();
-            Money.text = _point.Money.Value + "/" + _point.Money.MaxValue;
-            Shield.text = _point.Shield.Value + "/" + _point.Shield.MaxValue;
+            
             ShieldUpgradePrice.text = _point.Shield.Price.ToString();
             IncomeUpgradePrice.text = _point.Money.Price.ToString();
             RestoreShieldPrice.text = "(" + POIShield.RESTORE_PRICE + ")";

@@ -7,11 +7,23 @@ namespace HauntedCity.UI.PointInfo
     public class TheirPointInfoPanel:PointInfoPanel
     {
         public Text PointOwner;
+        public GameObject FightButton;
+        public GameObject AttackButton;
+        public Text AttackPrice;
+        
+        private void Start()
+        {
+            AttackPrice.text = POIShield.ATTACK_PRICE.ToString();
+        }
 
         public override void UpdateView(PointOfInterestData point)
         {
             base.UpdateView(point);
             PointOwner.text = _point.DisplayName;
+
+            var canFight = _point.Shield.Value == 0;
+            FightButton.SetActive(canFight);
+            AttackButton.SetActive(!canFight);
         }
 
         private GameSparksBattle _gsb;
@@ -42,6 +54,15 @@ namespace HauntedCity.UI.PointInfo
                 _gsb.OnPOIStartCap += OnStartCapture;
             }
             _gsb.sendStartCapture(_point.Poid);
+        }
+
+        public void Attack()
+        {
+            if (_point.Shield.CanAttack())
+            {
+                _point.AttackShield();
+                _poiStatsManager.AttackShield(_point.Poid);
+            }
         }
 
         public void OnDestroy()
