@@ -89,7 +89,7 @@ namespace HauntedCity.GameMechanics.Main
         {
             if(arg.poid == _currentPOImeta.Poid)
             {
-                GameStats.AddExp(_lastScore);
+                //GameStats.AddExp(LastBattleResult.EarnedExp);
                 GameObject.Find("BattleRoot").SetActive(false);
                 _sceneAgregator.switchToScene("map");
             }

@@ -58,6 +58,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
         void Awake()
         {
             _currentEnemies = new HashSet<GameObject>();
+            _killedEnemies = new Dictionary<string, int>();
         }
 
         void Start()
@@ -74,6 +75,11 @@ namespace HauntedCity.GameMechanics.BattleSystem
             _totalScore = 0;
             _isBattleFinished = false;
             _allEnemies = enemies;
+            _killedEnemies.Clear();
+            foreach (var enemy in enemies.Keys)
+            {
+                _killedEnemies.Add(enemy, 0);
+            }
             
             _ClearEnemies();
             
@@ -132,6 +138,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
         public void EnemyDeathHandle(GameObject enemy)
         {
             _totalScore += enemy.GetComponent<EnemyBehavior>().enemyInfo.Score;
+            _killedEnemies[enemy.GetComponent<EnemyBehavior>().enemyInfo.Id]++;
             _currentEnemies.Remove(enemy);
             if (_allEnemies.Count > 0)
             { 

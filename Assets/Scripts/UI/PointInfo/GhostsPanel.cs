@@ -1,4 +1,5 @@
-﻿using HauntedCity.Geo;
+﻿using System.Collections.Generic;
+using HauntedCity.Geo;
 using HauntedCity.Utils.Extensions;
 using UnityEngine;
 
@@ -11,8 +12,13 @@ namespace HauntedCity.UI.PointInfo
 
         public void UpdateView(PointOfInterestData point)
         {
+            UpdateView(point.Enemies);
+        }
+
+        public void UpdateView(Dictionary<string, int> enemies)
+        {
             GhostContainer.Clear();
-            foreach (var enemy in point.Enemies)
+            foreach (var enemy in enemies)
             {
                 var ghostView = Instantiate(GhostInfoPrefab);
                 

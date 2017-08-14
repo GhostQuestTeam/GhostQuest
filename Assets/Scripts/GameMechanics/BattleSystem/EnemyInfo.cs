@@ -13,6 +13,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
     [CreateAssetMenu(fileName = "New enemy", menuName = "Battle System/EnemyInfo")]
     public class EnemyInfo:ScriptableObject
     {
+        public String Id;
         public String Name;
         public int Price;
         public AttackType attackType = AttackType.Kamikaze;
