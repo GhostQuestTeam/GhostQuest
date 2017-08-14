@@ -27,6 +27,7 @@ namespace HauntedCity.GameMechanics.Main
 
         
         public string[] AllowableGhosts = { "shadow_skull", "devil_mask","skull_ghost" };
+        public BattleStateController.BattleResult LastBattleResult { get; private set; }
 
         private PointOfInterestData _currentPOImeta;
 
@@ -55,8 +56,7 @@ namespace HauntedCity.GameMechanics.Main
             
             _sceneAgregator.OnSceneChange += OnSceneChange;
             _sceneAgregator.OnAllScenesLoad += OnAllScenesLoad;
-            _battleStateController.OnWon += BattleWonHandle;
-            _battleStateController.OnLose += BattleLoseHandle;
+            _battleStateController.OnBattleEnd += BattleEndHandle;
 
             _messageRetranslator.Subscribe(MessageType.PLAYER_STATS_UPDATE, UpdateStats);
             
@@ -77,26 +77,21 @@ namespace HauntedCity.GameMechanics.Main
         {
             _gsb.OnPOISuccessCap -= OnSuccessCapture;
             _gsb.OnPOIFailCapConfirm -= OnFailCaptureConfirm;
+            _battleStateController.OnBattleEnd -= BattleEndHandle;
+            
+             
+            _sceneAgregator.OnSceneChange -= OnSceneChange;
+            _sceneAgregator.OnAllScenesLoad -= OnAllScenesLoad;
+
         }
 
         public void OnSuccessCapture(object sender, GameSparksBattle.POI_SUCESS_CAP_ev_arg arg)
         {
             if(arg.poid == _currentPOImeta.Poid)
             {
-                //_gsb.OnPOISuccessCap -= OnSuccessCapture;
-//                if(!arg.isError && arg.isSuccess)
-//                {
-                    GameStats.AddExp(_lastScore);
-
-                    //WE REALLY SUCCEDED CAPTURE
-//                }
-//                else
-//                {
-//                    WE FAILED CAPTURE
-//                }
+                GameStats.AddExp(_lastScore);
                 GameObject.Find("BattleRoot").SetActive(false);
                 _sceneAgregator.switchToScene("map");
-//                Debug.Log("Level: " + GameStats.PlayerExperience.Level + "  " + GameStats.CurrentExp + "/" + GameStats.ExpToLevel);
             }
         }
 
@@ -160,23 +155,29 @@ namespace HauntedCity.GameMechanics.Main
             _sceneAgregator.switchToScene("battle");
         }
 
-        public void BattleWonHandle(int score)
+        
+        public void BattleEndHandle(BattleStateController.BattleResult battleResult)
         {
-            _gsb.sendSuccessCapture(_currentPOImeta.Poid);
-            _currentPOImeta.DisplayName = _authService.Nickname;
-            _lastScore = score;
-            //DONT WE DISABLE OURSELVES AND SCRIPT DOES NOT FINISH?
-          
+            LastBattleResult = battleResult;
+            switch (battleResult.Type)
+            {
+                case BattleStateController.BattleResultType.WON:
+                    _gsb.sendSuccessCapture(_currentPOImeta.Poid);
+                    _currentPOImeta.DisplayName = _authService.Nickname;
+                    break;
+                case BattleStateController.BattleResultType.LOSE:
+                    _gsb.sendFailCaptureConfirm(_currentPOImeta.Poid);
+                    GameObject.Find("BattleRoot").SetActive(false);
+                    _sceneAgregator.switchToScene("map");
+                    break;
+                case BattleStateController.BattleResultType.STOPED:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
-
-        public void BattleLoseHandle()
-        {
-            _lastScore = 0;
-            _gsb.sendFailCaptureConfirm(_currentPOImeta.Poid);
-            Debug.Log("Lose in battle");
-            GameObject.Find("BattleRoot").SetActive(false);
-            _sceneAgregator.switchToScene("map");
-        }
+        
+        
         
     }
 }
