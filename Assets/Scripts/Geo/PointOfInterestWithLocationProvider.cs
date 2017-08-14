@@ -1,7 +1,10 @@
 ﻿using System;
+using GameSparks.Core;
 using HauntedCity.GameMechanics.Main;
+using HauntedCity.Networking;
 using HauntedCity.UI;
 using HauntedCity.UI.PointInfo;
+using HauntedCity.Utils.Extensions;
 using Mapbox.Unity.Location;
 using Mapbox.Unity.MeshGeneration;
 using Mapbox.Unity.Utilities;
@@ -13,7 +16,22 @@ namespace HauntedCity.Geo
 {
     public class PointOfInterestWithLocationProvider : MonoBehaviour
     {
-        [Inject] GameController _gameController;
+        private MessageRetranslator _messageRetranslator;
+
+        public MessageRetranslator messageRetranslator
+        {
+            get { return _messageRetranslator; }
+            set
+            {
+                if (_messageRetranslator != null)
+                {
+                    _messageRetranslator.Unsubscribe(MessageType.POI_UPDATE, OnPOIUpdate);
+                }
+                _messageRetranslator = value;
+                _messageRetranslator.Subscribe(MessageType.POI_UPDATE, OnPOIUpdate);
+            }
+        }
+
 
         [SerializeField] float _positionFollowFactor;
 
@@ -22,6 +40,7 @@ namespace HauntedCity.Geo
         public Vector2d _myMapLocation = new Vector2d(55.8257f, 49.0538f);
         public bool _IsPlayerNear = false;
 
+        
         public GameObject _playerObject;
 
         public class PointOfInterestEventArgs : EventArgs
@@ -67,6 +86,16 @@ namespace HauntedCity.Geo
         Vector3 _targetPosition;
 
         private GameSparksBattle _gsb;
+
+        private void OnEnable()
+        {
+            messageRetranslator.Subscribe(MessageType.POI_UPDATE, OnPOIUpdate);
+        }
+        
+        private void OnDisable()
+        {
+            messageRetranslator.Unsubscribe(MessageType.POI_UPDATE, OnPOIUpdate );
+        }
 
         void Start()
         {
@@ -162,6 +191,14 @@ namespace HauntedCity.Geo
                 Metadata.Uoid = arg.newOwnerUoid;
                 Metadata.DisplayName = arg.newOwnerDisplayName;
                 GetComponent<PointColor>().UpdateView(Metadata.IsYour());
+            }
+        }
+
+        private void OnPOIUpdate(GSData data)
+        {
+            if (data.GetId() == Metadata.Poid)
+            {
+                Metadata.SetGSData(data);
             }
         }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using GameSparks.Core;
 using HauntedCity.GameMechanics.Main;
 using HauntedCity.Networking;
+using HauntedCity.Utils.Extensions;
 using Mapbox.Utils;
 using Zenject;
 
@@ -31,7 +32,7 @@ namespace HauntedCity.Geo
             DisplayName = properties.GetString("owner_display_name");
             Uoid = properties.GetString("uoid");
 
-            Poid = data.GetGSData("_id").GetString("$oid");
+            Poid = data.GetId();
             
             var enemies = properties.GetGSData("ghosts_num");
             Enemies.Clear();

@@ -9,7 +9,8 @@ namespace HauntedCity.Networking
 
     public enum MessageType
     {
-        PLAYER_STATS_UPDATE        
+        PLAYER_STATS_UPDATE,
+        POI_UPDATE
     }
 
     public class MessageRetranslator

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 using HauntedCity.GameMechanics.Main;
+using HauntedCity.Networking;
 using HauntedCity.Networking.Interfaces;
 using HauntedCity.Utils.Extensions;
 
@@ -14,6 +15,8 @@ namespace HauntedCity.Geo
         public HashSet<PointOfInterestData> _points = new HashSet<PointOfInterestData>();
         public GameObject PointOfInterestPrefab;
         public GameObject GameSparksObj;
+        [Inject] private MessageRetranslator _messageRetranslator;
+
 
         public float UpdatePeriod = 45f;
         public LocationProviderWrapper locationProviderWrapper;
@@ -65,11 +68,13 @@ namespace HauntedCity.Geo
             foreach (var pointMeta in _points)
             {
                 GameObject newPOI = Instantiate(PointOfInterestPrefab, 100 * Vector3.down, Quaternion.identity,
-                    _root.transform);
+                    _root.transform);//TODO use zenject factories
+              
                 newPOI.SetActive(true);
                 PointOfInterestWithLocationProvider poiwtp = newPOI.GetComponent<PointOfInterestWithLocationProvider>();
                 poiwtp._myMapLocation = pointMeta.LatLon;
                 poiwtp.Metadata = pointMeta;
+                poiwtp.messageRetranslator = _messageRetranslator;
             }
         }
     }
