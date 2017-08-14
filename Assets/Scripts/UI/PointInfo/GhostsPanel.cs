@@ -20,6 +20,7 @@ namespace HauntedCity.UI.PointInfo
             GhostContainer.Clear();
             foreach (var enemy in enemies)
             {
+                if(enemy.Value == 0) continue;
                 var ghostView = Instantiate(GhostInfoPrefab);
                 
                 ghostView.transform.SetParent(GhostContainer, false);

@@ -1,6 +1,7 @@
 ﻿using HauntedCity.GameMechanics.Main;
 using HauntedCity.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Zenject;
 
@@ -11,14 +12,21 @@ public class MapPanel : Panel
 
     [Inject] private GameController _gameController;
 
+
+   
+
     void Start()
     {
-
         GameController.GameStats.OnCoinChange += UpdateCoin;
-        
+        SceneManager.activeSceneChanged += OnActiveSceneChanged;
+
         UpdateLevelView();
         UpdateCoin();
+    }
 
+    private void OnDestroy()
+    {
+        SceneManager.activeSceneChanged -= OnActiveSceneChanged;
     }
 
     private void OnEnable()
@@ -53,10 +61,12 @@ public class MapPanel : Panel
     {
         CoinValue.text = GameController.GameStats.Money.ToString();
     }
-
-    private void OnDestroy()
+    
+    private void OnActiveSceneChanged(Scene oldScene, Scene newScene)
     {
-        
+        if (newScene.name == "battle")
+        {
+            Hide();
+        }
     }
-
 }
