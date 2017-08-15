@@ -11,15 +11,13 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>5.6.2f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -130,7 +128,6 @@
     <Compile Include="Assets\ARToolKit5-Unity\Scripts\ARTransitionalCamera.cs" />
     <Compile Include="Assets\ARToolKit5-Unity\Scripts\ARUtilityFunctions.cs" />
     <Compile Include="Assets\ARToolKit5-Unity\Scripts\PluginFunctions.cs" />
-    <Compile Include="Assets\DebugPanel.cs" />
     <Compile Include="Assets\Libs\GameSparks\GameSparksRTUnity.cs" />
     <Compile Include="Assets\Libs\GameSparks\GameSparksSettings.cs" />
     <Compile Include="Assets\Libs\GameSparks\GameSparksUnity.cs" />
@@ -409,7 +406,6 @@
     <Compile Include="Assets\Libs\UniWeb-Free\Examples\WebsocketClientEcho.cs" />
     <Compile Include="Assets\Libs\UniWeb-Free\Examples\WebsocketClientExample.cs" />
     <Compile Include="Assets\Scenes\TestScenes\AccelerationCleaner.cs" />
-    <Compile Include="Assets\Scenes\TestScenes\GameSparksPOIsExtraction.cs" />
     <Compile Include="Assets\Scenes\TestScenes\PlayerBehaviourFromAccelerometer.cs" />
     <Compile Include="Assets\Scenes\TestScenes\TestDeviceLocation.cs" />
     <Compile Include="Assets\Scenes\TestScenes\TrivialPlayerBehaviourFromAccelerometer.cs" />
@@ -420,6 +416,7 @@
     <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\Bonus.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\ConcreteEnemyBehaviors\SkullGhostBehavior.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\EnemyBehavior.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\EnemyInfo.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\PlayerBattleBehavior.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\ShellBehavior.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\BattleSystem\Solidity.cs" />
@@ -429,6 +426,7 @@
     <Compile Include="Assets\Scripts\GameMechanics\ItemSystem\Item.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\ItemSystem\UsableItem.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\Main\BattleStatsCalculator.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\Main\GameConfiguration.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\Main\GameController.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\Main\GyroControl.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\SkillSystem\Experience.cs" />
@@ -438,15 +436,19 @@
     <Compile Include="Assets\Scripts\GameMechanics\SkillSystem\PlayerGameStats.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\SkillSystem\SkillTypes.cs" />
     <Compile Include="Assets\Scripts\Geo\BuildMapAtLocation.cs" />
-    <Compile Include="Assets\Scripts\Geo\POIInfoWindowController.cs" />
-    <Compile Include="Assets\Scripts\Geo\POIInfoWindowUIWrapper.cs" />
-    <Compile Include="Assets\Scripts\Geo\POIInfoWindowUnityInteractionPoint.cs" />
+    <Compile Include="Assets\Scripts\Geo\LocationProviderWrapper.cs" />
+    <Compile Include="Assets\Scripts\Geo\POIMoney.cs" />
+    <Compile Include="Assets\Scripts\Geo\POIShield.cs" />
+    <Compile Include="Assets\Scripts\Geo\POIStat.cs" />
+    <Compile Include="Assets\Scripts\Geo\PointOfInterestData.cs" />
     <Compile Include="Assets\Scripts\Geo\PointOfInterestFactory.cs" />
     <Compile Include="Assets\Scripts\Geo\PointOfInterestWithLocationProvider.cs" />
     <Compile Include="Assets\Scripts\Geo\PositionWithLocationProvider.cs" />
     <Compile Include="Assets\Scripts\Geo\RotateWithLocationProvider.cs" />
     <Compile Include="Assets\Scripts\Networking\AuthService.cs" />
+    <Compile Include="Assets\Scripts\Networking\GameSparksImpl\GameSparksPOIStatsManager.cs" />
     <Compile Include="Assets\Scripts\Networking\GameSparksImpl\GameSparksPlayerStatsManager.cs" />
+    <Compile Include="Assets\Scripts\Networking\Interfaces\IPOIStatsManager.cs" />
     <Compile Include="Assets\Scripts\Networking\Interfaces\IPlayerStatsManager.cs" />
     <Compile Include="Assets\Scripts\Networking\LeaderboardService.cs" />
     <Compile Include="Assets\Scripts\Networking\MessageRetranslator.cs" />
@@ -455,7 +457,10 @@
     <Compile Include="Assets\Scripts\UI\Attributes\AttributesPanel.cs" />
     <Compile Include="Assets\Scripts\UI\BackgroundPlaneController.cs" />
     <Compile Include="Assets\Scripts\UI\BattleInterfaceController.cs" />
+    <Compile Include="Assets\Scripts\UI\BattleResultPanel.cs" />
     <Compile Include="Assets\Scripts\UI\DropdownController.cs" />
+    <Compile Include="Assets\Scripts\UI\GhostShop\GhostCard.cs" />
+    <Compile Include="Assets\Scripts\UI\GhostShop\GhostShopPanel.cs" />
     <Compile Include="Assets\Scripts\UI\IndicatorsView.cs" />
     <Compile Include="Assets\Scripts\UI\KeyInputHandler.cs" />
     <Compile Include="Assets\Scripts\UI\LeaderboardItemView.cs" />
@@ -479,6 +484,7 @@
     <Compile Include="Assets\Scripts\UI\WeaponPanels\WeaponStorePanel.cs" />
     <Compile Include="Assets\Scripts\Utils\BoundedInt.cs" />
     <Compile Include="Assets\Scripts\Utils\CameraClickHandler.cs" />
+    <Compile Include="Assets\Scripts\Utils\Extensions\GameSparksExtensionscs.cs" />
     <Compile Include="Assets\Scripts\Utils\Extensions\UnityExtension.cs" />
     <Compile Include="Assets\Scripts\Utils\GameSparksManager.cs" />
     <Compile Include="Assets\Scripts\Utils\Installers\BattleInstaller.cs" />
