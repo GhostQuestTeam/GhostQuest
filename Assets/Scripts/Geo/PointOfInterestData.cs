@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using GameSparks.Core;
+using HauntedCity.GameMechanics.BattleSystem;
 using HauntedCity.GameMechanics.Main;
 using HauntedCity.Networking;
 using HauntedCity.Utils;
@@ -86,6 +87,26 @@ namespace HauntedCity.Geo
         {
             Money.TryUpgrade();
             _NotifyChanges();
+        }
+
+        public bool CanSpawnGhost(EnemyInfo ghost)
+        {
+            return GameController.GameStats.Money >= ghost.Price;
+        }
+        
+        public bool TrySpawnGhost(EnemyInfo ghost)
+        {
+            if (!GameController.GameStats.TryGetMoney(ghost.Price)) return false;
+            
+            if (Enemies.ContainsKey(ghost.Id))
+            {
+                Enemies[ghost.Id]++;
+            }
+            else
+            {
+                Enemies.Add(ghost.Id , 1 );
+            }
+            return true;
         }
         
 

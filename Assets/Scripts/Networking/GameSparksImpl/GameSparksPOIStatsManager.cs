@@ -28,7 +28,8 @@ namespace HauntedCity.Networking.GameSparksImpl
             upgradeShield,
             upgradeIncome,
             restoreShield,
-            attackShield
+            attackShield,
+            spawnGhost
         }
         
         private void _PerformAction(string pointId, AllowableActions action)
@@ -36,6 +37,16 @@ namespace HauntedCity.Networking.GameSparksImpl
             new GameSparks.Api.Requests.LogEventRequest()
                 .SetEventKey("POI_ACTION")
                 .SetEventAttribute("POI_ID", pointId)
+                .SetEventAttribute("ACTION", action.ToString())
+                .Send(null);//TODO
+        }
+        
+        private void _PerformAction(string pointId, GSRequestData data ,AllowableActions action)
+        {
+            new GameSparks.Api.Requests.LogEventRequest()
+                .SetEventKey("POI_ACTION")
+                .SetEventAttribute("POI_ID", pointId)
+                .SetEventAttribute("PARAMS", data)
                 .SetEventAttribute("ACTION", action.ToString())
                 .Send(null);//TODO
         }
@@ -63,6 +74,15 @@ namespace HauntedCity.Networking.GameSparksImpl
         public void AttackShield(string pointId)
         {
             _PerformAction(pointId, AllowableActions.attackShield);
+        }
+
+        public void SpawnGhost(string pointId, string ghostId)
+        {
+            _PerformAction(
+                pointId,
+                new GSRequestData().AddString("ghostID", ghostId),
+                AllowableActions.spawnGhost
+            );
         }
 
         public void RetrievePoints(int depth, Vector2d pivot)

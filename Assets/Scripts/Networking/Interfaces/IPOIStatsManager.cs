@@ -23,6 +23,7 @@ namespace HauntedCity.Networking.Interfaces
         void UpgradeIncome(string pointId);
         void RestoreShield(string pointId);
         void AttackShield(string pointId);
+        void SpawnGhost(string pointId, string ghostId);
         void RetrievePoints(int depth, Vector2d pivot);
     }
 }

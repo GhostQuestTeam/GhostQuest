@@ -1,5 +1,6 @@
 ﻿using HauntedCity.Geo;
 using HauntedCity.Networking.Interfaces;
+using HauntedCity.UI.GhostShop;
 using HauntedCity.Utils;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +19,7 @@ namespace HauntedCity.UI.PointInfo
         public GameObject IncomeUpgradeButton;
         public GameObject TakeMoneyButton;
 
+        public GhostShopPanel GhostShop;
 
         void Awake()
         {
@@ -55,6 +57,11 @@ namespace HauntedCity.UI.PointInfo
             }
         }
 
+        public void ToGhostShop()
+        {
+            GhostShop.UpdateView(_point);
+        }
+        
         public void GetMoney()
         {
             _point.Money.TakeMoney();
