@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using HauntedCity.UI;
 using UnityEngine;
 using HauntedCity.Utils;
 using Zenject;
@@ -17,6 +18,8 @@ namespace HauntedCity.GameMechanics.BattleSystem
         private GameObject _followee;
         private Animator _animator;
 
+        public Bar HealthBar;
+        
         public EnemyBattleController BattleController { get; private set; }
         private EnemyBattleStats _battleStats;
         public EnemyInfo enemyInfo;
@@ -43,6 +46,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
 
         private void Start()
         {
+            HealthBar.Value = HealthBar.Max = enemyInfo.MaxHealth;
             StartCoroutine(AttackLoop());
         }
 
@@ -101,6 +105,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
             if (shell != null)
             {
                 BattleController.TakeDamage(shell.Weapon.Damage);
+                HealthBar.Value = BattleController.BattleStats.CurrentHealth;
                 _animator.SetTrigger("Hit");
                 transform.position = Vector3.MoveTowards(
                     transform.position,
