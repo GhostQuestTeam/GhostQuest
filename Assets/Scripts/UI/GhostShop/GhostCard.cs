@@ -29,7 +29,7 @@ namespace HauntedCity.UI.GhostShop
 
         public override void UpdateView()
         {
-            Title.text = enemyInfo.Id;// + " (" +  _point.Enemies[enemyInfo.Id] + ")";
+            Title.text = enemyInfo.Id + " (" +  _point.Enemies[enemyInfo.Id] + ")";
             Damage.text = "Damage: " + enemyInfo.Damage;
             Health.text = "Energy cost: " + enemyInfo.MaxHealth;
             Shield.text = "Defence: " + enemyInfo.Defence;
