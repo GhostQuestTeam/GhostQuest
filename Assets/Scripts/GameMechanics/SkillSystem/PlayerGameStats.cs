@@ -136,7 +136,7 @@ namespace HauntedCity.GameMechanics.SkillSystem
 
         public bool TryGetMoney(int amount)
         {
-            if (amount < Money) return false;
+            if (amount > Money) return false;
             Money -= amount;
             return true;
         }
