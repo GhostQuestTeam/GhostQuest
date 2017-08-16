@@ -18,10 +18,23 @@ public class GameSparksUnity : MonoBehaviour
 	/// </summary>
     public GameSparksSettings settings;
 
-	void Start()
-	{
+#if UNITY_SWITCH && !UNITY_EDITOR
+    void Start()
+    {
+        // For Lotcheck requirement and on how to obtain the token to be used with NXConnectRequest, please read:
+        // "Nintendo Switch Independent Server Setup Manual" / "3" / "Table 3-1"
+        // see also: https://docs.gamesparks.com/api-documentation/request-api/authentication/nxconnectrequest.html
+        #error "Please implement Lotcheck requirements here."
+        StartGameSparks();
+    }
 
-#if ((UNITY_XBOXONE || (WINDOWS_UWP && ENABLE_IL2CPP))  && !UNITY_EDITOR) || GS_FORCE_NATIVE_PLATFORM
+    void StartGameSparks()    
+#else
+    void Start()
+#endif
+    {
+
+#if ((UNITY_SWITCH || UNITY_XBOXONE || (WINDOWS_UWP && ENABLE_IL2CPP)) && !UNITY_EDITOR) || GS_FORCE_NATIVE_PLATFORM
         this.gameObject.AddComponent<NativePlatform>();
 #elif UNITY_WEBGL && !UNITY_EDITOR
 		this.gameObject.AddComponent<WebGLPlatform>();
@@ -29,12 +42,12 @@ public class GameSparksUnity : MonoBehaviour
         this.gameObject.AddComponent<DefaultPlatform>();
 #endif
 //		System.Net.ServicePointManager.ServerCertificateValidationCallback += (o, certificate, chain, errors) => true;
-//		GameSparksWebSocket.Proxy = new System.Net.DnsEndPoint("localhost", 8888);
+//		GameSparksWebSocket.Proxy = new System.Net.DnsEndPoint2("localhost", 8888);
 //		GS.TraceMessages = true;
 //		GameSparks.Core.GameSparksUtil.LogMessageHandler = Debug.Log;
-		#if UNITY_IOS && !UNITY_EDITOR
+#if UNITY_IOS && !UNITY_EDITOR
 		GSGetProxySettings(this.name);
-		#endif
+#endif
 	}
 
     /// <summary>
@@ -62,7 +75,7 @@ public class GameSparksUnity : MonoBehaviour
 		}
 	}
 
-	#if UNITY_IOS && !UNITY_EDITOR
+#if UNITY_IOS && !UNITY_EDITOR
 	public void GSSetProxySettings(String proxyString){
 
 		if(proxyString.IndexOf(":") != -1){
@@ -72,7 +85,7 @@ public class GameSparksUnity : MonoBehaviour
 			if(parsedIP == null) {
 				GameSparksWebSocket.Proxy = new System.Net.IPEndPoint(parsedIP, int.Parse(parts[1]));
 			} else {
-				GameSparksWebSocket.Proxy = new System.Net.DnsEndPoint(parts[0], int.Parse(parts[1]));
+				GameSparksWebSocket.Proxy = new System.Net.DnsEndPoint2(parts[0], int.Parse(parts[1]));
 			}
 		}
 
@@ -82,5 +95,5 @@ public class GameSparksUnity : MonoBehaviour
 	[System.Runtime.InteropServices.DllImport("__Internal")]
 	private static extern void GSGetProxySettings(string gameObjectName);
 
-	#endif
+#endif
 }

@@ -3,15 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using Facebook.Unity;
 
+//https://forum.unity3d.com/threads/can-someone-help-me-with-gamesparks-fb-login.387762/
 public class FacebookManager : MonoBehaviour {
 
     public System.Action<GameSparks.Api.Responses.AuthenticationResponse> OnAuthDone;
 
 	// Use this for initialization
-	void Start () {
-        //OnAuthDone += testAuth;
-        //doAuth();
-	}
+	void Awake () {
+        /*OnAuthDone += testAuth;
+        doAuth();
+        GameSparks.Core.GS.GameSparksAvailable += (bool isConnected) =>
+        {
+            if(isConnected)
+            {
+                doAuth();
+            }
+        };*/
+    }
 
     private void testAuth(GameSparks.Api.Responses.AuthenticationResponse response)
     {
@@ -37,7 +45,20 @@ public class FacebookManager : MonoBehaviour {
                 connectGStoFB();
             }
         }
-        
+        else
+        {
+            GameSparks.Core.GS.Reconnect();
+        }
+        /*if (!FB.IsInitialized)
+        {
+            FB.Init(connectGStoFB);
+        }
+        else
+        {
+            FB.ActivateApp();
+            connectGStoFB();
+        }*/
+
     }
 
 
