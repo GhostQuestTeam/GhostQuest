@@ -158,5 +158,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
                 _EndBattle(BattleResultType.LOSE);
             }
         }
+
+        
     }
 }

@@ -115,10 +115,19 @@ namespace HauntedCity.Geo
             return DisplayName == _authService.Nickname;//TODO Проверять по ID
         }
 
-        public PointOfInterestData(AuthService authService)
+        public PointOfInterestData()
+        {
+            Enemies = new Dictionary<string, int>();
+        }
+        
+        public PointOfInterestData(AuthService authService):this()
         {
             _authService = authService;
-            Enemies = new Dictionary<string, int>();
+        }
+
+        public PointOfInterestData(GSData data):this()
+        {
+            SetGSData(data);
         }
     }
 }

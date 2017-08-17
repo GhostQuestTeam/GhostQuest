@@ -116,6 +116,7 @@ namespace HauntedCity.GameMechanics.Main
                     mapRoot.SetActive(false);
                 }
             }
+
         }
 
         public void StartGame()
@@ -171,6 +172,7 @@ namespace HauntedCity.GameMechanics.Main
                     _sceneAgregator.switchToScene("map");
                     break;
                 case BattleStateController.BattleResultType.STOPED:
+                    _gsb.sendFailCaptureConfirm(_currentPOImeta.Poid);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

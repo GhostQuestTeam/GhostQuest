@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using GameSparks.Core;
 using HauntedCity.GameMechanics.BattleSystem;
+using HauntedCity.Geo;
 using HauntedCity.Networking;
 using HauntedCity.Utils;
 using UnityEngine;
@@ -30,7 +31,7 @@ namespace HauntedCity.GameMechanics.SkillSystem
 
         private const int UPGRADE_POINTS_PER_LEVEL = 5;
 
-        public int POIs { get; set; }
+        public Dictionary<string, PointOfInterestData> POIs { get; set; }
 
         public List<string> AllowableWeapons;
         public List<string> CurrentWeapons;
@@ -52,7 +53,7 @@ namespace HauntedCity.GameMechanics.SkillSystem
         }
 
         public PlayerCharacteristicManager CharacteristicManager { get; private set; }
-        
+
         public int Survivability
         {
             get { return CharacteristicManager.GetCharacteristic(PlayerCharacteristics.Survivability); }
@@ -67,7 +68,7 @@ namespace HauntedCity.GameMechanics.SkillSystem
         {
             get { return CharacteristicManager.GetCharacteristic(PlayerCharacteristics.Power); }
         }
-        
+
         public int SurvivabilityDelta
         {
             get { return CharacteristicManager.GetDelta(PlayerCharacteristics.Survivability); }
@@ -92,18 +93,23 @@ namespace HauntedCity.GameMechanics.SkillSystem
                 PlayerExperience = new Experience(
                     value.GetInt("level") ?? 1,
                     value.GetInt("exp") ?? 0
-                 );
+                );
                 Money = value.GetInt("money") ?? 10000;
 
                 AllowableWeapons = value.GetStringList("allowableWeapons") ?? new List<string>(DEFAULT_WEAPONS);
                 CurrentWeapons = value.GetStringList("currentWeapons") ?? new List<string>(DEFAULT_WEAPONS);
-                POIs = value.GetInt("numOfPOIs") ?? 0;
-
+                var GS_POIs = value.GetGSDataList("POIs");
+                if (GS_POIs != null)
+                {
+                    foreach (var gsPoi in GS_POIs)
+                    {
+                        Debug.Log("\n" + gsPoi.JSON + "\n");
+                        var poi = new PointOfInterestData(gsPoi);
+                        POIs[poi.Poid] = poi;
+                    }
+                }
             }
         }
-
-
-       
 
         #endregion
 
@@ -140,7 +146,7 @@ namespace HauntedCity.GameMechanics.SkillSystem
             Money -= amount;
             return true;
         }
-        
+
         public bool TryBuyWeapon(Weapon weapon)
         {
             if (AllowableWeapons.Contains(weapon.Id)) return false;
@@ -157,6 +163,7 @@ namespace HauntedCity.GameMechanics.SkillSystem
 
         public PlayerGameStats()
         {
+            
             Money = 10000;
             PlayerExperience = new Experience();
             CurrentWeapons = new List<string>(DEFAULT_WEAPONS);
@@ -165,6 +172,7 @@ namespace HauntedCity.GameMechanics.SkillSystem
             CharacteristicManager = new PlayerCharacteristicManager();
 
             SkillPoints = SKILL_POINTS_PER_LEVEL;
+            POIs = new Dictionary<string, PointOfInterestData>();
 
         }
     }

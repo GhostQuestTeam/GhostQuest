@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using GameSparks.Core;
 using HauntedCity.Utils;
+using UnityEngine;
 
 namespace HauntedCity.GameMechanics.SkillSystem
 {
@@ -74,6 +75,7 @@ namespace HauntedCity.GameMechanics.SkillSystem
         
         public void SetGSData(GSData gsData)
         {
+            Debug.Log(gsData.JSON);
             UpgradePoints = gsData.GetInt("upgradePoints") ?? 5;
             foreach (PlayerCharacteristics characteristic in Enum.GetValues(typeof(PlayerCharacteristics)))
             {

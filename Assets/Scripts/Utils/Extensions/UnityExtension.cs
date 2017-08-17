@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,6 +35,18 @@ namespace HauntedCity.Utils.Extensions
                 children.Add(tran.gameObject);
             }
             return children;
+        }
+
+        public static void Set(this Text textObject, object value)
+        {
+            textObject.text = value.ToString();
+        }
+
+        public static GameObject AddChild(this Transform container, GameObject childPrefab)
+        {
+            var child = GameObject.Instantiate(childPrefab);
+            child.transform.SetParent(container ,false);
+            return child;
         }
     }
 }
