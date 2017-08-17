@@ -12,9 +12,11 @@ namespace HauntedCity.Networking.GameSparksImpl
         {
             GSRequestData requestData = new GSRequestData();
             requestData.AddNumber("power", power);
-            requestData.AddNumber("survivavlity", survivability);
+            requestData.AddNumber("survivability", survivability);
             requestData.AddNumber("endurance", endurance);
 
+            Debug.Log(requestData.JSON);
+            
             new GameSparks.Api.Requests.LogEventRequest()
                 .SetEventKey("UPGRADE_PLAYER_STATS")
                 .SetEventAttribute("STATS", requestData)
