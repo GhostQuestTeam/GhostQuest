@@ -282,16 +282,17 @@
     <None Include="Assets\Libs\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
     <None Include="Assets\Resources\Fonts\Montserrat\OFL.txt" />
-    <None Include="Assets\Libs\GameSparks\Plugins\GameSparksRT.xml" />
+    <None Include="Assets\GameSparks\Plugins\GameSparksRT.xml" />
     <None Include="Assets\Libs\Standard Assets\Effects\ToonShading\Shaders\ToonBasic.shader" />
     <None Include="Assets\Resources\Fonts\Bubbler_One\OFL.txt" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />
     <None Include="Assets\Libs\UniWeb-Free\FAQ.txt" />
-    <None Include="Assets\Libs\GameSparks\Plugins\Metro\GameSparksRT.xml" />
+    <None Include="Assets\GameSparks\Plugins\Metro\GameSparksRT.xml" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ShowAlphaChannel.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\CameraMotionBlur.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\SunShaftsComposite.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\NFAA.shader" />
+    <None Include="Assets\GameSparks\README.txt" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ScreenSpaceRaytrace.cginc" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\VignettingShader.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\TiltShiftHdrLensBlur.shader" />
@@ -361,7 +362,6 @@
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\DLAA.shader" />
     <None Include="Assets\Resources\Fonts\Josefin_Sans\OFL.txt" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\EdgeDetectNormals.shader" />
-    <None Include="Assets\Libs\GameSparks\README.txt" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BrightPassFilter2.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\SeparableBlur.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\GrayscaleEffect.shader" />
@@ -374,7 +374,7 @@
     <None Include="Assets\Resources\Fonts\Monoton\OFL.txt" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\Tonemapper.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BrightPassFilter.shader" />
-    <None Include="Assets\Libs\GameSparks\link.xml" />
+    <None Include="Assets\GameSparks\link.xml" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAA2.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularSmooth.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderYUV.shader" />
@@ -417,23 +417,23 @@
     <Reference Include="UnityEngine.VR">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
     </Reference>
-    <Reference Include="BouncyCastle_GameSparks">
-      <HintPath>E:/Unity Projects/GhostQuest/Assets/Libs/GameSparks/Plugins/BouncyCastle_GameSparks.dll</HintPath>
-    </Reference>
-    <Reference Include="GameSparks.Api">
-      <HintPath>E:/Unity Projects/GhostQuest/Assets/Libs/GameSparks/Plugins/GameSparks.Api.dll</HintPath>
-    </Reference>
-    <Reference Include="GameSparks">
-      <HintPath>E:/Unity Projects/GhostQuest/Assets/Libs/GameSparks/Plugins/GameSparks.dll</HintPath>
-    </Reference>
-    <Reference Include="GameSparksRT">
-      <HintPath>E:/Unity Projects/GhostQuest/Assets/Libs/GameSparks/Plugins/GameSparksRT.dll</HintPath>
-    </Reference>
     <Reference Include="Mapbox.Json">
       <HintPath>E:/Unity Projects/GhostQuest/Assets/Libs/Mapbox/Core/Plugins/ThirdParty/Mapbox.Json/Net35/Mapbox.Json.dll</HintPath>
     </Reference>
     <Reference Include="UniWeb-Free">
       <HintPath>E:/Unity Projects/GhostQuest/Assets/Libs/UniWeb-Free/UniWeb-Free.dll</HintPath>
+    </Reference>
+    <Reference Include="GameSparksRT">
+      <HintPath>E:/Unity Projects/GhostQuest/Assets/GameSparks/Plugins/GameSparksRT.dll</HintPath>
+    </Reference>
+    <Reference Include="GameSparks">
+      <HintPath>E:/Unity Projects/GhostQuest/Assets/GameSparks/Plugins/GameSparks.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle_GameSparks">
+      <HintPath>E:/Unity Projects/GhostQuest/Assets/GameSparks/Plugins/BouncyCastle_GameSparks.dll</HintPath>
+    </Reference>
+    <Reference Include="GameSparks.Api">
+      <HintPath>E:/Unity Projects/GhostQuest/Assets/GameSparks/Plugins/GameSparks.Api.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
