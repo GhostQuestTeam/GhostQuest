@@ -6,6 +6,9 @@ using HauntedCity.GameMechanics.Main;
 using HauntedCity.Networking;
 using HauntedCity.Networking.Interfaces;
 using HauntedCity.Utils.Extensions;
+using Mapbox.Unity.Location;
+using Mapbox.Utils;
+using UnityEngine.UI;
 
 namespace HauntedCity.Geo
 {
@@ -18,8 +21,37 @@ namespace HauntedCity.Geo
         [Inject] private MessageRetranslator _messageRetranslator;
 
 
+        
+        private ILocationProvider _locationProvider;
+        
+        public ILocationProvider LocationProvider
+        {
+            get
+            {
+                if (_locationProvider == null)
+                {
+                    _locationProvider = LocationProviderFactory.Instance.DefaultLocationProvider;
+                }
+                return _locationProvider;
+            }
+            set { _locationProvider = value; }
+        }
+
+
+        public Vector2d CurPos
+        {
+            get
+            {
+            
+            #if UNITY_EDITOR
+                return LocationProvider.Location;
+            #else
+                    return new Vector2d(Input.location.lastData.latitude, Input.location.lastData.longitude);
+            #endif
+            }
+        }
+        
         public float UpdatePeriod = 45f;
-        public LocationProviderWrapper locationProviderWrapper;
 
         private WaitForSeconds _updateWait;
 
@@ -32,11 +64,20 @@ namespace HauntedCity.Geo
             _updateWait = new WaitForSeconds(UpdatePeriod);
         }
 
+        private void Start()
+        {
+//            Input.compass.enabled = true;
+//            Input.location.Start();
+        }
+
         private IEnumerator UpdatePoints()
         {
+
+
+            GameObject.Find("DebugText").GetComponent<Text>().text += "\n" + CurPos;
             while (true)
             {
-                _poiStatsManager.RetrievePoints(4, locationProviderWrapper.CurPos);
+                _poiStatsManager.RetrievePoints(5,CurPos);
                 yield return _updateWait;
             }
         }
