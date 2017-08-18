@@ -50,6 +50,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\FacebookSDK\Examples\Scripts\ConsoleBase.cs" />
+    <Compile Include="Assets\FacebookSDK\Examples\Scripts\LogView.cs" />
+    <Compile Include="Assets\FacebookSDK\Examples\Scripts\MenuBase.cs" />
+    <Compile Include="Assets\FacebookSDK\Examples\Scripts\SubMenus\AccessTokenMenu.cs" />
+    <Compile Include="Assets\FacebookSDK\Examples\Scripts\SubMenus\AppEvents.cs" />
+    <Compile Include="Assets\FacebookSDK\Examples\Scripts\SubMenus\AppInvites.cs" />
+    <Compile Include="Assets\FacebookSDK\Examples\Scripts\SubMenus\AppLinks.cs" />
+    <Compile Include="Assets\FacebookSDK\Examples\Scripts\SubMenus\AppRequests.cs" />
+    <Compile Include="Assets\FacebookSDK\Examples\Scripts\SubMenus\DialogShare.cs" />
+    <Compile Include="Assets\FacebookSDK\Examples\Scripts\SubMenus\GraphRequest.cs" />
+    <Compile Include="Assets\FacebookSDK\Examples\Scripts\SubMenus\MainMenu.cs" />
+    <Compile Include="Assets\FacebookSDK\Examples\Scripts\SubMenus\Pay.cs" />
     <Compile Include="Assets\GameSparks\GameSparksRTUnity.cs" />
     <Compile Include="Assets\GameSparks\GameSparksSettings.cs" />
     <Compile Include="Assets\GameSparks\GameSparksUnity.cs" />
@@ -368,6 +380,7 @@
     <Compile Include="Assets\Scripts\Geo\PositionWithLocationProvider.cs" />
     <Compile Include="Assets\Scripts\Geo\RotateWithLocationProvider.cs" />
     <Compile Include="Assets\Scripts\Networking\AuthService.cs" />
+    <Compile Include="Assets\Scripts\Networking\FacebookManager.cs" />
     <Compile Include="Assets\Scripts\Networking\GameSparksImpl\GameSparksPOIStatsManager.cs" />
     <Compile Include="Assets\Scripts\Networking\GameSparksImpl\GameSparksPlayerStatsManager.cs" />
     <Compile Include="Assets\Scripts\Networking\Interfaces\IPOIStatsManager.cs" />
@@ -505,8 +518,10 @@
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\GrayscaleEffect.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\SepiaToneEffect.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Adaptation.shader" />
+    <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver.txt" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\MotionBlurClear.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\NoiseAndGrain.shader" />
+    <None Include="Assets\FacebookSDK\link.xml" />
     <None Include="Assets\Libs\Standard Assets\Effects\Projectors\Shaders\ProjectorMultiply.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\SSAOShader.shader" />
     <None Include="Assets\Resources\Fonts\Monoton\OFL.txt" />
@@ -531,6 +546,7 @@
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAA3Console.shader" />
     <None Include="Assets\Resources\Fonts\Bangers\OFL.txt" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAAPreset2.shader" />
+    <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\GlobalFog.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlurAndFlares.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendForBloom.shader" />
@@ -555,23 +571,35 @@
     <Reference Include="UnityEngine.VR">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
     </Reference>
-    <Reference Include="Mapbox.Json">
-      <HintPath>E:/Unity Projects/GhostQuest/Assets/Libs/Mapbox/Core/Plugins/ThirdParty/Mapbox.Json/Net35/Mapbox.Json.dll</HintPath>
+    <Reference Include="Facebook.Unity">
+      <HintPath>E:/Unity Projects/GhostQuest/Assets/FacebookSDK/Plugins/Facebook.Unity.dll</HintPath>
     </Reference>
-    <Reference Include="UniWeb-Free">
-      <HintPath>E:/Unity Projects/GhostQuest/Assets/Libs/UniWeb-Free/UniWeb-Free.dll</HintPath>
+    <Reference Include="Facebook.Unity.Gameroom">
+      <HintPath>E:/Unity Projects/GhostQuest/Assets/FacebookSDK/Plugins/Gameroom/Facebook.Unity.Gameroom.dll</HintPath>
     </Reference>
-    <Reference Include="GameSparksRT">
-      <HintPath>E:/Unity Projects/GhostQuest/Assets/GameSparks/Plugins/GameSparksRT.dll</HintPath>
+    <Reference Include="FacebookNamedPipeClient">
+      <HintPath>E:/Unity Projects/GhostQuest/Assets/FacebookSDK/Plugins/Gameroom/FacebookNamedPipeClient.dll</HintPath>
     </Reference>
-    <Reference Include="GameSparks">
-      <HintPath>E:/Unity Projects/GhostQuest/Assets/GameSparks/Plugins/GameSparks.dll</HintPath>
+    <Reference Include="Facebook.Unity.Settings">
+      <HintPath>E:/Unity Projects/GhostQuest/Assets/FacebookSDK/Plugins/Settings/Facebook.Unity.Settings.dll</HintPath>
     </Reference>
     <Reference Include="BouncyCastle_GameSparks">
       <HintPath>E:/Unity Projects/GhostQuest/Assets/GameSparks/Plugins/BouncyCastle_GameSparks.dll</HintPath>
     </Reference>
     <Reference Include="GameSparks.Api">
       <HintPath>E:/Unity Projects/GhostQuest/Assets/GameSparks/Plugins/GameSparks.Api.dll</HintPath>
+    </Reference>
+    <Reference Include="GameSparks">
+      <HintPath>E:/Unity Projects/GhostQuest/Assets/GameSparks/Plugins/GameSparks.dll</HintPath>
+    </Reference>
+    <Reference Include="GameSparksRT">
+      <HintPath>E:/Unity Projects/GhostQuest/Assets/GameSparks/Plugins/GameSparksRT.dll</HintPath>
+    </Reference>
+    <Reference Include="Mapbox.Json">
+      <HintPath>E:/Unity Projects/GhostQuest/Assets/Libs/Mapbox/Core/Plugins/ThirdParty/Mapbox.Json/Net35/Mapbox.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="UniWeb-Free">
+      <HintPath>E:/Unity Projects/GhostQuest/Assets/Libs/UniWeb-Free/UniWeb-Free.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

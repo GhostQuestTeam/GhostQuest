@@ -1,5 +1,4 @@
 ﻿using HauntedCity.GameMechanics.Main;
-using UnityEditor;
 
 namespace HauntedCity.Geo
 {

@@ -1,6 +1,5 @@
 ﻿using System.Security.Principal;
 using HauntedCity.Utils;
-using UnityEditor;
 
 namespace HauntedCity.GameMechanics.SkillSystem
 {

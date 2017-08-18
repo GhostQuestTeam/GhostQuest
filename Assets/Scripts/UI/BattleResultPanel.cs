@@ -2,7 +2,6 @@
 using HauntedCity.GameMechanics.BattleSystem;
 using HauntedCity.GameMechanics.Main;
 using HauntedCity.UI.PointInfo;
-using HauntedCity.Utils;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Zenject;

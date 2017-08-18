@@ -28,13 +28,14 @@ namespace HauntedCity.Utils
                     return;
                 }
 
+          
             #else
                 if (Input.touches.Length <= 0) return;
                 Touch touch = Input.GetTouch(0);
                 if (touch.phase != TouchPhase.Began) return;
                
                 ray = camera.ScreenPointToRay(touch.position);
-                if (EventSystem.current.IsPointerOverGameObject(touch.fingerID))
+                if (EventSystem.current.IsPointerOverGameObject(touch.fingerId))
                 {
                     return;
                 }    
