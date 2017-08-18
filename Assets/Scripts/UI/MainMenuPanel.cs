@@ -11,14 +11,17 @@ namespace HauntedCity.UI
 
         [Inject] private AuthService _authService;
 
+        private FacebookManager _facebookManager;
+
 
         private void Start()
         {
+            _facebookManager = FindObjectOfType<FacebookManager>();
         }
 
         protected override void OnShow()
         {
-            ShowMenu(_authService.IsAuthenticated);
+            ShowMenu(_authService.IsAuthenticated || _facebookManager.IsAuthenticated);
         }
 
         public void ShowMenu(bool isAuthenticated)

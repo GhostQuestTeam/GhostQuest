@@ -22,6 +22,7 @@ namespace HauntedCity.UI
         
         private void Start()
         {
+            FindObjectOfType<FacebookManager>().OnAuthDone += OnLogin;
             _login = transform.Find("LoginForm/Login").GetComponent<InputField>();
             _password = transform.Find("LoginForm/Password").GetComponent<InputField>();
         }

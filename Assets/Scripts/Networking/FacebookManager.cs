@@ -12,6 +12,9 @@ namespace HauntedCity.Networking
     {
         public Action<AuthenticationResponse> OnAuthDone;
 
+        public bool IsAuthenticated { get; private set; }
+
+
         // Use this for initialization
         void Start()
         {
@@ -58,12 +61,13 @@ namespace HauntedCity.Networking
                     {
                         new FacebookConnectRequest()
                             .SetAccessToken(AccessToken.CurrentAccessToken.TokenString)
-                            .SetDoNotLinkToCurrentPlayer(false)
+                            .SetDoNotLinkToCurrentPlayer(true)
                             .SetSwitchIfPossible(true)
                             .Send((gs_auth_response) =>
                             {
                                 if (OnAuthDone != null)
                                 {
+                                    IsAuthenticated = true;
                                     OnAuthDone(gs_auth_response);
                                 }
                             });
