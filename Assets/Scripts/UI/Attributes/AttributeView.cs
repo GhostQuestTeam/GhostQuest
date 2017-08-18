@@ -25,13 +25,12 @@ namespace HauntedCity.UI.Attributes
             Minus.onClick.AddListener(() =>
                 GameController.GameStats.CharacteristicManager.TryDecCharacteristic(Characteristic));
 
-            Show();
-            UpdateView();
+//            Show();
+//            UpdateView();
         }
 
         void OnEnable()
         {
-            
              _gameController.OnPlayerStatsUpdate += UpdateView;
         }
 

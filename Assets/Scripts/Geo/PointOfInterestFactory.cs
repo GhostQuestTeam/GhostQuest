@@ -66,15 +66,10 @@ namespace HauntedCity.Geo
 
         private void Start()
         {
-//            Input.compass.enabled = true;
-//            Input.location.Start();
         }
 
         private IEnumerator UpdatePoints()
         {
-
-
-            GameObject.Find("DebugText").GetComponent<Text>().text += "\n" + CurPos;
             while (true)
             {
                 _poiStatsManager.RetrievePoints(5,CurPos);
@@ -85,7 +80,6 @@ namespace HauntedCity.Geo
         void OnEnable()
         {
             StartCoroutine(UpdatePoints());
-//            _poiStatsManager.RetrievePoints(1, locationProviderWrapper.CurPos);
             _poiStatsManager.OnPOIsExtracted += Ext_OnPOIsExtracted;
         }
 

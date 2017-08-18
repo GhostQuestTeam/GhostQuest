@@ -1,4 +1,5 @@
-﻿using HauntedCity.GameMechanics.Main;
+﻿using System.Linq;
+using HauntedCity.GameMechanics.Main;
 using HauntedCity.Networking.Interfaces;
 using UnityEngine.UI;
 using Zenject;
@@ -45,6 +46,7 @@ namespace HauntedCity.UI.Attributes
 
         public override void UpdateView()
         {
+            FindObjectsOfType<AttributeView>().ToList().ForEach((view)=> view.UpdateView());
             UpgradePoints.text = "Upgrade points: " + GameController.GameStats.CharacteristicManager.UpgradePoints;
         }
 

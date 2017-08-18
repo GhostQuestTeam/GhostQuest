@@ -7,8 +7,7 @@ namespace HauntedCity.Networking
 {
     public class StorageService
     {
-        public PlayerGameStats PlayerStats { get; private set; }
-        public event Action OnLoad;
+        public event Action<GSData> OnLoad;
         
         public void LoadPlayer()
         {
@@ -18,14 +17,10 @@ namespace HauntedCity.Networking
                 if (!response.HasErrors) {
                     Debug.Log("Received Player Data From GameSparks...");
                     GSData data = response.ScriptData.GetGSData("PLAYER");
-                    if (PlayerStats == null)
-                    {
-                        PlayerStats = new PlayerGameStats();
-                    }
-                    PlayerStats.GSData = new GSRequestData(data);
+                   
                     if (OnLoad != null)
                     {
-                        OnLoad();
+                        OnLoad(data);
                     }
                 } else {
                     Debug.Log("Error Loading Player Data...");

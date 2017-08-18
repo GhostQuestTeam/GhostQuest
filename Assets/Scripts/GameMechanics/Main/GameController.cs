@@ -25,8 +25,8 @@ namespace HauntedCity.GameMechanics.Main
         [Inject] private MessageRetranslator _messageRetranslator;
         [Inject] private AuthService _authService;
 
-        
-        public string[] AllowableGhosts = { "shadow_skull", "devil_mask","skull_ghost" };
+
+        public string[] AllowableGhosts = {"shadow_skull", "devil_mask", "skull_ghost"};
         public BattleStateController.BattleResult LastBattleResult { get; private set; }
 
         private PointOfInterestData _currentPOImeta;
@@ -35,7 +35,7 @@ namespace HauntedCity.GameMechanics.Main
         private int _lastScore;
 
         [Inject]
-        public void InitializeDependencies(BattleStateController battleStateController, 
+        public void InitializeDependencies(BattleStateController battleStateController,
             SceneAgregator sceneAgregator,
             StorageService storageService)
         {
@@ -43,7 +43,7 @@ namespace HauntedCity.GameMechanics.Main
             _sceneAgregator = sceneAgregator;
             _storageService = storageService;
         }
-        
+
         void Awake()
         {
         }
@@ -53,41 +53,40 @@ namespace HauntedCity.GameMechanics.Main
             _gsb = GameObject.FindObjectOfType<GameSparksBattle>();
             _gsb.OnPOISuccessCap += OnSuccessCapture;
             _gsb.OnPOIFailCapConfirm += OnFailCaptureConfirm;
-            
+
             _sceneAgregator.OnSceneChange += OnSceneChange;
             _sceneAgregator.OnAllScenesLoad += OnAllScenesLoad;
             _battleStateController.OnBattleEnd += BattleEndHandle;
 
             _messageRetranslator.Subscribe(MessageType.PLAYER_STATS_UPDATE, UpdateStats);
-            
+
             _storageService.OnLoad += OnPlayerLoad;
         }
 
         void UpdateStats(GSData data)
         {
-            GSRequestData requestData = new GSRequestData(data); 
+            GSRequestData requestData = new GSRequestData(data);
             GameStats.GSData = requestData;
             if (OnPlayerStatsUpdate != null)
             {
                 OnPlayerStatsUpdate();
             }
         }
-        
+
         public void OnDestroy()
         {
             _gsb.OnPOISuccessCap -= OnSuccessCapture;
             _gsb.OnPOIFailCapConfirm -= OnFailCaptureConfirm;
             _battleStateController.OnBattleEnd -= BattleEndHandle;
-            
-             
+
+
             _sceneAgregator.OnSceneChange -= OnSceneChange;
             _sceneAgregator.OnAllScenesLoad -= OnAllScenesLoad;
-
         }
 
         public void OnSuccessCapture(object sender, GameSparksBattle.POI_SUCESS_CAP_ev_arg arg)
         {
-            if(arg.poid == _currentPOImeta.Poid)
+            if (arg.poid == _currentPOImeta.Poid)
             {
                 //GameStats.AddExp(LastBattleResult.EarnedExp);
                 GameObject.Find("BattleRoot").SetActive(false);
@@ -110,13 +109,12 @@ namespace HauntedCity.GameMechanics.Main
         {
             if (SceneManager.GetActiveScene().name == "start_scene")
             {
-                var mapRoot =GameObject.Find("LocationProviderRoot");
+                var mapRoot = GameObject.Find("LocationProviderRoot");
                 if (mapRoot != null)
                 {
                     mapRoot.SetActive(false);
                 }
             }
-
         }
 
         public void StartGame()
@@ -124,28 +122,28 @@ namespace HauntedCity.GameMechanics.Main
             _sceneAgregator.switchToScene("map");
         }
 
-        private void OnPlayerLoad()
+        private void OnPlayerLoad(GSData playerData)
         {
-            if (_storageService.PlayerStats != null)
+            GameStats.GSData = playerData;
+            if (OnPlayerStatsUpdate != null)
             {
-                GameStats = _storageService.PlayerStats;
+                OnPlayerStatsUpdate();
             }
         }
-        
+
         private void OnSceneChange(string sceneName)
         {
             GameStats.StorageService = _storageService;
             if (sceneName == "battle")
             {
-                _battleStateController.StartBattle(new Dictionary<string, int>( _currentPOImeta.Enemies) );
+                _battleStateController.StartBattle(new Dictionary<string, int>(_currentPOImeta.Enemies));
             }
-            
         }
 
         public void StartBattle(PointOfInterestData meta)
         {
             _currentPOImeta = meta;
-            
+
             _sceneAgregator.switchToScene("battle");
         }
 
@@ -156,7 +154,7 @@ namespace HauntedCity.GameMechanics.Main
             _sceneAgregator.switchToScene("battle");
         }
 
-        
+
         public void BattleEndHandle(BattleStateController.BattleResult battleResult)
         {
             LastBattleResult = battleResult;
@@ -178,8 +176,5 @@ namespace HauntedCity.GameMechanics.Main
                     throw new ArgumentOutOfRangeException();
             }
         }
-        
-        
-        
     }
 }

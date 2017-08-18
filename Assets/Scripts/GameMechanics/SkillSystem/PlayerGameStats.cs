@@ -84,7 +84,7 @@ namespace HauntedCity.GameMechanics.SkillSystem
             get { return CharacteristicManager.GetDelta(PlayerCharacteristics.Power); }
         }
 
-        public GSRequestData GSData
+        public GSData GSData
         {
             set
             {
