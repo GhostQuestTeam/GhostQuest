@@ -81,6 +81,8 @@ namespace HauntedCity.GameMechanics.BattleSystem
                 _killedEnemies.Add(enemy, 0);
             }
             
+            //Clear bonuses from previous battles
+            FindObjectsOfType<Bonus>().ToList().ForEach((bonus)=> Destroy(bonus.gameObject));
             _ClearEnemies();
             
             _player.Reset(_battleStatsCalculator.CalculateBattleStats(GameController.GameStats));

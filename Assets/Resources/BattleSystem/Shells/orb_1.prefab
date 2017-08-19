@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4728751001844544}
   - component: {fileID: 198143019144306806}
   - component: {fileID: 199669067983524028}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dustPS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4383933673764566}
   - component: {fileID: 198486257468021330}
   - component: {fileID: 199684944400401136}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: borderGlowPS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4642637684777344}
   - component: {fileID: 198243663734751792}
   - component: {fileID: 199233567032748352}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: centralPS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 114406743163109098}
   - component: {fileID: 75077784218587186}
   - component: {fileID: 95577154762984386}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: orb_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,6 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 651abeadb4944844caca55606611e1cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DestroyTimeout: 0.01
   Weapon: {fileID: 0}
 --- !u!135 &135670120623544908
 SphereCollider:

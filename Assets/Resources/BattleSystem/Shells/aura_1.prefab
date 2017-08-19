@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4667464351677892}
   - component: {fileID: 198400049739681852}
   - component: {fileID: 199796369585430066}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ringPS1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4367756153692348}
   - component: {fileID: 198155336556792112}
   - component: {fileID: 199342108509085940}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: centerCirclesPS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4871289600595878}
   - component: {fileID: 198001434952091490}
   - component: {fileID: 199223734406060254}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ringPS2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 136746655834935880}
   - component: {fileID: 114076483061069574}
   - component: {fileID: 95333662428247968}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: aura_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,6 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 651abeadb4944844caca55606611e1cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DestroyTimeout: 0.01
   Weapon: {fileID: 0}
 --- !u!136 &136746655834935880
 CapsuleCollider:

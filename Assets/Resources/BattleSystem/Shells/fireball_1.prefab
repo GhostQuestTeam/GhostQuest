@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114896147222490458}
   - component: {fileID: 75536623616044708}
   - component: {fileID: 95875925812292142}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: fireball_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 4965008407331148}
   - component: {fileID: 198950324747635028}
   - component: {fileID: 199841434744969946}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ballPS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 651abeadb4944844caca55606611e1cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DestroyTimeout: 0.01
   Weapon: {fileID: 0}
 --- !u!135 &135099828351197114
 SphereCollider:
