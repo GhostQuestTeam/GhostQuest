@@ -6,7 +6,7 @@ public class PlayerBehaviourFromAccelerometer : MonoBehaviour {
     public GameObject cameraContainer;
     public float moveSpeed = 30;
 
-    private GameObject cameraObject;
+    public GameObject cameraObject;
     private CharacterController characterController;
     private Camera cam;
     private GyroControl gyroControl;
@@ -19,7 +19,6 @@ public class PlayerBehaviourFromAccelerometer : MonoBehaviour {
     void Start()
     {
         characterController = cameraContainer.GetComponent<CharacterController>();
-        cameraObject = cameraContainer.transform.GetChild(0).gameObject;
         cam = cameraObject.GetComponent<Camera>();
         gyroControl = cameraContainer.GetComponent<GyroControl>();
         acCleaner = cameraContainer.GetComponent<AccelerationCleaner>();

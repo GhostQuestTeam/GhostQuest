@@ -8,7 +8,7 @@ namespace HauntedCity.GameMechanics.Main
         public Gyroscope gyro;
 
         public GameObject cameraContainer;
-        private GameObject cameraObject;
+        public GameObject cameraObject;
         private Camera camera;
         private Quaternion rot;
         private Rigidbody rb;
@@ -17,7 +17,7 @@ namespace HauntedCity.GameMechanics.Main
         void Start()
         {
             gyroEnabled = EnableGyro();
-            cameraObject = cameraContainer.transform.GetChild(0).gameObject;
+//            cameraObject = cameraContainer.transform.GetChild(0).gameObject;
             camera = cameraObject.GetComponent<Camera>();
         }
 

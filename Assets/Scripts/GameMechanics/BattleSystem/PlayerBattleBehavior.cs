@@ -44,30 +44,19 @@ namespace HauntedCity.GameMechanics.BattleSystem
             BattleController.BattleStats = battleStats;
             BattleController.Reset();
             StartCoroutine(Regenerate());
-            //StartCoroutine(Oscillate());
         }
 
         void Update()
         {
         }
 
-        // Костыль, нужный, чтобы своевременно обрабатывалось столкновение, т.к
-        // OnCollisionEnter вызывается только, когда 2 объекта в движении
-        public IEnumerator Oscillate()
-        {
-            while (true)
-            {
-                transform.position += _direction * Vector3.down * 0.00001f;
-                _direction *= -1;
-                yield return new WaitForSeconds(0.01f);
-            }
-        }
 
 
         public void Shoot(Weapon weapon)
         {
+            
             GameObject shell = Instantiate(weapon.Prefab);
-            var cameraForward = GetComponentInChildren<Camera>().transform.forward;
+            var cameraForward = GameObject.FindWithTag("MainCamera").GetComponent<Camera>().transform.forward;
             var startPosition = transform.position + cameraForward * 1;
             shell.GetComponent<ShellBehavior>().Weapon = weapon;
             shell.GetComponent<ShellBehavior>().Launch(startPosition, cameraForward);
