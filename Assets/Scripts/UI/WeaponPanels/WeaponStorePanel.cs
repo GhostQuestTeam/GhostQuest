@@ -25,27 +25,21 @@ namespace HauntedCity.UI.WeaponPanels
             {
                 _weaponLoader = new WeaponLoader();
             }
-            Draw();
         }
 
-        public void Draw()
+        public override void UpdateView()
         {
+            _playerWeapons = GameController.GameStats.AllowableWeapons;
             foreach (var weapon in _weaponLoader.WeaponList)
             {
-                if (!_playerWeapons.Contains(weapon.Id))
+                if (_playerWeapons.Contains(weapon.Id)) continue;
+                if (_weaponCards.ContainsKey(weapon.Id))
+                {
+                    _weaponCards[weapon.Id].UpdateView();
+                }
+                else
                 {
                     DrawWeaponCard(weapon);
-                }
-            } 
-        }
-
-        public void UpdateView()
-        {
-            foreach (var weapon in _weaponLoader.WeaponList)
-            {
-                if (!_playerWeapons.Contains(weapon.Id) && _weaponCards.ContainsKey(weapon.Id))
-                {
-                    _weaponCards[weapon.Id].UpdateView(weapon);
                 }
             } 
         }
@@ -64,7 +58,7 @@ namespace HauntedCity.UI.WeaponPanels
             var weaponCard = Instantiate(WeaponCardPrefab);
             weaponCard.transform.SetParent( CardContainer, false);
             
-            var weaponCardComponent =weaponCard.GetComponent<StoreWeaponCard>();
+            var weaponCardComponent = weaponCard.GetComponent<StoreWeaponCard>();
             weaponCardComponent.PlayerStatsManager = _playerStatsManager;
             weaponCardComponent.UpdateView(weapon);
             _weaponCards.Add(weapon.Id, weaponCardComponent);

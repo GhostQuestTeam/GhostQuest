@@ -6,6 +6,7 @@ using HauntedCity.GameMechanics.BattleSystem;
 using HauntedCity.Geo;
 using HauntedCity.Networking;
 using HauntedCity.Utils;
+using HauntedCity.Utils.Extensions;
 using UnityEngine;
 
 namespace HauntedCity.GameMechanics.SkillSystem
@@ -96,8 +97,8 @@ namespace HauntedCity.GameMechanics.SkillSystem
                 );
                 Money = value.GetInt("money") ?? 10000;
 
-                AllowableWeapons = value.GetStringList("allowableWeapons") ?? new List<string>(DEFAULT_WEAPONS);
-                CurrentWeapons = value.GetStringList("currentWeapons") ?? new List<string>(DEFAULT_WEAPONS);
+                AllowableWeapons.ReplaceTo(value.GetStringList("allowableWeapons"));
+                CurrentWeapons.ReplaceTo(value.GetStringList("currentWeapons"));
                 var GS_POIs = value.GetGSDataList("POIs");
                 if (GS_POIs != null)
                 {
