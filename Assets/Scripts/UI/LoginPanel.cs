@@ -50,6 +50,16 @@ namespace HauntedCity.UI
             ErrorField.SetActive(false);
         }
 
+        public void LoginFB()
+        {
+            _authService.SocialAuth(AuthService.AuthType.Facebook);
+        }
+        
+        public void LoginGooglePlus()
+        {
+            _authService.SocialAuth(AuthService.AuthType.GooglePlus);
+        }
+        
         public void OnLogin(AuthenticationResponse response)
         {
             if (!response.HasErrors)
