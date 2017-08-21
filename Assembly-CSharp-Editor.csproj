@@ -108,6 +108,7 @@
     <None Include="Assets\Resources\Fonts\Bubbler_One\OFL.txt" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />
     <None Include="Assets\Libs\UniWeb-Free\FAQ.txt" />
+    <None Include="Assets\Plugins\Android\UnityOBBDownloader\res\layout-v11\status_bar_ongoing_event_progress_bar.xml" />
     <None Include="Assets\GameSparks\Plugins\Metro\GameSparksRT.xml" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ShowAlphaChannel.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\CameraMotionBlur.shader" />
@@ -123,6 +124,7 @@
     <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver_v1.2.37.0.txt" />
     <None Include="Assets\Libs\Standard Assets\Effects\Projectors\Guidelines.txt" />
     <None Include="Assets\Resources\Fonts\Frijole\OFL.txt" />
+    <None Include="Assets\Plugins\Android\UnityOBBDownloader\res\values\strings.xml" />
     <None Include="Assets\Resources\Fonts\Baloo_Bhaina\OFL.txt" />
     <None Include="Assets\Resources\Fonts\Bahiana\OFL.txt" />
     <None Include="Assets\Libs\Mapbox\Resources\Fonts\OpenSansLic.txt" />
@@ -130,6 +132,7 @@
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\MobileBloom.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\FisheyeShader.shader" />
     <None Include="Assets\Resources\Fonts\Permanent_Marker\LICENSE.txt" />
+    <None Include="Assets\Plugins\Android\UnityOBBDownloader\res\values-v9\styles.xml" />
     <None Include="Assets\Libs\Mapbox\README.txt" />
     <None Include="Assets\Resources\Fonts\Abril_Fatface\OFL.txt" />
     <None Include="Assets\GooglePlayGames\Editor\template-GameInfo.txt" />
@@ -153,9 +156,12 @@
     <None Include="Assets\Resources\Fonts\Boogaloo\OFL.txt" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\PrepareSunShaftsBlur.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionEffect.shader" />
+    <None Include="Assets\Plugins\Android\UnityOBBDownloader\res\layout\status_bar_ongoing_event_progress_bar.xml" />
     <None Include="Assets\Resources\Fonts\Gloria_Hallelujah\OFL.txt" />
+    <None Include="Assets\Plugins\Android\UnityOBBDownloader\build.xml" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\DepthOfField34.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\NoiseAndGrainDX11.shader" />
+    <None Include="Assets\Plugins\Android\UnityOBBDownloader\res\layout\main.xml" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\MobileBlur.shader" />
     <None Include="Assets\Libs\UniWeb-Free\README.txt" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ConvertDepth.shader" />
@@ -167,6 +173,7 @@
     <None Include="Assets\Resources\Fonts\Passion_One\OFL.txt" />
     <None Include="Assets\Libs\PyroParticles\Readme.txt" />
     <None Include="Assets\Libs\Mapbox\Core\Plugins\link.xml" />
+    <None Include="Assets\README.txt" />
     <None Include="Assets\Libs\Standard Assets\Effects\ToonShading\Shaders\ToonLitOutline.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Luminance.shader" />
     <None Include="Assets\PlayServicesResolver\proguard-unity.txt" />
@@ -199,18 +206,21 @@
     <None Include="Assets\FacebookSDK\link.xml" />
     <None Include="Assets\Libs\Standard Assets\Effects\Projectors\Shaders\ProjectorMultiply.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\SSAOShader.shader" />
+    <None Include="Assets\Plugins\Android\UnityOBBDownloader\res\values-v11\styles.xml" />
     <None Include="Assets\Resources\Fonts\Monoton\OFL.txt" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\Tonemapper.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BrightPassFilter.shader" />
     <None Include="Assets\GameSparks\link.xml" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAA2.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularSmooth.shader" />
+    <None Include="Assets\Plugins\Android\UnityOBBDownloader\res\values\main-strings.xml" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderYUV.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrection3DLut.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ToonShading\Shaders\ToonLit.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\ChromaticAberrationShader.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\LensFlareCreate.shader" />
     <None Include="Assets\Resources\Fonts\Righteous\OFL.txt" />
+    <None Include="Assets\Plugins\Android\UnityOBBDownloader\res\values\styles.xml" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\Blend.shader" />
     <None Include="Assets\Resources\Fonts\Lobster_Two\OFL.txt" />
     <None Include="Assets\Resources\Fonts\Chewy\LICENSE.txt" />
@@ -219,6 +229,7 @@
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\SimpleClear.shader" />
     <None Include="Assets\Libs\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularDisplacement.shader" />
     <None Include="Assets\PlayServicesResolver\proguard-messaging-workaround.txt" />
+    <None Include="Assets\Plugins\Android\UnityOBBDownloader\AndroidManifest.xml" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAA3Console.shader" />
     <None Include="Assets\Resources\Fonts\Bangers\OFL.txt" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAAPreset2.shader" />

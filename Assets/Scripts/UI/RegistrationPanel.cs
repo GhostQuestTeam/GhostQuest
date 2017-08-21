@@ -28,7 +28,6 @@ namespace HauntedCity.UI
         private void OnEnable()
         {
             _authService.OnRegister += OnRegister;
-            _authService.OnLogin += OnLogin;
         }
 
         public void Register()
@@ -43,7 +42,6 @@ namespace HauntedCity.UI
         private void OnDisable()
         {
             _authService.OnRegister -= OnRegister;
-            _authService.OnLogin -= OnLogin;
         }
         
         public void OnRegister(RegistrationResponse response)
