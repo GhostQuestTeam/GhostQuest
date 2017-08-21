@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Linq;
+using GameSparks.Api.Responses;
 using HauntedCity.GameMechanics.Main;
 using HauntedCity.GameMechanics.SkillSystem;
 using HauntedCity.Networking;
@@ -27,16 +28,14 @@ namespace HauntedCity.UI
         [Inject] private BattleStatsCalculator _battleStatsCalculator;
         [Inject] private AuthService _authService;
       
-        private void Start()
-        {
-            Name.text = _authService.Nickname;
-        }
-
+     
         public override void UpdateView()
         {
             var playerStats = GameController.GameStats;
             var battleStats = _battleStatsCalculator.CalculateBattleStats(playerStats);
-            
+         
+            Name.text = _authService.Nickname;
+
             Health.Set(battleStats.MaxHealth);
             Energy.Set(battleStats.MaxEnergy);
             Defence.Set(battleStats.Solidity.Defence);
