@@ -64,9 +64,6 @@ namespace HauntedCity.Geo
             _updateWait = new WaitForSeconds(UpdatePeriod);
         }
 
-        private void Start()
-        {
-        }
 
         private IEnumerator UpdatePoints()
         {
@@ -77,7 +74,7 @@ namespace HauntedCity.Geo
             }
         }
 
-        void OnEnable()
+        void Start()
         {
             StartCoroutine(UpdatePoints());
             _poiStatsManager.OnPOIsExtracted += Ext_OnPOIsExtracted;
