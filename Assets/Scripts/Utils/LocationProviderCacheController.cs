@@ -7,7 +7,7 @@ namespace HauntedCity.Utils
     public class LocationProviderCacheController:MonoBehaviour
     {
         private Vector3 _defaultPosition;
-        private Vector3 _anotherPosition = 1000000f * Vector3.back;
+        private Vector3 _anotherPosition = 100f * Vector3.back;
 
         void Awake()
         {
