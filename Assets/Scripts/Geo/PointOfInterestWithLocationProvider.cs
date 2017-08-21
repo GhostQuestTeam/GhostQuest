@@ -40,7 +40,7 @@ namespace HauntedCity.Geo
         public Vector2d _myMapLocation = new Vector2d(55.8257f, 49.0538f);
         public bool _IsPlayerNear = false;
 
-        
+
         public GameObject _playerObject;
 
         public class PointOfInterestEventArgs : EventArgs
@@ -94,10 +94,10 @@ namespace HauntedCity.Geo
                 messageRetranslator.Subscribe(MessageType.POI_UPDATE, OnPOIUpdate);
             }
         }
-        
+
         private void OnDisable()
-        {   
-            if(messageRetranslator != null)
+        {
+            if (messageRetranslator != null)
             {
                 messageRetranslator.Unsubscribe(MessageType.POI_UPDATE, OnPOIUpdate);
             }
@@ -146,7 +146,9 @@ namespace HauntedCity.Geo
         void checkDistanceToPlayerEvklid()
         {
             Vector2d interestLocation = _myMapLocation;
-            Vector2d playerLocation = _playerObject.GetComponent<PositionWithLocationProvider>()._myCurrentLocation;
+            var positionWithLocationProvider = FindObjectOfType<PositionWithLocationProvider>();
+            if (positionWithLocationProvider == null) return;
+            Vector2d playerLocation = positionWithLocationProvider._myCurrentLocation;
             float distanceToInterest = (float) Vector2d.Distance(interestLocation, playerLocation);
             _debug_DistanceToPlayer = distanceToInterest;
 
@@ -207,6 +209,5 @@ namespace HauntedCity.Geo
                 Metadata.SetGSData(data);
             }
         }
-
     }
 }
