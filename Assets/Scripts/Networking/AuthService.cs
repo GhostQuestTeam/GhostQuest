@@ -17,7 +17,7 @@ namespace HauntedCity.Networking
             GooglePlus
         }
 
-        private AuthType lastAuthType;
+        private AuthType lastAuthType= AuthType.Simple;
         private ISocialAuth _facebookAuth;
         private ISocialAuth _googleAuth;
 
@@ -84,13 +84,15 @@ namespace HauntedCity.Networking
 
         public void Login(string login, string password)
         {
+           
+            Logout();
             lastAuthType = AuthType.Simple;
             new GameSparks.Api.Requests.AuthenticationRequest()
                 .SetUserName(login)
                 .SetPassword(password)
                 .Send((response) =>
                 {
-                    LastAuthResponse = response;
+                    if(IsAuthenticated) return;
                     if (!response.HasErrors)
                     {
                         _isLogin = true;
@@ -134,6 +136,8 @@ namespace HauntedCity.Networking
                     break;
                 case AuthType.GooglePlus:
                     _googleAuth.Logout();
+                    break;
+                case AuthType.Simple:
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

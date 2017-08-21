@@ -22,17 +22,20 @@ namespace HauntedCity.UI
         
         private void Start()
         {
-            FindObjectOfType<FacebookManager>().OnAuthDone += OnLogin;
+//            FindObjectOfType<FacebookManager>().OnAuthDone += OnLogin;
             _login = transform.Find("LoginForm/Login").GetComponent<InputField>();
             _password = transform.Find("LoginForm/Password").GetComponent<InputField>();
         }
 
         public void Login()
         {
-            _authService.Login(
-                _login.text,
-                _password.text
-            );
+            if (!_authService.IsAuthenticated)
+            {
+                _authService.Login(
+                    _login.text,
+                    _password.text
+                );
+            }
         }
 
         private void OnEnable()
@@ -65,9 +68,8 @@ namespace HauntedCity.UI
             if (!response.HasErrors)
             {
                 (new LeaderboardService()).GetLeaderboard();
-
-                ShowInstead(MainMenu);
                 _storageService.LoadPlayer();
+                ShowInstead(MainMenu);
             }
             else
             {
