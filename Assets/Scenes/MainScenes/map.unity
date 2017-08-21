@@ -10184,7 +10184,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 512.98016, y: -13380.1045}
+  m_AnchoredPosition: {x: 512.98016, y: -13816.275}
   m_SizeDelta: {x: 1026, y: 856}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &905574983
@@ -15870,6 +15870,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1533077342}
+  - component: {fileID: 1533077343}
   m_Layer: 0
   m_Name: LocationProviderRoot
   m_TagString: SceneRoot
@@ -15901,6 +15902,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1533077343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1533077341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a001942ea66a49219affffe8826879f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cameras:
+  - {fileID: 580608870}
+  Canvas: {fileID: 797881282}
 --- !u!1 &1551310035
 GameObject:
   m_ObjectHideFlags: 0

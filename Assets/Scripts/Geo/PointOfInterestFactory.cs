@@ -66,6 +66,9 @@ namespace HauntedCity.Geo
 
         private void Start()
         {
+            StartCoroutine(UpdatePoints());
+            _poiStatsManager.OnPOIsExtracted += Ext_OnPOIsExtracted;
+
         }
 
         private IEnumerator UpdatePoints()
@@ -79,8 +82,6 @@ namespace HauntedCity.Geo
 
         void OnEnable()
         {
-            StartCoroutine(UpdatePoints());
-            _poiStatsManager.OnPOIsExtracted += Ext_OnPOIsExtracted;
         }
 
         private void OnDisable()

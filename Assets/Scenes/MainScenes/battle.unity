@@ -108,7 +108,7 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &245474915
+--- !u!1001 &216391428
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -145,15 +145,30 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4103631965019452, guid: 97c6e1e8dfb23da4b839f43666a3d2ae, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1699716209724022, guid: 97c6e1e8dfb23da4b839f43666a3d2ae, type: 2}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: m_Name
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 97c6e1e8dfb23da4b839f43666a3d2ae, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &216391429 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4103631965019452, guid: 97c6e1e8dfb23da4b839f43666a3d2ae,
+    type: 2}
+  m_PrefabInternal: {fileID: 216391428}
+--- !u!1 &216391430 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1903754094184056, guid: 97c6e1e8dfb23da4b839f43666a3d2ae,
+    type: 2}
+  m_PrefabInternal: {fileID: 216391428}
+--- !u!1 &216391431 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1065236599464800, guid: 97c6e1e8dfb23da4b839f43666a3d2ae,
+    type: 2}
+  m_PrefabInternal: {fileID: 216391428}
 --- !u!1 &323815321
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,11 +559,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cad038a687183514690a7061785a5459, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &1160869240 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4103631965019452, guid: 97c6e1e8dfb23da4b839f43666a3d2ae,
-    type: 2}
-  m_PrefabInternal: {fileID: 245474915}
 --- !u!1 &1185633218
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,6 +567,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1185633219}
+  - component: {fileID: 1185633220}
   m_Layer: 0
   m_Name: BattleRoot
   m_TagString: SceneRoot
@@ -581,6 +592,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1185633220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1185633218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a001942ea66a49219affffe8826879f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cameras:
+  - {fileID: 216391431}
+  - {fileID: 216391430}
+  - {fileID: 2089240370}
+  Canvas: {fileID: 1223304262}
 --- !u!1 &1223304262
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,7 +918,7 @@ Transform:
   - {fileID: 1810702105}
   - {fileID: 1245635202}
   - {fileID: 1292062457}
-  - {fileID: 1160869240}
+  - {fileID: 216391429}
   m_Father: {fileID: 665429753}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

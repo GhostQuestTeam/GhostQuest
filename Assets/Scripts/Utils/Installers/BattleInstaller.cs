@@ -8,10 +8,8 @@ namespace HauntedCity.Utils.Installers
         public override void InstallBindings()
         {
             Container.Bind<PlayerBattleBehavior>()
-                .FromComponentInNewPrefabResource("Player")
-                .WithGameObjectName("Player")
-                .AsSingle()
-                .NonLazy();
+                .FromComponentInHierarchy()
+                .AsSingle();
             Container.Bind<PlayerBattleController>()
                 .FromResolveGetter<PlayerBattleBehavior>((p) => p.BattleController)
                 .AsSingle();

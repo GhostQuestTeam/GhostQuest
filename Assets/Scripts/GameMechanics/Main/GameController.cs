@@ -88,8 +88,6 @@ namespace HauntedCity.GameMechanics.Main
         {
             if (arg.poid == _currentPOImeta.Poid)
             {
-                //GameStats.AddExp(LastBattleResult.EarnedExp);
-                GameObject.Find("BattleRoot").SetActive(false);
                 _sceneAgregator.switchToScene("map");
             }
         }
@@ -102,19 +100,6 @@ namespace HauntedCity.GameMechanics.Main
         private void OnAllScenesLoad()
         {
             //_sceneAgregator.switchToScene("battle");
-        }
-
-        //TODO
-        private void Update()
-        {
-            if (SceneManager.GetActiveScene().name == "start_scene")
-            {
-                var mapRoot = GameObject.Find("LocationProviderRoot");
-                if (mapRoot != null)
-                {
-                    mapRoot.SetActive(false);
-                }
-            }
         }
 
         public void StartGame()
@@ -149,8 +134,6 @@ namespace HauntedCity.GameMechanics.Main
 
         public void StartBattle()
         {
-            GameObject.Find("LocationProviderRoot").SetActive(false);
-
             _sceneAgregator.switchToScene("battle");
         }
 
@@ -166,7 +149,6 @@ namespace HauntedCity.GameMechanics.Main
                     break;
                 case BattleStateController.BattleResultType.LOSE:
                     _gsb.sendFailCaptureConfirm(_currentPOImeta.Poid);
-                    GameObject.Find("BattleRoot").SetActive(false);
                     _sceneAgregator.switchToScene("map");
                     break;
                 case BattleStateController.BattleResultType.STOPED:

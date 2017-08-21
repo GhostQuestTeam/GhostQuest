@@ -41,24 +41,27 @@ namespace HauntedCity.Utils
             _notLoadedScenes--;
 
             //У МЕНЯ НЕ РАБОТАЕТ, ПОХОЖЕ ЭТО ПЫТАЕТСЯ СРАБОТАТЬ В СОСТОЯНИИ СЦЕНЫ Loading, NO!!! РАНЬШЕ ЗДЕСЬ БЫЛИ КОСТЫЛИ С КОРУТИНОЙ!
-            scene.GetRootGameObjects()[0].SetActive(false);
+//            scene.GetRootGameObjects()[0].SetActive(false);
 
+            if (scene.buildIndex != 0)
+            {
+                scene.GetRootGameObjects()
+                    .Where((obj) => obj.GetComponent<SceneRootController>() != null)
+                    .ToList()
+                    .ForEach((obj) => obj.GetComponent<SceneRootController>().Hide()
+                    );
+            }
+//            FindObjectsOfType<SceneRootController>().ForEach((sceneRoot)=>sceneRoot.Hide());
             if (_notLoadedScenes == 0 && OnAllScenesLoad != null)
             {
+                SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(0));
                 OnAllScenesLoad();
             }
         }
 
         public void SceneManager_activeSceneChanged(Scene oldScene, Scene newScene)
         {
-            oldScene.GetRootGameObjects()
-                .Where((obj) => obj.CompareTag("SceneRoot"))
-                .ForEach((obj) => obj.SetActive(false));
-
-            newScene.GetRootGameObjects()
-                .Where((obj) => obj.CompareTag("SceneRoot"))
-                .ForEach((obj) => obj.SetActive(true));
-
+            
             if (OnSceneChange != null)
             {
                 OnSceneChange(newScene.name);

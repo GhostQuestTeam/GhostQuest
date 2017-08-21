@@ -33,6 +33,16 @@ namespace HauntedCity.Networking
                 Points = data.GetInt("numOfPOIs") ?? 0;
                 Place = data.GetInt("place") ?? 0;
             }
+
+            public LeaderboardItem()
+            {
+                
+            }
+
+            public LeaderboardItem(string name)
+            {
+                Name = name;
+            }
         }
 
         public void GetLeaderboard()

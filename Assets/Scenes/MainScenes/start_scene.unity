@@ -3003,12 +3003,12 @@ Prefab:
     - target: {fileID: 224293368433133400, guid: 46f62c01e48a42442a2c1e1ef645d32b,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -209.5
       objectReference: {fileID: 0}
     - target: {fileID: 224923768152622924, guid: 46f62c01e48a42442a2c1e1ef645d32b,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -278.5
       objectReference: {fileID: 0}
     - target: {fileID: 114038864118729654, guid: 46f62c01e48a42442a2c1e1ef645d32b,
         type: 2}
@@ -3816,11 +3816,14 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1343380690}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a978af6e255330f4db7b1016b1a60541, type: 3}
+  m_Script: {fileID: 11500000, guid: a001942ea66a49219affffe8826879f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Cameras:
+  - {fileID: 1354424503}
+  Canvas: {fileID: 28246445}
 --- !u!1 &1354424503
 GameObject:
   m_ObjectHideFlags: 0
@@ -4889,17 +4892,17 @@ Prefab:
     - target: {fileID: 224555080903911066, guid: fe21b9dbc400ccb449eb173da285ccc8,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -179.5
       objectReference: {fileID: 0}
     - target: {fileID: 224425024744228676, guid: fe21b9dbc400ccb449eb173da285ccc8,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -248.5
       objectReference: {fileID: 0}
     - target: {fileID: 224949768386907884, guid: fe21b9dbc400ccb449eb173da285ccc8,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -317.5
       objectReference: {fileID: 0}
     - target: {fileID: 224533536083499464, guid: fe21b9dbc400ccb449eb173da285ccc8,
         type: 2}

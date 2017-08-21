@@ -25,7 +25,7 @@ namespace HauntedCity.UI
 
         private void OnError()
         {
-            //TODO
+            UserResult.UpdateView(new LeaderboardService.LeaderboardItem("Error"));
         }
 
         private void OnLeaderboarbLoad(LeaderboardService.LeaderboardItem[] leaderboardItems,

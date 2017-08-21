@@ -35,6 +35,7 @@ namespace HauntedCity.Utils.Extensions
             }
             return children;
         }
+        
 
         public static void Set(this Text textObject, object value)
         {
@@ -46,6 +47,22 @@ namespace HauntedCity.Utils.Extensions
             var child = GameObject.Instantiate(childPrefab);
             child.transform.SetParent(container ,false);
             return child;
+        }
+
+        public static IEnumerable<T>  FindAllDescedantsOfType<T>(this Transform transform) where T : class
+        {
+            foreach (Transform child in transform)
+            {
+                foreach (var elem in child.FindAllDescedantsOfType<T>())
+                {
+                    yield return elem;
+                }
+            }
+            var component = transform.GetComponent(typeof(T)) as T;
+            if (component != null)
+            {
+                yield return component;
+            }
         }
     }
 }
