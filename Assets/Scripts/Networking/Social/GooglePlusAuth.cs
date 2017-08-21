@@ -8,6 +8,8 @@ namespace HauntedCity.Networking.Social
 {
     public class GooglePlusAuth:ISocialAuth
     {
+        private bool _isLogin;
+        
         public event Action<AuthenticationResponse> OnAuthDone;
         public void DoAuth()
         {
@@ -20,6 +22,8 @@ namespace HauntedCity.Networking.Social
                         .SetSwitchIfPossible(false)
                         .Send(gp_login_response =>
                         {
+                            if(_isLogin) return;
+                            _isLogin = true;
                             if(OnAuthDone != null)
                             {
                                 OnAuthDone(gp_login_response);
@@ -31,6 +35,7 @@ namespace HauntedCity.Networking.Social
 
         public void Logout()
         {
+            _isLogin = false;
             PlayGamesPlatform.Instance.SignOut();
         }
 

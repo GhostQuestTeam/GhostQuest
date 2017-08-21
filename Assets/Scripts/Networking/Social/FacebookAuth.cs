@@ -11,6 +11,9 @@ namespace HauntedCity.Networking.Social
 {
     public class FacebookAuth:ISocialAuth
     {
+
+        private bool _isLogin;
+        
         public event Action<AuthenticationResponse> OnAuthDone;
         public void DoAuth()
         {
@@ -30,12 +33,14 @@ namespace HauntedCity.Networking.Social
 
         public void Logout()
         {
+            _isLogin = false;
             FB.LogOut();
         }
 
 
         private void connectGStoFB()
         {
+            _isLogin = false;
             if (FB.IsInitialized)
             {
                 FB.ActivateApp();
@@ -50,6 +55,8 @@ namespace HauntedCity.Networking.Social
                             .SetSwitchIfPossible(false)
                             .Send((gs_auth_response) =>
                             {
+                                if(_isLogin) return;
+                                _isLogin = true;
                                 if (OnAuthDone != null)
                                 {
                                     OnAuthDone(gs_auth_response);
