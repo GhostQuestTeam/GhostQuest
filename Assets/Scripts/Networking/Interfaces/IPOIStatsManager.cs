@@ -24,6 +24,7 @@ namespace HauntedCity.Networking.Interfaces
         void RestoreShield(string pointId);
         void AttackShield(string pointId);
         void SpawnGhost(string pointId, string ghostId);
+        void ApplyBattleResult(string pointId, Dictionary<string, int> kills);
         void RetrievePoints(int depth, Vector2d pivot);
     }
 }

@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using GameSparks.Core;
 using HauntedCity.Geo;
 using HauntedCity.Networking.Interfaces;
+using HauntedCity.Utils.Extensions;
 using Mapbox.Unity.Location;
 using Mapbox.Utils;
 using UnityEngine;
@@ -29,7 +30,8 @@ namespace HauntedCity.Networking.GameSparksImpl
             upgradeIncome,
             restoreShield,
             attackShield,
-            spawnGhost
+            spawnGhost,
+            applyBattleResult
         }
         
         private void _PerformAction(string pointId, AllowableActions action)
@@ -82,6 +84,15 @@ namespace HauntedCity.Networking.GameSparksImpl
                 pointId,
                 new GSRequestData().AddString("ghostID", ghostId),
                 AllowableActions.spawnGhost
+            );
+        }
+
+        public void ApplyBattleResult(string pointId, Dictionary<string, int> kills)
+        {
+            _PerformAction(
+                pointId,
+                new GSRequestData().AddObject("GHOSTS", kills.ToGsRequestData()),
+                AllowableActions.applyBattleResult
             );
         }
 

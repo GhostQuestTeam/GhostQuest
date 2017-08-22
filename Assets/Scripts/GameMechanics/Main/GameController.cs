@@ -5,6 +5,7 @@ using HauntedCity.GameMechanics.BattleSystem;
 using HauntedCity.GameMechanics.SkillSystem;
 using HauntedCity.Geo;
 using HauntedCity.Networking;
+using HauntedCity.Networking.Interfaces;
 using HauntedCity.Utils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -23,6 +24,7 @@ namespace HauntedCity.GameMechanics.Main
         private StorageService _storageService;
 
         [Inject] private MessageRetranslator _messageRetranslator;
+        [Inject] private IPOIStatsManager _poiStatsManager;
         [Inject] private AuthService _authService;
 
 
@@ -104,18 +106,18 @@ namespace HauntedCity.GameMechanics.Main
             //_sceneAgregator.switchToScene("battle");
         }
 
-        //TODO
-        private void Update()
-        {
-            if (SceneManager.GetActiveScene().name == "start_scene")
-            {
-                var mapRoot = GameObject.Find("LocationProviderRoot");
-                if (mapRoot != null)
-                {
-                    mapRoot.SetActive(false);
-                }
-            }
-        }
+//        //TODO
+//        private void Update()
+//        {
+//            if (SceneManager.GetActiveScene().name == "start_scene")
+//            {
+//                var mapRoot = GameObject.Find("LocationProviderRoot");
+//                if (mapRoot != null)
+//                {
+//                    mapRoot.SetActive(false);
+//                }
+//            }
+//        }
 
         public void StartGame()
         {
@@ -149,7 +151,6 @@ namespace HauntedCity.GameMechanics.Main
 
         public void StartBattle()
         {
-            GameObject.Find("LocationProviderRoot").SetActive(false);
 
             _sceneAgregator.switchToScene("battle");
         }
@@ -158,6 +159,8 @@ namespace HauntedCity.GameMechanics.Main
         public void BattleEndHandle(BattleStateController.BattleResult battleResult)
         {
             LastBattleResult = battleResult;
+            _poiStatsManager.ApplyBattleResult(_currentPOImeta.Poid, battleResult.KilledEnemies);
+            
             switch (battleResult.Type)
             {
                 case BattleStateController.BattleResultType.WON:
