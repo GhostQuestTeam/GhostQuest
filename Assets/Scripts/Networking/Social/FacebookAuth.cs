@@ -52,7 +52,7 @@ namespace HauntedCity.Networking.Social
                         new FacebookConnectRequest()
                             .SetAccessToken(AccessToken.CurrentAccessToken.TokenString)
                             .SetDoNotLinkToCurrentPlayer(true)
-                            .SetSwitchIfPossible(false)
+                            .SetSwitchIfPossible(true)
                             .Send((gs_auth_response) =>
                             {
                                 if(_isLogin) return;

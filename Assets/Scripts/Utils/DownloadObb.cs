@@ -16,8 +16,8 @@ namespace HauntedCity.Utils
     
         private void Awake()
         {
-            #if UNITY_EDITOR
-            SceneManager.LoadScene(nextScene);
+            #if UNITY_EDITOR || DEBUG
+            //SceneManager.LoadScene(nextScene);
             #else
             GooglePlayDownloader.FetchOBB();
             StartCoroutine(loadLevel());

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using GameSparks.Core;
 using HauntedCity.GameMechanics.Main;
 using HauntedCity.Networking;
@@ -104,15 +105,28 @@ namespace HauntedCity.Geo
         }
 
         void Start()
-        {
-            _targetPosition = Conversions.GeoToWorldPosition(_myMapLocation,
-                MapController.ReferenceTileRect.Center,
-                MapController.WorldScaleFactor).ToVector3xz();
-            
+        {   
             LocationProvider.OnLocationUpdated += LocationProvider_OnLocationUpdated;
             _playerObject = GameObject.FindGameObjectWithTag("Player");
             _gsb = GameObject.Find("GameSparks").GetComponent<GameSparksBattle>();
             _gsb.OnScriptMessagePOIOwnerChange += OnOwnerChange;
+            GetComponent<PointColor>().UpdateView(Metadata.IsYour());
+            GetComponent<PointColor>().Hide();
+            
+            StartCoroutine(DelayedStart());
+        }
+
+        private IEnumerator DelayedStart()
+        {
+            
+            while (MapController.ReferenceTileRect == null)
+            {
+                yield return new WaitForSecondsRealtime(0.01f);
+            }
+            
+            LocationProvider_OnLocationUpdated(this, null);
+            
+            GetComponent<PointColor>().Show();
             GetComponent<PointColor>().UpdateView(Metadata.IsYour());
         }
 
@@ -173,7 +187,6 @@ namespace HauntedCity.Geo
                 {
                     _IsPlayerNear = true;
                     e.IsPlayerNear = true;
-                    transform.ChangeVisibility(_IsPlayerNear);
                     OnPOIClose(this, e);
                 }
             }
@@ -184,7 +197,6 @@ namespace HauntedCity.Geo
                 {
                     _IsPlayerNear = false;
                     e.IsPlayerNear = false;
-                    transform.ChangeVisibility(_IsPlayerNear);
                     OnPOIClose(this, e);
                 }
             } //if

@@ -22,6 +22,7 @@ public class MapPanel : Panel
 
         UpdateLevelView();
         UpdateCoin();
+        CheckDied();
     }
 
     private void OnDestroy()
@@ -32,8 +33,6 @@ public class MapPanel : Panel
     private void OnEnable()
     {
         _gameController.OnPlayerStatsUpdate += UpdateView;
-        CheckDied();
-
         UpdateLevelView();
     }
 

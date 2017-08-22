@@ -1,3 +1,5 @@
+using Facebook.Unity;
+using GooglePlayGames;
 using HauntedCity.Networking;
 using UnityEngine;
 using Zenject;
@@ -14,6 +16,14 @@ namespace HauntedCity.UI
 
         private void Start()
         {
+            if (FB.IsLoggedIn)
+            {
+                _authService.SocialAuth(AuthService.AuthType.Facebook);
+            }
+            if (PlayGamesPlatform.Instance.IsAuthenticated())
+            {
+                _authService.SocialAuth(AuthService.AuthType.GooglePlus);
+            }
         }
 
         protected override void OnShow()

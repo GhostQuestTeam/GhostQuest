@@ -26,5 +26,17 @@ namespace HauntedCity.UI.PointInfo
                 auxSettings.startColor = TheirAuxColor;
             }
         }
+
+        public void Hide()
+        {
+            MainPS.gameObject.SetActive(false);
+            AuxPS.gameObject.SetActive(false);
+        }
+
+        public void Show()
+        {
+            MainPS.gameObject.SetActive(true);
+            AuxPS.gameObject.SetActive(true);
+        }
     }
 }

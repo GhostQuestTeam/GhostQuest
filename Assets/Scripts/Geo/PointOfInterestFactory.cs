@@ -74,7 +74,7 @@ namespace HauntedCity.Geo
             }
         }
 
-        void Start()
+        void OnEnable()
         {
             StartCoroutine(UpdatePoints());
             _poiStatsManager.OnPOIsExtracted += Ext_OnPOIsExtracted;
@@ -92,7 +92,7 @@ namespace HauntedCity.Geo
             Execute();
         }
 
-
+       
         public void Execute()
         {
             _root.transform.Clear();

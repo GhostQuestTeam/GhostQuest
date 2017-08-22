@@ -19,7 +19,7 @@ namespace HauntedCity.Networking.Social
                     new GooglePlusConnectRequest()
                         .SetAccessToken(PlayGamesPlatform.Instance.GetIdToken())
                         .SetDoNotLinkToCurrentPlayer(true)
-                        .SetSwitchIfPossible(false)
+                        .SetSwitchIfPossible(true)
                         .Send(gp_login_response =>
                         {
                             if(_isLogin) return;
