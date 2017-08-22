@@ -106,18 +106,18 @@ namespace HauntedCity.GameMechanics.Main
             //_sceneAgregator.switchToScene("battle");
         }
 
-//        //TODO
-//        private void Update()
-//        {
-//            if (SceneManager.GetActiveScene().name == "start_scene")
-//            {
-//                var mapRoot = GameObject.Find("LocationProviderRoot");
-//                if (mapRoot != null)
-//                {
-//                    mapRoot.SetActive(false);
-//                }
-//            }
-//        }
+        //TODO
+        private void Update()
+        {
+            if (SceneManager.GetActiveScene().name == "start_scene")
+            {
+                var mapRoot = GameObject.Find("LocationProviderRoot");
+                if (mapRoot != null)
+                {
+                    mapRoot.SetActive(false);
+                }
+            }
+        }
 
         public void StartGame()
         {
