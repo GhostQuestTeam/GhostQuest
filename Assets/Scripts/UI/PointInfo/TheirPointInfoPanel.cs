@@ -1,4 +1,5 @@
 ﻿using HauntedCity.Geo;
+using HauntedCity.Utils.Extensions;
 using UnityEngine.UI;
 using UnityEngine;
 
@@ -40,7 +41,10 @@ namespace HauntedCity.UI.PointInfo
                 else
                 {
                     Hide();
-                    _gameController.StartBattle(_point);
+                    if (!_point.Enemies.AllZeros())
+                    {
+                        _gameController.StartBattle(_point);
+                    }
                 }
                 
             }
@@ -54,6 +58,7 @@ namespace HauntedCity.UI.PointInfo
                 _gsb.OnPOIStartCap += OnStartCapture;
             }
             _gsb.sendStartCapture(_point.Poid);
+            
         }
 
         public void Attack()

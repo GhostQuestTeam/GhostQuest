@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using GameSparks.Core;
 
 namespace HauntedCity.Utils.Extensions
@@ -18,6 +19,11 @@ namespace HauntedCity.Utils.Extensions
                 result.AddNumber(pair.Key, pair.Value);
             }
             return result;
+        }
+        
+        public static bool AllZeros(this Dictionary<string, int> dict)
+        {
+            return (dict.Count == 0) || dict.Values.All((i) => i == 0);
         }
     }
 }

@@ -213,6 +213,7 @@ namespace HauntedCity.Geo
             if (data.GetId() == Metadata.Poid)
             {
                 Metadata.SetGSData(data);
+                GetComponent<PointColor>().UpdateView(Metadata.IsYour());
             }
         }
     }

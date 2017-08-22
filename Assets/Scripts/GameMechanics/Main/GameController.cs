@@ -88,9 +88,9 @@ namespace HauntedCity.GameMechanics.Main
 
         public void OnSuccessCapture(object sender, GameSparksBattle.POI_SUCESS_CAP_ev_arg arg)
         {
+            if(SceneManager.GetActiveScene().name != "battle") return;
             if (arg.poid == _currentPOImeta.Poid)
             {
-                //GameStats.AddExp(LastBattleResult.EarnedExp);
                 GameObject.Find("BattleRoot").SetActive(false);
                 _sceneAgregator.switchToScene("map");
             }
