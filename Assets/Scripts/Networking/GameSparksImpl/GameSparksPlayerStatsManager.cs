@@ -16,7 +16,7 @@ namespace HauntedCity.Networking.GameSparksImpl
             requestData.AddNumber("endurance", endurance);
 
             Debug.Log(requestData.JSON);
-            
+
             new GameSparks.Api.Requests.LogEventRequest()
                 .SetEventKey("UPGRADE_PLAYER_STATS")
                 .SetEventAttribute("STATS", requestData)
@@ -56,6 +56,12 @@ namespace HauntedCity.Networking.GameSparksImpl
                         Debug.Log("Some erron in ChooseWeapons");
                     }
                 });
+        }
+
+        public void Resurrect()
+        {
+            new GameSparks.Api.Requests.LogEventRequest()
+                .SetEventKey("RESURRECT").Send(null);
         }
     }
 }

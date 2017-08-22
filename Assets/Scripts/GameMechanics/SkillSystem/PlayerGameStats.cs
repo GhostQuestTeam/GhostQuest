@@ -40,6 +40,14 @@ namespace HauntedCity.GameMechanics.SkillSystem
         private int _money;
 
 
+        
+        public int Lives { get; private set; }
+
+        public bool IsAlive
+        {
+            get { return Lives != 0; }
+        }
+
         public int Money
         {
             get { return _money; }
@@ -109,6 +117,7 @@ namespace HauntedCity.GameMechanics.SkillSystem
                         POIs[poi.Poid] = poi;
                     }
                 }
+                Lives = value.GetInt("lives") ?? 3;
             }
         }
 
@@ -165,11 +174,12 @@ namespace HauntedCity.GameMechanics.SkillSystem
         public PlayerGameStats()
         {
             
-            Money = 10000;
+            Money = 1000;
             PlayerExperience = new Experience();
             CurrentWeapons = new List<string>(DEFAULT_WEAPONS);
             AllowableWeapons = new List<string>(DEFAULT_WEAPONS);
 
+            Lives = 3;
             CharacteristicManager = new PlayerCharacteristicManager();
 
             SkillPoints = SKILL_POINTS_PER_LEVEL;

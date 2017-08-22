@@ -32,6 +32,8 @@ public class MapPanel : Panel
     private void OnEnable()
     {
         _gameController.OnPlayerStatsUpdate += UpdateView;
+        CheckDied();
+
         UpdateLevelView();
     }
 
@@ -40,12 +42,26 @@ public class MapPanel : Panel
         _gameController.OnPlayerStatsUpdate -= UpdateView;
     }
 
-    private void UpdateView()
+    public override void UpdateView()
     {
         UpdateLevelView();
         UpdateCoin();
+        CheckDied();
     }
 
+    private void CheckDied()
+    {
+        if (!GameController.GameStats.IsAlive)
+        {
+            FindObjectOfType<DiedPanel>().Show();
+        }
+        else
+        {
+            FindObjectOfType<DiedPanel>().Hide();
+        }
+    }
+    
+    
     private void UpdateLevelView()
     {
         var level = GameController.GameStats.PlayerExperience.Level;
