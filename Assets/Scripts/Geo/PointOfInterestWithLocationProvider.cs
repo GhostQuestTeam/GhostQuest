@@ -54,7 +54,7 @@ namespace HauntedCity.Geo
 
         public event EventHandler<PointOfInterestEventArgs> OnPOIClose;
 
-        public float _myDistanceCutOff = 0.0005f;
+        public float _myDistanceCutOff = 0.0025f;
         public float _debug_DistanceToPlayer;
 
         ILocationProvider _locationProvider;
@@ -105,6 +105,10 @@ namespace HauntedCity.Geo
 
         void Start()
         {
+            _targetPosition = Conversions.GeoToWorldPosition(_myMapLocation,
+                MapController.ReferenceTileRect.Center,
+                MapController.WorldScaleFactor).ToVector3xz();
+            
             LocationProvider.OnLocationUpdated += LocationProvider_OnLocationUpdated;
             _playerObject = GameObject.FindGameObjectWithTag("Player");
             _gsb = GameObject.Find("GameSparks").GetComponent<GameSparksBattle>();
@@ -169,6 +173,7 @@ namespace HauntedCity.Geo
                 {
                     _IsPlayerNear = true;
                     e.IsPlayerNear = true;
+                    transform.ChangeVisibility(_IsPlayerNear);
                     OnPOIClose(this, e);
                 }
             }
@@ -179,6 +184,7 @@ namespace HauntedCity.Geo
                 {
                     _IsPlayerNear = false;
                     e.IsPlayerNear = false;
+                    transform.ChangeVisibility(_IsPlayerNear);
                     OnPOIClose(this, e);
                 }
             } //if
