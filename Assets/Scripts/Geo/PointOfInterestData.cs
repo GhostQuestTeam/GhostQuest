@@ -112,7 +112,7 @@ namespace HauntedCity.Geo
 
         public bool IsYour()
         {
-            return DisplayName == _authService.Nickname;//TODO Проверять по ID
+            return Uoid == _authService.UserId;
         }
 
         public PointOfInterestData()

@@ -575,6 +575,7 @@
     <Compile Include="Assets\Scripts\Networking\FacebookManager.cs" />
     <Compile Include="Assets\Scripts\Networking\GameSparksImpl\GameSparksPOIStatsManager.cs" />
     <Compile Include="Assets\Scripts\Networking\GameSparksImpl\GameSparksPlayerStatsManager.cs" />
+    <Compile Include="Assets\Scripts\Networking\GooglePlayAuth.cs" />
     <Compile Include="Assets\Scripts\Networking\Interfaces\IPOIStatsManager.cs" />
     <Compile Include="Assets\Scripts\Networking\Interfaces\IPlayerStatsManager.cs" />
     <Compile Include="Assets\Scripts\Networking\Interfaces\ISocialAuth.cs" />
@@ -616,6 +617,7 @@
     <Compile Include="Assets\Scripts\UI\WeaponPanels\StoreWeaponCard.cs" />
     <Compile Include="Assets\Scripts\UI\WeaponPanels\WeaponCard.cs" />
     <Compile Include="Assets\Scripts\UI\WeaponPanels\WeaponStorePanel.cs" />
+    <Compile Include="Assets\Scripts\Utils\BlockRotationAxis.cs" />
     <Compile Include="Assets\Scripts\Utils\BoundedInt.cs" />
     <Compile Include="Assets\Scripts\Utils\CameraClickHandler.cs" />
     <Compile Include="Assets\Scripts\Utils\DownloadObb.cs" />
@@ -626,6 +628,7 @@
     <Compile Include="Assets\Scripts\Utils\Installers\BattleInstaller.cs" />
     <Compile Include="Assets\Scripts\Utils\Installers\GameInstaller.cs" />
     <Compile Include="Assets\Scripts\Utils\LocationProviderCacheController.cs" />
+    <Compile Include="Assets\Scripts\Utils\MinimapCameraController.cs" />
     <Compile Include="Assets\Scripts\Utils\Model.cs" />
     <Compile Include="Assets\Scripts\Utils\SceneAgregator.cs" />
     <None Include="Assets\Libs\Standard Assets\Effects\ImageEffects\Shaders\VortexEffect.shader" />

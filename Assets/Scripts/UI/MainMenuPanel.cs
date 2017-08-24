@@ -20,10 +20,10 @@ namespace HauntedCity.UI
             {
                 _authService.SocialAuth(AuthService.AuthType.Facebook);
             }
-            if (PlayGamesPlatform.Instance.IsAuthenticated())
-            {
-                _authService.SocialAuth(AuthService.AuthType.GooglePlus);
-            }
+//            if (PlayGamesPlatform.Instance.IsAuthenticated())
+//            {
+//                _authService.SocialAuth(AuthService.AuthType.GooglePlus);
+//            }
         }
 
         protected override void OnShow()

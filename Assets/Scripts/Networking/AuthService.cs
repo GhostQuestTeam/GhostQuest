@@ -21,6 +21,10 @@ namespace HauntedCity.Networking
         private ISocialAuth _facebookAuth;
         private ISocialAuth _googleAuth;
 
+        public AuthType LastAuthType
+        {
+            get { return lastAuthType; }
+        }
 
         public AuthService(ISocialAuth facebookAuth, ISocialAuth googleAuth)
         {

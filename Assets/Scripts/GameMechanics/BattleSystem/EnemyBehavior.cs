@@ -50,8 +50,9 @@ namespace HauntedCity.GameMechanics.BattleSystem
             StartCoroutine(AttackLoop());
         }
 
+        
         // Update is called once per frame
-        void Update()
+        void FixedUpdate()
         {
             transform.LookAt(_followee.transform);
             var distance = Vector3.Distance(transform.position, _followee.transform.position);
@@ -95,7 +96,7 @@ namespace HauntedCity.GameMechanics.BattleSystem
                         throw new ArgumentOutOfRangeException();
                 }
                     
-                yield return new WaitForSeconds(enemyInfo.AttackCooldown);
+                yield return new WaitForSecondsRealtime(enemyInfo.AttackCooldown);
             }
         }
 
