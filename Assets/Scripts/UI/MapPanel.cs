@@ -8,6 +8,7 @@ using Zenject;
 public class MapPanel : Panel
 {
     public Text CoinValue;
+    public Text Skills;
     public Animator AttributesPanel;
 
     [Inject] private GameController _gameController;
@@ -33,6 +34,8 @@ public class MapPanel : Panel
     private void OnEnable()
     {
         _gameController.OnPlayerStatsUpdate += UpdateView;
+        
+        UpdateSkills();
         UpdateLevelView();
     }
 
@@ -43,6 +46,8 @@ public class MapPanel : Panel
 
     public override void UpdateView()
     {
+        
+        UpdateSkills();
         UpdateLevelView();
         UpdateCoin();
         CheckDied();
@@ -59,7 +64,12 @@ public class MapPanel : Panel
             FindObjectOfType<DiedPanel>().Hide();
         }
     }
-    
+
+    private void UpdateSkills()
+    {
+        var upgradePoints = GameController.GameStats.CharacteristicManager.UpgradePoints;
+        Skills.text = "Skills" + ((upgradePoints > 0) ? "( " + upgradePoints + " points )": "");
+    }
     
     private void UpdateLevelView()
     {

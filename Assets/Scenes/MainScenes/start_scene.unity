@@ -611,6 +611,10 @@ Prefab:
       propertyPath: m_SizeDelta.x
       value: 173
       objectReference: {fileID: 0}
+    - target: {fileID: 1088770093380442, guid: fb3d9c098ba291941a3893eff2611cc5, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fb3d9c098ba291941a3893eff2611cc5, type: 2}
   m_IsPrefabParent: 0
@@ -2227,7 +2231,7 @@ RectTransform:
   m_GameObject: {fileID: 772622145}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 1}
   m_Children: []
   m_Father: {fileID: 229043662}
   m_RootOrder: 9
@@ -3098,12 +3102,12 @@ Prefab:
     - target: {fileID: 224293368433133400, guid: 46f62c01e48a42442a2c1e1ef645d32b,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -209.5
       objectReference: {fileID: 0}
     - target: {fileID: 224923768152622924, guid: 46f62c01e48a42442a2c1e1ef645d32b,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -278.5
       objectReference: {fileID: 0}
     - target: {fileID: 114038864118729654, guid: 46f62c01e48a42442a2c1e1ef645d32b,
         type: 2}
@@ -5021,17 +5025,17 @@ Prefab:
     - target: {fileID: 224555080903911066, guid: fe21b9dbc400ccb449eb173da285ccc8,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -179.5
       objectReference: {fileID: 0}
     - target: {fileID: 224425024744228676, guid: fe21b9dbc400ccb449eb173da285ccc8,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -248.5
       objectReference: {fileID: 0}
     - target: {fileID: 224949768386907884, guid: fe21b9dbc400ccb449eb173da285ccc8,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -317.5
       objectReference: {fileID: 0}
     - target: {fileID: 224533536083499464, guid: fe21b9dbc400ccb449eb173da285ccc8,
         type: 2}
