@@ -8,6 +8,7 @@ namespace HauntedCity.UI.PointInfo
     public class TheirPointInfoPanel:PointInfoPanel
     {
         public Text PointOwner;
+        public Panel PointBusy;
         public GameObject FightButton;
         public GameObject AttackButton;
         public Text AttackPrice;
@@ -36,7 +37,7 @@ namespace HauntedCity.UI.PointInfo
                 //_gsb.OnPOIStartCap -= OnStartCapture;
                 if (arg.isError || !arg.isStarted)
                 {
-                    //WE DID NOT START - TODO SHOW ERROR
+                    PointBusy.Show();
                 }
                 else
                 {
