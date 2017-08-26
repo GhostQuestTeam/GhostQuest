@@ -103,7 +103,7 @@ namespace HauntedCity.GameMechanics.SkillSystem
                     value.GetInt("level") ?? 1,
                     value.GetInt("exp") ?? 0
                 );
-                Money = value.GetInt("money") ?? 10000;
+                Money = value.GetInt("money") ?? 1000;
 
                 AllowableWeapons.ReplaceTo(value.GetStringList("allowableWeapons"));
                 CurrentWeapons.ReplaceTo(value.GetStringList("currentWeapons"));

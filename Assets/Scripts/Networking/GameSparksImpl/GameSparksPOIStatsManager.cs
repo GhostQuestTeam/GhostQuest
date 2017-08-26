@@ -39,6 +39,7 @@ namespace HauntedCity.Networking.GameSparksImpl
             new GameSparks.Api.Requests.LogEventRequest()
                 .SetEventKey("POI_ACTION")
                 .SetEventAttribute("POI_ID", pointId)
+                .SetEventAttribute("PARAMS", new GSRequestData())
                 .SetEventAttribute("ACTION", action.ToString())
                 .Send(null);//TODO
         }

@@ -52,6 +52,7 @@ namespace HauntedCity.UI.GhostShop
             if (_point.TrySpawnGhost(enemyInfo))
             {
                 PoiStatsManager.SpawnGhost(_point.Poid, enemyInfo.Id);
+                
             }
             
         }
