@@ -590,6 +590,27 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 1708342373}
+    - target: {fileID: 114164384446578060, guid: fb3d9c098ba291941a3893eff2611cc5,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8d3bb35d44adcfa41897c2ed24ea735c,
+        type: 3}
+    - target: {fileID: 114723110549683390, guid: fb3d9c098ba291941a3893eff2611cc5,
+        type: 2}
+      propertyPath: m_Text
+      value: GooglePlayGames
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331017156020678, guid: fb3d9c098ba291941a3893eff2611cc5,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 107
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331017156020678, guid: fb3d9c098ba291941a3893eff2611cc5,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 173
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fb3d9c098ba291941a3893eff2611cc5, type: 2}
   m_IsPrefabParent: 0
@@ -1629,7 +1650,7 @@ GameObject:
   - component: {fileID: 640225109}
   m_Layer: 5
   m_Name: ToLogin
-  m_TagString: Untagged
+  m_TagString: OnlyEditor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2213,8 +2234,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 186.5, y: -186}
-  m_SizeDelta: {x: 372, y: 372}
+  m_AnchoredPosition: {x: 293, y: -210.5}
+  m_SizeDelta: {x: 585, y: 421.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &772622147
 MonoBehaviour:
@@ -2476,8 +2497,8 @@ GameObject:
   - component: {fileID: 869064505}
   - component: {fileID: 869064509}
   - component: {fileID: 869064507}
-  - component: {fileID: 869064508}
   - component: {fileID: 869064510}
+  - component: {fileID: 869064508}
   m_Layer: 0
   m_Name: GameSparks
   m_TagString: Untagged
@@ -2507,7 +2528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1390bc64bbdfc4a954c3dfa8d20406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings: {fileID: 11400000, guid: e504b5ac5d597bf4b833e7a9bf8395b0, type: 2}
+  settings: {fileID: 11400000, guid: e2fabe13df3cbb04c8b86533e5e6cafe, type: 2}
 --- !u!114 &869064509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3284,6 +3305,14 @@ Prefab:
     - target: {fileID: 1596114475073390, guid: 46f62c01e48a42442a2c1e1ef645d32b, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1021660269208026, guid: 46f62c01e48a42442a2c1e1ef645d32b, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1021660269208026, guid: 46f62c01e48a42442a2c1e1ef645d32b, type: 2}
+      propertyPath: m_TagString
+      value: OnlyEditor
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 95284251346837726, guid: 46f62c01e48a42442a2c1e1ef645d32b, type: 2}

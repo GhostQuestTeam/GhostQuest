@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Threading;
+using UnityEngine;
 using UnityEngine.UI;
 using GameSparks.Api.Requests;
 using GooglePlayGames;
@@ -15,11 +17,14 @@ namespace HauntedCity.Networking
         {
             //Initialize Google Play
 
-            PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
+            PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder()
+                .RequestIdToken()
+                .RequestServerAuthCode(false).Build();
             PlayGamesPlatform.InitializeInstance(config);
 
+            PlayGamesPlatform.DebugLogEnabled = true;
             PlayGamesPlatform.Activate();
-            log.text = PlayGamesPlatform.Instance.GetUserDisplayName();
+
         }
 
         //Called from a UI Button
@@ -31,61 +36,90 @@ namespace HauntedCity.Networking
             {
                 if (success)
                 {
-                    log.text = "Success UnityEngine.Social.localUser.Authenticate";
-                    //We set the access token to the newly added built in funtion in Google Play Games to get our token
-//                    new GooglePlayConnectRequest().SetAccessToken(PlayGamesPlatform.Instance.GetIdToken())
+                    StartCoroutine(_GamesparksGoogleConnect());
+//                    var code = PlayGamesPlatform.Instance.GetServerAuthCode();
+//                    string displayName = PlayGamesPlatform.Instance.GetUserDisplayName();
+//                    string email = PlayGamesPlatform.Instance.GetUserEmail();
+//                    new GooglePlayConnectRequest()
+//                        .SetCode(code)
+//                        //.SetAccessToken (PlayGamesPlatform.Instance.GetAccessToken ())
 //                        .SetDoNotLinkToCurrentPlayer(true)
-//                        .Send((googleAuthResponse) =>
+//                        .SetSwitchIfPossible(true)
+////                        .SetRedirectUri("http://www.gamesparks.com/oauth2callback")
+//                        .SetDisplayName(displayName)
+//                        .Send((googleplayAuthResponse) =>
 //                        {
-//                            log.text = googleAuthResponse.JSONString;
-//                            if (!googleAuthResponse.HasErrors)
+//                            if (!googleplayAuthResponse.HasErrors)
 //                            {
-//                                Debug.Log(googleAuthResponse.DisplayName + " Logged In!");
-//                                log.text = googleAuthResponse.DisplayName + " Logged In!";
+//                                Debug.Log(googleplayAuthResponse.DisplayName + " Logged In !");
+//                                log.text = "SUCCESSSSS    EMAIL : " + email + " ====== Status : ok"  +
+//                                           "  ==== Code : " + code + " ====== " + "AccessToken : " +
+//                                           PlayGamesPlatform.Instance.GetIdToken() + " ==== " +
+//                                           googleplayAuthResponse.DisplayName + "   :   " +
+//                                           googleplayAuthResponse.UserId + "   :   " + "Logged In! \n " +
+//                                           googleplayAuthResponse.JSONString;
 //                            }
 //                            else
 //                            {
-//                                Debug.Log("Not Logged In!");
-//                                log.text = googleAuthResponse.JSONString;
+//                                Debug.Log("Failed To Login");
+//                                log.text = "ERRRRORRRR    EMAIL : " + email + " ====== Status : fail"  +
+//                                           " ==== Code : " + code + " ====== " + "AccessToken : " +
+//                                           PlayGamesPlatform.Instance.GetIdToken() + " ==== " +
+//                                           googleplayAuthResponse.JSONString;
 //                            }
 //                        });
-                    var code = PlayGamesPlatform.Instance.GetServerAuthCode();
-                    string displayName = PlayGamesPlatform.Instance.GetUserDisplayName();
-                    string email = PlayGamesPlatform.Instance.GetUserEmail();
-                    new GooglePlayConnectRequest()
-                        .SetCode(code)
-                        //.SetAccessToken (PlayGamesPlatform.Instance.GetAccessToken ())
-                        .SetDoNotLinkToCurrentPlayer(true)
-                        .SetSwitchIfPossible(true)
-//                        .SetRedirectUri("http://www.gamesparks.com/oauth2callback")
-                        .SetDisplayName(displayName)
-                        .Send((googleplayAuthResponse) =>
-                        {
-                            if (!googleplayAuthResponse.HasErrors)
-                            {
-                                Debug.Log(googleplayAuthResponse.DisplayName + " Logged In !");
-                                log.text = "SUCCESSSSS    EMAIL : " + email + " ====== Status : ok"  +
-                                           "  ==== Code : " + code + " ====== " + "AccessToken : " +
-                                           PlayGamesPlatform.Instance.GetIdToken() + " ==== " +
-                                           googleplayAuthResponse.DisplayName + "   :   " +
-                                           googleplayAuthResponse.UserId + "   :   " + "Logged In! \n " +
-                                           googleplayAuthResponse.JSONString;
-                            }
-                            else
-                            {
-                                Debug.Log("Failed To Login");
-                                log.text = "ERRRRORRRR    EMAIL : " + email + " ====== Status : fail"  +
-                                           " ==== Code : " + code + " ====== " + "AccessToken : " +
-                                           PlayGamesPlatform.Instance.GetIdToken() + " ==== " +
-                                           googleplayAuthResponse.JSONString;
-                            }
-                        });
                 }
                 else
                 {
                     log.text = "Error UnityEngine.Social.localUser.Authenticate\n" + errors;
                 }
             });
+        }
+
+        private IEnumerator _GamesparksGoogleConnect()
+        {
+            var waitTime = 0.1f;
+            var totalTime = 0f;
+            var serverAuthCode = PlayGamesPlatform.Instance.GetServerAuthCode();
+            var idToken = PlayGamesPlatform.Instance.GetIdToken();
+
+            while (serverAuthCode == null && idToken == null)
+            {
+                totalTime += waitTime;
+                yield return new WaitForSecondsRealtime(waitTime);
+                if (totalTime > 5f)
+                {
+                    break;
+                }
+                serverAuthCode = PlayGamesPlatform.Instance.GetServerAuthCode();
+                idToken = PlayGamesPlatform.Instance.GetIdToken();
+
+            }
+
+            var displayName = PlayGamesPlatform.Instance.GetUserDisplayName();
+            var email = PlayGamesPlatform.Instance.GetUserEmail();
+            
+            log.text += "Access token: " + (serverAuthCode ?? "null") + "\n";
+            log.text += "Id token: " + (idToken ?? "null") + "\n";
+            log.text += "DisplayName: " + (displayName ?? "null") + "\n";
+            log.text += "Email: " + (email ?? "null") + "\n";
+
+
+
+            new GooglePlayConnectRequest().SetAccessToken(idToken)
+                .SetDisplayName(displayName)
+                .SetDoNotLinkToCurrentPlayer(true)
+//                .SetRedirectUri("http://www.gamesparks.com/oauth2callback")
+                .Send((googleAuthResponse) =>
+                {
+                    log.text += googleAuthResponse.JSONString;
+                    if (!googleAuthResponse.HasErrors)
+                    {
+                    }
+                    else
+                    {
+                    }
+                });
         }
 
 

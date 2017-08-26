@@ -117,10 +117,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainPS: {fileID: 198339837721919820}
   AuxPS: {fileID: 198052652627135330}
-  YourMainColor: {r: 1, g: 0.30147058, b: 0.30147058, a: 1}
-  TheirMainColor: {r: 0.77225053, g: 0.17314708, b: 0.841, a: 0.5882353}
-  YourAuxColor: {r: 0.953, g: 0, b: 0, a: 1}
-  TheirAuxColor: {r: 0, g: 0.553, b: 1, a: 1}
+  YourMainColor: {r: 0.77225053, g: 0.17314708, b: 0.841, a: 0.5882353}
+  TheirMainColor: {r: 1, g: 0.30147058, b: 0.30147058, a: 1}
+  YourAuxColor: {r: 0, g: 0.553, b: 1, a: 1}
+  TheirAuxColor: {r: 0.953, g: 0, b: 0, a: 1}
 --- !u!114 &114692146531997232
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -136,22 +136,6 @@ MonoBehaviour:
   _useTransformLocationProvider: 0
   _IsPlayerNear: 0
   _playerObject: {fileID: 0}
-  _metadata:
-    incomeLevel: 2
-    shieldLevel: 3
-    currentShield: 0
-    currentMoney: 500
-    displayName: Rex
-    uoid: 59556cef38c31604f511dcbd
-    poid: 592f2f7ec9e77c00012f9bf6
-    name: none_name
-    owner_display_name: Rex
-    owner_user_name: rex
-    income_level: 2
-    guards_level: 2
-    shields_level: 3
-    current_money: 500
-    current_shields: 0
   _myDistanceCutOff: 0.0004
   _debug_DistanceToPlayer: 0.00006814641
 --- !u!136 &136284034832106648

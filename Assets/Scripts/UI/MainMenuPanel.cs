@@ -1,3 +1,4 @@
+using System.Linq;
 using Facebook.Unity;
 using GooglePlayGames;
 using HauntedCity.Networking;
@@ -16,6 +17,9 @@ namespace HauntedCity.UI
 
         private void Start()
         {
+            #if !UNITY_EDITOR
+            GameObject.FindGameObjectsWithTag("OnlyEditor").ToList().ForEach((obj)=> obj.SetActive(false));
+            #endif
             if (FB.IsLoggedIn)
             {
                 _authService.SocialAuth(AuthService.AuthType.Facebook);
